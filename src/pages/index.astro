@@ -1,11 +1,97 @@
----
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jonathan Dabu - Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-900 text-white font-sans max-w-4xl mx-auto px-4 py-8">
+  <header class="text-center py-12">
+    <h1 class="text-4xl font-bold">Jonathan Dabu</h1>
+    <p class="text-lg text-gray-400">Software Engineer | Test Automation | Game Developer</p>
+    <nav class="mt-6 flex justify-center space-x-6 text-lg font-semibold">
+      <a href="/about" class="text-blue-400 underline hover:text-blue-300 transition">About</a>
+      <a href="/projects" class="text-blue-400 underline hover:text-blue-300 transition">Projects</a>
+      <a href="/blog" class="text-blue-400 underline hover:text-blue-300 transition">Blog</a>
+      <a href="/contact" class="text-blue-400 underline hover:text-blue-300 transition">Contact</a>
+    </nav>
+    <div class="mt-4 flex justify-center gap-4">
+      <a href="/JonathanDabu-CV.pdf" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 transition">Download CV</a>
+      <a href="/JonathanDabu-Resume.pdf" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 transition">Download Resume</a>
+    </div>
+      
+    </div>
+  </header>
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
----
+  <main>
+    <section class="mb-12">
+      
+    </section>
 
-<Layout>
-	<Welcome />
-</Layout>
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">About Me</h2>
+      <p class="text-gray-300 max-w-2xl mx-auto">I'm a software engineer focused on crafting efficient systems and user-friendly tools. I blend deep backend logic with sleek frontend design, and I’m driven by a desire to build experiences that are as delightful as they are functional.</p>
+    </section>
+
+    <section class="mb-20">
+      <h2 class="text-2xl font-semibold mb-4">Projects</h2>
+      <div class="space-y-6">
+        <!-- Project 1 -->
+        <div class="bg-gray-800 px-6 py-4 rounded-lg shadow">
+          <button onclick="toggleProject(this)" class="group w-full text-left text-xl font-semibold text-white focus:outline-none flex justify-between items-center">
+            Corporate Depths
+            <span class="ml-2 inline-block">
+              <span class="arrow-right group-[.expanded]:hidden">▸</span>
+              <span class="arrow-down hidden group-[.expanded]:inline">▾</span>
+            </span>
+          </button>
+          <div class="mt-2 max-h-0 overflow-hidden transition-all duration-500 ease-in-out" data-project-details>
+            <p class="text-gray-400 mb-2">A UI-driven game exploring corporate politics. Built using Godot.</p>
+            <ul class="text-gray-300 mb-4 list-disc list-inside">
+              <li>Role: Lead Developer</li>
+              <li>Features: Dialogue system, branching storylines, pixel art UI</li>
+            </ul>
+            <a href="#" class="mt-2 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 transition">View on GitHub</a>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="bg-gray-800 px-6 py-4 rounded-lg shadow">
+          <button onclick="toggleProject(this)" class="group w-full text-left text-xl font-semibold text-white focus:outline-none flex justify-between items-center">
+            Portfolio Website
+            <span class="ml-2 arrow transform transition-transform duration-300 group-[.expanded]:rotate-90 inline-block">▸</span>
+          </button>
+          <div class="mt-2 max-h-0 overflow-hidden transition-all duration-500 ease-in-out" data-project-details>
+            <p class="text-gray-400 mb-2">Personal portfolio built with Astro and Tailwind CSS.</p>
+            <ul class="text-gray-300 mb-4 list-disc list-inside">
+              <li>Role: Designer & Developer</li>
+              <li>Features: Responsive design, fast load times, accessible UI</li>
+            </ul>
+            <a href="#" class="mt-2 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 transition">View on GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-20 text-center">
+      <h2 class="text-2xl font-semibold mb-4">Contact</h2>
+      <p class="text-gray-300">Reach me at <a href=\"mailto:jonathan@example.com\" class=\"text-blue-400 underline\">email</a> or connect on <a href=\"https://github.com/jonathandabu\" class=\"text-blue-400 underline\">GitHub</a>.</p>
+      <a href="mailto:jonathan@example.com" class="text-blue-400 underline hover:text-blue-300 transition">Email Me</a>
+    </section>
+  </main>
+
+  <footer class="text-center py-8 text-gray-600 text-sm border-t border-gray-800">
+    <p>© 2025 Jonathan Dabu</p>
+    <p>Built with ❤️ using Astro and Tailwind CSS</p>
+  </footer>
+
+<script src="/toggleProject.js" is:inline></script>
+</body>
+</html>
