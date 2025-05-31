@@ -26,14 +26,10 @@
       <a href="/JonathanDabu-CV.pdf" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 transition">Download CV</a>
       <a href="/JonathanDabu-Resume.pdf" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 transition">Download Resume</a>
     </div>
-      
-    </div>
   </header>
 
   <main>
-    <section class="mb-12">
-      
-    </section>
+    <section class="mb-12"></section>
 
     <section class="mb-12">
       <h2 class="text-2xl font-semibold mb-4">About Me</h2>
@@ -44,15 +40,15 @@
       <h2 class="text-2xl font-semibold mb-4">Projects</h2>
       <div class="space-y-6">
         <!-- Project 1 -->
-        <div class="bg-gray-800 px-6 py-4 rounded-lg shadow">
-          <button onclick="toggleProject(this)" class="group w-full text-left text-xl font-semibold text-white focus:outline-none flex justify-between items-center">
+        <div class="bg-gray-800 px-6 py-4 rounded-lg shadow group">
+          <button onclick="toggleProject(this)" class="w-full flex justify-between items-center h-12 px-2 text-left text-xl font-semibold text-white focus:outline-none">
             Corporate Depths
-            <span class="ml-2 inline-block">
-              <span class="arrow-right group-[.expanded]:hidden">▸</span>
-              <span class="arrow-down hidden group-[.expanded]:inline">▾</span>
+            <span class="flex items-center">
+              <span class="arrow-right">▸</span>
+              <span class="arrow-down hidden">▾</span>
             </span>
           </button>
-          <div class="mt-2 max-h-0 overflow-hidden transition-all duration-500 ease-in-out" data-project-details>
+          <div class="mt-2 hidden" data-project-details>
             <p class="text-gray-400 mb-2">A UI-driven game exploring corporate politics. Built using Godot.</p>
             <ul class="text-gray-300 mb-4 list-disc list-inside">
               <li>Role: Lead Developer</li>
@@ -63,12 +59,15 @@
         </div>
 
         <!-- Project 2 -->
-        <div class="bg-gray-800 px-6 py-4 rounded-lg shadow">
-          <button onclick="toggleProject(this)" class="group w-full text-left text-xl font-semibold text-white focus:outline-none flex justify-between items-center">
+        <div class="bg-gray-800 px-6 py-4 rounded-lg shadow group">
+          <button onclick="toggleProject(this)" class="w-full flex justify-between items-center h-12 px-2 text-left text-xl font-semibold text-white focus:outline-none">
             Portfolio Website
-            <span class="ml-2 arrow transform transition-transform duration-300 group-[.expanded]:rotate-90 inline-block">▸</span>
+            <span class="flex items-center">
+              <span class="arrow-right">▸</span>
+              <span class="arrow-down hidden">▾</span>
+            </span>
           </button>
-          <div class="mt-2 max-h-0 overflow-hidden transition-all duration-500 ease-in-out" data-project-details>
+          <div class="mt-2 hidden" data-project-details>
             <p class="text-gray-400 mb-2">Personal portfolio built with Astro and Tailwind CSS.</p>
             <ul class="text-gray-300 mb-4 list-disc list-inside">
               <li>Role: Designer & Developer</li>
@@ -82,7 +81,7 @@
 
     <section class="mb-20 text-center">
       <h2 class="text-2xl font-semibold mb-4">Contact</h2>
-      <p class="text-gray-300">Reach me at <a href=\"mailto:jonathan@example.com\" class=\"text-blue-400 underline\">email</a> or connect on <a href=\"https://github.com/jonathandabu\" class=\"text-blue-400 underline\">GitHub</a>.</p>
+      <p class="text-gray-300">Reach me at <a href="mailto:jonathan@example.com" class="text-blue-400 underline">email</a> or connect on <a href="https://github.com/jonathandabu" class="text-blue-400 underline">GitHub</a>.</p>
       <a href="mailto:jonathan@example.com" class="text-blue-400 underline hover:text-blue-300 transition">Email Me</a>
     </section>
   </main>
@@ -92,6 +91,10 @@
     <p>Built with ❤️ using Astro and Tailwind CSS</p>
   </footer>
 
-<script src="/toggleProject.js" is:inline></script>
+<script type="module">
+  import toggleProject from '/toggleProject.js';
+  window.toggleProject = toggleProject;
+</script>
+
 </body>
 </html>
