@@ -1,6 +1,6 @@
 # 🌐 dev-portfolio
 
-A fast, clean, developer-friendly portfolio built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/). This site showcases projects, blog posts, and interactive demos by **Jonathan Dabu**.
+A fast, clean, developer-friendly portfolio built with [Astro](https://astro.build/) a. This site showcases projects, blog posts, and interactive demos by **Jonathan Dabu**.
 
 > This portfolio was designed to highlight software engineering, test automation, and game development work — with minimal design overhead and maximum performance.
 
@@ -26,8 +26,6 @@ dev-portfolio/
 │       └── global.css         # Tailwind CSS base styles
 │
 ├── astro.config.mjs           # Astro project config
-├── tailwind.config.cjs        # Tailwind config
-├── postcss.config.cjs         # PostCSS config
 └── package.json               # Project metadata and scripts
 ```
 
@@ -49,7 +47,7 @@ Run all commands from the root of the project:
 
 ## ✍️ Features
 
-- ⚡ Built with Astro and Tailwind CSS
+- ⚡ Built with Astro
 - 🧱 Reusable components and clean structure
 - 🧠 Markdown-based blog support
 - 🖥️ Project cards with code/demo links
@@ -60,7 +58,6 @@ Run all commands from the root of the project:
 ## 📦 Tech Stack
 
 - **Astro** – static site generation
-- **Tailwind CSS** – modern utility-first styling
 - **Markdown** – content authoring for blogs
 - **Node.js** – for local development and build
 
@@ -81,7 +78,6 @@ You can deploy the site easily to:
 
 - 📘 [Astro Documentation](https://docs.astro.build)
 - 💬 [Astro Discord](https://astro.build/chat)
-- 🎨 [Tailwind Docs](https://tailwindcss.com/docs)
 
 ---
 
