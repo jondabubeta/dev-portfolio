@@ -6,16 +6,17 @@ import '../styles/global.css';
   <head>
     <meta charset="UTF-8" />
     <title>Jonathan Dabu - Portfolio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.0/dist/themes/dark.css" />
   </head>
   <body>
     <header>
-      <img src="/images/logo.png" alt="Logo" class="logo" />
       <nav>
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
         <a href="#blog">Blog</a>
         <a href="#contact">Contact</a>
       </nav>
+      <img src="/images/logo.png" alt="Logo" class="logo" />
     </header>
 
     <section class="banner">
@@ -23,41 +24,46 @@ import '../styles/global.css';
       <div>
         <h1>Jonathan Dabu</h1>
         <h2>Software Engineer</h2>
-        <p>I specialize in test automation, systems programming, and building intuitive game and web interfaces.</p>
-<div class="banner-buttons">
-  <a href="#about" class="button-primary">More About Me</a>
-  <a href="/JonathanDabu-Resume.pdf" class="button-reverse">Download Resume</a>
-</div>
-      </div>
-    </section>
-
-    <section class="projects" id="projects">
-      <h2>PROJECTS</h2>
-      <p>Featured work</p>
-
-      <div class="project-tab" onclick="toggleDropdown(this)">
-        <div class="project-tab-header">
-          <h3><img src="/images/code.png" alt="Code Icon" />Corporate Depths</h3>
-          <span class="arrow">►</span>
-        </div>
-        <div class="project-detail">
-          <p>A UI-driven game exploring corporate politics. Built using Godot.</p>
+        <p>
+          I specialize in test automation, systems programming, and building intuitive game and web interfaces.
+        </p>
+        <div class="banner-buttons">
+          <a href="#about" class="button-blue">More About Me</a>
+          <a href="/JonathanDabu-Resume.pdf" class="button-white">Download Resume</a>
         </div>
       </div>
     </section>
+<section class="projects" id="projects">
+  <h2>PROJECTS</h2>
+  <p>Featured work</p>
 
-    <script is:inline>
-      function toggleDropdown(tab) {
-        const isOpen = tab.classList.contains('open');
-        document.querySelectorAll('.project-tab').forEach(el => {
-          el.classList.remove('open');
-          el.querySelector('.arrow').textContent = '►';
-        });
-        if (!isOpen) {
-          tab.classList.add('open');
-          tab.querySelector('.arrow').textContent = '▼';
-        }
-      }
-    </script>
+  <sl-details class="project-dropdown">
+    <div slot="summary" class="dropdown-summary">
+      <img src="/images/code.png" alt="Code Icon" class="project-icon" />
+      <span class="dropdown-title">Corporate Depths</span>
+    </div>
+    <div class="project-detail">
+      <p>A UI-driven game exploring corporate politics. Built using Godot.</p>
+      <ul>
+        <li>Role: Lead Developer</li>
+        <li>Features: Dialogue system, branching storylines, pixel art UI</li>
+      </ul>
+    </div>
+        <div slot="summary" class="dropdown-summary">
+      <img src="/images/code.png" alt="Code Icon" class="project-icon" />
+      <span class="dropdown-title">Corporate Depths</span>
+    </div>
+    <div class="project-detail">
+      <p>A UI-driven game exploring corporate politics. Built using Godot.</p>
+      <ul>
+        <li>Role: Lead Developer</li>
+        <li>Features: Dialogue system, branching storylines, pixel art UI</li>
+      </ul>
+    </div>
+</section>
+
+<!-- Shoelace components import -->
+<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.0/cdn/shoelace.js"></script>
+
   </body>
 </html>
