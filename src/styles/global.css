@@ -21,7 +21,7 @@ header {
 }
 
 .logo {
-  width: 160px;
+  width: 240px;
 }
 
 nav a {
@@ -29,7 +29,7 @@ nav a {
   color: #4e7bd7;
   font-weight: 700;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 1.25rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -68,28 +68,44 @@ nav a {
 
 .banner-buttons {
   margin-top: 2rem;
-  display: flex;
-  gap: 1rem;
 }
 
-.button {
+sl-button::part(base) {
   padding: 0.6rem 1.4rem;
-  border-radius: 6px;
   font-weight: 600;
   font-size: 1rem;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .button-blue {
   background-color: #4e7bd7;
   color: white;
+  padding: 0.6rem 1.4rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
 }
 
 .button-white {
   background-color: white;
   color: #4e7bd7;
+  padding: 0.6rem 1.4rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+
+.resume-btn::part(base) {
+  background: white;
+  color: #4e7bd7;
+  border: none;
 }
 
 .projects {
@@ -104,19 +120,46 @@ nav a {
 }
 
 .projects p {
-  color: #4e7bd7;
+  color: white;
   font-weight: bold;
   margin: 0 0 2rem;
 }
 
+sl-details::part(base) {
+  background-color: #1c2333;
+  color: white;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.project-detail {
+  padding: 1rem 0 0;
+}
+
+.project-detail ul {
+  list-style: disc;
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.project-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  margin: 0;
+  vertical-align: middle;
+}
+
 .project-dropdown::part(base) {
   background-color: #4e7bd7;
+  color: white;
   border-radius: 6px;
   margin-bottom: 1rem;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.05rem;
+  padding: 0;
   overflow: hidden;
-  border: none;
 }
 
 .project-dropdown::part(header) {
@@ -126,46 +169,31 @@ nav a {
   align-items: center;
   justify-content: space-between;
   background-color: #4e7bd7;
-  color: white;
+  border-bottom: 1px solid #294a8d;
 }
 
 .dropdown-summary {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 1rem;
-  width: 100%;
 }
 
 .dropdown-title {
-  flex-grow: 1;
   font-size: 1.1rem;
-  text-transform: uppercase;
   font-weight: bold;
+  text-transform: uppercase;
   letter-spacing: 0.03em;
 }
 
-.project-icon {
-  width: 36px;
-  height: auto;
-  object-fit: contain;
-  flex-shrink: 0;
-  vertical-align: middle;
-}
-
-.dropdown-chevron {
-  font-size: 1.25rem;
-  color: white;
-}
-
 .project-detail {
-  background-color: #294a8d;
   padding: 1rem 1.5rem;
+  background-color: #294a8d;
   color: white;
 }
 
 .project-detail ul {
+  margin-top: 0.5rem;
+  margin-left: 1.25rem;
   list-style-type: disc;
-  padding-left: 1.25rem;
-  margin-top: 0.75rem;
 }
+
