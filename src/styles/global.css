@@ -17,7 +17,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 6rem;
+  padding: 2rem 16rem;
 }
 
 .logo {
@@ -38,7 +38,7 @@ nav a {
   background-color: #1c2333;
   display: flex;
   align-items: center;
-  padding: 3rem 6rem;
+  padding: 3rem 18rem;
   gap: 3rem;
 }
 
@@ -89,6 +89,13 @@ sl-button::part(base) {
   cursor: pointer;
 }
 
+.button-blue:hover {
+  background-color: white;
+  color: #4e7bd7;
+  border: 2px solid #4e7bd7;
+}
+
+
 .button-white {
   background-color: white;
   color: #4e7bd7;
@@ -101,6 +108,17 @@ sl-button::part(base) {
   cursor: pointer;
 }
 
+.button-white:hover {
+  background-color: #4e7bd7;
+  color: white;
+  border: 2px solid white;
+}
+
+.button-blue,
+.button-white {
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
 
 .resume-btn::part(base) {
   background: white;
@@ -109,7 +127,7 @@ sl-button::part(base) {
 }
 
 .projects {
-  padding: 3rem 6rem;
+  padding: 3rem 18rem;
 }
 
 .projects h2 {
