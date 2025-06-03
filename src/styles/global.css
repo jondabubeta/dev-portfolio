@@ -48,13 +48,14 @@ nav a {
 }
 
 .banner h1 {
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   margin: 0 0 0.2rem;
   font-weight: 700;
   letter-spacing: 0.02em;
 }
 
 .banner h2 {
+  color:#4e7bd7;
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0 0 1rem;
@@ -215,3 +216,26 @@ sl-details::part(base) {
   list-style-type: disc;
 }
 
+.typing-header {
+  width: 12ch;
+  animation:
+    typing 1.4s steps(14, end),
+    blink 0.7s step-end infinite;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 12px solid #c0c7d6;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 12ch }
+}
+
+@keyframes blink {
+  0%, 100% { border-color: transparent }
+  50% { border-color: #c0c7d6 }
+}
