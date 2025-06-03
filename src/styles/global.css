@@ -43,7 +43,7 @@ nav a {
 }
 
 .banner img {
-  width: 140px;
+  width: 280px;
   height: auto;
 }
 
@@ -56,7 +56,7 @@ nav a {
 
 .banner h2 {
   color:#4e7bd7;
-  font-size: 1.5rem;
+  font-size: 2.0rem;
   font-weight: 600;
   margin: 0 0 1rem;
 }
@@ -64,11 +64,13 @@ nav a {
 .banner p {
   font-size: 1.1rem;
   color: #c0c7d6;
-  max-width: 520px;
+  max-width: 700px;
 }
 
 .banner-buttons {
-  margin-top: 2rem;
+  display: flex;
+  margin-top: 1rem;
+  gap: 1rem; 
 }
 
 sl-button::part(base) {
@@ -85,7 +87,7 @@ sl-button::part(base) {
   border-radius: 6px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.25rem;
   border: none;
   cursor: pointer;
 }
@@ -104,7 +106,7 @@ sl-button::part(base) {
   border-radius: 6px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.25rem;
   border: none;
   cursor: pointer;
 }
