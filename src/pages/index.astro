@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import Intro, { frontmatter as introFrontmatter } from '../content/intro.md';
+const { title } = introFrontmatter;
 ---
 
 <html lang="en">
@@ -23,8 +25,8 @@ import '../styles/global.css';
       <img src="/images/corgi.png" alt="Corgi Icon" />
       <div>        
         <h1 class="typing-header">HELLO WORLD...</h1>
-        <h2>I'M JONATHAN</h2>
-        <p> I specialize in test automation, systems programming, and building intuitive game and web interfaces.</p>  
+        <h2>{title}</h2>
+        <Intro />
         <div class="banner-buttons">
           <a href="#about" class="button-blue">More About Me</a>
           <a href="/JonathanDabu-Resume.pdf" class="button-white">Download Resume</a>
