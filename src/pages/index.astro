@@ -1,9 +1,11 @@
 ---
 import '../styles/global.css';
+import Layout from '../layouts/Layout.astro';
 import Intro, { frontmatter as introFrontmatter } from '../content/intro.md';
 const { title } = introFrontmatter;
 ---
 
+<Layout></Layout>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,16 +13,6 @@ const { title } = introFrontmatter;
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.0/dist/themes/dark.css" />
   </head>
   <body>
-    <header>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#blog">Blog</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <img src="/images/logo.png" alt="Logo" class="logo" />
-    </header>
-
     <section class="banner">
       <img src="/images/corgi.png" alt="Corgi Icon" />
       <div>        
@@ -66,7 +58,6 @@ const { title } = introFrontmatter;
     </sl-details>
 </section>
 
-<!-- Shoelace components import -->
 <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.0/cdn/shoelace.js"></script>
 
   </body>
