@@ -9,19 +9,35 @@ import '../styles/global.css';
   <head>
     <meta charset="UTF-8" />
     <title>{title}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.0/dist/themes/dark.css" />
   </head>
   <body>
     <header>
       <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#blog">Blog</a>
-        <a href="#contact">Contact</a>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/projects">Projects</a>
+        <a href="/blog">Blog</a>
+        <a href="/contact">Contact</a>
       </nav>
       <img src="/images/logo.png" alt="Logo" class="logo" />
     </header>
+
     <main>
       <slot />
     </main>
+
+    <footer class="site-footer">
+      <div class="footer-content">
+        <p>© {year} Jonathan Dabu</p>
+        <div class="socials">
+          <a href="https://github.com/jonathandabu" target="_blank">GitHub</a>
+          <a href="https://linkedin.com/in/jonathandabu" target="_blank">LinkedIn</a>
+          <a href="mailto:jonathandabu86@gmail.com">Email</a>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.0/cdn/shoelace.js"></script>
   </body>
 </html>

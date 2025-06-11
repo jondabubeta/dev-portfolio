@@ -1,75 +1,53 @@
 ---
-import '../styles/global.css';
 import Layout from '../layouts/Layout.astro';
 import Intro, { frontmatter as introFrontmatter } from '../content/intro.md';
 const { title } = introFrontmatter;
 ---
 
-<Layout></Layout>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Jonathan Dabu - Portfolio</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.0/dist/themes/dark.css" />
-  </head>
-  <body>
-    <section class="banner">
-      <img src="/images/corgi.png" alt="Corgi Icon" />
-      <div>        
-        <h1 class="typing-header">HELLO WORLD...</h1>
-        <h2>{title}</h2>
-        <Intro />
-        <div class="banner-buttons">
-          <a href="#about" class="button-blue">More About Me</a>
-          <a href="/JonathanDabu-Resume.pdf" class="button-white">Download Resume</a>
-        </div>
+<Layout title="Jonathan Dabu - Portfolio">
+  <section class="banner">
+    <img src="/images/corgi.png" alt="Corgi Icon" />
+    <div>
+      <h1 class="typing-header">HELLO WORLD...</h1>
+      <h2>{title}</h2>
+      <Intro />
+      <div class="banner-buttons">
+        <a href="#about" class="button-blue">More About Me</a>
+        <a href="/JonathanDabu-Resume.pdf" class="button-white">Download Resume</a>
       </div>
-    </section>
-<section class="projects" id="projects">
-  <h2>PROJECTS</h2>
-  <p>Featured work</p>
+    </div>
+  </section>
 
-  <sl-details class="project-dropdown">
-    <div slot="summary" class="dropdown-summary">
-      <img src="/images/code.png" alt="Code Icon" class="project-icon" />
-      <span class="dropdown-title">Corporate Depths</span>
-    </div>
-    <div class="project-detail">
-      <p>A UI-driven game exploring corporate politics. Built using Godot.</p>
-      <ul>
-        <li>Role: Lead Developer</li>
-        <li>Features: Dialogue system, branching storylines, pixel art UI</li>
-      </ul>
-    </div>
+  <section class="projects" id="projects">
+    <h2>PROJECTS</h2>
+    <p>Featured work</p>
+
+    <sl-details class="project-dropdown">
+      <div slot="summary" class="dropdown-summary">
+        <img src="/images/code.png" alt="Code Icon" class="project-icon" />
+        <span class="dropdown-title">Corporate Depths</span>
+      </div>
+      <div class="project-detail">
+        <p>A UI-driven game exploring corporate politics. Built using Godot.</p>
+        <ul>
+          <li>Role: Lead Developer</li>
+          <li>Features: Dialogue system, branching storylines, pixel art UI</li>
+        </ul>
+      </div>
     </sl-details>
 
-      <sl-details class="project-dropdown">
-        <div slot="summary" class="dropdown-summary">
-      <img src="/images/code.png" alt="Code Icon" class="project-icon" />
-      <span class="dropdown-title">Corporate Depths</span>
-    </div>
-    <div class="project-detail">
-      <p>A UI-driven game exploring corporate politics. Built using Godot.</p>
-      <ul>
-        <li>Role: Lead Developer</li>
-        <li>Features: Dialogue system, branching storylines, pixel art UI</li>
-      </ul>
-    </div>
+    <sl-details class="project-dropdown">
+      <div slot="summary" class="dropdown-summary">
+        <img src="/images/code.png" alt="Code Icon" class="project-icon" />
+        <span class="dropdown-title">Portfolio Website</span>
+      </div>
+      <div class="project-detail">
+        <p>Personal portfolio site built using Astro, SCSS, and Shoelace UI.</p>
+        <ul>
+          <li>Role: Full Stack Developer</li>
+          <li>Features: Markdown content, layout system, dropdown components</li>
+        </ul>
+      </div>
     </sl-details>
-</section>
-
-<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.0/cdn/shoelace.js"></script>
-
-  </body>
-
-  <footer class="site-footer">
-  <div class="footer-content">
-    <p>© {new Date().getFullYear()} Jonathan Dabu</p>
-    <div class="socials">
-      <a href="https://github.com/jonathandabu" target="_blank">GitHub</a>
-      <a href="https://linkedin.com/in/jonathandabu" target="_blank">LinkedIn</a>
-      <a href="mailto:jonathandabu86@gmail.com">Email</a>
-    </div>
-  </div>
-</footer>
-</html>
+  </section>
+</Layout>
