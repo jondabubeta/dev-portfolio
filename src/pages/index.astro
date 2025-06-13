@@ -1,53 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Intro, { frontmatter as introFrontmatter } from '../content/intro.md';
-const { title } = introFrontmatter;
+import Terminal from '../components/Terminal.astro';
 ---
-
-<Layout title="Jonathan Dabu - Portfolio">
-  <section class="banner">
-    <img src="/images/corgi.png" alt="Corgi Icon" />
-    <div>
-      <h1 class="typing-header">HELLO WORLD...</h1>
-      <h2>{title}</h2>
-      <Intro />
-      <div class="banner-buttons">
-        <a href="#about" class="button-blue">More About Me</a>
-        <a href="/JonathanDabu-Resume.pdf" class="button-white">Download Resume</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="projects" id="projects">
-    <h2>PROJECTS</h2>
-    <p>Featured work</p>
-
-    <sl-details class="project-dropdown">
-      <div slot="summary" class="dropdown-summary">
-        <img src="/images/code.png" alt="Code Icon" class="project-icon" />
-        <span class="dropdown-title">Corporate Depths</span>
-      </div>
-      <div class="project-detail">
-        <p>A UI-driven game exploring corporate politics. Built using Godot.</p>
-        <ul>
-          <li>Role: Lead Developer</li>
-          <li>Features: Dialogue system, branching storylines, pixel art UI</li>
-        </ul>
-      </div>
-    </sl-details>
-
-    <sl-details class="project-dropdown">
-      <div slot="summary" class="dropdown-summary">
-        <img src="/images/code.png" alt="Code Icon" class="project-icon" />
-        <span class="dropdown-title">Portfolio Website</span>
-      </div>
-      <div class="project-detail">
-        <p>Personal portfolio site built using Astro, SCSS, and Shoelace UI.</p>
-        <ul>
-          <li>Role: Full Stack Developer</li>
-          <li>Features: Markdown content, layout system, dropdown components</li>
-        </ul>
-      </div>
-    </sl-details>
-  </section>
+<Layout>
+  <Terminal />
+  <main>
+    <section id="about">
+      <h1>About Me</h1>
+    </section>
+    <section id="projects">
+      <h2>Projects</h2>
+    </section>
+    <section id="skills">
+      <h2>Skills</h2>
+    </section>
+  </main>
 </Layout>

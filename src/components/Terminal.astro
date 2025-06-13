@@ -1,0 +1,54 @@
+---
+const clientScript = true;
+---
+<div class="terminal-shell">
+  <div id="terminal-output" style="flex:1; overflow-y:auto;"></div>
+  <div style="display:flex;">
+    <span>$&nbsp;</span>
+    <span id="terminal-prompt" class="prompt"></span>
+  </div>
+</div>
+
+{clientScript && (
+  <script type="module">
+    const outputEl = document.getElementById('terminal-output');
+    const promptEl = document.getElementById('terminal-prompt');
+    let input = '';
+    let chars = 0;
+    const print = (text) => {
+      const div = document.createElement('div');
+      div.textContent = text;
+      outputEl.appendChild(div);
+      outputEl.scrollTop = outputEl.scrollHeight;
+    };
+    // Initial message
+    print('Welcome to my portfolio!');
+
+    const execute = (cmd) => {
+      const target = document.getElementById(cmd);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+        print(`> Navigated to ${cmd}`);
+      } else {
+        print(`> Command not found: ${cmd}`);
+      }
+    };
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        print(`$ ${input}`);
+        execute(input.trim().toLowerCase());
+        input = '';
+        chars = 0;
+      } else if (e.key === 'Backspace') {
+        input = input.slice(0, -1);
+        chars = input.length;
+      } else if (e.key.length === 1) {
+        input += e.key;
+        chars = input.length;
+      }
+      promptEl.textContent = input;
+      document.documentElement.style.setProperty('--chars', `${chars}ch`);
+    });
+  </script>
+)}
