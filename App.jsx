@@ -1,9 +1,11 @@
-import React from 'react';
 import Terminal from './components/Terminal';
-import './styles/globals.css';
-
+import './styles/terminal.css';
 function App() {
-  return <Terminal />;
+  return (
+    <div className="App">
+      <Terminal />
+    </div>
+  );
 }
 
 export default App;

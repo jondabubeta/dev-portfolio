@@ -1,66 +1,44 @@
-
 import React, { useState } from 'react';
-import Home from '../views/Home';
-import About from '../views/About';
-import Projects from '../views/Projects';
-import Contact from '../views/Contact';
+import { handleCommand } from '../src/utils/handleCommand';
+import '../styles/Terminal.css';
 
-const Terminal = () => {
-  const [command, setCommand] = useState('');
-  const [history, setHistory] = useState([]);
-  const [view, setView] = useState('home');
+export default function Terminal({ setCurrentPage, setTheme }) {
+  const [input, setInput] = useState('');
+  const [output, setOutput] = useState([]);
 
-  const handleInput = (e) => {
-    if (e.key === 'Enter') {
-      const trimmed = command.trim().toLowerCase();
-      setHistory([...history, `> ${trimmed}`]);
-      switch (trimmed) {
-        case 'home':
-        case 'about':
-        case 'projects':
-        case 'contact':
-          setView(trimmed);
-          break;
-        case 'clear':
-          setHistory([]);
-          break;
-        default:
-          setHistory((h) => [...h, 'Command not found']);
-      }
-      setCommand('');
-    }
-  };
-
-  const renderView = () => {
-    switch (view) {
-      case 'home': return <Home />;
-      case 'about': return <About />;
-      case 'projects': return <Projects />;
-      case 'contact': return <Contact />;
-      default: return <Home />;
-    }
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+    setOutput((prev) => [...prev, `> ${input}`]);
+    handleCommand(input, setOutput, setCurrentPage, setTheme);
+    setInput('');
   };
 
   return (
-    <div className="terminal">
-      <div className="terminal-output">
-        {history.map((item, index) => (
-          <div key={index}>{item}</div>
-        ))}
-        <div className="terminal-input-line">
-          <span>&gt; </span>
-          <input
-            autoFocus
-            value={command}
-            onChange={(e) => setCommand(e.target.value)}
-            onKeyDown={handleInput}
-            className="terminal-input"
-          />
-        </div>
+    <div className="terminal-wrapper">
+      <div className="terminal-header">
+        <span className="dot red" />
+        <span className="dot yellow" />
+        <span className="dot green" />
       </div>
-      <div className="terminal-view">{renderView()}</div>
+
+      <div className="terminal-body">
+        {output.map((line, idx) => (
+          <div key={idx}>{line}</div>
+        ))}
+
+        <form className="terminal-input-line" onSubmit={onSubmit}>
+          <span className="prompt">$</span>
+          <input
+            type="text"
+            className="terminal-input"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            autoFocus
+          />
+          <span className="blinking-cursor">█</span>
+        </form>
+      </div>
     </div>
   );
-};
-
-export default Terminal;
+}
