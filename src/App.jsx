@@ -1,49 +1,48 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { handleCommand } from './utils/handleCommand';
+import React from 'react';
+import Terminal from './components/Terminal';
+import './styles/global.css';
 
-export default function App() {
-  const [history, setHistory] = useState([]);
-  const [input, setInput] = useState('');
-  const terminalRef = useRef(null);
-
-  const processCommand = (cmd) => {
-    const output = handleCommand(cmd);
-    setHistory((prev) => [...prev, { command: cmd, output }]);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    processCommand(input.trim());
-    setInput('');
-  };
-
-  useEffect(() => {
-    terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
-  }, [history]);
-
+function App() {
   return (
-    <div className="terminal-container">
-      <div className="terminal" ref={terminalRef}>
-        <pre>Jonathan's Terminal Portfolio [Version 1.0.0]
-Type "help" to see available commands.
-</pre>
-        {history.map((entry, index) => (
-          <div key={index}>
-            <div className="prompt">> {entry.command}</div>
-            <div className="output">{entry.output}</div>
+    <div className="page-wrapper">
+      <aside className="side-panel">
+        <div className="section-container">
+          <h3>Home</h3>
+          <p>Welcome to my terminal portfolio.</p>
+        </div>
+
+        <div className="section-container">
+          <h3>About</h3>
+          <p>I’m Jonathan, a developer focused on test automation, game systems, and web tools.</p>
+        </div>
+
+        <div className="section-container">
+          <h3>Projects</h3>
+          <ul>
+            <li>Corporate Depths</li>
+            <li>Analytics Dashboard</li>
+            <li>Corgi Clicker</li>
+          </ul>
+        </div>
+
+        <div className="section-container">
+          <h3>Contact</h3>
+          <p>Email: jonathan@example.com</p>
+        </div>
+      </aside>
+
+      <div className="terminal-panel">
+        <div className="terminal-wrapper">
+          <div className="terminal-header">
+            <span className="dot red"></span>
+            <span className="dot yellow"></span>
+            <span className="dot green"></span>
           </div>
-        ))}
-        <form onSubmit={handleSubmit}>
-          <span className="prompt">&gt;</span>
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            autoFocus
-            className="input"
-          />
-        </form>
+          <Terminal />
+        </div>
       </div>
     </div>
   );
 }
+
+export default App;
