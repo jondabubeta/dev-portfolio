@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { handleCommand } from '../utils/handleCommand';
 import { splashTextAnsiShadow } from './title/splash';
 import { welcomeText } from './title/welcome';
+import { version } from './title/version';
 import '../styles/terminal.css';
 
 function Terminal() {
@@ -13,7 +14,8 @@ function Terminal() {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    setLines([splashTextAnsiShadow, '', welcomeText]);
+    const splashLines = splashTextAnsiShadow.split('\n');
+    setLines([...splashLines, '', version, '', welcomeText]);
   }, []);
 
   useEffect(() => {
@@ -59,9 +61,17 @@ function Terminal() {
 
       <div className="terminal-body" onClick={() => inputRef.current?.focus()}>
         {lines.map((line, index) => (
-          <pre key={index} className="terminal-line">
+          <div
+            key={index}
+            className={`terminal-line ${
+              typeof line === 'string' &&
+              (line.toLowerCase().startsWith('version') || line.toLowerCase().startsWith('v'))
+                ? 'version'
+                : ''
+            }`}
+          >
             {line}
-          </pre>
+          </div>
         ))}
 
         <div className="input-line">

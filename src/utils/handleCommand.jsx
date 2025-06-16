@@ -1,4 +1,4 @@
-import { RESUME } from '../components/info/resume';
+import { RESUME } from '../components/info/resumeInfo';
 
 export function handleCommand(input) {
   const args = input.trim().split(' ');
@@ -12,7 +12,16 @@ export function handleCommand(input) {
     case 'resume':
       return RESUME;
     case 'projects':
-      return 'Projects:\n- Corporate Depths\n- Analytics Dashboard\n- Corgi Clicker';
+      return (
+        <details>
+          <summary>See Projects</summary>
+          <ul>
+            <li>Corporate Depths</li>
+            <li>Analytics Dashboard</li>
+            <li>Corgi Clicker</li>
+          </ul>
+        </details>
+      );
     case 'contact':
       return 'Email: jonathan@example.com';
     case 'clear':
