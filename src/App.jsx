@@ -33,11 +33,6 @@ function App() {
 
       <div className="terminal-panel">
         <div className="terminal-wrapper">
-          <div className="terminal-header">
-            <span className="dot red"></span>
-            <span className="dot yellow"></span>
-            <span className="dot green"></span>
-          </div>
           <Terminal />
         </div>
       </div>

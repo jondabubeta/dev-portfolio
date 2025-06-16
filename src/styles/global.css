@@ -1,4 +1,4 @@
-
+/* Base body styles */
 body {
   margin: 0;
   font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -9,73 +9,75 @@ body {
   flex-direction: column;
 }
 
+/* Main layout */
 .page-wrapper {
   display: flex;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
+  flex-direction: row;
+  height: 100vh;
 }
 
 .side-panel {
-  width: 320px;
-  background-color: #000;
+  width: 500px;
   padding: 1rem;
-  border-right: 1px solid #333;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  background-color: #121212;
   overflow-y: auto;
 }
 
 .terminal-panel {
-  width: 1000px;
-  background-color: #111;
+  flex-grow: 1;
   display: flex;
-  flex-direction: column;
-  padding: 0;
-  overflow: hidden;
-  height: 100vh;
-  flex-shrink: 0;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 1rem 2rem; /* ✅ Horizontal padding only */
 }
 
 .terminal-wrapper {
-  background: #000;
-  color: #c0c0c0;
-  border-left: 1px solid #555;
   display: flex;
-  flex-direction: column;
-  height: 100%;
+  justify-content: center;
+  align-items: stretch;
   width: 100%;
-  overflow: hidden;
+  height: 100%;
 }
 
-.terminal-header {
+/* Terminal window bar */
+.terminal-bar {
   display: flex;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background-color: #1a1a1a;
-  border-bottom: 1px solid #333;
+  align-items: center;
+  background: linear-gradient(to bottom, #3b3b3b, #2b2b2b);
+  height: 28px;
+  padding: 0 12px;
+  position: relative;
+  color: #ccc;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
-.dot {
-  height: 12px;
-  width: 12px;
-  border-radius: 50%;
-  display: inline-block;
+.traffic-lights {
+  display: flex;
+  gap: 8px;
 }
+
+.traffic-lights span {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
 .red { background-color: #ff5f56; }
 .yellow { background-color: #ffbd2e; }
 .green { background-color: #27c93f; }
 
-.terminal-body {
-  flex-grow: 1;
-  padding: 1rem;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+.terminal-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 13px;
+  pointer-events: none;
 }
 
+/* Terminal lines and input */
 .input-line {
   display: flex;
 }
@@ -112,6 +114,7 @@ body {
   margin: 0;
 }
 
+/* Sidebar sections */
 .section-container {
   padding: 1rem;
   background-color: #111;
@@ -120,7 +123,7 @@ body {
   margin-bottom: 1rem;
 }
 
-/* Mobile layout */
+/* Responsive: hide sidebar on small screens */
 @media (max-width: 768px) {
   .side-panel {
     display: none;
