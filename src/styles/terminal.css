@@ -48,10 +48,10 @@
   pointer-events: none;
 }
 
-/* ✅ Terminal body - consolidated and improved */
+/* Terminal body */
 .terminal-body {
   flex-grow: 1;
-  min-height: 400px; /* Prevent shrinking when cleared */
+  min-height: 400px;
   padding: 2rem 1rem 1rem 2rem;
   overflow-y: auto;
   display: flex;

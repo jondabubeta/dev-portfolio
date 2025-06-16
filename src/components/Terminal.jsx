@@ -9,6 +9,7 @@ function Terminal() {
   const [input, setInput] = useState('');
   const [showCursor, setShowCursor] = useState(true);
   const terminalEndRef = useRef(null);
+  const [focused, setFocused] = useState(true);
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -37,7 +38,6 @@ function Terminal() {
       }
       setInput('');
     } else if (e.key.length === 1 || e.key === 'Backspace') {
-      // Allow character input and backspace
       if (e.key === 'Backspace') {
         setInput(prev => prev.slice(0, -1));
       } else {
@@ -68,13 +68,14 @@ function Terminal() {
         <div className="input-line">
           <span className="prompt">&gt;&nbsp;</span>
           <span className="input-text">{input}</span>
-          {showCursor && <span className="block-cursor">█</span>}
-          {/* Hidden input for actual keyboard input */}
+          {focused && showCursor && <span className="block-cursor">█</span>}
           <input
             ref={inputRef}
             type="text"
             className="hidden-input"
             onKeyDown={handleKeyDown}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
             autoFocus
           />
         </div>
