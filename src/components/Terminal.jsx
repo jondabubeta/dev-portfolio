@@ -31,7 +31,7 @@ function Terminal() {
         <div key={index} className="terminal-line">{line}</div>
       ))}
       <div className="input-line">
-        <span className="prompt">&gt;</span>
+        <span className="prompt">&gt;&nbsp;</span>
         <input
           type="text"
           className="input-field"
