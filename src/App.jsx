@@ -1,4 +1,4 @@
-import React from 'react';
+// eslint-disable-next-line no-unused-vars
 import Terminal from './components/Terminal';
 import './styles/global.css';
 
@@ -13,7 +13,10 @@ function App() {
 
         <div className="section-container">
           <h3>About</h3>
-          <p>I’m Jonathan, a developer focused on test automation, game systems, and web tools.</p>
+          <p>
+            I’m Jonathan, a developer focused on test automation, game systems,
+            and web tools.
+          </p>
         </div>
 
         <div className="section-container">

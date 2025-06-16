@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { handleCommand } from '../utils/handleCommand';
-import { splashTextAnsiShadow } from './splashText';
-import { welcomeText } from './welcomeText';
+import { splashTextAnsiShadow } from './title/splash';
+import { welcomeText } from './title/welcome';
 import '../styles/terminal.css';
 
 function Terminal() {
@@ -22,7 +22,7 @@ function Terminal() {
 
   useEffect(() => {
     const blink = setInterval(() => {
-      setShowCursor(prev => !prev);
+      setShowCursor((prev) => !prev);
     }, 500);
     return () => clearInterval(blink);
   }, []);
@@ -34,14 +34,14 @@ function Terminal() {
       if (response === '__CLEAR__') {
         setLines([]);
       } else {
-        setLines(prev => [...prev, `> ${command}`, response]);
+        setLines((prev) => [...prev, `> ${command}`, response]);
       }
       setInput('');
     } else if (e.key.length === 1 || e.key === 'Backspace') {
       if (e.key === 'Backspace') {
-        setInput(prev => prev.slice(0, -1));
+        setInput((prev) => prev.slice(0, -1));
       } else {
-        setInput(prev => prev + e.key);
+        setInput((prev) => prev + e.key);
       }
     }
   };
@@ -57,12 +57,11 @@ function Terminal() {
         <div className="terminal-title">JDabu Portfolio — zsh — 80x24</div>
       </div>
 
-      <div
-        className="terminal-body"
-        onClick={() => inputRef.current?.focus()}
-      >
+      <div className="terminal-body" onClick={() => inputRef.current?.focus()}>
         {lines.map((line, index) => (
-          <pre key={index} className="terminal-line">{line}</pre>
+          <pre key={index} className="terminal-line">
+            {line}
+          </pre>
         ))}
 
         <div className="input-line">

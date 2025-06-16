@@ -1,33 +1,52 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
+// eslint.config.js
+import js from '@eslint/js';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import importPlugin from 'eslint-plugin-import';
+import prettier from 'eslint-config-prettier';
 
 export default [
-  { ignores: ['dist'] },
   {
-    files: ['**/*.{js,jsx}'],
+    ignores: ['node_modules', 'dist', 'build']
+  },
+  js.configs.recommended,
+  {
+    files: ['**/*.js', '**/*.jsx'],
     languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+      parser: (await import('@babel/eslint-parser')).default,
       parserOptions: {
-        ecmaVersion: 'latest',
-        ecmaFeatures: { jsx: true },
+        ecmaVersion: 2022,
         sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true
+        },
+        requireConfigFile: false,
+        babelOptions: {
+          presets: ['@babel/preset-react']
+        }
       },
+      globals: {
+        document: 'readonly',
+        window: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly'
+      }
     },
     plugins: {
+      react,
       'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
+      import: importPlugin
+    },
+    settings: {
+      react: {
+        version: 'detect'
+      }
     },
     rules: {
-      ...js.configs.recommended.rules,
-      ...reactHooks.configs.recommended.rules,
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
-    },
+      'react/react-in-jsx-scope': 'off',
+      'react/prop-types': 'off',
+      'no-unused-vars': ['warn', { ignoreRestSiblings: true }]
+    }
   },
-]
+  prettier
+];
