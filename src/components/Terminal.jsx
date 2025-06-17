@@ -56,7 +56,7 @@ function Terminal() {
           <span className="yellow"></span>
           <span className="green"></span>
         </div>
-        <div className="terminal-title">JDabu Portfolio — zsh — 80x24</div>
+        <div className="terminal-title">JDabu Portfolio — zsh — 162x22</div>
       </div>
 
       <div className="terminal-body" onClick={() => inputRef.current?.focus()}>

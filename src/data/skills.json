@@ -1,0 +1,48 @@
+{
+  "languages": [
+    "Java",
+    "C#",
+    "C++",
+    "JavaScript",
+    "Python",
+    "Kotlin"
+  ],
+  "cloud": [
+    "AWS",
+    "GCP",
+    "Azure"
+  ],
+  "frameworks": [
+    "Spring",
+    ".NET",
+    ".NET Core",
+    "Node.js",
+    "React",
+    "Angularjs",
+    "Angular 2"
+  ],
+  "testing": [
+    "Selenium",
+    "JMeter",
+    "JUnit",
+    "NUnit",
+    "TestNG",
+    "Cucumber",
+    "Gherkin",
+    "Espresso",
+    "XCTest",
+    "Postman",
+    "Charles",
+    "Jest",
+    "Mocha",
+    "Jasmine"
+  ],
+  "integration": [
+    "Jenkins",
+    "Travis",
+    "Git",
+    "GitLab",
+    "Perforce",
+    "JFrog"
+  ]
+}

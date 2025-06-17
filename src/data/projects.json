@@ -1,0 +1,9 @@
+[
+  {
+    "title": "Anirepo",
+    "description": "Anirepo is a full-stack media inventory platform built with Node.js and Express, designed to manage a personal or community-driven catalog of anime-related items including books, autographs, figures, movies, games, art, and other merchandise. It is structured around RESTful API routes and modular controllers for each media type.",
+    "tech": ["Node.js", "Express", "MongoDB", "JavaScript", "CORS", "Body-parser"],
+    "details": "Each media type—such as books, autographs, figures, and games—is handled via dedicated Express routers and modular controller logic. MongoDB is used for persistent storage and is initialized via a custom database configuration module. The server exposes a consistent RESTful API and supports features like content filtering and dashboard aggregation. CORS and body parsing middleware are configured to enable modern frontend integration. This architecture supports scalable extension for additional media types or user-authenticated interactions.",
+    "tags": ["anime", "collection", "catalog", "backend", "node", "express", "mongodb", "REST API", "media", "inventory"]
+  }
+]
