@@ -1,30 +1,36 @@
-export function handleCommand(input) {
-  const args = input.trim().split(' ');
-  const command = args[0];
+import Resume from '../components/commands/resume';
+import ExperienceViewer from '../components/commands/view/experience';
+import Help from '../components/commands/help';
+import { parseArgs } from './parseArgs';
 
-  switch (command) {
-    case 'help':
-      return 'Available commands:\n- about\n- projects\n- contact\n- clear';
-    case 'about':
-      return 'Jonathan is a developer specializing in test automation and games.';
-    case 'resume':
-      return RESUME;
-    case 'projects':
-      return (
-        <details>
-          <summary>See Projects</summary>
-          <ul>
-            <li>Corporate Depths</li>
-            <li>Analytics Dashboard</li>
-            <li>Corgi Clicker</li>
-          </ul>
-        </details>
-      );
-    case 'contact':
-      return 'Email: jonathan@example.com';
-    case 'clear':
-      return '__CLEAR__';
-    default:
-      return `Unknown command: ${command}`;
+export function handleCommand(input) {
+  const [cmd, subcmd, ...args] = input.trim().split(' ');
+  const argString = args.join(' ');
+
+  // Top-level command: resume
+  if (cmd === 'resume') {
+    return <Resume />;
   }
+
+  // Subcommands under 'view'
+  if (cmd === 'view') {
+    switch (subcmd) {
+      case 'experience':
+        return <ExperienceViewer filter={parseArgs(argString)} />;
+      default:
+        return `Unknown section: ${subcmd}`;
+    }
+  }
+
+  // Help command
+  if (cmd === 'help') {
+    return <Help command={subcmd} />;
+  }
+
+  // Clear / cls command
+  if (cmd === 'clear' || cmd === 'cls') {
+    return '__CLEAR__';
+  }
+
+  return `Command not found: ${input}`;
 }

@@ -1,0 +1,68 @@
+[
+  {
+    "company": "Blizzard Entertainment",
+    "title": "Senior Software Development Engineer in Test",
+    "years": "2022–Present",
+    "products": ["Battle.net", "Diablo IV", "Warcraft Rumble"],
+    "summary": "Led quality efforts for Battle.net by establishing test plans, implementing risk-based testing, and developing custom tools, frameworks, and automation.",
+    "tags": ["blizzard", "sdet", "game", "automation", "java", "test"]
+  },
+  {
+    "company": "Dexcom",
+    "title": "Software Development Engineer in Test II",
+    "years": "2021–2022",
+    "products": ["Dexcom G5", "Dexcom G6", "Dexcom G6 Pro", "Dexcom G7", "Dexcom ONE"],
+    "summary": "Built automated and manual tests for mobile/web apps and backend APIs, ensuring FDA compliance and robust CI/CD execution.",
+    "tags": ["dexcom", "healthtech", "sdet", "automation", "fda", "ci"]
+  },
+  {
+    "company": "Dexcom",
+    "title": "Software Development Engineer in Test I",
+    "years": "2019–2021",
+    "products": ["Dexcom G5", "Dexcom G6", "Dexcom G6 Pro", "Dexcom G7", "Dexcom ONE"],
+    "summary": "Maintained automation and manual test coverage for Dexcom platforms, focusing on integration, performance, and stress testing.",
+    "tags": ["dexcom", "healthtech", "test", "qa"]
+  },
+  {
+    "company": "Neustar",
+    "title": "Software Engineer in Test",
+    "years": "2017–2019",
+    "summary": "Built automation frameworks and test cases for REST services, AngularJS UI, and Spark jobs. Maintained Jenkins CI and high test coverage.",
+    "tags": ["neustar", "sdet", "automation", "ci", "rest", "angular", "java", "c#"]
+  },
+  {
+    "company": "Neustar",
+    "title": "Associate Software Engineer in Test",
+    "years": "2014–2017",
+    "summary": "Performed full-stack testing and contributed to CI pipelines. Received multiple spot awards for exceeding performance expectations.",
+    "tags": ["neustar", "qa", "test", "ci", "jenkins"]
+  },
+  {
+    "company": "County of San Diego",
+    "title": "IT Engineer",
+    "years": "2013–2014",
+    "summary": "Developed scripts and maintained test automation for data validation and software updates.",
+    "tags": ["county", "it", "testing", "integration", "infrastructure"]
+  },
+  {
+    "company": "County of San Diego",
+    "title": "Associate IT Engineer",
+    "years": "2012–2013",
+    "summary": "Contributed to software maintenance, integration, and technical support.",
+    "tags": ["county", "infrastructure", "support"]
+  },
+  {
+    "company": "County of San Diego",
+    "title": "IT Engineer Intern",
+    "years": "2010–2011",
+    "summary": "Supported virtual/physical server environments and conducted troubleshooting across departments.",
+    "tags": ["intern", "county", "support"]
+  },
+  {
+    "company": "San Diego Electrical Training Center",
+    "title": "Software Developer Intern",
+    "years": "2010–2011",
+    "summary": "Helped update software for electrical monitoring and initiated automation testing systems.",
+    "tags": ["intern", "software", "automation", "testing"]
+  }
+]
