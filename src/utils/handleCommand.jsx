@@ -1,5 +1,3 @@
-import { RESUME } from '../components/info/resumeInfo';
-
 export function handleCommand(input) {
   const args = input.trim().split(' ');
   const command = args[0];
