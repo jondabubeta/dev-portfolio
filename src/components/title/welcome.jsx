@@ -9,7 +9,7 @@ Type any of the following commands to get started:
   • about       – Learn more about me and what I do
   • projects    – View featured projects and case studies
   • contact     – Get in touch or view my socials
-  • resume      – Download my resume
+  • resume      – View my resume
   • clear       – Clear the terminal
 
 Type a command and press [Enter] to execute it.
