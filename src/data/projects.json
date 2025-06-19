@@ -5,5 +5,17 @@
     "tech": ["Node.js", "Express", "MongoDB", "JavaScript", "CORS", "Body-parser"],
     "details": "Each media type—such as books, autographs, figures, and games—is handled via dedicated Express routers and modular controller logic. MongoDB is used for persistent storage and is initialized via a custom database configuration module. The server exposes a consistent RESTful API and supports features like content filtering and dashboard aggregation. CORS and body parsing middleware are configured to enable modern frontend integration. This architecture supports scalable extension for additional media types or user-authenticated interactions.",
     "tags": ["anime", "collection", "catalog", "backend", "node", "express", "mongodb", "REST API", "media", "inventory"]
+  },
+  {
+  "title": "BlizzMemory",
+  "description": "A Blizzard-themed memory matching game built with React. Players flip character cards and try to match pairs based on iconic heroes from Blizzard franchises.",
+  "tech": ["React", "JavaScript", "HTML", "CSS"],
+  "tags": ["game", "browser", "memory", "react", "blizzard"]
+  },
+  {
+  "title": "LolMemory",
+  "description": "A League of Legends–themed concentration game built in React. Flip and match cards featuring LoL champions to test your memory.",
+  "tech": ["React", "JavaScript", "HTML", "CSS"],
+  "tags": ["game", "browser", "concentration", "react", "league of legends"]
   }
 ]
