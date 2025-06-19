@@ -1,8 +1,8 @@
 import React from 'react';
 import ExperienceViewer from '../commands/view/experience';
-// import SkillsViewer from '../commands/view/skills';
-// import EducationViewer from '../commands/view/education';
-// import ProjectsViewer from '../commands/view/projects';
+import SkillsViewer from '../commands/view/skills';
+import EducationViewer from '../commands/view/education';
+import ProjectsViewer from '../commands/view/projects';
 
 export default function Resume() {
   return (
@@ -15,15 +15,14 @@ export default function Resume() {
       <br /><strong>Experience</strong>
       <ExperienceViewer />
 
-      {/* Uncomment these as they become ready */}
-      {/* <br /><strong>Skills</strong>
+      <br /><strong>Skills</strong>
       <SkillsViewer />
 
       <br /><strong>Education</strong>
       <EducationViewer />
 
       <br /><strong>Projects</strong>
-      <ProjectsViewer /> */}
+      <ProjectsViewer />
     </div>
   );
 }
