@@ -1,18 +1,14 @@
 import skillsData from '../../../data/skills.json';
 
-export default function SkillsViewer({ filter = {} }) {
+export default function SkillsViewer() {
   const categories = Object.keys(skillsData);
 
   return (
-    <div>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
       {categories.map((category) => (
-        <div key={category} style={{ marginBottom: '1rem' }}>
-          <strong>{category.charAt(0).toUpperCase() + category.slice(1)}:</strong>
-          <ul style={{ paddingLeft: '1.5rem' }}>
-            {skillsData[category].map((skill, index) => (
-              <li key={index}>{typeof skill === 'string' ? skill : skill.name}</li>
-            ))}
-          </ul>
+        <div key={category}>
+          <strong>{category.charAt(0).toUpperCase() + category.slice(1)}:</strong><br />
+          {skillsData[category].join(', ')}
         </div>
       ))}
     </div>

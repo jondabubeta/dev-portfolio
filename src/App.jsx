@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import Terminal from './components/Terminal';
+import Contacts from "./components/Contacts";
 import './styles/global.css';
 
 function App() {
