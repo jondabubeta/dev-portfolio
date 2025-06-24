@@ -1,39 +1,27 @@
-import { Mail, Github, Linkedin } from "lucide-react";
+import { Mail, Github, Linkedin } from 'lucide-react';
 
 const contacts = [
-  {
-    icon: <Mail size={16} />,
-    label: "jonathandabu86@gmail.com",
-    command: "view contact",
-  },
-  {
-    icon: <Github size={16} />,
-    label: "jonathandabu",
-    command: "view contact",
-  },
-  {
-    icon: <Linkedin size={16} />,
-    label: "linkedin.com/in/jonathandabu",
-    command: "view contact",
-  },
+  { icon: Mail, label: 'Email', command: 'view contact' },
+  { icon: Github, label: 'GitHub', command: 'view contact' },
+  { icon: Linkedin, label: 'LinkedIn', command: 'view contact' },
 ];
 
 export default function Contacts({ onCommand }) {
   return (
     <div className="section-container">
       <h3>Contact</h3>
-      <ul className="space-y-2">
-        {contacts.map((c) => (
-          <li
-            key={c.label}
-            onClick={() => onCommand(c.command)}
+      <div className="mt-2 flex flex-row justify-between items-center">
+        {contacts.map(({ icon: Icon, label, command }) => (
+          <div
+            key={label}
+            onClick={() => onCommand(command)}
             className="flex items-center gap-2 cursor-pointer hover:text-blue-400"
           >
-            {c.icon}
-            <span>{c.label}</span>
-          </li>
+            <Icon size={18} />
+            <span className="text-sm font-medium">{label}</span>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
