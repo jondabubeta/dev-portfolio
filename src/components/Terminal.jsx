@@ -1,17 +1,35 @@
-import { useState, useEffect, useRef } from 'react';
+import React, {
+  useImperativeHandle,
+  forwardRef,
+  useState,
+  useEffect,
+  useRef,
+} from 'react';
 import { handleCommand } from '../utils/handleCommand';
 import { splashTextAnsiShadow } from './title/splash';
 import { welcomeText } from './title/welcome';
 import { version } from './title/version';
 import '../styles/terminal.css';
 
-function Terminal() {
+const Terminal = forwardRef((props, ref) => {
   const [lines, setLines] = useState([]);
   const [input, setInput] = useState('');
   const [showCursor, setShowCursor] = useState(true);
   const terminalEndRef = useRef(null);
   const [focused, setFocused] = useState(true);
   const inputRef = useRef(null);
+
+  // ✅ expose runCommand to parent using the ref
+  useImperativeHandle(ref, () => ({
+    runCommand: (command) => {
+      const response = handleCommand(command);
+      if (response === '__CLEAR__') {
+        setLines([]);
+      } else {
+        setLines((prev) => [...prev, `> ${command}`, response]);
+      }
+    },
+  }));
 
   useEffect(() => {
     const splashLines = splashTextAnsiShadow.split('\n');
@@ -59,13 +77,17 @@ function Terminal() {
         <div className="terminal-title">JDabu Portfolio — zsh — 162x22</div>
       </div>
 
-      <div className="terminal-body" onClick={() => inputRef.current?.focus()}>
+      <div
+        className="terminal-body"
+        onClick={() => inputRef.current?.focus()}
+      >
         {lines.map((line, index) => (
           <div
             key={index}
             className={`terminal-line ${
               typeof line === 'string' &&
-              (line.toLowerCase().startsWith('version') || line.toLowerCase().startsWith('v'))
+              (line.toLowerCase().startsWith('version') ||
+                line.toLowerCase().startsWith('v'))
                 ? 'version'
                 : ''
             }`}
@@ -93,6 +115,6 @@ function Terminal() {
       </div>
     </div>
   );
-}
+});
 
 export default Terminal;

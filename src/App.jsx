@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div className="page-wrapper">
-      <aside className="side-panel" >
+      <aside className="side-panel">
         <div className="section-container">
           <h3>Home</h3>
           <p>Welcome to my terminal portfolio.</p>
