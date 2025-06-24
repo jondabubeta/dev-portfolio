@@ -3,7 +3,7 @@ import React, {
   forwardRef,
   useState,
   useEffect,
-  useRef,
+  useRef
 } from 'react';
 import { handleCommand } from '../utils/handleCommand';
 import { splashTextAnsiShadow } from './title/splash';
@@ -28,7 +28,7 @@ const Terminal = forwardRef((props, ref) => {
       } else {
         setLines((prev) => [...prev, `> ${command}`, response]);
       }
-    },
+    }
   }));
 
   useEffect(() => {
@@ -77,10 +77,7 @@ const Terminal = forwardRef((props, ref) => {
         <div className="terminal-title">JDabu Portfolio — zsh — 162x22</div>
       </div>
 
-      <div
-        className="terminal-body"
-        onClick={() => inputRef.current?.focus()}
-      >
+      <div className="terminal-body" onClick={() => inputRef.current?.focus()}>
         {lines.map((line, index) => (
           <div
             key={index}

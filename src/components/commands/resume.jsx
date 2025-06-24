@@ -12,16 +12,20 @@ export default function Resume() {
       <div>Email: jonathandabu86@gmail.com</div>
       <div>LinkedIn: https://www.linkedin.com/in/jbdabu</div>
 
-      <br /><strong>Experience</strong>
+      <br />
+      <strong>Experience</strong>
       <ExperienceViewer />
 
-      <br /><strong>Skills</strong>
+      <br />
+      <strong>Skills</strong>
       <SkillsViewer />
 
-      <br /><strong>Education</strong>
+      <br />
+      <strong>Education</strong>
       <EducationViewer />
 
-      <br /><strong>Projects</strong>
+      <br />
+      <strong>Projects</strong>
       <ProjectsViewer />
     </div>
   );

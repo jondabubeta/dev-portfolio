@@ -1,27 +1,8 @@
 {
-  "languages": [
-    "Java",
-    "C#",
-    "JavaScript",
-    "Python",
-    "Kotlin"
-  ],
-  "cloud": [
-    "AWS",
-    "GCP",
-    "Azure"
-  ],
-  "frameworks": [
-    "React",
-    "Angularjs",
-    ".NET",
-    ".NET Core",
-    "Node.js"
-  ],
-  "engines": [
-    "Unity",
-    "Unreal"
-  ],
+  "languages": ["Java", "C#", "JavaScript", "Python", "Kotlin"],
+  "cloud": ["AWS", "GCP", "Azure"],
+  "frameworks": ["React", "Angularjs", ".NET", ".NET Core", "Node.js"],
+  "engines": ["Unity", "Unreal"],
   "testing": [
     "Selenium",
     "JMeter",
@@ -39,12 +20,5 @@
     "Mocha",
     "Jasmine"
   ],
-  "integration": [
-    "Jenkins",
-    "Travis",
-    "Git",
-    "GitLab",
-    "Perforce",
-    "JFrog"
-  ]
+  "integration": ["Jenkins", "Travis", "Git", "GitLab", "Perforce", "JFrog"]
 }

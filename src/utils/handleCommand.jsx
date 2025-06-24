@@ -6,7 +6,6 @@ import EducationViewer from '../components/commands/view/education';
 import Help from '../components/commands/help';
 import { parseArgs } from './parseArgs';
 
-
 export function handleCommand(input) {
   const [cmd, subcmd, ...args] = input.trim().split(' ');
   const argString = args.join(' ');
@@ -31,7 +30,6 @@ export function handleCommand(input) {
         return `Unknown section: ${subcmd}`;
     }
   }
-
 
   // Help command
   if (cmd === 'help') {

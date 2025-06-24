@@ -3,11 +3,7 @@
     "company": "Blizzard Entertainment",
     "title": "Senior Software Development Engineer in Test",
     "years": "2022\u2013Present",
-    "products": [
-      "Battle.net",
-      "Diablo IV",
-      "Warcraft Rumble"
-    ],
+    "products": ["Battle.net", "Diablo IV", "Warcraft Rumble"],
     "summary": "Led test planning and execution across multiple AAA games. Built tools, frameworks, and automated systems to optimize test efficiency. Collaborated cross-functionally to debug and improve quality.",
     "responsibilities": [
       "Establishing quality goals and risk-based test plans",
@@ -15,14 +11,7 @@
       "Debugging and reporting test failures with engineering teams",
       "Analyzing test data to report risk and improve stability"
     ],
-    "tags": [
-      "blizzard",
-      "sdet",
-      "game",
-      "automation",
-      "java",
-      "ci"
-    ]
+    "tags": ["blizzard", "sdet", "game", "automation", "java", "ci"]
   },
   {
     "company": "Dexcom",
@@ -35,15 +24,7 @@
       "Conducted end-to-end API, UI, and integration testing",
       "Integrated tests into CI/CD and mentored junior engineers"
     ],
-    "tags": [
-      "dexcom",
-      "healthtech",
-      "sdet",
-      "automation",
-      "ci",
-      "api",
-      "ui"
-    ]
+    "tags": ["dexcom", "healthtech", "sdet", "automation", "ci", "api", "ui"]
   },
   {
     "company": "Dexcom",
@@ -62,14 +43,7 @@
       "Executed tests for regression, performance, and stress",
       "Designed UI, API, and E2E test plans for FDA compliance"
     ],
-    "tags": [
-      "dexcom",
-      "sdet",
-      "test",
-      "api",
-      "ci",
-      "fda"
-    ]
+    "tags": ["dexcom", "sdet", "test", "api", "ci", "fda"]
   },
   {
     "company": "Neustar",
@@ -81,14 +55,7 @@
       "Maintained CI pipelines using Jenkins",
       "Performed load and performance testing"
     ],
-    "tags": [
-      "neustar",
-      "automation",
-      "ci",
-      "sdet",
-      "angular",
-      "rest"
-    ]
+    "tags": ["neustar", "automation", "ci", "sdet", "angular", "rest"]
   },
   {
     "company": "Neustar",
@@ -100,14 +67,7 @@
       "Maintained Jenkins CI test coverage",
       "Worked with QA/Product teams in agile environments"
     ],
-    "tags": [
-      "neustar",
-      "test",
-      "qa",
-      "automation",
-      "ci",
-      "agile"
-    ]
+    "tags": ["neustar", "test", "qa", "automation", "ci", "agile"]
   },
   {
     "company": "County of San Diego",
@@ -119,12 +79,7 @@
       "Developed features for data parsing software",
       "Maintained server infrastructure and uptime"
     ],
-    "tags": [
-      "county",
-      "infrastructure",
-      "support",
-      "validation"
-    ]
+    "tags": ["county", "infrastructure", "support", "validation"]
   },
   {
     "company": "County of San Diego",
@@ -135,12 +90,7 @@
       "Maintained integration scripts and tools",
       "Supported virtual and physical server environments"
     ],
-    "tags": [
-      "county",
-      "tools",
-      "servers",
-      "integration"
-    ]
+    "tags": ["county", "tools", "servers", "integration"]
   },
   {
     "company": "County of San Diego",
@@ -151,12 +101,7 @@
       "Managed workstation support",
       "Conducted system troubleshooting and uptime assurance"
     ],
-    "tags": [
-      "intern",
-      "it",
-      "support",
-      "troubleshooting"
-    ]
+    "tags": ["intern", "it", "support", "troubleshooting"]
   },
   {
     "company": "San Diego Electrical Training Center",
@@ -167,11 +112,6 @@
       "Contributed to malfunction detection systems",
       "Introduced automation testing for software components"
     ],
-    "tags": [
-      "intern",
-      "automation",
-      "software",
-      "monitoring"
-    ]
+    "tags": ["intern", "automation", "software", "monitoring"]
   }
 ]

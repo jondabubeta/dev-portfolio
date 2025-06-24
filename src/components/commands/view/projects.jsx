@@ -5,13 +5,18 @@ export default function ProjectsViewer({ filter = {} }) {
   const normalize = (str) => str.toLowerCase();
 
   const matchesFilter = (project) => {
-    if (filter.title && !normalize(project.title).includes(normalize(filter.title))) {
+    if (
+      filter.title &&
+      !normalize(project.title).includes(normalize(filter.title))
+    ) {
       return false;
     }
     if (filter.tags) {
-      const tags = Array.isArray(filter.tags) ? filter.tags : filter.tags.split(',');
+      const tags = Array.isArray(filter.tags)
+        ? filter.tags
+        : filter.tags.split(',');
       const lowerTags = tags.map(normalize);
-      if (!lowerTags.some(tag => project.tags.map(normalize).includes(tag))) {
+      if (!lowerTags.some((tag) => project.tags.map(normalize).includes(tag))) {
         return false;
       }
     }

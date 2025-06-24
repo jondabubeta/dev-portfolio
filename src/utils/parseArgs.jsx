@@ -3,10 +3,10 @@ export function parseArgs(argString = '') {
 
   argString
     .split('--')
-    .map(part => part.trim())
+    .map((part) => part.trim())
     .filter(Boolean)
-    .forEach(flag => {
-      const [key, value] = flag.split('=').map(part => part.trim());
+    .forEach((flag) => {
+      const [key, value] = flag.split('=').map((part) => part.trim());
       if (key && value) {
         filter[key] = value;
       }

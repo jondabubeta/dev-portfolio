@@ -132,7 +132,9 @@ body {
   padding: 1rem;
   margin-bottom: 1rem;
   position: relative;
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family:
+    SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
 }
 
 .section-container h3 {
