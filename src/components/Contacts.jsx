@@ -3,9 +3,9 @@ import GitHubIcon from '../assets/github.png';
 import LinkedInIcon from '../assets/linkedin.png';
 
 const contacts = [
-  { icon: EmailIcon, label: 'Email', command: 'view contact' },
-  { icon: GitHubIcon, label: 'GitHub', command: 'view contact' },
-  { icon: LinkedInIcon, label: 'LinkedIn', command: 'view contact' },
+  { icon: EmailIcon, label: 'Email', command: 'view contact --email=true' },
+  { icon: GitHubIcon, label: 'GitHub', command: 'view contact --github=true' },
+  { icon: LinkedInIcon, label: 'LinkedIn', command: 'view contact --linkedin=true' },
 ];
 
 export default function Contacts({ onCommand }) {

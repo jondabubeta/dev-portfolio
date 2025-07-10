@@ -36,7 +36,7 @@ function App() {
           </ul>
         </div>
 
-        <Contacts onCommand={triggerContactCommand} />
+        <Contacts onCommand={(cmd) => terminalRef.current?.runCommand(cmd)} />
       </aside>
 
       <div className="terminal-panel">
