@@ -19,7 +19,6 @@ const Terminal = forwardRef((props, ref) => {
   const [focused, setFocused] = useState(true);
   const inputRef = useRef(null);
 
-  // ✅ expose runCommand to parent using the ref
   useImperativeHandle(ref, () => ({
     runCommand: (command) => {
       const response = handleCommand(command);
