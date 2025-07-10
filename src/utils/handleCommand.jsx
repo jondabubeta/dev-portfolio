@@ -27,7 +27,7 @@ export function handleCommand(input) {
         return <ProjectsViewer filter={parseArgs(argString)} />;
       case 'education':
         return <EducationViewer filter={parseArgs(argString)} />;
-      case 'contact':
+      case 'contact': 
         return <ContactViewer filter={parseArgs(argString)} />;
       default:
         return `Unknown section: ${subcmd}`;
