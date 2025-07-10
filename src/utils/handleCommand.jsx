@@ -3,6 +3,7 @@ import ExperienceViewer from '../components/commands/view/experience';
 import SkillsViewer from '../components/commands/view/skills';
 import ProjectsViewer from '../components/commands/view/projects';
 import EducationViewer from '../components/commands/view/education';
+import ContactViewer from '../components/commands/view/contact';
 import Help from '../components/commands/help';
 import { parseArgs } from './parseArgs';
 
@@ -26,6 +27,8 @@ export function handleCommand(input) {
         return <ProjectsViewer filter={parseArgs(argString)} />;
       case 'education':
         return <EducationViewer filter={parseArgs(argString)} />;
+      case 'contact':
+        return <ContactViewer filter={parseArgs(argString)} />;
       default:
         return `Unknown section: ${subcmd}`;
     }

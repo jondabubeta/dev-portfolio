@@ -76,23 +76,31 @@ const Terminal = forwardRef((props, ref) => {
         </div>
         <div className="terminal-title">JDabu Portfolio — zsh — 162x22</div>
       </div>
-
       <div className="terminal-body" onClick={() => inputRef.current?.focus()}>
-        {lines.map((line, index) => (
-          <div
-            key={index}
-            className={`terminal-line ${
-              typeof line === 'string' &&
-              (line.toLowerCase().startsWith('version') ||
-                line.toLowerCase().startsWith('v'))
-                ? 'version'
-                : ''
-            }`}
-          >
-            {line}
-          </div>
-        ))}
+        {lines.map((line, index) => {
+          const isHtml = typeof line === 'string' && line.startsWith('__HTML__');
+          const isVersion = typeof line === 'string' &&
+            (line.toLowerCase().startsWith('version') || line.toLowerCase().startsWith('v'));
 
+          if (isHtml) {
+            return (
+              <div
+                key={index}
+                className={`terminal-line ${isVersion ? 'version' : ''}`}
+                dangerouslySetInnerHTML={{ __html: line.replace('__HTML__', '') }}
+              />
+            );
+          }
+
+          return (
+            <div
+              key={index}
+              className={`terminal-line ${isVersion ? 'version' : ''}`}
+            >
+              {line}
+            </div>
+          );
+        })}
         <div className="input-line">
           <span className="prompt">&gt;&nbsp;</span>
           <span className="input-text">{input}</span>

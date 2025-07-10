@@ -5,7 +5,7 @@ import LinkedInIcon from '../assets/linkedin.png';
 const contacts = [
   { icon: EmailIcon, label: 'Email', command: 'view contact' },
   { icon: GitHubIcon, label: 'GitHub', command: 'view contact' },
-  { icon: LinkedInIcon, label: 'LinkedIn', command: 'view contact' }
+  { icon: LinkedInIcon, label: 'LinkedIn', command: 'view contact' },
 ];
 
 export default function Contacts({ onCommand }) {

@@ -113,6 +113,11 @@
   opacity: 0;
 }
 
+.terminal-link {
+  color: #3b82f6; /* Tailwind blue-500 */
+  text-decoration: underline;
+}
+
 @keyframes blink {
   50% {
     opacity: 0;
