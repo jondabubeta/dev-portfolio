@@ -6,26 +6,22 @@ import ProjectsViewer from '../commands/view/projects';
 
 export default function Resume() {
   return (
-    <div>
-      <div>Jonathan Dabu</div>
-      <div>Software Development, Testing, & Automation</div>
+    <div className="resume">
+      <div className="terminal-h1">Jonathan Dabu</div>
+      <div className="terminal-h2 mb">Software Development, Testing, & Automation</div>
       <div>Email: jonathandabu86@gmail.com</div>
       <div>LinkedIn: https://www.linkedin.com/in/jbdabu</div>
 
-      <br />
-      <strong>Experience</strong>
+      <div className="terminal-h2 mt">Experience</div>
       <ExperienceViewer />
 
-      <br />
-      <strong>Skills</strong>
+      <div className="terminal-h2 mt">Skills</div>
       <SkillsViewer />
 
-      <br />
-      <strong>Education</strong>
+      <div className="terminal-h2 mt">Education</div>
       <EducationViewer />
 
-      <br />
-      <strong>Projects</strong>
+      <div className="terminal-h2 mt">Projects</div>
       <ProjectsViewer />
     </div>
   );

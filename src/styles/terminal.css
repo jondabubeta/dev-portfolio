@@ -118,6 +118,31 @@
   text-decoration: underline;
 }
 
+/* Text formatting */
+.terminal-h1 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #4de0ff;
+  margin-bottom: 0.25rem;
+}
+
+.terminal-h2 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #7ee787;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.mb {
+  margin-bottom: 0.75rem;
+}
+
+.mt {
+  margin-top: 1rem;
+}
+
+
 @keyframes blink {
   50% {
     opacity: 0;
