@@ -27,8 +27,13 @@ export function handleCommand(input) {
         return <ProjectsViewer filter={parseArgs(argString)} />;
       case 'education':
         return <EducationViewer filter={parseArgs(argString)} />;
-      case 'contact': 
-        return <ContactViewer filter={parseArgs(argString)} />;
+      case 'contact': {
+        const { filter, errors } = parseArgs(argString);
+        if (errors.length > 0) {
+          return errors.join('\n');
+        }
+        return <ContactViewer filter={filter} />;
+      }
       default:
         return `Unknown section: ${subcmd}`;
     }
