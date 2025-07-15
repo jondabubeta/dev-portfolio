@@ -1,4 +1,4 @@
-export function parseArgs(argString = '') {
+export function parseArgs(argString = '', validKeys = []) {
   const filter = {};
   const errors = [];
 
@@ -11,6 +11,8 @@ export function parseArgs(argString = '') {
 
       if (!key || value === undefined || value === '') {
         errors.push(`Missing value for '--${key}'`);
+      } else if (validKeys.length > 0 && !validKeys.includes(key)) {
+        errors.push(`Invalid argument '--${key}'`);
       } else {
         filter[key] = value;
       }

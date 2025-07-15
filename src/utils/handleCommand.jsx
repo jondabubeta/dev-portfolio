@@ -7,33 +7,52 @@ import ContactViewer from '../components/commands/view/contact';
 import Help from '../components/commands/help';
 import { parseArgs } from './parseArgs';
 
+const allowedArgs = {
+  experience: ['company', 'tags'],
+  education: ['school', 'degree'],
+  projects: ['tag'],
+  contact: ['email', 'github', 'linkedin'],
+};
+
 export function handleCommand(input) {
   const [cmd, subcmd, ...args] = input.trim().split(' ');
   const argString = args.join(' ');
 
-  // Top-level command: resume
+  // Top-level command
   if (cmd === 'resume') {
     return <Resume />;
   }
 
-  // Subcommands under 'view'
+  // 'view' subcommands
   if (cmd === 'view') {
     switch (subcmd) {
-      case 'experience':
-        return <ExperienceViewer filter={parseArgs(argString)} />;
+      case 'experience': {
+        const { filter, errors } = parseArgs(argString, allowedArgs.experience);
+        if (errors.length > 0) return errors.join('\n');
+        return <ExperienceViewer filter={filter} />;
+      }
+
       case 'skills':
         return <SkillsViewer />;
-      case 'projects':
-        return <ProjectsViewer filter={parseArgs(argString)} />;
-      case 'education':
-        return <EducationViewer filter={parseArgs(argString)} />;
+
+      case 'projects': {
+        const { filter, errors } = parseArgs(argString, allowedArgs.projects);
+        if (errors.length > 0) return errors.join('\n');
+        return <ProjectsViewer filter={filter} />;
+      }
+
+      case 'education': {
+        const { filter, errors } = parseArgs(argString, allowedArgs.education);
+        if (errors.length > 0) return errors.join('\n');
+        return <EducationViewer filter={filter} />;
+      }
+
       case 'contact': {
-        const { filter, errors } = parseArgs(argString);
-        if (errors.length > 0) {
-          return errors.join('\n');
-        }
+        const { filter, errors } = parseArgs(argString, allowedArgs.contact);
+        if (errors.length > 0) return errors.join('\n');
         return <ContactViewer filter={filter} />;
       }
+
       default:
         return `Unknown section: ${subcmd}`;
     }
@@ -44,7 +63,7 @@ export function handleCommand(input) {
     return <Help command={subcmd} />;
   }
 
-  // Clear / cls command
+  // Clear terminal
   if (cmd === 'clear' || cmd === 'cls') {
     return '__CLEAR__';
   }
