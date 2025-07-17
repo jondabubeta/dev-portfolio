@@ -21,7 +21,7 @@ export default function ExperienceViewer({ filter = {} }) {
         ? filter.tags
         : filter.tags.split(',');
       const lowerTags = tags.map(normalize);
-      if (!lowerTags.some((tag) => exp.tags.map(normalize).includes(tag))) {
+      if (!lowerTags.some((tag) => exp.tags?.map(normalize).includes(tag))) {
         return false;
       }
     }
@@ -31,38 +31,27 @@ export default function ExperienceViewer({ filter = {} }) {
   const filtered = experienceData.filter(matchesFilter);
 
   if (filtered.length === 0) {
-    return <div className="text-red-400">No matching experience found.</div>;
+    return <div className="terminal-error">No matching experience found.</div>;
   }
 
   return (
-    <div className="space-y-6">
+    <div className="experience-list">
       {filtered.map((exp, index) => (
-        <div key={index}>
-          <div className="text-green-400 font-bold text-lg">{exp.company}</div>
-          <div className="text-cyan-300 italic">{exp.title}</div>
-          <div className="text-gray-400 text-sm">{exp.years}</div>
+        <div key={index} className="experience-entry">
+          <div className="exp-company">{exp.company}</div>
+          <div className="exp-title">{exp.title}</div>
+          <div className="exp-years">{exp.years}</div>
 
-          {exp.tags?.length > 0 && (
-            <div className="flex flex-wrap gap-2 mt-1 mb-2">
-              {exp.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="bg-gray-800 text-green-300 px-2 py-0.5 rounded-full text-xs"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
+          <div className="exp-summary">
+            &gt; {exp.summary}
+          </div>
 
-          {Array.isArray(exp.summary) ? (
-            <ul className="list-disc list-inside text-white pl-2">
-              {exp.summary.map((line, i) => (
-                <li key={i}>{line}</li>
+          {exp.responsibilities?.length > 0 && (
+            <ul className="exp-responsibilities">
+              {exp.responsibilities.map((resp, i) => (
+                <li key={i}>&gt; {resp}</li>
               ))}
             </ul>
-          ) : (
-            <p className="text-white">{exp.summary}</p>
           )}
         </div>
       ))}

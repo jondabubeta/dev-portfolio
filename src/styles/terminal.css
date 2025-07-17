@@ -119,27 +119,48 @@
 }
 
 /* Text formatting */
-.terminal-h1 {
-  font-size: 1.25rem;
+.experience-entry {
+  margin-bottom: 2rem;
+}
+
+.exp-company {
+  color: #00ff00;
   font-weight: bold;
-  color: #4de0ff;
-  margin-bottom: 0.25rem;
+  font-size: 1.2em;
 }
 
-.terminal-h2 {
-  font-size: 1.1rem;
+.exp-title {
+  color: #00ffff;
+  font-style: italic;
+  margin-top: 0.2em;
+}
+
+.exp-years {
+  color: #888;
+  font-size: 0.9em;
+  margin-bottom: 0.5em;
+}
+
+.exp-summary {
+  color: #fff;
+  margin: 0.5em 0;
+}
+
+.exp-responsibilities {
+  list-style: none;
+  padding-left: 1em;
+  color: #fff;
+}
+
+.exp-responsibilities li::before {
+  content: "> ";
+  color: #00ff00;
+  margin-right: 0.25em;
+}
+
+.terminal-error {
+  color: #ff5555;
   font-weight: bold;
-  color: #7ee787;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.mb {
-  margin-bottom: 0.75rem;
-}
-
-.mt {
-  margin-top: 1rem;
 }
 
 
