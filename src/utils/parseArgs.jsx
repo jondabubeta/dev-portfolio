@@ -7,15 +7,27 @@ export function parseArgs(argString = '', validKeys = []) {
     .map((part) => part.trim())
     .filter(Boolean)
     .forEach((flag) => {
-      const [key, value] = flag.split('=').map((p) => p.trim());
+      const [keyRaw, valueRaw] = flag.split('=');
+      const key = keyRaw?.trim();
+      const value = valueRaw?.trim();
 
       if (!key || value === undefined || value === '') {
         errors.push(`Missing value for '--${key}'`);
-      } else if (validKeys.length > 0 && !validKeys.includes(key)) {
-        errors.push(`Invalid argument '--${key}'`);
-      } else {
-        filter[key] = value;
+        return;
       }
+
+      if (validKeys.length > 0 && !validKeys.includes(key)) {
+        errors.push(`Invalid argument '--${key}'`);
+        return;
+      }
+
+      // Convert boolean-like strings to actual booleans
+      const normalizedValue =
+        value === 'true' ? true :
+        value === 'false' ? false :
+        value;
+
+      filter[key] = normalizedValue;
     });
 
   return { filter, errors };

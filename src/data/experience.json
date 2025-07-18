@@ -2,7 +2,7 @@
   {
     "company": "Blizzard Entertainment",
     "title": "Senior Software Development Engineer in Test",
-    "years": "2022\u2013Present",
+    "years": "2022–Present",
     "products": ["Battle.net", "Diablo IV", "Warcraft Rumble"],
     "summary": "Led test planning and execution across multiple AAA games. Built tools, frameworks, and automated systems to optimize test efficiency. Collaborated cross-functionally to debug and improve quality.",
     "responsibilities": [
@@ -16,7 +16,7 @@
   {
     "company": "Dexcom",
     "title": "Software Development Engineer in Test II",
-    "years": "2021\u20132022",
+    "years": "2021–2022",
     "summary": "Led advanced testing efforts for Dexcom CGM software. Focused on full test lifecycle, from planning and scripting to execution and mentoring.",
     "responsibilities": [
       "Developed automated/manual scripts for CGM software validation",
@@ -29,7 +29,7 @@
   {
     "company": "Dexcom",
     "title": "Software Development Engineer in Test I",
-    "years": "2019\u20132021",
+    "years": "2019–2021",
     "products": [
       "Dexcom G5",
       "Dexcom G6",
@@ -48,70 +48,76 @@
   {
     "company": "Neustar",
     "title": "Software Engineer in Test",
-    "years": "2017\u20132019",
+    "years": "2017–2019",
     "summary": "Built and maintained automation for full-stack testing including UI, REST APIs, and Spark-based systems. High CI integration.",
     "responsibilities": [
       "Wrote frameworks for Java/C# REST APIs, AngularJS UI, and Spark",
       "Maintained CI pipelines using Jenkins",
       "Performed load and performance testing"
     ],
-    "tags": ["neustar", "automation", "ci", "sdet", "angular", "rest"]
+    "tags": ["neustar", "automation", "ci", "sdet", "angular", "rest"],
+    "fullOnly": true
   },
   {
     "company": "Neustar",
     "title": "Associate Software Engineer in Test",
-    "years": "2015\u20132017",
+    "years": "2015–2017",
     "summary": "Contributed to automation efforts and participated in agile QA cycles. Wrote E2E tests and collaborated in design/test case reviews.",
     "responsibilities": [
       "Created test cases for REST APIs, AngularJS UI, and Spark jobs",
       "Maintained Jenkins CI test coverage",
       "Worked with QA/Product teams in agile environments"
     ],
-    "tags": ["neustar", "test", "qa", "automation", "ci", "agile"]
+    "tags": ["neustar", "test", "qa", "automation", "ci", "agile"],
+    "fullOnly": true
   },
   {
     "company": "County of San Diego",
     "title": "IT Engineer",
-    "years": "2013\u20132014",
+    "years": "2013–2014",
     "summary": "Maintained data systems, wrote validation scripts, and updated backend infrastructure. Supported uptime and system availability.",
     "responsibilities": [
       "Created scripts for data validation and integrity",
       "Developed features for data parsing software",
       "Maintained server infrastructure and uptime"
     ],
-    "tags": ["county", "infrastructure", "support", "validation"]
+    "tags": ["county", "infrastructure", "support", "validation"],
+    "fullOnly": true
   },
   {
     "company": "County of San Diego",
     "title": "Associate IT Engineer",
-    "years": "2012\u20132013",
+    "years": "2012–2013",
     "summary": "Contributed to software tooling, server support, and development workflows.",
     "responsibilities": [
       "Maintained integration scripts and tools",
       "Supported virtual and physical server environments"
     ],
-    "tags": ["county", "tools", "servers", "integration"]
+    "tags": ["county", "tools", "servers", "integration"],
+    "fullOnly": true
   },
   {
     "company": "County of San Diego",
     "title": "IT Engineer Intern",
-    "years": "2010\u20132011",
+    "years": "2010–2011",
     "summary": "Provided workstation and device support. Performed troubleshooting and system maintenance.",
     "responsibilities": [
       "Managed workstation support",
       "Conducted system troubleshooting and uptime assurance"
     ],
-    "tags": ["intern", "it", "support", "troubleshooting"]
+    "tags": ["intern", "it", "support", "troubleshooting"],
+    "fullOnly": true
   },
   {
     "company": "San Diego Electrical Training Center",
     "title": "Software Developer Intern",
-    "years": "2010\u20132011",
+    "years": "2010–2011",
     "summary": "Assisted in developing software for monitoring and automation testing across electrical systems.",
     "responsibilities": [
       "Contributed to malfunction detection systems",
       "Introduced automation testing for software components"
     ],
-    "tags": ["intern", "automation", "software", "monitoring"]
+    "tags": ["intern", "automation", "software", "monitoring"],
+    "fullOnly": true
   }
 ]
