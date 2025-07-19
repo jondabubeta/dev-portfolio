@@ -4,7 +4,9 @@ import SkillsViewer from '../commands/view/skills';
 import EducationViewer from '../commands/view/education';
 import ProjectsViewer from '../commands/view/projects';
 
-export default function Resume() {
+export default function Resume({ args = {} }) {
+  const full = args.full === true || args.full === 'true';
+
   return (
     <div className="resume">
       <div className="terminal-h1">Jonathan Dabu</div>
@@ -13,16 +15,16 @@ export default function Resume() {
       <div>LinkedIn: https://www.linkedin.com/in/jbdabu</div>
 
       <div className="terminal-h2 mt">Experience</div>
-      <ExperienceViewer />
+      <ExperienceViewer full={full} filter={args} />
 
       <div className="terminal-h2 mt">Skills</div>
-      <SkillsViewer />
+      <SkillsViewer full={full} filter={args} />
 
       <div className="terminal-h2 mt">Education</div>
-      <EducationViewer />
+      <EducationViewer full={full} filter={args} />
 
       <div className="terminal-h2 mt">Projects</div>
-      <ProjectsViewer />
+      <ProjectsViewer full={full} filter={args} />
     </div>
   );
 }

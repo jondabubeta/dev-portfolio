@@ -8,22 +8,25 @@ import Help from '../components/commands/help';
 import { parseArgs } from './parseArgs';
 
 const allowedArgs = {
-  experience: ['company', 'tags'],
+  resume: ['full'],
+  experience: ['company', 'tags', 'title'],
   education: ['school', 'degree'],
   projects: ['tag'],
-  contact: ['email', 'github', 'linkedin'],
+  contact: ['email', 'github', 'linkedin']
 };
 
 export function handleCommand(input) {
-  const [cmd, subcmd, ...args] = input.trim().split(' ');
+  const [cmd, subcmd, ...args] = input.trim().split(/\s+/);
   const argString = args.join(' ');
 
-  // Top-level command
+  // ✅ Resume command with argument validation
   if (cmd === 'resume') {
-    return <Resume />;
+    const { filter, errors } = parseArgs(argString, allowedArgs.resume);
+    if (errors.length > 0) return errors.join('\n');
+    return <Resume args={filter} />;
   }
 
-  // 'view' subcommands
+  // ✅ 'view' subcommands
   if (cmd === 'view') {
     switch (subcmd) {
       case 'experience': {
@@ -58,15 +61,16 @@ export function handleCommand(input) {
     }
   }
 
-  // Help command
+  // ✅ Help
   if (cmd === 'help') {
     return <Help command={subcmd} />;
   }
 
-  // Clear terminal
+  // ✅ Clear
   if (cmd === 'clear' || cmd === 'cls') {
     return '__CLEAR__';
   }
 
+  // ❌ Unknown command
   return `Command not found: ${input}`;
 }

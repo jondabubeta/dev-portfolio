@@ -19,26 +19,36 @@ const Terminal = forwardRef((props, ref) => {
   const [focused, setFocused] = useState(true);
   const inputRef = useRef(null);
 
+  // Expose command trigger
   useImperativeHandle(ref, () => ({
     runCommand: (command) => {
       const response = handleCommand(command);
       if (response === '__CLEAR__') {
         setLines([]);
       } else {
-        setLines((prev) => [...prev, `> ${command}`, response]);
+        setLines((prev) => [
+          ...prev,
+          `> ${command}`,
+          typeof response === 'string'
+            ? response
+            : { __component__: true, element: response }
+        ]);
       }
     }
   }));
 
+  // Splash screen on load
   useEffect(() => {
     const splashLines = splashTextAnsiShadow.split('\n');
     setLines([...splashLines, '', version, '', welcomeText]);
   }, []);
 
+  // Scroll on new content
   useEffect(() => {
     terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [lines]);
 
+  // Cursor blink
   useEffect(() => {
     const blink = setInterval(() => {
       setShowCursor((prev) => !prev);
@@ -53,7 +63,13 @@ const Terminal = forwardRef((props, ref) => {
       if (response === '__CLEAR__') {
         setLines([]);
       } else {
-        setLines((prev) => [...prev, `> ${command}`, response]);
+        setLines((prev) => [
+          ...prev,
+          `> ${command}`,
+          typeof response === 'string'
+            ? response
+            : { __component__: true, element: response }
+        ]);
       }
       setInput('');
     } else if (e.key.length === 1 || e.key === 'Backspace') {
@@ -75,21 +91,32 @@ const Terminal = forwardRef((props, ref) => {
         </div>
         <div className="terminal-title">JDabu Portfolio — zsh — 162x22</div>
       </div>
+
       <div className="terminal-body" onClick={() => inputRef.current?.focus()}>
         {lines.map((line, index) => {
-          const isHtml = typeof line === 'string' && line.startsWith('__HTML__');
-          const isVersion = typeof line === 'string' &&
-            (line.toLowerCase().startsWith('version') || line.toLowerCase().startsWith('v'));
+          // JSX components
+          if (typeof line === 'object' && line.__component__) {
+            return (
+              <div key={index} className="terminal-line">
+                {line.element}
+              </div>
+            );
+          }
 
-          if (isHtml) {
+          // HTML output (e.g., splash art)
+          if (typeof line === 'string' && line.startsWith('__HTML__')) {
             return (
               <div
                 key={index}
-                className={`terminal-line ${isVersion ? 'version' : ''}`}
+                className="terminal-line"
                 dangerouslySetInnerHTML={{ __html: line.replace('__HTML__', '') }}
               />
             );
           }
+
+          // Version styling
+          const isVersion = typeof line === 'string' &&
+            (line.toLowerCase().startsWith('version') || line.toLowerCase().startsWith('v'));
 
           return (
             <div
@@ -100,6 +127,7 @@ const Terminal = forwardRef((props, ref) => {
             </div>
           );
         })}
+
         <div className="input-line">
           <span className="prompt">&gt;&nbsp;</span>
           <span className="input-text">{input}</span>
