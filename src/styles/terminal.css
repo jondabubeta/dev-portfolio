@@ -129,6 +129,18 @@
   text-decoration: underline;
 }
 
+.terminal-body,
+.terminal-line,
+.input-line,
+.input-text {
+  user-select: text;
+}
+
+.terminal-bar,
+.traffic-lights {
+  user-select: none;
+}
+
 .mt {
   margin-top: 2rem;
 }

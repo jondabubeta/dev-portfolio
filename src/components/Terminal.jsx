@@ -19,7 +19,6 @@ const Terminal = forwardRef((props, ref) => {
   const [focused, setFocused] = useState(true);
   const inputRef = useRef(null);
 
-  // Expose command trigger
   useImperativeHandle(ref, () => ({
     runCommand: (command) => {
       const response = handleCommand(command);
@@ -37,18 +36,15 @@ const Terminal = forwardRef((props, ref) => {
     }
   }));
 
-  // Splash screen on load
   useEffect(() => {
     const splashLines = splashTextAnsiShadow.split('\n');
     setLines([...splashLines, '', version, '', welcomeText]);
   }, []);
 
-  // Scroll on new content
   useEffect(() => {
     terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [lines]);
 
-  // Cursor blink
   useEffect(() => {
     const blink = setInterval(() => {
       setShowCursor((prev) => !prev);
@@ -92,9 +88,15 @@ const Terminal = forwardRef((props, ref) => {
         <div className="terminal-title">JDabu Portfolio — zsh — 162x22</div>
       </div>
 
-      <div className="terminal-body" onClick={() => inputRef.current?.focus()}>
+      <div
+        className="terminal-body"
+        onMouseUp={(e) => {
+          const selection = window.getSelection();
+          if (!selection || selection.toString()) return; // Don't steal focus if text is selected
+          inputRef.current?.focus();
+        }}
+      >
         {lines.map((line, index) => {
-          // JSX components
           if (typeof line === 'object' && line.__component__) {
             return (
               <div key={index} className="terminal-line">
@@ -103,7 +105,6 @@ const Terminal = forwardRef((props, ref) => {
             );
           }
 
-          // HTML output (e.g., splash art)
           if (typeof line === 'string' && line.startsWith('__HTML__')) {
             return (
               <div
@@ -114,7 +115,6 @@ const Terminal = forwardRef((props, ref) => {
             );
           }
 
-          // Version styling
           const isVersion = typeof line === 'string' &&
             (line.toLowerCase().startsWith('version') || line.toLowerCase().startsWith('v'));
 
