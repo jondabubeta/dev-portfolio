@@ -23,6 +23,7 @@ body {
   padding: 1rem;
   background-color: #121212;
   overflow-y: auto;
+  
 }
 
 .terminal-panel {
@@ -160,6 +161,36 @@ body {
   height: 24px;
   object-fit: contain;
   padding-right: 1rem;
+}
+
+.doc-links {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0.75rem;
+}
+
+.doc-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.doc-icons {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.icon-sm {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.icon-about {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
 }
 
 /* Responsive: hide sidebar on small screens */
