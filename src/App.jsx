@@ -26,24 +26,23 @@ function App() {
           <p>
             I'm Jonathan Dabu — a software engineer specializing in test automation,
             game systems, and developer tools.
-          <br></br>
-<ul className="doc-links">
-  <li className="doc-entry">
-    <span className="doc-text">Resume</span>
-    <span className="doc-icons">
-      <img src={terminalIcon} alt="Terminal Icon" className="icon-about" />
-      <img src={downloadIcon} alt="Download Icon" className="icon-about" />
-    </span>
-  </li>
-  <li className="doc-entry">
-    <span className="doc-text">Cover Letter</span>
-    <span className="doc-icons">
-      <img src={terminalIcon} alt="Terminal Icon" className="icon-about" />
-      <img src={downloadIcon} alt="Download Icon" className="icon-about" />
-    </span>
-  </li>
-</ul>
-
+          <div className="doc-table">
+            <div className="doc-row">
+              <div className="doc-label">Resume</div>
+              <div className="doc-icons">
+                <img src={terminalIcon} className="icon-sm" />
+                <img src={downloadIcon} className="icon-sm" />
+                
+              </div>
+            </div>
+            <div className="doc-row">
+              <div className="doc-label">Cover Letter</div>
+              <div className="doc-icons">
+                <img src={terminalIcon} className="icon-sm" />
+                <img src={downloadIcon} className="icon-sm" />
+              </div>
+            </div>
+          </div>
           </p>
         </div>
 
