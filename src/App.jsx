@@ -48,11 +48,20 @@ function App() {
 
         <div className="section-container">
           <h3>Experience</h3>
-          <ul>
-            <li>Neustar (SDET)</li>
-            <li>Amazon Games (Target Role)</li>
-            <li>Blizzard (Test Tools Contributor)</li>
-          </ul>
+          <div className="experience-table">
+            <div className="experience-row">
+              <div className="experience-label">Neustar</div>
+              <div className="experience-meta">SDET</div>
+            </div>
+            <div className="experience-row">
+              <div className="experience-label">Amazon Games</div>
+              <div className="experience-meta">Target Role</div>
+            </div>
+            <div className="experience-row">
+              <div className="experience-label">Blizzard</div>
+              <div className="experience-meta">Test Tools Contributor</div>
+            </div>
+          </div>
         </div>
 
         <div className="section-container">
