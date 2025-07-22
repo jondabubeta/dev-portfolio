@@ -138,6 +138,15 @@ body {
     monospace;
 }
 
+.section-container.sm {
+  max-height: 120px;
+}
+
+.section-container.lg {
+  max-height: 260px;
+  overflow-y: auto;
+}
+
 .section-container h3 {
   position: absolute;
   top: -0.8rem;
@@ -208,6 +217,117 @@ body {
   height: 24px;
   object-fit: contain;
 }
+
+.scrollable-table {
+  overflow-y: auto;
+  overflow-x: auto;
+  padding-right: 4px;
+}
+.scrollable-table.sm {
+  max-height: 120px;
+}
+.scrollable-table::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollable-table::-webkit-scrollbar-thumb {
+  background-color: #444;
+  border-radius: 3px;
+}
+
+.experience-table {
+  display: grid;
+  row-gap: 0.5rem;
+  min-width: 300px;  /* Prevent content from collapsing */
+  margin-top: 0.5rem;
+}
+
+.experience-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 100px;  /* 3 columns */
+  align-items: center;
+  column-gap: 1rem;
+}
+
+.experience-label {
+  font-size: 0.95rem;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.experience-meta {
+  font-size: 0.85rem;
+  color: #aaa;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.experience-dates {
+  font-size: 0.8rem;
+  color: #888;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.experience-row.nested .experience-meta {
+  padding-left: 0rem;
+  font-style: italic;
+}
+
+.experience-row.nested .experience-dates {
+  font-style: italic;
+}
+
+.scrollable-table {
+  max-height: 180px; /* adjust this based on your layout */
+  overflow-y: auto;
+  padding-right: 4px; /* avoid scrollbar overlaying text */
+}
+
+.scrollable-table::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollable-table::-webkit-scrollbar-thumb {
+  background-color: #444;
+  border-radius: 3px;
+}
+
+/* Layout the row of contacts */
+.contacts-row {
+  display: flex;
+  flex-direction: row;
+  gap: 24px; /* space between each item */
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Each contact item */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.contact-item:hover {
+  color: #4ea3f1; /* hover color */
+}
+
+/* Icon size */
+.icon-sm {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* Optional label styling */
+.contact-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
 
 /* Responsive: hide sidebar on small screens */
 @media (max-width: 768px) {

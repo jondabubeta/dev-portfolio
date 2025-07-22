@@ -16,23 +16,18 @@ function App() {
   return (
     <div className="page-wrapper">
       <aside className="side-panel">
-        <div className="section-container">
-          <h3>Home</h3>
-          <p>Welcome to my terminal portfolio.</p>
-        </div>
-
-        <div className="section-container">
+        <div className="section-container sm">
           <h3>About</h3>
           <p>
             I'm Jonathan Dabu — a software engineer specializing in test automation,
             game systems, and developer tools.
+          </p>
           <div className="doc-table">
             <div className="doc-row">
               <div className="doc-label">Resume</div>
               <div className="doc-icons">
                 <img src={terminalIcon} className="icon-sm" />
                 <img src={downloadIcon} className="icon-sm" />
-                
               </div>
             </div>
             <div className="doc-row">
@@ -43,26 +38,47 @@ function App() {
               </div>
             </div>
           </div>
-          </p>
+
         </div>
 
-        <div className="section-container">
-          <h3>Experience</h3>
-          <div className="experience-table">
-            <div className="experience-row">
-              <div className="experience-label">Neustar</div>
-              <div className="experience-meta">SDET</div>
-            </div>
-            <div className="experience-row">
-              <div className="experience-label">Amazon Games</div>
-              <div className="experience-meta">Target Role</div>
-            </div>
-            <div className="experience-row">
-              <div className="experience-label">Blizzard</div>
-              <div className="experience-meta">Test Tools Contributor</div>
-            </div>
-          </div>
-        </div>
+<div className="section-container sm">
+  <h3>Experience</h3>
+
+  <div className="scrollable-table sm">
+    <div className="experience-table">
+      <div className="experience-row">
+        <div className="experience-label">Neustar</div>
+        <div className="experience-meta">SDET</div>
+        <div className="experience-dates">2021 – 2023</div>
+      </div>
+      <div className="experience-row nested">
+        <div className="experience-label">&nbsp;</div>
+        <div className="experience-meta">QA Engineer</div>
+        <div className="experience-dates">2020 – 2021</div>
+      </div>
+      <div className="experience-row">
+        <div className="experience-label">Amazon Games</div>
+        <div className="experience-meta">Target Role</div>
+        <div className="experience-dates">Future</div>
+      </div>
+      <div className="experience-row">
+        <div className="experience-label">Blizzard</div>
+        <div className="experience-meta">Test Tools Contributor</div>
+        <div className="experience-dates">2023 – Present</div>
+      </div>
+      <div className="experience-row">
+        <div className="experience-label">Blizzard</div>
+        <div className="experience-meta">Test Tools Contributor</div>
+        <div className="experience-dates">2023 – Present</div>
+      </div>
+      <div className="experience-row">
+        <div className="experience-label">Blizzard</div>
+        <div className="experience-meta">Test Tools Contributor</div>
+        <div className="experience-dates">2023 – Present</div>
+      </div>
+    </div>
+  </div>
+</div>
 
         <div className="section-container">
           <h3>Projects</h3>
