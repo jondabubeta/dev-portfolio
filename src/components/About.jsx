@@ -3,7 +3,7 @@ import downloadIcon from '../assets/download.png';
 
 export default function About({ onCommand }) {
   return (
-    <div className="section-container sm">
+    <div className="section-container lg">
       <h3>About</h3>
       <div className="scrollable-about">
         <p>

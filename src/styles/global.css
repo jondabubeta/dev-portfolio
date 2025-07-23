@@ -20,10 +20,11 @@ body {
 
 .side-panel {
   width: 500px;
-  padding: 1rem;
   background-color: #121212;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   overflow-y: auto;
-  
 }
 
 .terminal-panel {

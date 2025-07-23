@@ -43,7 +43,7 @@ const skills = [
 
 export default function Skills({ onCommand }) {
   return (
-    <div className="section-container">
+    <div className="section-container sm">
       <h3>Skills</h3>
       <div className="scrollable-skills">
         <div className="skill-cloud">
