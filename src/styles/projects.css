@@ -1,0 +1,31 @@
+.scrollable-projects {
+  max-height: 100px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.scrollable-projects::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollable-projects::-webkit-scrollbar-thumb {
+  background-color: #444;
+  border-radius: 3px;
+}
+
+.project-table {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.project-row {
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.project-row:hover {
+  color: #4ea3f1;
+}

@@ -1,0 +1,42 @@
+.scrollable-about {
+  max-height: 120px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.scrollable-about::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollable-about::-webkit-scrollbar-thumb {
+  background-color: #444;
+  border-radius: 3px;
+}
+
+.doc-table {
+  margin-top: 0.75rem;
+  display: grid;
+  row-gap: 0.5rem;
+}
+
+.doc-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: 1rem;
+}
+
+.doc-label {
+  font-size: 0.9rem;
+}
+
+.doc-icons {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.icon-sm {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}

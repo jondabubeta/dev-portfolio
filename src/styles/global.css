@@ -138,13 +138,16 @@ body {
     monospace;
 }
 
+.section-container.vsm {
+  max-height: 30px;
+}
+
 .section-container.sm {
-  max-height: 120px;
+  max-height: 100px;
 }
 
 .section-container.lg {
-  max-height: 260px;
-  overflow-y: auto;
+  max-height: 180px;
 }
 
 .section-container h3 {
@@ -193,7 +196,7 @@ body {
   width: 180px;
   display: grid;
   row-gap: 0.5rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 .doc-row {
@@ -224,7 +227,7 @@ body {
   padding-right: 4px;
 }
 .scrollable-table.sm {
-  max-height: 120px;
+  max-height: 105px;
 }
 .scrollable-table::-webkit-scrollbar {
   width: 6px;

@@ -1,112 +1,31 @@
-// eslint-disable-next-line no-unused-vars
 import { useRef } from 'react';
 import Terminal from './components/Terminal';
+import About from './components/About';
+import Projects from './components/Projects';
+import Skills from './components/Skills';
 import Contacts from './components/Contacts';
-import terminalIcon from './assets/terminal.png';
-import downloadIcon from './assets/download.png';
+import Experience from './components/Experience';
+import Current from './components/Current';
 import './styles/global.css';
+import './styles/about.css';
+import './styles/experience.css';
+import './styles/projects.css';
+import './styles/skills.css';
+import './styles/current.css';
 
 function App() {
   const terminalRef = useRef();
-
-  const triggerContactCommand = () => {
-    terminalRef.current?.runCommand('view contact');
-  };
+  const onCommand = (cmd) => terminalRef.current?.runCommand(cmd);
 
   return (
     <div className="page-wrapper">
       <aside className="side-panel">
-        <div className="section-container sm">
-          <h3>About</h3>
-          <p>
-            I'm Jonathan Dabu — a software engineer specializing in test automation,
-            game systems, and developer tools.
-          </p>
-          <div className="doc-table">
-            <div className="doc-row">
-              <div className="doc-label">Resume</div>
-              <div className="doc-icons">
-                <img src={terminalIcon} className="icon-sm" />
-                <img src={downloadIcon} className="icon-sm" />
-              </div>
-            </div>
-            <div className="doc-row">
-              <div className="doc-label">Cover Letter</div>
-              <div className="doc-icons">
-                <img src={terminalIcon} className="icon-sm" />
-                <img src={downloadIcon} className="icon-sm" />
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-<div className="section-container sm">
-  <h3>Experience</h3>
-
-  <div className="scrollable-table sm">
-    <div className="experience-table">
-      <div className="experience-row">
-        <div className="experience-label">Neustar</div>
-        <div className="experience-meta">SDET</div>
-        <div className="experience-dates">2021 – 2023</div>
-      </div>
-      <div className="experience-row nested">
-        <div className="experience-label">&nbsp;</div>
-        <div className="experience-meta">QA Engineer</div>
-        <div className="experience-dates">2020 – 2021</div>
-      </div>
-      <div className="experience-row">
-        <div className="experience-label">Amazon Games</div>
-        <div className="experience-meta">Target Role</div>
-        <div className="experience-dates">Future</div>
-      </div>
-      <div className="experience-row">
-        <div className="experience-label">Blizzard</div>
-        <div className="experience-meta">Test Tools Contributor</div>
-        <div className="experience-dates">2023 – Present</div>
-      </div>
-      <div className="experience-row">
-        <div className="experience-label">Blizzard</div>
-        <div className="experience-meta">Test Tools Contributor</div>
-        <div className="experience-dates">2023 – Present</div>
-      </div>
-      <div className="experience-row">
-        <div className="experience-label">Blizzard</div>
-        <div className="experience-meta">Test Tools Contributor</div>
-        <div className="experience-dates">2023 – Present</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-        <div className="section-container">
-          <h3>Projects</h3>
-          <ul>
-            <li>Corporate Depths</li>
-            <li>Analytics Dashboard</li>
-            <li>Corgi Clicker</li>
-            <li>Terminal Portfolio</li>
-          </ul>
-        </div>
-
-        <div className="section-container">
-          <h3>Skills</h3>
-          <ul>
-            <li>Java, JavaScript, Python</li>
-            <li>Gradle, Jenkins, GitHub Actions</li>
-            <li>Spring Boot, React, Node.js</li>
-          </ul>
-        </div>
-
-        <div className="section-container">
-          <h3>Blog</h3>
-          <p>
-            I occasionally share thoughts on dev workflows, automation, and game development.
-          </p>
-        </div>
-
-        <Contacts onCommand={(cmd) => terminalRef.current?.runCommand(cmd)} />
+        <About onCommand={onCommand} />
+        <Experience />
+        <Projects onCommand={onCommand} />
+        <Skills onCommand={onCommand} />
+        <Current />
+        <Contacts onCommand={onCommand} />
       </aside>
 
       <div className="terminal-panel">
