@@ -1,0 +1,18 @@
+/* Each contact item */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.contact-item:hover {
+  color: #4ea3f1; /* hover color */
+}
+
+/* Optional label styling */
+.contact-label {
+  font-size: 14px;
+  font-weight: 500;
+}
