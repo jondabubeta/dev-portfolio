@@ -2,6 +2,8 @@
    Terminal Window Shell
 =========================== */
 .terminal-window {
+    height: 100%;
+  width: 100%;
   width: 1300px;
   min-width: 1300px;
   max-width: 1300px;
