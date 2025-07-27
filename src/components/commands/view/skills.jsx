@@ -4,22 +4,21 @@ export default function SkillsViewer() {
   const categories = Object.keys(skillsData);
 
   return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-        gap: '1rem'
-      }}
-    >
-      {categories.map((category) => (
-        <div key={category}>
-          <strong>
-            {category.charAt(0).toUpperCase() + category.slice(1)}:
-          </strong>
-          <br />
-          {skillsData[category].join(', ')}
-        </div>
-      ))}
+    <div>
+      <div className="skills-grid">
+        {categories.map((category) => (
+          <div key={category} className="skills-column">
+            <div className="exp-company">
+              {category.charAt(0).toUpperCase() + category.slice(1)}
+            </div>
+            <ul className="exp-responsibilities">
+              {skillsData[category].map((skill) => (
+                <li key={skill}>{skill}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
