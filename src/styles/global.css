@@ -19,6 +19,7 @@ body {
 }
 
 .side-panel {
+max-width: 500px;  
   width: 500px;
   background-color: #121212;
   padding-top: 1rem;

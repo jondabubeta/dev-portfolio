@@ -6,7 +6,7 @@ import React, {
   useRef
 } from 'react';
 import { handleCommand } from '../utils/handleCommand';
-import { splashTextAnsiShadow } from './title/splash';
+import { splashTextModular } from './title/splash';
 import { welcomeText } from './title/welcome';
 import { version } from './title/version';
 import '../styles/terminal.css';
@@ -37,7 +37,7 @@ const Terminal = forwardRef((props, ref) => {
   }));
 
   useEffect(() => {
-    const splashLines = splashTextAnsiShadow.split('\n');
+    const splashLines = splashTextModular.split('\n');
     setLines([...splashLines, '', version, '', welcomeText]);
   }, []);
 
