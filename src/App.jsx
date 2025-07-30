@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { useState } from 'react';
 import Terminal from './components/Terminal';
 import About from './components/About';
 import Projects from './components/Projects';
@@ -7,19 +8,22 @@ import Contacts from './components/Contacts';
 import Experience from './components/Experience';
 import Current from './components/Current';
 import './styles/global.css';
-import './styles/about.css';
-import './styles/experience.css';
-import './styles/projects.css';
-import './styles/skills.css';
-import './styles/current.css';
+
 
 function App() {
   const terminalRef = useRef();
+  const [menuOpen, setMenuOpen] = useState(false);
   const onCommand = (cmd) => terminalRef.current?.runCommand(cmd);
 
   return (
     <div className="page-wrapper">
-      <aside className="side-panel">
+      {/* Hamburger Button */}
+      <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+        ☰
+      </button>
+
+      {/* Conditional Side Panel */}
+      <aside className={`side-panel ${menuOpen ? 'open' : 'closed'}`}>
         <About onCommand={onCommand} />
         <Experience />
         <Projects onCommand={onCommand} />
@@ -29,9 +33,7 @@ function App() {
       </aside>
 
       <div className="terminal-panel">
-        <div className="terminal-wrapper">
-          <Terminal ref={terminalRef} />
-        </div>
+        <Terminal ref={terminalRef} />
       </div>
     </div>
   );

@@ -9,7 +9,6 @@ import { handleCommand } from '../utils/handleCommand';
 import { splashTextModular } from './title/splash';
 import { welcomeText } from './title/welcome';
 import { version } from './title/version';
-import '../styles/terminal.css';
 
 const Terminal = forwardRef((props, ref) => {
   const [lines, setLines] = useState([]);
