@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import { useState } from 'react';
 import Terminal from './components/Terminal';
 import About from './components/About';
 import Projects from './components/Projects';
@@ -9,21 +8,14 @@ import Experience from './components/Experience';
 import Current from './components/Current';
 import './styles/global.css';
 
-
 function App() {
   const terminalRef = useRef();
-  const [menuOpen, setMenuOpen] = useState(false);
   const onCommand = (cmd) => terminalRef.current?.runCommand(cmd);
 
   return (
     <div className="page-wrapper">
-      {/* Hamburger Button */}
-      <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
-        ☰
-      </button>
-
-      {/* Conditional Side Panel */}
-      <aside className={`side-panel ${menuOpen ? 'open' : 'closed'}`}>
+      {/* Static Side Panel (always shown on desktop, hidden on mobile via CSS) */}
+      <aside className="side-panel">
         <About onCommand={onCommand} />
         <Experience />
         <Projects onCommand={onCommand} />
@@ -32,6 +24,7 @@ function App() {
         <Contacts onCommand={onCommand} />
       </aside>
 
+      {/* Terminal Panel */}
       <div className="terminal-panel">
         <Terminal ref={terminalRef} />
       </div>

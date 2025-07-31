@@ -5,7 +5,7 @@ body {
   font-family:
     SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
     monospace;
-  background-color: #000;
+  background-color: #121212;
   color: #c0c0c0;
   height: 100vh;
   display: flex;
@@ -20,7 +20,8 @@ body {
 }
 
 .side-panel {
-max-width: 500px;  
+  display: block; /* ← Make sure this is present */
+  max-width: 500px;
   width: 500px;
   background-color: #121212;
   padding-top: 1rem;
@@ -214,11 +215,6 @@ max-width: 500px;
   font-size: 0.95rem;
 }
 
-.icon-sm {
-  width: 20px;
-  height: 20px;
-}
-
 .icon-about {
   width: 24px;
   height: 24px;
@@ -226,10 +222,12 @@ max-width: 500px;
 }
 
 .scrollable-table {
+  max-height: 180px;
   overflow-y: auto;
   overflow-x: auto;
   padding-right: 4px;
 }
+
 .scrollable-table.sm {
   max-height: 105px;
 }
@@ -285,12 +283,6 @@ max-width: 500px;
   font-style: italic;
 }
 
-.scrollable-table {
-  max-height: 180px; /* adjust this based on your layout */
-  overflow-y: auto;
-  padding-right: 4px; /* avoid scrollbar overlaying text */
-}
-
 .scrollable-table::-webkit-scrollbar {
   width: 6px;
 }
@@ -320,13 +312,6 @@ max-width: 500px;
 
 .contact-item:hover {
   color: #4ea3f1; /* hover color */
-}
-
-/* Icon size */
-.icon-sm {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
 }
 
 /* Optional label styling */
@@ -853,98 +838,4 @@ max-width: 500px;
 
 .skills-column {
   min-width: 0; /* Prevent overflow */
-}
-
-/* Hide hamburger by default */
-.hamburger {
-  display: none;
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
-  z-index: 1000;
-  font-size: 2rem;
-  background: none;
-  border: none;
-  color: #c0c0c0;
-  cursor: pointer;
-}
-
-
-/* ===== Responsive Overrides ===== */
-/* ===== Responsive Overrides ===== */
-@media (max-width: 768px) {
-  .page-wrapper {
-    flex-direction: column;
-    height: auto;
-  }
-
-  body {
-    font-size: 0.9rem;
-  }
-
-  .hamburger {
-    display: block;
-  }
-
-  .side-panel {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 80%;
-    max-width: 300px;
-    background-color: #121212;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-    z-index: 999;
-    padding: 1rem;
-    overflow-y: auto;
-  }
-
-  .side-panel.open {
-    transform: translateX(0);
-  }
-
-  .side-panel.closed {
-    transform: translateX(-100%);
-  }
-
-  .terminal-panel {
-    order: 1;
-    padding: 1rem;
-    padding-top: 3rem; /* room for hamburger */
-  }
-
-  .terminal-wrapper {
-    width: 100%;
-    max-width: none;
-    padding: 0 1rem;
-    box-sizing: border-box;
-  }
-
-  .terminal-window {
-    width: 100%;
-    max-width: none;
-    border-radius: 0;
-    box-shadow: none;
-  }
-
-  .terminal-body {
-    padding: 1rem;
-    font-size: 0.85rem;
-    overflow-wrap: break-word;
-  }
-
-  .terminal-line,
-  .input-line,
-  .input-text {
-    font-size: 0.85rem;
-    word-break: break-word;
-    flex-wrap: wrap;
-  }
-
-  .input,
-  .output {
-    font-size: 0.9rem;
-  }
 }
