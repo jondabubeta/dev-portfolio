@@ -10,7 +10,7 @@ const contacts = [
 
 export default function Contacts({ onCommand }) {
   return (
-    <div className="section-container vsm">
+    <div className="section-container lg">
       <h3>Contact</h3>
       <div className="contacts-row">
         {contacts.map(({ icon, label, command }) => (

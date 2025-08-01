@@ -6,7 +6,7 @@ import React, {
   useRef
 } from 'react';
 import { handleCommand } from '../utils/handleCommand';
-import { splashTextModular } from './title/splash';
+import { splashTextAnsiShadow } from './title/splash';
 import { welcomeText } from './title/welcome';
 import { version } from './title/version';
 
@@ -17,6 +17,9 @@ const Terminal = forwardRef((props, ref) => {
   const terminalEndRef = useRef(null);
   const [focused, setFocused] = useState(true);
   const inputRef = useRef(null);
+
+  // Change this for splash title
+  const splash = splashTextAnsiShadow;
 
   useImperativeHandle(ref, () => ({
     runCommand: (command) => {
@@ -36,7 +39,7 @@ const Terminal = forwardRef((props, ref) => {
   }));
 
   useEffect(() => {
-    const splashLines = splashTextModular.split('\n');
+    const splashLines = splash.split('\n');
     setLines([...splashLines, '', version, '', welcomeText]);
   }, []);
 
