@@ -781,6 +781,13 @@ body {
   gap: 0.5rem;
 }
 
+.skill-image {
+  width: 40px;
+  height: 40px;
+  margin-top: 4px;
+  object-fit: contain;
+}
+
 /* Base style */
 .skill-pill {
   font-size: 0.85rem;

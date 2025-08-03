@@ -1,24 +1,20 @@
 {
-  "languages": ["Java", "C#", "JavaScript", "Python", "Kotlin"],
-  "cloud": ["AWS", "GCP", "Azure"],
-  "frameworks": ["React", "Angularjs", ".NET", ".NET Core", "Node.js"],
-  "engines": ["Unity", "Unreal"],
-  "testing": [
-    "Selenium",
-    "JMeter",
-    "Spring",
-    "Cucumber",
-    "Gherkin",
-    "NUnit",
-    "JUnit",
-    "XCTest",
-    "Espresso",
-    "TestNG",
-    "Postman",
-    "Charles",
-    "Jest",
-    "Mocha",
-    "Jasmine"
+  "qa": [
+    {
+      "name": "TestNG",
+      "description": "Testing framework inspired by JUnit, designed for Java.",
+      "experience": "Used for writing structured automated test suites in identity scenarios.",
+      "image": "testng.png",
+      "tags": ["framework", "java"]
+    }
   ],
-  "integration": ["Jenkins", "Travis", "Git", "GitLab", "Perforce", "JFrog"]
+  "web": [
+    {
+      "name": "React",
+      "description": "JavaScript library for building component-based UIs.",
+      "experience": "Used to build this portfolio and internal dashboards.",
+      "image": "react.png",
+      "tags": ["frontend", "library"]
+    }
+  ]
 }
