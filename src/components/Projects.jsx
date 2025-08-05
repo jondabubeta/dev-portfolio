@@ -1,24 +1,18 @@
-export default function Projects({ onCommand }) {
-  const projectList = [
-    'Corporate Depths',
-    'Corgi Clicker',
-    'Analytics Dashboard',
-    'Terminal Portfolio',
-    'Terminal Portfolio',
-  ];
+import projects from '../data/projects.json';
 
+export default function Projects({ onCommand }) {
   return (
     <div className="section-container sm">
       <h3>Projects</h3>
       <div className="scrollable-projects">
         <div className="project-table">
-          {projectList.map((project) => (
+          {projects.map((project) => (
             <div
-              key={project}
+              key={project.title}
               className="project-row"
-              onClick={() => onCommand(`view project --name="${project}"`)}
+              onClick={() => onCommand(`view project --name="${project.title}"`)}
             >
-              {project}
+              {project.title}
             </div>
           ))}
         </div>
