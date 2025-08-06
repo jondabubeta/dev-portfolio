@@ -11,7 +11,7 @@ const allowedArgs = {
   resume: ['full'],
   experience: ['company', 'tags', 'title'],
   education: ['school', 'degree'],
-  projects: ['tag'],
+  projects: ['tag', 'name'],
   contact: ['email', 'github', 'linkedin']
 };
 

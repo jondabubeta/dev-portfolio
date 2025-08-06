@@ -1,40 +1,41 @@
-import React from 'react';
-import projectsData from '../../../data/projects.json';
+import projects from '../../../data/projects.json';
 
-export default function ProjectsViewer({ filter = {} }) {
-  const normalize = (str) => str.toLowerCase();
+export default function ProjectsViewer({ filter }) {
+  const nameQuery = filter.name?.toLowerCase();
+  const tagQuery = filter.tag?.toLowerCase();
 
-  const matchesFilter = (project) => {
-    if (
-      filter.title &&
-      !normalize(project.title).includes(normalize(filter.title))
-    ) {
-      return false;
-    }
-    if (filter.tags) {
-      const tags = Array.isArray(filter.tags)
-        ? filter.tags
-        : filter.tags.split(',');
-      const lowerTags = tags.map(normalize);
-      if (!lowerTags.some((tag) => project.tags.map(normalize).includes(tag))) {
-        return false;
-      }
-    }
-    return true;
-  };
+  let results = projects;
 
-  const filtered = projectsData.filter(matchesFilter);
+  if (nameQuery) {
+    results = projects.filter(p => p.title.toLowerCase() === nameQuery);
+  } else if (tagQuery) {
+    results = projects.filter(p => {
+      const inTitle = p.title.toLowerCase().includes(tagQuery);
+      const inDesc = p.description.toLowerCase().includes(tagQuery);
+      const inTech = (p.tech || []).some(t => t.toLowerCase().includes(tagQuery));
+      return inTitle || inDesc || inTech;
+    });
+  }
 
-  if (filtered.length === 0) {
-    return <div>No matching projects found.</div>;
+  if (results.length === 0) {
+    return <div className="output">❌ No matching projects found.</div>;
   }
 
   return (
-    <div>
-      {filtered.map((project, index) => (
-        <div key={index} style={{ marginBottom: '1rem' }}>
-          <strong>{project.title}</strong>
-          <div>{project.description}</div>
+    <div className="output">
+      {results.map((project, index) => (
+        <div key={index} className="project-block">
+          <h3>{project.title}</h3>
+          <p>{project.description}</p>
+          {project.url && (
+            <p>
+              🔗 <a href={project.url} target="_blank" rel="noopener noreferrer">{project.url}</a>
+            </p>
+          )}
+          {project.tech && (
+            <p><strong>Tech Stack:</strong> {project.tech.join(', ')}</p>
+          )}
+          {index < results.length - 1 && <hr />}
         </div>
       ))}
     </div>
