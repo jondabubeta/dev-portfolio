@@ -23,7 +23,7 @@ export default function ProjectsViewer({ filter }) {
   }
 
   if (results.length === 0) {
-    return <div className="output">❌ No matching projects found.</div>;
+    return <div className="output">No matching projects found.</div>;
   }
 
   return (
