@@ -10,7 +10,7 @@ export default function Projects({ onCommand }) {
             <div
               key={project.title}
               className="project-row"
-              onClick={() => onCommand(`view project --name="${project.title}"`)}
+              onClick={() => onCommand(`view projects --name="${project.title}"`)}
             >
               {project.title}
             </div>
