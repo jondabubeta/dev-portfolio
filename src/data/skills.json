@@ -15,6 +15,13 @@
       "experience": "Used to build this portfolio and internal dashboards.",
       "image": "react.png",
       "tags": ["frontend", "library"]
+    },
+        {
+      "name": "React",
+      "description": "JavaScript library for building component-based UIs.",
+      "experience": "Used to build this portfolio and internal dashboards.",
+      "image": "react.png",
+      "tags": ["frontend", "library"]
     }
   ]
 }
