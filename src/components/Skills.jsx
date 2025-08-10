@@ -9,11 +9,19 @@ export default function Skills({ onCommand }) {
       <div className="scrollable-skills">
         <div className="skill-cloud">
           {categories.flatMap((category) =>
-            skillsData[category].map((skill) => (
+            skillsData[category].map((skill, idx) => (
               <span
-                key={skill.name}
-                className={`skill-pill ${category}-skill`}
-                onClick={() => onCommand(`view skill --name="${skill.name}"`)}
+                key={`${category}:${skill.name}:${idx}`}  // unique key per pill
+                className={`skill-pill ${category}-skill clickable`}
+                onClick={() => onCommand?.(`view skill --name="${skill.name}"`)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    onCommand?.(`view skill --name="${skill.name}"`);
+                  }
+                }}
+                title={`Filter by ${skill.name}`}
               >
                 {skill.name}
               </span>

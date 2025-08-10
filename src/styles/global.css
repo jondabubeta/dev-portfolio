@@ -149,6 +149,7 @@ body {
 
 .section-container.sm {
   max-height: 100px;
+  padding-bottom: 1rem;
 }
 
 .section-container.lg {
@@ -660,7 +661,7 @@ body {
 
 .experience-row {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr;
   font-size: 0.85rem;
   align-items: center;
 }

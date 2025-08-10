@@ -17,7 +17,7 @@ function App() {
       {/* Static Side Panel (always shown on desktop, hidden on mobile via CSS) */}
       <aside className="side-panel">
         <About onCommand={onCommand} />
-        <Experience />
+        <Experience onCommand={onCommand} />
         <Projects onCommand={onCommand} />
         <Skills onCommand={onCommand} />
         <Current />
