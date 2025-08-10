@@ -1,16 +1,15 @@
 import experienceData from '../../../data/experience.json';
 
 export default function ExperienceViewer({ filter = {}, full = false }) {
-  // Normalize and strip optional surrounding quotes
   const normalize = (v) =>
     String(v ?? '')
       .toLowerCase()
       .trim()
       .replace(/^"(.*)"$|^'(.*)'$/, (_, d1, d2) => d1 || d2 || '');
 
-  // Accept a few aliases from the terminal parser
+  // Accept common flag aliases
   const companyFilter = normalize(filter.company ?? filter.name);
-  const titleFilter = normalize(filter.title ?? filter.role ?? filter.position);
+  const titleFilter   = normalize(filter.title ?? filter.role ?? filter.position);
   const tagsFilter = (() => {
     const raw =
       filter.tags == null
@@ -21,16 +20,19 @@ export default function ExperienceViewer({ filter = {}, full = false }) {
     return raw.map(normalize).filter(Boolean);
   })();
 
+  // Treat string "true"/"false" as booleans
+  const includeFull =
+    typeof full === 'string' ? full.toLowerCase() === 'true' : !!full;
+
+  // Any filter means we ignore fullOnly
+  const anyFilter = !!companyFilter || !!titleFilter || tagsFilter.length > 0;
+
   const matchesFilter = (exp) => {
-    if (!full && exp.fullOnly) return false;
+    // Only enforce fullOnly when NO filters are provided
+    if (!anyFilter && !includeFull && exp.fullOnly) return false;
 
-    if (companyFilter) {
-      if (!normalize(exp.company).includes(companyFilter)) return false;
-    }
-
-    if (titleFilter) {
-      if (!normalize(exp.title).includes(titleFilter)) return false;
-    }
+    if (companyFilter && !normalize(exp.company).includes(companyFilter)) return false;
+    if (titleFilter && !normalize(exp.title).includes(titleFilter)) return false;
 
     if (tagsFilter.length) {
       const expTags = (exp.tags || []).map(normalize);
@@ -43,7 +45,7 @@ export default function ExperienceViewer({ filter = {}, full = false }) {
   const filtered = experienceData.filter(matchesFilter);
 
   if (filtered.length === 0) {
-    return <div className="terminal-error">No matching experience found.</div>;
+    return <div className="output">No matching experience found.</div>;
   }
 
   // Group by company
@@ -52,7 +54,7 @@ export default function ExperienceViewer({ filter = {}, full = false }) {
     return acc;
   }, {});
 
-  // Robust year parsing for sorting
+  // Year parsing for robust recent-first sorting
   const parseYears = (years = '') => {
     const [startRaw = '', endRaw = ''] = String(years).split(/–|-/);
     const start = parseInt(startRaw, 10) || -Infinity;
@@ -60,7 +62,6 @@ export default function ExperienceViewer({ filter = {}, full = false }) {
     return { start, end };
   };
 
-  // Sort roles per company by most recent first
   Object.values(grouped).forEach((roles) =>
     roles.sort((a, b) => {
       const A = parseYears(a.years);
@@ -69,7 +70,6 @@ export default function ExperienceViewer({ filter = {}, full = false }) {
     })
   );
 
-  // Sort companies by most recent role
   const companies = Object.keys(grouped).sort((c1, c2) => {
     const r1 = grouped[c1][0];
     const r2 = grouped[c2][0];
@@ -79,34 +79,36 @@ export default function ExperienceViewer({ filter = {}, full = false }) {
   });
 
   return (
-    <div className="experience-list">
-      {companies.map((company) => {
-        const roles = grouped[company];
-        return (
-          <div key={company} className="experience-group">
-            <div className="exp-company">{company}</div>
+    <div className="output">
+      <div className="experience-list">
+        {companies.map((company) => {
+          const roles = grouped[company];
+          return (
+            <div key={company} className="experience-group">
+              <div className="exp-company">{company}</div>
 
-            {roles.map((exp, index) => (
-              <div key={`${company}-${index}`} className="experience-entry">
-                <div className="exp-title">
-                  {exp.title}
-                  {exp.years && <span className="exp-years"> ({exp.years})</span>}
+              {roles.map((exp, index) => (
+                <div key={`${company}-${index}`} className="experience-entry">
+                  <div className="exp-title">
+                    {exp.title}
+                    {exp.years && <span className="exp-years"> ({exp.years})</span>}
+                  </div>
+
+                  {exp.summary && <div className="exp-summary">&gt; {exp.summary}</div>}
+
+                  {Array.isArray(exp.responsibilities) && exp.responsibilities.length > 0 && (
+                    <ul className="exp-responsibilities">
+                      {exp.responsibilities.map((resp, i) => (
+                        <li key={`${company}-${index}-resp-${i}`}>&gt; {resp}</li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
-
-                {exp.summary && <div className="exp-summary">&gt; {exp.summary}</div>}
-
-                {Array.isArray(exp.responsibilities) && exp.responsibilities.length > 0 && (
-                  <ul className="exp-responsibilities">
-                    {exp.responsibilities.map((resp, i) => (
-                      <li key={`${company}-${index}-resp-${i}`}>&gt; {resp}</li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            ))}
-          </div>
-        );
-      })}
+              ))}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
