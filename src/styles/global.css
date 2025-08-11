@@ -847,3 +847,19 @@ body {
 .skills-column {
   min-width: 0; /* Prevent overflow */
 }
+/* Projects links row – visually subtle, matches terminal look */
+.exp-links {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.exp-links a {
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(255,255,255,0.35);
+}
+
+.exp-links a:hover {
+  text-decoration: underline;
+}
