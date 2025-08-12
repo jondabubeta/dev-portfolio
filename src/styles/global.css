@@ -30,6 +30,15 @@ body {
   overflow-y: auto;
 }
 
+.side-panel .experience-label.clickable {
+  cursor: pointer;
+  transition: color 0.15s ease-in-out;
+}
+
+.side-panel .experience-label.clickable:hover {
+  color: #4ea3f1; /* same as .project-row:hover */
+}
+
 .terminal-panel {
   flex-grow: 1;
   display: flex;

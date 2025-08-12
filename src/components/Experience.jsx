@@ -44,7 +44,6 @@ export default function Experience({ onCommand }) {
                 tabIndex={0}
                 onClick={() => handleCompanyClick(item.company)}
                 onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleCompanyClick(item.company)}
-                title={`Filter by ${item.company}`}
               >
                 {item.company}
               </span>
