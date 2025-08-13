@@ -2,14 +2,14 @@ import React from 'react';
 import contacts from '../../../data/contact.json';
 
 export default function ContactViewer({ filter = {} }) {
-  const hasTrue = Object.values(filter).some((v) => v === 'true');
-  const hasFalse = Object.values(filter).some((v) => v === 'false');
-  const wantsAll = Object.keys(filter).length === 0 || (!hasTrue && hasFalse);
+  const hasTrue = Object.values(filter).some((v) => v === true || v === 'true');
+  const hasFalse = Object.values(filter).some((v) => v === false || v === 'false');
+  const wantsAll = Object.keys(filter).length === 0 || (!hasTrue && !hasFalse);
 
   const visibleContacts = contacts.filter(({ type }) => {
     const val = filter[type];
-    if (val === 'true') return true;
-    if (val === 'false') return false;
+    if (val === true || val === 'true') return true;
+    if (val === false || val === 'false') return false;
     return wantsAll;
   });
 
