@@ -7,8 +7,11 @@ export default function About({ onCommand }) {
       <h3>About</h3>
       <div className="scrollable-about">
         <p>
-          I'm Jonathan Dabu — a software engineer specializing in test automation,
-          game systems, and developer tools.
+          I'm <span className="text-green">Jonathan Dabu</span> — a{' '}
+          <span className="text-blue">software engineer</span> specializing in{' '}
+          <span className="text-pink">test automation</span>,{' '}
+          <span className="text-gold">game systems</span>, and{' '}
+          <span className="text-blue">developer tools</span>.
         </p>
 
         <div className="doc-table">
