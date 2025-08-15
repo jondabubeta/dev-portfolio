@@ -36,7 +36,7 @@ body {
 }
 
 .side-panel .experience-label.clickable:hover {
-  color: #4ea3f1; /* same as .project-row:hover */
+  color: #5aa7b9; /* text-blue */
 }
 
 .terminal-panel {
@@ -173,7 +173,7 @@ body {
   padding: 0 0.5rem;
   font-size: 1.1rem;
   font-weight: bold;
-  color: #00bcd4;
+  color: #5aa7b9; /* text-blue */
   margin: 0;
 }
 
@@ -321,7 +321,7 @@ body {
 }
 
 .contact-item:hover {
-  color: #4ea3f1; /* hover color */
+  color: #5aa7b9; /* text-blue */
 }
 
 /* Optional label styling */
@@ -505,7 +505,7 @@ body {
 }
 
 .terminal-h2 {
-  color: #ffa500; /* amber/orange */
+  color: #befa4f; /* text-gold */
   font-size: 1.4em;
   font-weight: bold;
   text-transform: uppercase;
@@ -577,7 +577,7 @@ body {
 }
 
 .contact-item:hover {
-  color: #4ea3f1; /* hover color */
+  color: #5aa7b9; /* text-blue */
 }
 
 /* Optional label styling */
@@ -649,7 +649,7 @@ body {
 
 .current-status {
   font-size: 0.8rem;
-  color: #66f;
+  color: #e83399; /* text-pink */
   text-align: left;
   white-space: nowrap;
 }
@@ -699,14 +699,14 @@ body {
 }
 
 .exp-company {
-  color: #00ff00;
+  color: #5aa7b9; /* text-blue */
   font-weight: bold;
   font-size: 1.2em;
   margin-bottom: 0.25em;
 }
 
 .exp-title {
-  color: #00ffff;
+  color: #78c406; /* text-green */
   font-style: italic;
   margin-top: 0.2em;
 }
@@ -730,7 +730,7 @@ body {
 
 .exp-responsibilities li::before {
   content: "> ";
-  color: #00ff00;
+  color: #78c406; /* text-green */
   margin-right: 0.25em;
 }
 
@@ -765,7 +765,7 @@ body {
 }
 
 .project-row:hover {
-  color: #4ea3f1;
+  color: #5aa7b9; /* text-blue */
 }
 
 
@@ -815,79 +815,53 @@ body {
 
 /* Category-based color classes */
 .qa-skill {
-  background-color: #9b59b6; /* Purple */
+  background-color: #78c406; /* text-green */
 }
 
 .web-skill {
-  background-color: #3498db; /* Blue */
-}
-
-.mobile-skill {
-  background-color: #e67e22; /* Orange */
-}
-
-.devops-skill {
-  background-color: #2ecc71; /* Green */
-}
-
-.cloud-skill {
-  background-color: #1abc9c; /* Teal */
+  background-color: #5aa7b9; /* text-blue */
 }
 
 .backend-skill {
-  background-color: #34495e; /* Dark Blue */
+  background-color: #e83399; /* text-pink */
 }
 
 .data-skill {
-  background-color: #f39c12; /* Gold */
+  background-color: #befa4f; /* text-gold */
+}
+
+/* Remove other skill category colors and map to main colors */
+.mobile-skill {
+  background-color: #5aa7b9; /* text-blue */
+}
+
+.devops-skill {
+  background-color: #78c406; /* text-green */
+}
+
+.cloud-skill {
+  background-color: #e83399; /* text-pink */
 }
 
 .game-skill {
-  background-color: #e74c3c; /* Red */
+  background-color: #befa4f; /* text-gold */
 }
 
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin-top: 0.5rem;
-}
-
-.skills-column {
-  min-width: 0; /* Prevent overflow */
-}
-/* Projects links row – visually subtle, matches terminal look */
-.exp-links {
-  margin-top: 0.5rem;
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.exp-links a {
-  text-decoration: none;
-  border-bottom: 1px dashed rgba(255,255,255,0.35);
-}
-
-.exp-links a:hover {
-  text-decoration: underline;
-}
-
-
+/* Keep the existing color utility classes */
 .text-green {
-  color: #00ff9c;
+  color: #78c406;
 }
 
 .text-blue {
-  color: #00b7ff;
+  color: #5aa7b9;
 }
 
 .text-pink {
-  color: #ff69b4;
+  color: #e83399;
 }
 
 .text-gold {
-  color: #ffd700;
+  color: #befa4f;
 }
 
 .welcome-container {

@@ -6,7 +6,7 @@ import React, {
   useRef
 } from 'react';
 import { handleCommand } from '../utils/handleCommand';
-import { splashTextAnsiShadow } from './title/splash';
+import { splashTextBig } from './title/splash';
 import { welcomeText } from './title/welcome';
 import { version } from './title/version';
 
@@ -19,7 +19,7 @@ const Terminal = forwardRef((props, ref) => {
   const inputRef = useRef(null);
 
   // Change this for splash title
-  const splash = splashTextAnsiShadow;
+  const splash = splashTextBig;
 
   useImperativeHandle(ref, () => ({
     runCommand: (command) => {
