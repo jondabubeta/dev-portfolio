@@ -13,12 +13,12 @@ export default function Skills({ onCommand }) {
               <span
                 key={`${category}:${skill.name}:${idx}`}  // unique key per pill
                 className={`skill-pill ${category}-skill clickable`}
-                onClick={() => onCommand?.(`view skill --name="${skill.name}"`)}
+                onClick={() => onCommand?.(`view skills --name="${skill.name}"`)}
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
-                    onCommand?.(`view skill --name="${skill.name}"`);
+                    onCommand?.(`view skills --name="${skill.name}"`);
                   }
                 }}
                 title={`Filter by ${skill.name}`}

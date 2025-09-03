@@ -173,7 +173,7 @@ body {
   padding: 0 0.5rem;
   font-size: 1.1rem;
   font-weight: bold;
-  color: #5aa7b9; /* text-blue */
+  color: var(--color-blue); /* text-blue */
   margin: 0;
 }
 
@@ -321,7 +321,7 @@ body {
 }
 
 .contact-item:hover {
-  color: #5aa7b9; /* text-blue */
+  color: var(--color-blue); /* text-blue */
 }
 
 /* Optional label styling */
@@ -577,7 +577,7 @@ body {
 }
 
 .contact-item:hover {
-  color: #5aa7b9; /* text-blue */
+  color: var(--color-blue); /* text-blue */
 }
 
 /* Optional label styling */
@@ -815,53 +815,53 @@ body {
 
 /* Category-based color classes */
 .qa-skill {
-  background-color: #78c406; /* text-green */
+  background-color: var(--color-green); /* text-green */
 }
 
 .web-skill {
-  background-color: #5aa7b9; /* text-blue */
+  background-color: var(--color-blue); /* text-blue */
 }
 
 .backend-skill {
-  background-color: #e83399; /* text-pink */
+  background-color: var(--color-pink); /* text-pink */
 }
 
 .data-skill {
-  background-color: #befa4f; /* text-gold */
+  background-color: var(--color-gold); /* text-gold */
 }
 
 /* Remove other skill category colors and map to main colors */
 .mobile-skill {
-  background-color: #5aa7b9; /* text-blue */
+  background-color: var(--color-blue); /* text-blue */
 }
 
 .devops-skill {
-  background-color: #78c406; /* text-green */
+  background-color: var(--color-green); /* text-green */
 }
 
 .cloud-skill {
-  background-color: #e83399; /* text-pink */
+  background-color: var(--color-pink); /* text-pink */
 }
 
 .game-skill {
-  background-color: #befa4f; /* text-gold */
+  background-color: var(--color-gold); /* text-gold */
 }
 
 /* Keep the existing color utility classes */
 .text-green {
-  color: #78c406;
+  color: var(--color-green);
 }
 
 .text-blue {
-  color: #5aa7b9;
+  color: var(--color-blue);
 }
 
 .text-pink {
-  color: #e83399;
+  color: var(--color-pink);
 }
 
 .text-gold {
-  color: #befa4f;
+  color: var(--color-gold);
 }
 
 .welcome-container {
@@ -881,4 +881,12 @@ body {
 
 .command-description {
   color: #8f8f8f;
+}
+
+/* Define CSS variables for colors */
+:root {
+  --color-green: #92f004;
+  --color-blue: #5aa7b9;
+  --color-pink: #e83399;
+  --color-gold: #befa4f;
 }

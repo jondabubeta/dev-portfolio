@@ -21,7 +21,7 @@ export const welcomeText = (
         <span className="command-description">– List all available commands</span>
       </div>
       <div className="command-item">
-        • <span className="text-blue">resume</span>
+        • <span className="text-blue">view resume</span>
         <span className="command-description">– View my resume (use --full=true for full version)</span>
       </div>
       <div className="command-item">

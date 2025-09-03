@@ -1,10 +1,11 @@
-import Resume from '../components/commands/resume';
 import ExperienceViewer from '../components/commands/view/experience';
 import SkillsViewer from '../components/commands/view/skills';
 import ProjectsViewer from '../components/commands/view/projects';
 import EducationViewer from '../components/commands/view/education';
 import ContactViewer from '../components/commands/view/contact';
 import Help from '../components/commands/help';
+import AboutViewer from '../components/commands/view/about'; // Import AboutViewer
+import ResumeViewer from '../components/commands/view/resume'; // Import ResumeViewer
 import { parseArgs } from './parseArgs';
 
 const allowedArgs = {
@@ -18,13 +19,6 @@ const allowedArgs = {
 export function handleCommand(input) {
   const [cmd, subcmd, ...args] = input.trim().split(/\s+/);
   const argString = args.join(' ');
-
-  // ✅ Resume
-  if (cmd === 'resume') {
-    const { filter, errors } = parseArgs(argString, allowedArgs.resume);
-    if (errors.length > 0) return errors.join('\n');
-    return <Resume args={filter} />;
-  }
 
   // ✅ View
   if (cmd === 'view') {
@@ -64,6 +58,15 @@ export function handleCommand(input) {
         const { filter, errors } = parseArgs(argString, allowedArgs.contact);
         if (errors.length > 0) return errors.join('\n');
         return <ContactViewer filter={filter} />;
+      }
+
+      case 'about': // Handle "view about" command
+        return <AboutViewer />;
+
+      case 'resume': {
+        const { filter, errors } = parseArgs(argString, allowedArgs.resume);
+        if (errors.length > 0) return errors.join('\n');
+        return <ResumeViewer args={filter} />; // Use ResumeViewer instead of Resume
       }
 
       default:

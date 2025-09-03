@@ -1,10 +1,10 @@
 import React from 'react';
-import ExperienceViewer from '../commands/view/experience';
-import SkillsViewer from '../commands/view/skills';
-import EducationViewer from '../commands/view/education';
-import ProjectsViewer from '../commands/view/projects';
+import ExperienceViewer from './experience';
+import SkillsViewer from './skills';
+import EducationViewer from './education';
+import ProjectsViewer from './projects';
 
-export default function Resume({ args = {} }) {
+const ResumeViewer = ({ args = {} }) => {
   const full = args.full === true || args.full === 'true';
 
   return (
@@ -27,4 +27,6 @@ export default function Resume({ args = {} }) {
       <ProjectsViewer full={full} filter={args} />
     </div>
   );
-}
+};
+
+export default ResumeViewer;
