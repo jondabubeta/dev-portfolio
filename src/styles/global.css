@@ -505,7 +505,7 @@ body {
 }
 
 .terminal-h2 {
-  color: #befa4f; /* text-gold */
+  color: var(--color-gold); /* text-gold */
   font-size: 1.4em;
   font-weight: bold;
   text-transform: uppercase;
