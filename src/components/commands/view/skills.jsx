@@ -30,8 +30,8 @@ export default function SkillsViewer({ args = [] }) {
 
   return (
     <div>
-      {filtered.map((skill) => (
-        <div key={skill.name} style={{ marginBottom: '1.5rem' }}>
+      {filtered.map((skill, index) => (
+        <div key={`${skill.name}-${index}`} style={{ marginBottom: '1.5rem' }}>
           <div><strong>{skill.name}</strong> {skill.tags ? `(${skill.tags.join(', ')})` : ''}</div>
           <div style={{ fontSize: '0.9rem', color: '#ccc' }}>{skill.description}</div>
           <div style={{ fontSize: '0.85rem', color: '#aaa' }}>{skill.experience}</div>

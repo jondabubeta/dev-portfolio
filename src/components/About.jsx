@@ -21,13 +21,13 @@ export default function About({ onCommand }) {
               <img
                 src={terminalIcon}
                 className="icon-sm cursor-pointer"
-                onClick={() => onCommand('resume')}
+                onClick={() => onCommand('view resume')}
                 alt="Open in Terminal"
               />
               <img
                 src={downloadIcon}
                 className="icon-sm cursor-pointer"
-                onClick={() => onCommand('resume --download')}
+                onClick={() => onCommand('view resume --download')}
                 alt="Download"
               />
             </div>
