@@ -4,7 +4,7 @@
       "name": "TestNG",
       "description": "Testing framework inspired by JUnit, designed for Java.",
       "experience": "Used for writing structured automated test suites in identity scenarios.",
-      "image": "testng.png",
+      "image": "",
       "tags": ["framework", "java"]
     }
   ],
@@ -13,14 +13,14 @@
       "name": "React",
       "description": "JavaScript library for building component-based UIs.",
       "experience": "Used to build this portfolio and internal dashboards.",
-      "image": "react.png",
+      "image": "",
       "tags": ["frontend", "library"]
     },
-        {
-      "name": "React",
-      "description": "JavaScript library for building component-based UIs.",
+    {
+      "name": "ReactJs",
+      "description": "JavaScript library for Original building component-based UIs.",
       "experience": "Used to build this portfolio and internal dashboards.",
-      "image": "react.png",
+      "image": "",
       "tags": ["frontend", "library"]
     }
   ]

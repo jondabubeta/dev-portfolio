@@ -13,7 +13,8 @@ const allowedArgs = {
   experience: ['company', 'tags', 'title', 'full'], // ⬅️ allow --full
   education: ['school', 'degree'],
   projects: ['tag', 'name'],
-  contact: ['email', 'github', 'linkedin']
+  contact: ['email', 'github', 'linkedin'],
+  skills: ['name', 'category'] // Updated allowedArgs to include 'name' and 'category' for the 'skills' command
 };
 
 export function handleCommand(input) {
@@ -39,8 +40,11 @@ export function handleCommand(input) {
         return <ExperienceViewer filter={rest} full={fullFlag} />;
       }
 
-      case 'skills':
-        return <SkillsViewer />;
+      case 'skills': {
+        const { filter, errors } = parseArgs(argString, allowedArgs.skills);
+        if (errors.length > 0) return errors.join('\n');
+        return <SkillsViewer args={filter} />;
+      }
 
       case 'projects': {
         const { filter, errors } = parseArgs(argString, allowedArgs.projects);
