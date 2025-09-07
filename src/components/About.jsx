@@ -8,7 +8,7 @@ export default function About({ onCommand }) {
       <div className="scrollable-about">
         <p>
           I'm <span className="text-green">Jonathan Dabu</span> — a{' '}
-          <span className="text-blue">software engineer</span> specializing in{' '}
+          software engineer specializing in{' '}
           <span className="text-pink">test automation</span>,{' '}
           <span className="text-gold">game systems</span>, and{' '}
           <span className="text-blue">developer tools</span>.
