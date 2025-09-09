@@ -5,10 +5,13 @@ export default function EducationViewer() {
     <div>
       {educationData.map((edu, index) => (
         <div key={index} style={{ marginBottom: '1rem' }}>
-          <div>
-            <strong>{edu.degree}</strong> in {edu.field}
+          <div style={{ color: 'var(--color-green)' }}>
+            <strong>{edu.degree}</strong>
           </div>
-          <div>
+          <div style={{ color: 'var(--color-blue)' }}>
+            in {edu.field}
+          </div>
+          <div style={{ color: 'var(--color-pink)' }}>
             {edu.institution} ({edu.year})
           </div>
         </div>

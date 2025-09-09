@@ -63,39 +63,47 @@ export default function ProjectsViewer({ filter = {}, full = false }) {
         {filtered.map((p, idx) => (
           <div key={`${p.title}-${idx}`} className="experience-group">
             {/* Project name styled like company header */}
-            <div className="exp-company">{p.title}</div>
+            <div className="exp-company" style={{ color: 'var(--color-green)' }}>{p.title}</div>
 
             {/* Single entry per project (matches Experience entry layout) */}
             <div className="experience-entry">
-              <div className="exp-title">
-                {/* role/status on the left if present */}
-                {p.role || p.status ? (
-                  <>
-                    {p.role || p.status}
-                    {(p.years || p.year) && (
-                      <span className="exp-years">
-                        {' '}
-                        ({p.years || p.year})
-                      </span>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    {/* If no role/status, still show years if available */}
-                    {p.years || p.year ? (
-                      <>
-                        <span className="exp-years">({p.years || p.year})</span>
-                      </>
-                    ) : (
-                      'Project'
-                    )}
-                  </>
-                )}
-              </div>
+              {Array.isArray(p.tech) && p.tech.length > 0 && (
+                <div className="exp-title" style={{ color: 'var(--color-blue)' }}>
+                  {/* role/status on the left if present */}
+                  {p.role || p.status ? (
+                    <>
+                      {p.role || p.status}
+                      {(p.years || p.year) && (
+                        <span className="exp-years">
+                          {' '}
+                          ({p.years || p.year})
+                        </span>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      {/* If no role/status, still show years if available */}
+                      {p.years || p.year ? (
+                        <>
+                          <span className="exp-years">({p.years || p.year})</span>
+                        </>
+                      ) : null}
+                    </>
+                  )}
+                </div>
+              )}
+              {/* Tech as a final bullet to keep the same look */}
+              {Array.isArray(p.tech) && p.tech.length > 0 && (
+                <div style={{ color: 'var(--color-blue)' }}>
+                  Tech: {p.tech.join(', ')}
+                </div>
+              )}
 
               {p.description && (
                 <div className="exp-summary">&gt; {p.description}</div>
               )}
+
+
 
               {/* Highlights → responsibilities list */}
               {Array.isArray(p.highlights) && p.highlights.length > 0 && (
@@ -103,13 +111,6 @@ export default function ProjectsViewer({ filter = {}, full = false }) {
                   {p.highlights.map((h, i) => (
                     <li key={`h-${i}`}>&gt; {h}</li>
                   ))}
-                </ul>
-              )}
-
-              {/* Tech as a final bullet to keep the same look */}
-              {Array.isArray(p.tech) && p.tech.length > 0 && (
-                <ul className="exp-responsibilities">
-                  <li>&gt; <strong>Tech:</strong> {p.tech.join(', ')}</li>
                 </ul>
               )}
 
