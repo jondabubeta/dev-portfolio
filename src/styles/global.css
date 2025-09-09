@@ -1,10 +1,7 @@
-/* ===== global.css ===== */
-/* Base body styles */
+/* ===== Base Styles ===== */
 body {
   margin: 0;
-  font-family:
-    SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
-    monospace;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   background-color: #121212;
   color: #c0c0c0;
   height: 100vh;
@@ -12,7 +9,7 @@ body {
   flex-direction: column;
 }
 
-/* Main layout */
+/* ===== Layout Styles ===== */
 .page-wrapper {
   display: flex;
   flex-direction: row;
@@ -20,13 +17,11 @@ body {
 }
 
 .side-panel {
-  display: block; /* ← Make sure this is present */
+  display: block;
   max-width: 500px;
   width: 500px;
   background-color: #121212;
-  padding-top: 1rem;
-  padding-left: 2rem;
-  padding-right: 0.5rem;
+  padding: 1rem 0.5rem 0 2rem;
   overflow-y: auto;
 }
 
@@ -39,12 +34,13 @@ body {
   color: #5aa7b9; /* text-blue */
 }
 
+/* ===== Terminal Styles ===== */
 .terminal-panel {
   flex-grow: 1;
   display: flex;
   align-items: stretch;
   justify-content: flex-start;
-  padding: 1rem 2rem; /* ✅ Horizontal padding only */
+  padding: 1rem 2rem;
 }
 
 .terminal-wrapper {
@@ -56,7 +52,6 @@ body {
   height: 100%;
 }
 
-/* Terminal window bar */
 .terminal-bar {
   display: flex;
   align-items: center;
@@ -100,7 +95,6 @@ body {
   pointer-events: none;
 }
 
-/* Terminal lines and input */
 .input-line {
   display: flex;
 }
@@ -109,23 +103,11 @@ body {
 .input-line {
   display: flex;
   align-items: baseline;
-  font-family:
-    SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
-    monospace;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   font-size: 1rem;
   line-height: 1.5rem;
   margin: 0;
   padding: 0;
-}
-
-.terminal-line,
-.input-line,
-.input-line input {
-  font-family:
-    SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
-    monospace;
-  font-size: 1rem;
-  line-height: 1.5rem;
 }
 
 .input-line input {
@@ -141,15 +123,13 @@ body {
   margin: 0;
 }
 
-/* Sidebar sections */
+/* ===== Sidebar Styles ===== */
 .section-container {
   border: 1px solid #555;
   padding: 1rem;
   margin-bottom: 1rem;
   position: relative;
-  font-family:
-    SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
-    monospace;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
 .section-container.vsm {
@@ -178,7 +158,7 @@ body {
 }
 
 .section-container p {
-  font-size: 0.9rem; /* Slightly smaller than normal text */
+  font-size: 0.9rem;
   line-height: 1.4rem;
   margin: 0.5rem 0 0 0;
 }
