@@ -3,7 +3,7 @@ import React from 'react';
 export default function Help({ command }) {
   const helpText = {
     default: `Available commands:
-    resume                              Show full resume
+    view resume                         Show full resume
     view experience                     View all experience
     view experience --company=...       Filter by company
     view experience --tags=...          Filter by tag(s)
