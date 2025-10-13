@@ -20,48 +20,56 @@ export default function ResumePage() {
   );
 
   const [active, setActive] = useState('overview');
-  const elemRefs = useRef({});
+
+  // Lock scroll-spy briefly after a manual click so the chosen item stays selected
+  const manualLockUntil = useRef(0);  // timestamp (ms)
 
   const handleJump = (id) => (e) => {
     e.preventDefault();
+    setActive(id);                                // immediately reflect the click
+    manualLockUntil.current = performance.now() + 700; // lock for ~0.7s during scroll
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   useEffect(() => {
-    // Cache elements
-    sections.forEach(s => {
-      elemRefs.current[s.id] = document.getElementById(s.id);
-    });
-
-    const ANCHOR_Y = 96;
+    const ANCHOR_Y = 96; // keep in sync with .resume-section { scroll-margin-top: 96px; }
+    const ids = sections.map(s => s.id);
+    const els = ids.map(id => document.getElementById(id)).filter(Boolean);
 
     const pickActive = () => {
+      // Respect manual lock during smooth-scroll
+      if (performance.now() < manualLockUntil.current) return;
+
+      // If near the absolute bottom, prefer "projects"
+      const nearBottom =
+        window.innerHeight + window.scrollY >= document.body.scrollHeight - 8;
+
+      if (nearBottom) {
+        setActive('projects');
+        return;
+      }
+
+      // Otherwise, choose the section whose top is closest to ANCHOR_Y
       let bestId = sections[0].id;
       let bestScore = Number.POSITIVE_INFINITY;
 
-      for (const s of sections) {
-        const el = elemRefs.current[s.id];
-        if (!el) continue;
+      for (const el of els) {
         const rect = el.getBoundingClientRect();
         const score = Math.abs(rect.top - ANCHOR_Y);
         if (score < bestScore) {
           bestScore = score;
-          bestId = s.id;
+          bestId = el.id;
         }
       }
-
-      const nearBottom =
-        window.innerHeight + window.scrollY >=
-        document.body.scrollHeight - 8;
-
-      setActive(nearBottom ? 'projects' : bestId);
+      setActive(bestId);
     };
 
+    // rAF throttle for smoothness
     let ticking = false;
     const onScroll = () => {
       if (!ticking) {
-        window.requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
           pickActive();
           ticking = false;
         });
@@ -69,10 +77,10 @@ export default function ResumePage() {
       }
     };
 
+    // Initial + listeners
     pickActive();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
-
     return () => {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onScroll);
@@ -103,9 +111,7 @@ export default function ResumePage() {
         <main className="resume-content">
           <section id="overview" className="resume-section">
             <div className="terminal-h1">Jonathan Dabu</div>
-            <div className="terminal-h2 mb">
-              Software Development, Testing, & Automation
-            </div>
+            <div className="terminal-h2 mb">Software Development, Testing, & Automation</div>
             <div>Email: jonathandabu86@gmail.com</div>
             <div>LinkedIn: https://www.linkedin.com/in/jbdabu</div>
           </section>
@@ -130,6 +136,7 @@ export default function ResumePage() {
             <ProjectsViewer full={true} />
           </section>
 
+          {/* Spacer so last section can scroll to top cleanly */}
           <div style={{ height: 140 }} />
         </main>
       </div>
