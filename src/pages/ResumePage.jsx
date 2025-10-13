@@ -20,52 +20,67 @@ export default function ResumePage() {
   );
 
   const [active, setActive] = useState('overview');
-
-  // Lock scroll-spy briefly after a manual click so the chosen item stays selected
-  const manualLockUntil = useRef(0);  // timestamp (ms)
+  const manualLockUntil = useRef(0); // timestamp in ms
 
   const handleJump = (id) => (e) => {
     e.preventDefault();
-    setActive(id);                                // immediately reflect the click
-    manualLockUntil.current = performance.now() + 700; // lock for ~0.7s during scroll
+    setActive(id);                                // immediately highlight clicked link
+    manualLockUntil.current = performance.now() + 700; // lock scroll-spy briefly
+
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Clamp to very top when selecting "Overview" (avoid overshoot)
+    if (id === 'overview') {
+      requestAnimationFrame(() => {
+        setTimeout(() => window.scrollTo(0, 0), 120);
+      });
+    }
   };
 
   useEffect(() => {
-    const ANCHOR_Y = 96; // keep in sync with .resume-section { scroll-margin-top: 96px; }
-    const ids = sections.map(s => s.id);
-    const els = ids.map(id => document.getElementById(id)).filter(Boolean);
+    const ANCHOR_Y = 96;     // must match scroll-margin-top
+    const TAKEOVER_PAD = 6;  // small cushion below the anchor
+
+    const els = sections
+      .map(s => document.getElementById(s.id))
+      .filter(Boolean);
 
     const pickActive = () => {
-      // Respect manual lock during smooth-scroll
-      if (performance.now() < manualLockUntil.current) return;
+      if (performance.now() < manualLockUntil.current) return; // skip during lock
 
-      // If near the absolute bottom, prefer "projects"
+      // If near the bottom, force "projects"
       const nearBottom =
         window.innerHeight + window.scrollY >= document.body.scrollHeight - 8;
-
       if (nearBottom) {
         setActive('projects');
         return;
       }
 
-      // Otherwise, choose the section whose top is closest to ANCHOR_Y
-      let bestId = sections[0].id;
-      let bestScore = Number.POSITIVE_INFINITY;
-
+      // Prefer the last section whose top is <= anchor line
+      const candidates = [];
       for (const el of els) {
         const rect = el.getBoundingClientRect();
-        const score = Math.abs(rect.top - ANCHOR_Y);
-        if (score < bestScore) {
-          bestScore = score;
-          bestId = el.id;
+        if (rect.top <= ANCHOR_Y + TAKEOVER_PAD) {
+          candidates.push(el.id);
         }
       }
-      setActive(bestId);
+
+      if (candidates.length > 0) {
+        setActive(candidates[candidates.length - 1]);
+      } else {
+        setActive('overview'); // top of page
+      }
     };
 
-    // rAF throttle for smoothness
+    // Force initial state and scroll to top
+    window.scrollTo(0, 0);
+    setActive('overview');
+    manualLockUntil.current = performance.now() + 800;
+    // Wait 2 frames so layout settles before first check
+    requestAnimationFrame(() => requestAnimationFrame(pickActive));
+
+    // Throttled scroll listener
     let ticking = false;
     const onScroll = () => {
       if (!ticking) {
@@ -77,8 +92,6 @@ export default function ResumePage() {
       }
     };
 
-    // Initial + listeners
-    pickActive();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
     return () => {
