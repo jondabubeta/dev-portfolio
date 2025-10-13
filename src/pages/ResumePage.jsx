@@ -1,5 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import '../styles/global.css';
+import '../styles/resume.css';
 
 import ExperienceViewer from '../components/commands/view/experience';
 import SkillsViewer from '../components/commands/view/skills';
@@ -19,6 +20,7 @@ export default function ResumePage() {
   );
 
   const [active, setActive] = useState('overview');
+  const elemRefs = useRef({});
 
   const handleJump = (id) => (e) => {
     e.preventDefault();
@@ -27,36 +29,64 @@ export default function ResumePage() {
   };
 
   useEffect(() => {
-    const els = sections.map(s => document.getElementById(s.id)).filter(Boolean);
+    // Cache elements
+    sections.forEach(s => {
+      elemRefs.current[s.id] = document.getElementById(s.id);
+    });
+
+    const ANCHOR_Y = 96;
 
     const pickActive = () => {
-      const anchorY = 80;
-      const scores = els.map(el => {
-        const r = el.getBoundingClientRect();
-        return { id: el.id, score: Math.abs(r.top - anchorY) };
-      });
-      scores.sort((a, b) => a.score - b.score);
-      if (scores[0]) setActive(scores[0].id);
+      let bestId = sections[0].id;
+      let bestScore = Number.POSITIVE_INFINITY;
+
+      for (const s of sections) {
+        const el = elemRefs.current[s.id];
+        if (!el) continue;
+        const rect = el.getBoundingClientRect();
+        const score = Math.abs(rect.top - ANCHOR_Y);
+        if (score < bestScore) {
+          bestScore = score;
+          bestId = s.id;
+        }
+      }
+
+      const nearBottom =
+        window.innerHeight + window.scrollY >=
+        document.body.scrollHeight - 8;
+
+      setActive(nearBottom ? 'projects' : bestId);
+    };
+
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          pickActive();
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     pickActive();
-    window.addEventListener('scroll', pickActive, { passive: true });
-    window.addEventListener('resize', pickActive);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+
     return () => {
-      window.removeEventListener('scroll', pickActive);
-      window.removeEventListener('resize', pickActive);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
     };
   }, [sections]);
 
   return (
     <div className="resume-page">
       <div className="resume-grid">
-        {/* Left: sticky TOC */}
         <aside className="resume-toc">
           <div className="toc-card">
             <div className="toc-title">Table of Contents</div>
             <nav className="toc-list">
-              {sections.map(s => (
+              {sections.map((s) => (
                 <a
                   key={s.id}
                   href={`#${s.id}`}
@@ -70,11 +100,12 @@ export default function ResumePage() {
           </div>
         </aside>
 
-        {/* Right: content */}
         <main className="resume-content">
           <section id="overview" className="resume-section">
             <div className="terminal-h1">Jonathan Dabu</div>
-            <div className="terminal-h2 mb">Software Development, Testing, & Automation</div>
+            <div className="terminal-h2 mb">
+              Software Development, Testing, & Automation
+            </div>
             <div>Email: jonathandabu86@gmail.com</div>
             <div>LinkedIn: https://www.linkedin.com/in/jbdabu</div>
           </section>
@@ -98,6 +129,8 @@ export default function ResumePage() {
             <div className="terminal-h2 mt">Projects</div>
             <ProjectsViewer full={true} />
           </section>
+
+          <div style={{ height: 140 }} />
         </main>
       </div>
     </div>
