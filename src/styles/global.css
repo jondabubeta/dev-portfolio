@@ -858,10 +858,150 @@ body {
   color: #8f8f8f;
 }
 
+
+/* ===== Resume page: sticky TOC that truly sticks ===== */
+
+/* Make sure no ancestor blocks sticky */
+.page-wrapper,
+.resume-page,
+.resume-grid {
+  overflow: visible; /* important for sticky to work */
+}
+
+/* Centered two-column layout with generous gap */
+.resume-grid {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 900px);
+  column-gap: 36px;
+  justify-content: center;
+}
+
+/* Let the grid item size naturally; no fixed height here */
+.resume-toc {
+  align-self: start;
+}
+
+/* ✅ Make the card itself sticky */
+.toc-card {
+  position: sticky;            /* <— move sticky here */
+  top: 16px;
+  max-height: calc(100vh - 32px);
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  border: 1px solid var(--terminal-border, #333);
+  border-radius: 12px;
+  background: var(--terminal-bg, #0b0b0b);
+  box-shadow: 0 2px 6px rgba(0,0,0,.25);
+  overflow: hidden;            /* clip inner scroll area */
+}
+
+/* Inner list scrolls if long */
+.toc-list {
+  margin-top: 4px;
+  overflow: auto;              /* <— scroll inside card, not page */
+  scrollbar-gutter: stable;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.toc-title { font-weight: 700; margin-bottom: 8px; }
+
+.toc-link {
+  text-decoration: none;
+  font-size: 0.95rem;
+  opacity: 0.85;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: background .15s ease, border-color .15s ease, opacity .15s ease;
+}
+.toc-link:hover { opacity: 1; border-color: var(--terminal-border, #333); }
+.toc-link.active { opacity: 1; border-color: var(--terminal-border, #333); background: rgba(255,255,255,0.04); }
+
+/* Content column + anchors */
+.resume-content { min-width: 0; }
+.resume-section { scroll-margin-top: 80px; }
+.resume-section + .resume-section { margin-top: 28px; }
+
+/* Mobile: TOC becomes a FAB + drawer (same as before) */
+@media (max-width: 768px) {
+  .resume-grid { grid-template-columns: 1fr; column-gap: 0; }
+  .resume-toc { display: none; }
+  .toc-fab { display: inline-flex; align-items: center; justify-content: center; }
+  .toc-drawer { display: block; }
+}
+
+
 /* Define CSS variables for colors */
 :root {
   --color-green: #92f004;
   --color-blue: #5aa7b9;
   --color-pink: #e83399;
   --color-gold: #befa4f;
+}
+
+
+/* ==== Resume page: simple sticky TOC that follows scroll ==== */
+
+/* Ensure page scrolls on body/html and sticky isn't blocked */
+html, body { height: auto; min-height: 100%; overflow-y: auto; }
+.resume-page, .resume-grid, .resume-content {
+  overflow: visible;
+  transform: none;
+  filter: none;
+  backdrop-filter: none;
+}
+
+/* Centered two-column layout with a nice gap */
+.resume-page { padding: 16px; }
+.resume-grid {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 900px);
+  column-gap: 40px;
+  justify-content: center; /* centers the whole block */
+}
+
+/* Left column */
+.resume-toc { align-self: start; }
+
+/* 🔒 Sticky lives on the card itself */
+.toc-card {
+  position: sticky;
+  top: 16px;
+  border: 1px solid var(--terminal-border, #333);
+  border-radius: 12px;
+  background: var(--terminal-bg, #0b0b0b);
+  box-shadow: 0 2px 6px rgba(0,0,0,.25);
+  padding: 12px;
+}
+
+.toc-title { font-weight: 700; margin-bottom: 8px; }
+.toc-list { display: flex; flex-direction: column; gap: 6px; }
+
+/* Links */
+.toc-link {
+  text-decoration: none;
+  font-size: 0.95rem;
+  opacity: 0.85;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: background .15s ease, border-color .15s ease, opacity .15s ease;
+}
+.toc-link:hover { opacity: 1; border-color: var(--terminal-border, #333); }
+.toc-link.active { opacity: 1; border-color: var(--terminal-border, #333); background: rgba(255,255,255,0.04); }
+
+/* Right column */
+.resume-content { min-width: 0; }
+
+/* Anchor comfort + section spacing */
+.resume-section { scroll-margin-top: 80px; }
+.resume-section + .resume-section { margin-top: 28px; }
+
+/* Mobile: stack layout */
+@media (max-width: 768px) {
+  .resume-grid { grid-template-columns: 1fr; column-gap: 0; }
+  .resume-toc { position: static; }
 }

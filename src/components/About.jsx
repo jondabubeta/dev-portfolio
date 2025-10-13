@@ -21,7 +21,7 @@ export default function About({ onCommand }) {
           <div className="doc-row">
             <div className="doc-label">Resume</div>
             <div className="doc-icons">
-              {/* Open resume in terminal-style viewer */}
+              {/* Opens in terminal-style viewer */}
               <TerminalIcon
                 command="view resume"
                 onCommand={onCommand}
@@ -35,10 +35,10 @@ export default function About({ onCommand }) {
                 title="Download Resume"
               />
 
-              {/* Open in a new browser tab */}
+              {/* 🔹 Updated: Opens new Resume page instead of PDF */}
               <TabIcon
-                url="/files/JonathanDabu_Resume.pdf"
-                title="Open Resume in new tab"
+                url="/resume.html"
+                title="Open Resume page"
               />
             </div>
           </div>
@@ -47,7 +47,7 @@ export default function About({ onCommand }) {
           <div className="doc-row">
             <div className="doc-label">Cover Letter</div>
             <div className="doc-icons">
-              {/* Keeps your current command behavior (even if the command is added later) */}
+              {/* Placeholder for later — opens via command */}
               <TerminalIcon
                 command="coverletter"
                 onCommand={onCommand}
@@ -61,7 +61,7 @@ export default function About({ onCommand }) {
                 title="Download Cover Letter"
               />
 
-              {/* Open in a new browser tab */}
+              {/* 🔹 Will point to page later, for now stays on PDF until cover-letter.html is ready */}
               <TabIcon
                 url="/files/JonathanDabu_CoverLetter.pdf"
                 title="Open Cover Letter in new tab"
