@@ -1,0 +1,42 @@
+/* === Page Layout === */
+.page-wrapper {
+  display: grid;
+  grid-template-columns: var(--sp-w) minmax(0, 1fr);
+  gap: clamp(24px, 3vw, 48px);
+  height: 100vh;
+}
+
+/* === Side Panel === */
+.side-panel {
+  background-color: #121212;
+  padding: 1rem 1rem 0 1.25rem;
+  overflow-y: auto;
+}
+
+/* Hide side panel on small screens */
+@media (max-width: 768px) {
+  .page-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .side-panel {
+    display: none;
+  }
+}
+
+/* === Terminal Area === */
+.terminal-panel {
+  min-width: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: 1rem clamp(1rem, 2vw, 3rem);
+  transform: translateX(-20px); /* 👈 move left by 20px */
+}
+
+
+.terminal-wrapper {
+  width: 100%;
+  max-width: none;      /* ensure wrapper isn’t the cap */
+  min-width: 0;
+  margin: 0 auto;
+}

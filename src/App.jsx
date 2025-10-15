@@ -6,7 +6,7 @@ import Skills from './components/Skills';
 import Contacts from './components/Contacts';
 import Experience from './components/Experience';
 import Current from './components/Current';
-import './styles/global.css';
+import './styles/index.css';
 
 function App() {
   const terminalRef = useRef();

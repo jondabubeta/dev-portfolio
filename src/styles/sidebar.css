@@ -1,0 +1,103 @@
+.section-container {
+  border: 1px solid #555;
+  padding: 1.25rem 1rem 1rem;  /* ← extra top pad for absolute h3 */
+  margin-bottom: 1rem;
+  position: relative;
+  font-family: inherit;
+}
+
+.section-container h3 {
+  position: absolute;
+  top: -0.8rem;
+  left: 0.5rem;               /* small inset so it doesn’t hug the border */
+  background-color: #121212;
+  padding: 0 0.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--color-blue);
+  margin: 0;
+}
+/* ===== 3-column tables for side panel ===== */
+.panel-table {
+  display: grid;
+  row-gap: 0.4rem;
+  margin-top: 0.75rem;
+  width: 100%;
+}
+
+/* Shared 3-col layout: Label | Meta | Extra */
+.panel-row {
+  display: grid;
+  grid-template-columns: 22ch 1fr 12ch; /* tweak to taste */
+  align-items: center;
+  column-gap: 12px;
+  min-width: 0; /* prevents overflow in grid children */
+}
+
+/* ===== Hover states for clickable rows ===== */
+.panel-row.clickable {
+  cursor: pointer;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.panel-row.clickable:hover .panel-label,
+.panel-row.clickable:hover .panel-meta,
+.panel-row.clickable:hover .panel-extra {
+  color: var(--color-blue); /* text-blue hover */
+}
+
+.panel-row.clickable:hover {
+  background-color: rgba(90, 167, 185, 0.1); /* soft blue background tint */
+  border-radius: 4px;
+}
+
+/* Text cells */
+.panel-label {
+  font-size: 0.95rem;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.panel-meta {
+  font-size: 0.85rem;
+  color: #aaa;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.panel-extra {
+  font-size: 0.8rem;
+  color: #888;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Make rows clickable if you pass onClick */
+.panel-row.clickable { cursor: pointer; }
+.panel-row.clickable:hover .panel-label { color: var(--color-blue); }
+
+/* Scroll area */
+.scrollable-table {
+  max-height: 180px;
+  overflow: auto;
+  padding-right: 6px;
+}
+
+/* Nested/secondary rows (optional) */
+.panel-row.nested .panel-label,
+.panel-row.nested .panel-meta,
+.panel-row.nested .panel-extra {
+  font-style: italic;
+  color: #bbb;
+}
+
+/* Responsive collapse to 2 columns on very small widths */
+@media (max-width: 400px) {
+  .panel-row {
+    grid-template-columns: 1fr auto; /* Label expands, Extra right */
+  }
+  .panel-meta { display: none; }     /* hide middle column on tiny screens */
+}

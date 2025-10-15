@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import '../styles/global.css';
+import '../styles/index.css';
 import '../styles/resume.css';
 
 import ExperienceViewer from '../components/commands/view/experience';

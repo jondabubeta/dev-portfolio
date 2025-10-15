@@ -1,33 +1,28 @@
-/* ===== Resume page layout (fixed TOC, more spacing) ===== */
-
 .resume-page {
-  --content-max: 900px;  /* content width */
-  --toc-w: 260px;        /* TOC width */
-  --gap: 60px;           /* space between TOC and content (was 40px) */
-  --toc-shift: 40px;     /* how much further left the TOC sits */
+  --content-max: 900px;
+  --toc-w: 260px;
+  --gap: 28px;
+  --grid-shift: -16px;
 }
 
-/* basic page + scrolling */
-html, body {
-  height: auto;
-  min-height: 100%;
-  overflow-y: auto;
-}
+html, body { height: auto; min-height: 100%; overflow-y: auto; }
+.resume-page { padding: 16px; }
 
-.resume-page {
-  padding: 16px;
-}
-
-/* Layout centered horizontally */
 .resume-grid {
   display: grid;
   grid-template-columns: var(--toc-w) minmax(0, var(--content-max));
   column-gap: var(--gap);
   justify-content: center;
+  transform: translateX(var(--grid-shift));
 }
 
-/* TOC card appearance */
 .toc-card {
+  position: sticky;
+  top: 16px;
+  max-height: calc(100vh - 32px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--terminal-border, #333);
   border-radius: 12px;
   background: var(--terminal-bg, #0b0b0b);
@@ -35,12 +30,12 @@ html, body {
   padding: 12px;
 }
 
-.toc-title {
-  font-weight: 700;
-  margin-bottom: 8px;
-}
+.toc-title { font-weight: 700; margin-bottom: 8px; }
 
 .toc-list {
+  margin-top: 4px;
+  overflow: auto;
+  scrollbar-gutter: stable;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -53,64 +48,16 @@ html, body {
   padding: 6px 8px;
   border-radius: 8px;
   border: 1px solid transparent;
-  transition: background 0.15s, border-color 0.15s, opacity 0.15s;
+  transition: background .15s ease, border-color .15s ease, opacity .15s ease;
 }
+.toc-link:hover { opacity: 1; border-color: var(--terminal-border, #333); }
+.toc-link.active { opacity: 1; border-color: var(--terminal-border, #333); background: rgba(255,255,255,0.04); }
 
-.toc-link:hover {
-  opacity: 1;
-  border-color: var(--terminal-border, #333);
-}
+.resume-content { min-width: 0; padding-bottom: 160px; }
+.resume-section { scroll-margin-top: 96px; }
+.resume-section + .resume-section { margin-top: 28px; }
 
-.toc-link.active {
-  opacity: 1;
-  border-color: var(--terminal-border, #333);
-  background: rgba(255, 255, 255, 0.04);
-}
-
-/* Content area */
-.resume-content {
-  min-width: 0;
-  padding-bottom: 160px; /* gives room so last section can scroll to top */
-}
-
-.resume-section {
-  scroll-margin-top: 96px;
-}
-
-.resume-section + .resume-section {
-  margin-top: 28px;
-}
-
-/* ===== Desktop: Fixed TOC that sits slightly more left ===== */
-@media (min-width: 992px) {
-  .toc-card {
-    position: fixed;
-    top: 16px;
-    /* ⬇️ moved further left and increased the gap */
-    left: calc(
-      50vw - (var(--content-max) / 2) - var(--gap) - var(--toc-w) - var(--toc-shift)
-    );
-    width: var(--toc-w);
-    max-height: calc(100vh - 32px);
-    overflow: auto;
-  }
-
-  /* Grid becomes single-column since TOC is fixed */
-  .resume-grid {
-    grid-template-columns: minmax(0, var(--content-max));
-  }
-}
-
-/* ===== Mobile & tablet ===== */
 @media (max-width: 991.98px) {
-  .resume-grid {
-    grid-template-columns: 1fr;
-    column-gap: 0;
-  }
-
-  .toc-card {
-    position: static;
-    max-height: none;
-    overflow: visible;
-  }
+  .resume-grid { grid-template-columns: 1fr; column-gap: 0; transform: none; }
+  .toc-card { position: static; max-height: none; overflow: visible; }
 }
