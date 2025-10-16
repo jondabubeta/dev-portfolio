@@ -1,35 +1,33 @@
-import { useRef } from 'react';
-import Terminal from './components/Terminal';
-import About from './components/About';
-import Projects from './components/Projects';
-import Skills from './components/Skills';
-import Contacts from './components/Contacts';
-import Experience from './components/Experience';
-import Current from './components/Current';
-import './styles/index.css';
+// src/App.jsx
+import { useRef } from "react";
+import SidePanel from "./components/SidePanel";
+import Terminal from "./components/Terminal";
+import "./styles/index.css";
 
-function App() {
-  const terminalRef = useRef();
-  const onCommand = (cmd) => terminalRef.current?.runCommand(cmd);
+export default function App() {
+  const terminalRef = useRef(null);
+
+  const handleCommand = (cmd) => {
+    // 1) Call the terminal instance directly (preferred)
+    terminalRef.current?.runCommand?.(cmd);
+
+    // 2) Also emit to the global bus (safe fallback if no ref)
+    window.dispatchEvent(new CustomEvent("terminal:command", { detail: cmd }));
+  };
 
   return (
     <div className="page-wrapper">
-      {/* Static Side Panel (always shown on desktop, hidden on mobile via CSS) */}
+      {/* 🧩 Left Column */}
       <aside className="side-panel">
-        <About onCommand={onCommand} />
-        <Experience onCommand={onCommand} />
-        <Projects onCommand={onCommand} />
-        <Skills onCommand={onCommand} />
-        <Current />
-        <Contacts onCommand={onCommand} />
+        <SidePanel onCommand={handleCommand} />
       </aside>
 
-      {/* Terminal Panel */}
-      <div className="terminal-panel">
-        <Terminal ref={terminalRef} />
-      </div>
+      {/* 💻 Right Column (main terminal) */}
+      <main className="terminal-panel">
+        <div className="terminal-wrapper">
+          <Terminal ref={terminalRef} />
+        </div>
+      </main>
     </div>
   );
 }
-
-export default App;

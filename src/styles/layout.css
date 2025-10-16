@@ -9,8 +9,9 @@
 /* === Side Panel === */
 .side-panel {
   background-color: #121212;
-  padding: 1rem 1rem 0 1.25rem;
+  padding: 1rem 1rem 0 1rem;
   overflow-y: auto;
+  scrollbar-gutter: stable both-edges; 
 }
 
 /* Hide side panel on small screens */
@@ -26,11 +27,13 @@
 /* === Terminal Area === */
 .terminal-panel {
   min-width: 0;
+  height: 100vh;
   display: flex;
   align-items: stretch;
   justify-content: center;
   padding: 1rem clamp(1rem, 2vw, 3rem);
   transform: translateX(-20px); /* 👈 move left by 20px */
+  overflow: hidden;
 }
 
 

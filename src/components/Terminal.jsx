@@ -1,3 +1,4 @@
+// src/components/Terminal.jsx
 import React, {
   useImperativeHandle,
   forwardRef,
@@ -21,21 +22,26 @@ const Terminal = forwardRef((props, ref) => {
   // Change this for splash title
   const splash = splashTextBig;
 
-  useImperativeHandle(ref, () => ({
-    runCommand: (command) => {
-      const response = handleCommand(command);
-      if (response === '__CLEAR__') {
-        setLines([]);
-      } else {
-        setLines((prev) => [
-          ...prev,
-          `> ${command}`,
-          typeof response === 'string'
-            ? response
-            : { __component__: true, element: response }
-        ]);
-      }
+  // Centralized executor (keyboard, ref, and event bus use this)
+  const execute = (command) => {
+    const cmd = String(command || '').trim();
+    if (!cmd) return;
+    const response = handleCommand(cmd);
+    if (response === '__CLEAR__') {
+      setLines([]);
+    } else {
+      setLines((prev) => [
+        ...prev,
+        `> ${cmd}`,
+        typeof response === 'string'
+          ? response
+          : { __component__: true, element: response }
+      ]);
     }
+  };
+
+  useImperativeHandle(ref, () => ({
+    runCommand: (command) => execute(command)
   }));
 
   useEffect(() => {
@@ -54,21 +60,16 @@ const Terminal = forwardRef((props, ref) => {
     return () => clearInterval(blink);
   }, []);
 
+  // NEW: listen for global terminal commands (from icons, etc.)
+  useEffect(() => {
+    const onBus = (e) => execute(e.detail);
+    window.addEventListener('terminal:command', onBus);
+    return () => window.removeEventListener('terminal:command', onBus);
+  }, []);
+
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      const command = input.trim();
-      const response = handleCommand(command);
-      if (response === '__CLEAR__') {
-        setLines([]);
-      } else {
-        setLines((prev) => [
-          ...prev,
-          `> ${command}`,
-          typeof response === 'string'
-            ? response
-            : { __component__: true, element: response }
-        ]);
-      }
+      execute(input);
       setInput('');
     } else if (e.key.length === 1 || e.key === 'Backspace') {
       if (e.key === 'Backspace') {
@@ -92,7 +93,7 @@ const Terminal = forwardRef((props, ref) => {
 
       <div
         className="terminal-body"
-        onMouseUp={(e) => {
+        onMouseUp={() => {
           const selection = window.getSelection();
           if (!selection || selection.toString()) return; // Don't steal focus if text is selected
           inputRef.current?.focus();
@@ -117,8 +118,10 @@ const Terminal = forwardRef((props, ref) => {
             );
           }
 
-          const isVersion = typeof line === 'string' &&
-            (line.toLowerCase().startsWith('version') || line.toLowerCase().startsWith('v'));
+          const isVersion =
+            typeof line === 'string' &&
+            (line.toLowerCase().startsWith('version') ||
+              line.toLowerCase().startsWith('v'));
 
           return (
             <div
