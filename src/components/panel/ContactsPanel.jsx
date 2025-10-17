@@ -1,23 +1,61 @@
 import React from "react";
 import contacts from "../../data/contacts.json";
+import TerminalIcon from "../common/TerminalIcon";
 
-export default function ContactsPanel() {
+// Import your PNG icons from assets
+import MailIcon from "../../assets/email.png";
+import GitHubIcon from "../../assets/github.png";
+import LinkedInIcon from "../../assets/linkedin.png";
+
+const ICONS = {
+  email: MailIcon,
+  github: GitHubIcon,
+  linkedin: LinkedInIcon,
+};
+
+function getIconSrc(type) {
+  const key = String(type || "").toLowerCase();
+  return ICONS[key];
+}
+
+export default function ContactsPanel({ onCommand }) {
   return (
     <div className="section-container">
-      <h3>Contact</h3>
-      <div className="scrollable-table">
-        <div className="doc-table">
-          {contacts.map((c) => (
-            <div key={c.type} className="doc-row">
-              <div className="doc-label">{c.type.toUpperCase()}</div>
-              <div className="doc-icons">
-                <a href={c.href} target="_blank" rel="noreferrer">
-                  {c.label}
-                </a>
-              </div>
+      <h3>Contacts</h3>
+
+      <div className="contacts-grid">
+        {contacts.map((c) => {
+          const type = c.type.toLowerCase();
+          const command = `view contact --type="${type}"`;
+          const iconSrc = getIconSrc(c.type);
+
+          return (
+            <div key={c.type} className="contact-cell">
+              <span className="contact-label">{c.label}:</span>
+
+              {/* Main icon opens actual link */}
+              <a
+                href={c.href}
+                target={type === "email" ? "_self" : "_blank"}
+                rel="noreferrer"
+                title={c.label}
+              >
+                <img
+                  src={iconSrc}
+                  alt={c.type}
+                  className="contact-icon"
+                />
+              </a>
+
+              {/* Terminal icon executes command */}
+              <TerminalIcon
+                command={command}
+                onCommand={onCommand}
+                title={`View ${c.type} in terminal`}
+              />
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
     </div>
   );

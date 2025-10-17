@@ -149,7 +149,7 @@ html {
 .toc-title {
   font-weight: 700;
   margin-bottom: 8px;
-  font-size: 1.3rem;         /* ⬅️ increased from default (about 17–18px) */
+  font-size: 1.3rem;         /* increased from default (about 17–18px) */
   letter-spacing: 0.5px;
   color: var(--color-blue);  /* optional accent color */
 }
@@ -157,7 +157,7 @@ html {
 /* TOC Links */
 .toc-link {
   text-decoration: none;
-  font-size: 1.2rem;           /* ⬅️ increased from 0.95rem */
+  font-size: 1.2rem;           /* increased from 0.95rem */
   line-height: 1.5;
   opacity: 0.9;
   padding: 8px 10px;

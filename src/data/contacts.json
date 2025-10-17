@@ -1,17 +1,17 @@
 [
   {
-    "type": "email",
-    "label": "jonathandabu86@gmail.com",
+    "type": "Email",
+    "label": "Email",
     "href": "mailto:jonathandabu86@gmail.com"
   },
   {
-    "type": "github",
-    "label": "github.com/jondabubeta",
+    "type": "GitHub",
+    "label": "GitHub",
     "href": "https://github.com/jondabubeta"
   },
   {
-    "type": "linkedin",
-    "label": "linkedin.com/in/jonathandabu",
-    "href": "https://www.linkedin.com/in/jonathandabu"
+    "type": "LinkedIn",
+    "label": "LinkedIn",
+    "href": "https://www.linkedin.com/in/jbdabu/"
   }
 ]
