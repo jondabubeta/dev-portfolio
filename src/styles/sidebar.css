@@ -196,6 +196,11 @@
 .backend-skill  { background-color: var(--color-pink); }
 .devops-skill   { background-color: var(--color-gold); }
 
+/* === Education: wider first column === */
+.education-table .panel-row {
+  grid-template-columns: 35ch 1fr 8ch; /* wider label, narrower year column */
+}
+
 /* =========================================
    CONTACTS: SINGLE ROW, 3 COLUMNS
 ========================================= */
