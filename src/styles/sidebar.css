@@ -196,10 +196,30 @@
 .backend-skill  { background-color: var(--color-pink); }
 .devops-skill   { background-color: var(--color-gold); }
 
-/* === Education: wider first column === */
+
+/* =========================================
+Education Table: s_degree | s_institution | year 
+========================================= */
 .education-table .panel-row {
-  grid-template-columns: 35ch 1fr 8ch; /* wider label, narrower year column */
+  grid-template-columns: 40ch 1fr 6ch; /* s_degree widest */
 }
+
+.education-table .panel-label {
+  font-weight: 600;
+  color: #fff;
+}
+
+.education-table .panel-meta {
+  color: #bbb;
+  font-size: 0.9rem;
+}
+
+.education-table .panel-extra {
+  text-align: right;
+  color: #888;
+  font-size: 0.85rem;
+}
+
 
 /* =========================================
    CONTACTS: SINGLE ROW, 3 COLUMNS

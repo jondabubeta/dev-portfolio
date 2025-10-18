@@ -2,28 +2,36 @@
   {
     "degree": "Masters of Science",
     "field": "Computer Science, Specialization in Artificial Intelligence",
+    "s_degree": "M.S. Computer Science: AI Specialization",
     "institution": "California State University: Long Beach",
+    "s_institution": "CSULB",
     "year": "2024",
     "tags": ["masters", "cs", "ai", "ml"]
   },
   {
     "degree": "Bachelor of Science",
     "field": "Computer Science",
+    "s_degree": "B.S. Computer Science",
     "institution": "San Diego State University",
+    "s_institution": "SDSU",
     "year": "2014",
     "tags": ["bachelors", "cs"]
   },
   {
     "degree": "Associate of Science",
     "field": "Computer Arts & Liberal Sciences",
+    "s_degree": "A.S. Computer Arts & Liberal Sciences",
     "institution": "San Diego Mesa College",
+    "s_institution": "SD Mesa College",
     "year": "2014",
     "tags": ["associate", "arts", "liberal"]
   },
   {
     "degree": "Associate of Science",
     "field": "Computer Science & Engineering",
+    "s_degree": "A.S. Computer Science & Engineering",
     "institution": "San Diego Mesa College",
+    "s_institution": "SD Mesa College",
     "year": "2012",
     "tags": ["associate", "cs", "engineering"]
   }
