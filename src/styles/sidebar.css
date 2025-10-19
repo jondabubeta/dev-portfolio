@@ -278,6 +278,55 @@ Education Table: s_degree | s_institution | year
 }
 
 /* =========================================
+/* Projects: Name | Description | Icons 
+========================================= */
+
+.projects-table .panel-row {
+  grid-template-columns: 18ch 1fr auto; /* compact name, roomy description, icons */
+}
+
+.projects-table .panel-label {
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.projects-table .panel-meta {
+  color: #bbb;
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project-icons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.project-icons .icon-sm,
+.project-icons img,
+.project-icons svg {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.project-icons .icon-sm:hover,
+.project-icons img:hover,
+.project-icons svg:hover {
+  transform: scale(1.1);
+  filter: brightness(1.3);
+}
+
+
+/* =========================================
    RESPONSIVE
 ========================================= */
 @media (max-width: 400px) {
