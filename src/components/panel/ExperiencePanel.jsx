@@ -81,14 +81,10 @@ export default function ExperiencePanel({ onCommand }) {
                 onClick={() => onCommand?.(cmd)}
                 title={`${company} • ${position} ${when ? `• ${when}` : ""}`}
               >
-                {/* 1️⃣ Company */}
                 <span className="panel-label">{company}</span>
-
-                {/* 2️⃣ Short title (sidePanelTitle if available) */}
                 <span className="panel-meta">{position}</span>
-
-                {/* 3️⃣ Years */}
                 <span className="panel-extra">{when}</span>
+                
               </div>
             );
           })}
