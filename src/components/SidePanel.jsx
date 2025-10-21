@@ -9,7 +9,6 @@ import ContactsPanel from "./panel/ContactsPanel";
 
 export default function SidePanel({ onCommand }) {
   return (
-<aside className="side-panel">
   <div className="side-panel-content">
     <AboutPanel onCommand={onCommand} />
     <CurrentPanel onCommand={onCommand} />
@@ -18,6 +17,5 @@ export default function SidePanel({ onCommand }) {
     <ProjectsPanel onCommand={onCommand} />
     <ContactsPanel onCommand={onCommand} />
   </div>
-</aside>
   );
 }
