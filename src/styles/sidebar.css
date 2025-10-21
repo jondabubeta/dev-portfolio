@@ -1,6 +1,45 @@
-/* =========================================
+/* =========================
+   LAYOUT: PAGE + SIDEPANEL
+========================= */
+
+/* Wrapper for side panel + terminal */
+.page-wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;      /* lets both columns fill viewport */
+  overflow: hidden;   /* prevent double scrollbars */
+}
+
+/* Side Panel (fixed height, inner content scrolls) */
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  width: var(--sp-w, 700px);
+  max-width: 700px;
+  background-color: #121212;
+  padding: 1rem 1.25rem 0 2rem;
+  height: 100vh;         /* exact viewport height */
+  box-sizing: border-box;
+  overflow: hidden;      /* no outer scrollbar */
+}
+
+/* Inner scroll area for the sections */
+.side-panel-content {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  scrollbar-gutter: stable both-edges;
+}
+.side-panel-content::-webkit-scrollbar { width: 6px; }
+.side-panel-content::-webkit-scrollbar-thumb {
+  background-color: #444;
+  border-radius: 3px;
+}
+
+/* =========================
    SECTION CONTAINERS
-========================================= */
+========================= */
+
 .section-container {
   border: 1px solid #555;
   border-radius: 8px;
@@ -23,19 +62,28 @@
   margin: 0;
 }
 
+/* Slightly tighter variant if needed */
+.section-container.compact {
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 1rem 0.75rem;
+}
+.section-container.compact h3 {
+  top: -0.6rem;
+  font-size: 1rem;
+}
+
 .section-container p {
   margin: 0 0 0.75rem;
   line-height: 1.4;
 }
 
-/* Larger scroll container for "lg" sections */
-.section-container.lg .scrollable-table {
-  max-height: 220px;
-}
+/* Larger scroll area for “lg” sections */
+.section-container.lg .scrollable-table { max-height: 220px; }
 
-/* =========================================
-   PANEL TABLES (3-COLUMN LAYOUT)
-========================================= */
+/* =========================
+   GENERIC 3-COL PANEL TABLE
+========================= */
+
 .panel-table {
   display: grid;
   row-gap: 0.4rem;
@@ -45,7 +93,7 @@
 
 .panel-row {
   display: grid;
-  grid-template-columns: 22ch 1fr 12ch;
+  grid-template-columns: 22ch 1fr 12ch;  /* Label | Meta | Extra */
   align-items: center;
   column-gap: 12px;
   min-width: 0;
@@ -56,12 +104,10 @@
   cursor: pointer;
   transition: color 0.15s ease, background-color 0.15s ease;
 }
-
 .panel-row.clickable:hover {
   background-color: rgba(90, 167, 185, 0.1);
   border-radius: 4px;
 }
-
 .panel-row.clickable:hover .panel-label,
 .panel-row.clickable:hover .panel-meta,
 .panel-row.clickable:hover .panel-extra {
@@ -76,7 +122,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .panel-meta {
   font-size: 0.85rem;
   color: #aaa;
@@ -84,7 +129,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .panel-extra {
   display: flex;
   justify-content: flex-end;
@@ -103,9 +147,7 @@
   color: #bbb;
 }
 
-/* =========================================
-   SCROLLABLE TABLES
-========================================= */
+/* Scrollable region used inside sections */
 .scrollable-table {
   max-height: 180px;
   overflow-y: auto;
@@ -113,23 +155,22 @@
   scrollbar-gutter: stable both-edges;
 }
 
-/* =========================================
-   DOC TABLES (ABOUT / FILE ROWS)
-========================================= */
+/* =========================
+   ABOUT / DOC ROW ICONS
+========================= */
+
 .doc-table {
   display: grid;
   row-gap: 0.5rem;
   margin-top: 0.75rem;
   width: 100%;
 }
-
 .doc-row {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr auto; /* label | icons */
   align-items: center;
   column-gap: 1rem;
 }
-
 .doc-label {
   font-size: 0.9rem;
   white-space: nowrap;
@@ -137,7 +178,6 @@
   text-overflow: ellipsis;
 }
 
-/* Right-aligned icon groups */
 .doc-icons {
   display: flex;
   justify-content: flex-end;
@@ -156,7 +196,6 @@
   cursor: pointer;
   transition: transform 0.15s ease, filter 0.15s ease;
 }
-
 .icon-sm:hover,
 .doc-icons img:hover,
 .doc-icons svg:hover {
@@ -164,9 +203,10 @@
   filter: brightness(1.3);
 }
 
-/* =========================================
+/* =========================
    SKILLS (PILL SHAPE)
-========================================= */
+========================= */
+
 .skill-cloud {
   display: flex;
   flex-wrap: wrap;
@@ -174,7 +214,6 @@
   margin-top: 0.5rem;
   padding-right: 4px;
 }
-
 .skill-pill {
   font-size: 0.85rem;
   color: #fff;
@@ -184,71 +223,51 @@
   user-select: none;
   transition: transform 0.15s ease, filter 0.15s ease;
 }
+.skill-pill:hover { transform: scale(1.05); filter: brightness(1.2); }
 
-.skill-pill:hover {
-  transform: scale(1.05);
-  filter: brightness(1.2);
-}
+.qa-skill      { background-color: var(--color-green); }
+.web-skill     { background-color: var(--color-blue); }
+.backend-skill { background-color: var(--color-pink); }
+.devops-skill  { background-color: var(--color-gold); }
 
-/* Skill category colors */
-.qa-skill       { background-color: var(--color-green); }
-.web-skill      { background-color: var(--color-blue); }
-.backend-skill  { background-color: var(--color-pink); }
-.devops-skill   { background-color: var(--color-gold); }
+/* =========================
+   EDUCATION TABLE OVERRIDE
+   s_degree | s_institution | year
+========================= */
 
-
-/* =========================================
-Education Table: s_degree | s_institution | year 
-========================================= */
 .education-table .panel-row {
-  grid-template-columns: 40ch 1fr 6ch; /* s_degree widest */
+  grid-template-columns: 40ch 1fr 6ch; /* degree widest */
 }
+.education-table .panel-label { font-weight: 600; color: #fff; }
+.education-table .panel-meta  { color: #bbb; font-size: 0.9rem; }
+.education-table .panel-extra { text-align: right; color: #888; font-size: 0.85rem; }
 
-.education-table .panel-label {
-  font-weight: 600;
-  color: #fff;
-}
+/* =========================
+   CONTACTS (ONE ROW, 3 COLS)
+========================= */
 
-.education-table .panel-meta {
-  color: #bbb;
-  font-size: 0.9rem;
-}
-
-.education-table .panel-extra {
-  text-align: right;
-  color: #888;
-  font-size: 0.85rem;
-}
-
-
-/* =========================================
-   CONTACTS: SINGLE ROW, 3 COLUMNS
-========================================= */
 .contacts-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  align-items: left;
-  justify-items: left;
+  align-items: start;     /* was 'left' */
+  justify-items: start;   /* was 'left' */
   gap: 1rem;
   padding-left: 1rem;
   margin-top: 0.75rem;
 }
-
 .contact-cell {
-  display: flex;
-  align-items: left;
+  display: inline-flex;
+  align-items: center;    /* was 'left' */
   justify-content: center;
   gap: 6px;
   font-size: 0.9rem;
   white-space: nowrap;
 }
-
 .contact-label {
   font-weight: 600;
   text-transform: capitalize;
   color: #fff;
 }
-
 .contact-icon {
   width: 18px;
   height: 18px;
@@ -256,13 +275,8 @@ Education Table: s_degree | s_institution | year
   cursor: pointer;
   transition: transform 0.15s ease, filter 0.15s ease;
 }
-
-.contact-icon:hover {
-  transform: scale(1.1);
-  filter: brightness(1.3);
-}
-
-/* Terminal icon (slightly larger) */
+.contact-icon:hover { transform: scale(1.1); filter: brightness(1.3); }
+/* Terminal icon slightly larger for balance */
 .contact-cell .icon-sm {
   width: 23px;
   height: 23px;
@@ -271,20 +285,16 @@ Education Table: s_degree | s_institution | year
   transition: transform 0.15s ease, filter 0.15s ease;
   margin-left: 2px;
 }
+.contact-cell .icon-sm:hover { transform: scale(1.15); filter: brightness(1.3); }
 
-.contact-cell .icon-sm:hover {
-  transform: scale(1.15);
-  filter: brightness(1.3);
-}
-
-/* =========================================
-/* Projects: Name | Description | Icons 
-========================================= */
+/* =========================
+   PROJECTS TABLE (3 COLS)
+   Name | Description | Icons
+========================= */
 
 .projects-table .panel-row {
   grid-template-columns: 18ch 1fr auto; /* compact name, roomy description, icons */
 }
-
 .projects-table .panel-label {
   font-weight: 600;
   color: #fff;
@@ -292,7 +302,6 @@ Education Table: s_degree | s_institution | year
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .projects-table .panel-meta {
   color: #bbb;
   font-size: 0.9rem;
@@ -300,14 +309,12 @@ Education Table: s_degree | s_institution | year
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
 .project-icons {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 0.5rem;
 }
-
 .project-icons .icon-sm,
 .project-icons img,
 .project-icons svg {
@@ -317,7 +324,6 @@ Education Table: s_degree | s_institution | year
   cursor: pointer;
   transition: transform 0.15s ease, filter 0.15s ease;
 }
-
 .project-icons .icon-sm:hover,
 .project-icons img:hover,
 .project-icons svg:hover {
@@ -325,15 +331,13 @@ Education Table: s_degree | s_institution | year
   filter: brightness(1.3);
 }
 
-
-/* =========================================
+/* =========================
    RESPONSIVE
-========================================= */
+========================= */
+
 @media (max-width: 400px) {
   .panel-row {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr auto; /* collapse middle column on tiny screens */
   }
-  .panel-meta {
-    display: none;
-  }
+  .panel-meta { display: none; }
 }

@@ -9,14 +9,15 @@ import ContactsPanel from "./panel/ContactsPanel";
 
 export default function SidePanel({ onCommand }) {
   return (
-    <div>
-      <AboutPanel onCommand={onCommand} />
-      <CurrentPanel onCommand={onCommand} />
-      <ExperiencePanel onCommand={onCommand} />
-      <ProjectsPanel onCommand={onCommand} />
-      <SkillsPanel onCommand={onCommand} />
-      <EducationPanel onCommand={onCommand} />
-      <ContactsPanel onCommand={onCommand} />
-    </div>
+<aside className="side-panel">
+  <div className="side-panel-content">
+    <AboutPanel onCommand={onCommand} />
+    <CurrentPanel onCommand={onCommand} />
+    <ExperiencePanel onCommand={onCommand} />
+    <SkillsPanel onCommand={onCommand} />
+    <ProjectsPanel onCommand={onCommand} />
+    <ContactsPanel onCommand={onCommand} />
+  </div>
+</aside>
   );
 }
