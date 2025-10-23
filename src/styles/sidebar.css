@@ -9,15 +9,14 @@ body { margin: 0; }
 .page-wrapper {
   display: flex;
   width: 100%;
-  height: 100vh;          /* ✅ correct height */
+  height: 100vh;          /* correct height */
   overflow: hidden;       /* no double scrollbars */
 }
 
 /* =========================
-   SIDEBAR (WIDER + RESPONSIVE)
+   SIDEBAR (WIDER + RESPONSIVE, NO SCROLLBARS)
 ========================= */
-/* Sidebar width: wide but responsive (won't overflow small screens) */
-:root { --sp-w: clamp(420px, 33vw, 760px); }  /* <- adjust here if you want wider/narrower */
+:root { --sp-w: clamp(420px, 33vw, 760px); }
 
 .side-panel {
   display: flex;
@@ -28,40 +27,22 @@ body { margin: 0; }
   padding: 1rem 1.25rem 0 2rem;
   height: 100vh;
   box-sizing: border-box;
-  overflow: hidden;       /* outer panel never scrolls */
+  overflow: hidden;              /* never show a scrollbar */
 }
 
-/* Only the inside scrolls, when needed */
+/* Inner wrapper — also no scrollbars */
 .side-panel-content {
   flex: 1;
-  overflow-y: auto;
-  padding-right: 0.5rem;
-  scrollbar-gutter: stable both-edges;
+  overflow: hidden;              /* hide scroll completely */
+  padding-right: 0;              /* no reserved gutter */
 }
-.side-panel-content::-webkit-scrollbar { width: 6px; }
-.side-panel-content::-webkit-scrollbar-thumb { background: #444; border-radius: 3px; }
-
-/* Terminal column fills the rest, can shrink without overflow */
-.terminal-panel {
-  flex: 1 1 auto;
-  min-width: 0;           /* ✅ critical to prevent horizontal overflow */
-  display: flex;
-  align-items: stretch;
-  justify-content: stretch;
-  padding: 1rem 2rem;
-  overflow: hidden;
-}
-
-/* Nuke old hard min-widths that make the terminal push the sidebar off-screen */
-.terminal-wrapper,
-.terminal-window { min-width: 0 !important; width: 100%; }
 
 /* =========================
    TERMINAL COLUMN
 ========================= */
 .terminal-panel {
   flex: 1 1 auto;
-  min-width: 0;           /* ✅ critical to prevent horizontal overflow */
+  min-width: 0;                  /* prevents horizontal overflow */
   display: flex;
   align-items: stretch;
   justify-content: stretch;
@@ -69,68 +50,68 @@ body { margin: 0; }
   overflow: hidden;
 }
 
+/* Nuke any hard min-widths */
 .terminal-wrapper,
 .terminal-window { min-width: 0 !important; width: 100%; }
 
-/* terminal body should scroll, not expand page vertically */
-.terminal-body {
-  overflow-y: auto;
-}
-
+.terminal-body { overflow-y: auto; } /* terminal content can scroll internally */
 
 /* =========================
    SECTION CONTAINERS
 ========================= */
-
-/* Section cards */
 .section-container {
   position: relative;
   border: 1px solid #555;
   border-radius: 8px;
   background: #121212;
-  padding: 1.25rem 1rem 1rem;   /* ⬅️ extra top padding to host the chip */
-  margin-bottom: 1rem;
+  padding: 1rem 1rem 0.75rem;    /* compact to fit without scroll */
+  margin-bottom: 0.75rem;
 }
 
-/* The chip label */
+/* Chip label that won't clip */
 .section-container h3 {
   position: absolute;
   left: 1rem;
-  top: 0;                       /* no negative offset */
-  transform: translateY(-50%);  /* float across the top border */
+  top: 0;
+  transform: translateY(-50%);
   margin: 0;
   padding: 0 0.5rem;
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--color-blue);
-  background: #121212;          /* same as card bg */
+  background: #121212;
 }
 
-/* Paragraph spacing stays tidy */
-.section-container p { margin: 0 0 0.75rem; line-height: 1.4; }
+/* Paragraphs: no extra line space at top/bottom */
+.section-container p { margin: 0 0 0.5rem; line-height: 1.35; }
 
-/* Larger scroll area for “lg” sections */
-.section-container.lg .scrollable-table { max-height: 260px; }
+/* Disable inner scrolling caps (no scrollbars anywhere in sidebar) */
+.scrollable-table {
+  max-height: none;
+  overflow: hidden;
+  padding-right: 0;
+}
 
 /* =========================
-   PANEL TABLES (3-COLUMN LAYOUT)
+   GENERIC 3-COL PANEL TABLE
 ========================= */
-
 .panel-table {
   display: grid;
-  row-gap: 0.6rem;
-  margin-top: 1rem;
+  row-gap: 0.35rem;              /* tighter vertical rhythm */
+  margin-top: 0.5rem;
   width: 100%;
 }
 
 .panel-row {
   display: grid;
-  grid-template-columns: 28ch 1fr 14ch;  /* ⬅️ wider label & extra column */
+  grid-template-columns: 26ch 1fr 12ch; /* default layout */
   align-items: center;
-  column-gap: 16px;
+  column-gap: 12px;
   min-width: 0;
+  min-height: 28px;              /* compact row height */
 }
 
+/* Hover + clickable states */
 .panel-row.clickable {
   cursor: pointer;
   transition: color 0.15s ease, background-color 0.15s ease;
@@ -145,21 +126,19 @@ body { margin: 0; }
   color: var(--color-blue);
 }
 
-/* Text columns */
-.panel-label {
-  font-size: 1rem;
-  color: #fff;
+/* Text columns (single line, ellipsis) */
+.panel-label,
+.panel-meta,
+.panel-extra {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.2;
+  margin: 0;
 }
-.panel-meta {
-  font-size: 0.9rem;
-  color: #aaa;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+
+.panel-label { font-size: 1rem; color: #fff; }
+.panel-meta  { font-size: 0.9rem; color: #aaa; }
 .panel-extra {
   display: flex;
   justify-content: flex-end;
@@ -167,32 +146,22 @@ body { margin: 0; }
   font-size: 0.9rem;
   color: #888;
   text-align: right;
-  white-space: nowrap;
-}
-
-/* Scrollable region used inside sections */
-.scrollable-table {
-  max-height: 220px;
-  overflow-y: auto;
-  padding-right: 8px;
-  scrollbar-gutter: stable both-edges;
 }
 
 /* =========================
    ABOUT / DOC ROW ICONS
 ========================= */
-
 .doc-table {
   display: grid;
-  row-gap: 0.6rem;
-  margin-top: 0.75rem;
+  row-gap: 0.4rem;
+  margin-top: 0.5rem;
   width: 100%;
 }
 .doc-row {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr auto; /* label | icons */
   align-items: center;
-  column-gap: 1.25rem;
+  column-gap: 1rem;
 }
 .doc-label {
   font-size: 1rem;
@@ -204,14 +173,14 @@ body { margin: 0; }
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.6rem;
   width: 100%;
 }
 .icon-sm,
 .doc-icons img,
 .doc-icons svg {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   object-fit: contain;
   cursor: pointer;
   transition: transform 0.15s ease, filter 0.15s ease;
@@ -226,13 +195,11 @@ body { margin: 0; }
 /* =========================
    SKILLS (PILL SHAPE)
 ========================= */
-
 .skill-cloud {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 0.75rem;
-  padding-right: 6px;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
 }
 .skill-pill {
   font-size: 0.9rem;
@@ -252,99 +219,79 @@ body { margin: 0; }
 /* =========================
    EDUCATION TABLE
 ========================= */
-
 .education-table .panel-row {
-  grid-template-columns: 48ch 1fr 8ch;  /* wider degree col */
+  grid-template-columns: 40ch 1fr 6ch;  /* s_degree widest */
 }
-.education-table .panel-label { font-weight: 600; color: #fff; }
-.education-table .panel-meta  { color: #bbb; font-size: 0.95rem; }
-.education-table .panel-extra { text-align: right; color: #888; font-size: 0.9rem; }
 
 /* =========================
    CONTACTS (ONE ROW, 3 COLS)
 ========================= */
-
 .contacts-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: start;
   justify-items: start;
-  gap: 1.25rem;
-  padding-left: 1.25rem;
-  margin-top: 0.75rem;
+  gap: 1rem;
+  padding-left: 1rem;
+  margin-top: 0.5rem;
 }
 .contact-cell {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  font-size: 1rem;
+  gap: 6px;
+  font-size: 0.95rem;
   white-space: nowrap;
 }
-.contact-label {
-  text-transform: capitalize;
-  color: #C0C0C0;
-}
+.contact-label { color: #c0c0c0; text-transform: capitalize; }
 .contact-icon {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-  cursor: pointer;
-  transition: transform 0.15s ease, filter 0.15s ease;
+  width: 20px; height: 20px; object-fit: contain;
+  cursor: pointer; transition: transform .15s ease, filter .15s ease;
 }
 .contact-icon:hover { transform: scale(1.1); filter: brightness(1.3); }
 .contact-cell .icon-sm {
-  width: 25px;
-  height: 25px;
-  margin-left: 2px;
-  object-fit: contain;
-  cursor: pointer;
-  transition: transform 0.15s ease, filter 0.15s ease;
+  width: 24px; height: 24px; margin-left: 2px;
+  object-fit: contain; cursor: pointer;
+  transition: transform .15s ease, filter .15s ease;
 }
 .contact-cell .icon-sm:hover { transform: scale(1.15); filter: brightness(1.3); }
 
 /* =========================
-   PROJECTS TABLE
+   PROJECTS TABLE — more description width,
+   single-line everywhere, no sidebar scrollbars
 ========================= */
-
 .projects-table .panel-row {
-  grid-template-columns: 24ch 1fr auto; /* wider name */
-  column-gap: 16px;
+  grid-template-columns: 16ch 1fr 8ch; /* name compact, description wide, icons tight */
+  column-gap: 12px;
 }
-.projects-table .panel-label {
-  font-weight: 600;
-  color: #fff;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+
+/* Force single-line, no extra spacing */
+.projects-table .panel-label,
 .projects-table .panel-meta {
-  color: #bbb;
-  font-size: 0.95rem;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  line-height: 1.2;
+  margin: 0;
 }
+
+/* Icons tight */
 .project-icons {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.4rem;
 }
 .project-icons .icon-sm,
 .project-icons img,
 .project-icons svg {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-  cursor: pointer;
-  transition: transform 0.15s ease, filter 0.15s ease;
+  width: 20px; height: 20px; object-fit: contain;
+  cursor: pointer; transition: transform .15s ease, filter .15s ease;
 }
 .project-icons .icon-sm:hover,
 .project-icons img:hover,
 .project-icons svg:hover {
-  transform: scale(1.1);
-  filter: brightness(1.3);
+  transform: scale(1.1); filter: brightness(1.3);
 }
 
 /* =========================
