@@ -56,41 +56,43 @@ body { margin: 0; }
 
 .terminal-body { overflow-y: auto; } /* terminal content can scroll internally */
 
-/* =========================
-   SECTION CONTAINERS
-========================= */
+
+/* Give the top chip room so it isn't clipped by the container */
+.side-panel-content {
+  /* was: overflow: hidden; padding-right: 0; */
+  overflow: hidden;
+  padding: 0.9rem 0 0 0;   /* ⬅️ add top padding */
+}
+
+/* Section card: allow the chip to float above its border */
 .section-container {
   position: relative;
   border: 1px solid #555;
   border-radius: 8px;
   background: #121212;
-  padding: 1rem 1rem 0.75rem;    /* compact to fit without scroll */
+  padding: 1rem 1rem 0.75rem;
   margin-bottom: 0.75rem;
+  overflow: visible;       /* ⬅️ important */
 }
 
-/* Chip label that won't clip */
 .section-container h3 {
   position: absolute;
   left: 1rem;
   top: 0;
-  transform: translateY(-50%);
+  transform: translateY(-55%); /* float across the top border */
   margin: 0;
-  padding: 0 0.5rem;
+  padding: 0 0.6rem;
   font-size: 1.05rem;
   font-weight: 700;
+  line-height: 1.1;
   color: var(--color-blue);
-  background: #121212;
+  background: #121212;    /* hide the border line behind the chip */
 }
 
-/* Paragraphs: no extra line space at top/bottom */
-.section-container p { margin: 0 0 0.5rem; line-height: 1.35; }
-
-/* Disable inner scrolling caps (no scrollbars anywhere in sidebar) */
-.scrollable-table {
-  max-height: none;
-  overflow: hidden;
-  padding-right: 0;
+.side-panel-content > .section-container:first-child {
+  margin-top: 0.25rem;
 }
+
 
 /* =========================
    GENERIC 3-COL PANEL TABLE
