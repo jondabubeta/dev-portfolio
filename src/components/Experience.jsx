@@ -28,7 +28,11 @@ export default function Experience({ onCommand }) {
       onCommand('view experience'); // clear
     } else {
       setActiveCompany(company);
-      onCommand(`view experience --company="${company}"`);
+      // Include the position so clicking the row filters to the specific role
+      const companyItem = uniqueCompanies.find((u) => u.company === company);
+      const position = companyItem?.position;
+      const positionFlag = position ? ` --position="${position}"` : '';
+      onCommand(`view experience --company="${company}"${positionFlag}`);
     }
   };
 
@@ -65,7 +69,30 @@ export default function Experience({ onCommand }) {
                   {item.company}
                 </span>
 
-                <div className="experience-meta">{item.position}</div>
+                <div className="experience-meta">
+                  {onCommand ? (
+                    <span
+                      role="button"
+                      tabIndex={0}
+                      className="clickable"
+                      onClick={() =>
+                        onCommand(
+                          `view experience --company="${item.company}" --position="${item.position}"`
+                        )
+                      }
+                      onKeyDown={(e) =>
+                        (e.key === 'Enter' || e.key === ' ') &&
+                        onCommand(
+                          `view experience --company="${item.company}" --position="${item.position}"`
+                        )
+                      }
+                    >
+                      {item.position}
+                    </span>
+                  ) : (
+                    item.position
+                  )}
+                </div>
 
                 <div className="experience-dates">{item.years}</div>
 

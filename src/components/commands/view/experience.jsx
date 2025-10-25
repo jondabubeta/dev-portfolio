@@ -32,7 +32,13 @@ export default function ExperienceViewer({ filter = {}, full = false }) {
     if (!anyFilter && !includeFull && exp.fullOnly) return false;
 
     if (companyFilter && !normalize(exp.company).includes(companyFilter)) return false;
-    if (titleFilter && !normalize(exp.title).includes(titleFilter)) return false;
+    if (titleFilter) {
+      const titleMatch = normalize(exp.title).includes(titleFilter);
+      const sideTitleMatch = String(exp.sidePanelTitle ?? '')
+        .toLowerCase()
+        .includes(titleFilter);
+      if (!titleMatch && !sideTitleMatch) return false;
+    }
 
     if (tagsFilter.length) {
       const expTags = (exp.tags || []).map(normalize);

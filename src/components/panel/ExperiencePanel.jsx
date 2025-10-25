@@ -72,7 +72,8 @@ export default function ExperiencePanel({ onCommand }) {
             const company = exp.company || "—";
             const position = exp.sidePanelTitle || exp.title || "";
             const when = yearsText(exp);
-            const cmd = `view experience --company="${company}"`;
+            const positionFlag = position ? ` --position="${position}"` : "";
+            const cmd = `view experience --company="${company}"${positionFlag}`;
 
             return (
               <div

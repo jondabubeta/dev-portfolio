@@ -10,7 +10,8 @@ import { parseArgs } from './parseArgs';
 
 const allowedArgs = {
   resume: ['full'],
-  experience: ['company', 'tags', 'title', 'full'], // ⬅️ allow --full
+  // Allow --position so callers can filter by job title/role
+  experience: ['company', 'tags', 'title', 'position', 'full'], // ⬅️ allow --full and --position
   education: ['school', 'degree'],
   projects: ['tag', 'name'],
   contact: ['email', 'github', 'linkedin'],
