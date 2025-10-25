@@ -10,6 +10,7 @@ export default function ExperienceViewer({ filter = {}, full = false }) {
   // Accept common flag aliases
   const companyFilter = normalize(filter.company ?? filter.name);
   const titleFilter   = normalize(filter.title ?? filter.role ?? filter.position);
+  const yearsFilter   = normalize(filter.years ?? filter.when ?? filter.y);
   const tagsFilter = (() => {
     const raw =
       filter.tags == null
@@ -24,8 +25,16 @@ export default function ExperienceViewer({ filter = {}, full = false }) {
   const includeFull =
     typeof full === 'string' ? full.toLowerCase() === 'true' : !!full;
 
+  // Year parsing helper (used by filtering and sorting)
+  const parseYears = (years = '') => {
+    const [startRaw = '', endRaw = ''] = String(years).split(/–|-/);
+    const start = parseInt(startRaw, 10) || -Infinity;
+    const end = /present/i.test(endRaw) ? Infinity : parseInt(endRaw, 10) || start || -Infinity;
+    return { start, end };
+  };
+
   // Any filter means we ignore fullOnly
-  const anyFilter = !!companyFilter || !!titleFilter || tagsFilter.length > 0;
+  const anyFilter = !!companyFilter || !!titleFilter || !!yearsFilter || tagsFilter.length > 0;
 
   const matchesFilter = (exp) => {
     // Only enforce fullOnly when NO filters are provided
@@ -38,6 +47,29 @@ export default function ExperienceViewer({ filter = {}, full = false }) {
         .toLowerCase()
         .includes(titleFilter);
       if (!titleMatch && !sideTitleMatch) return false;
+    }
+
+    if (yearsFilter) {
+      const f = String(yearsFilter).trim();
+      // range like 2019-2021 or 2019–2021
+      const rangeMatch = f.match(/(\d{4})\s*(?:–|-|—|to)\s*(\d{4}|present)/i);
+      const expRange = parseYears(exp.years);
+      if (rangeMatch) {
+        const fStart = parseInt(rangeMatch[1], 10);
+        const fEnd = /present/i.test(rangeMatch[2]) ? Infinity : parseInt(rangeMatch[2], 10);
+        // overlap check
+        if (fEnd < expRange.start || fStart > expRange.end) return false;
+      } else {
+        const yearMatch = f.match(/(\d{4})/);
+        if (yearMatch) {
+          const y = parseInt(yearMatch[1], 10);
+          if (y < expRange.start || y > expRange.end) return false;
+        } else {
+          // fallback to substring match
+          const expYears = String(exp.years ?? '').toLowerCase().trim();
+          if (!expYears.includes(f.toLowerCase())) return false;
+        }
+      }
     }
 
     if (tagsFilter.length) {
@@ -60,14 +92,7 @@ export default function ExperienceViewer({ filter = {}, full = false }) {
     return acc;
   }, {});
 
-  // Year parsing for robust recent-first sorting
-  const parseYears = (years = '') => {
-    const [startRaw = '', endRaw = ''] = String(years).split(/–|-/);
-    const start = parseInt(startRaw, 10) || -Infinity;
-    const end = /present/i.test(endRaw) ? Infinity : parseInt(endRaw, 10) || start || -Infinity;
-    return { start, end };
-  };
-
+  // Year parsing is defined above and reused for sorting
   Object.values(grouped).forEach((roles) =>
     roles.sort((a, b) => {
       const A = parseYears(a.years);
