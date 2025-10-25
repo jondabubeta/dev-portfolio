@@ -1,5 +1,32 @@
 import React from "react";
-import experience from "../../data/experience.json";
+
+// Static items list so the sidebar can be edited manually (matches CurrentPanel style)
+const items = [
+  {
+    company: "Blizzard Entertainment",
+    position: "Senior SDET",
+    years: "2022–Present",
+    cmd: 'view experience --company="Blizzard Entertainment" --position="Senior SDET" --years="Present"',
+  },
+  {
+    company: "Dexcom",
+    position: "SDET II",
+    years: "2021–2022",
+    cmd: 'view experience --company="Dexcom" --position="SDET II" --years="2022"',
+  },
+  {
+    company: "Dexcom",
+    position: "SDET I",
+    years: "2019–2021",
+    cmd: 'view experience --company="Dexcom" --position="SDET I" --years="2019"',
+  },
+  {
+    company: "Neustar",
+    position: "SDET",
+    years: "2017–2019",
+    cmd: 'view experience --company="Neustar" --position="SDET" --years="2017"',
+  },
+];
 
 /* Utility to parse end date for sorting */
 function parseEndDate(item) {
@@ -47,49 +74,24 @@ function yearsText(item) {
 }
 
 export default function ExperiencePanel({ onCommand }) {
-  // Sort all experiences by end date descending
-  const latest = [...experience]
-    .sort((a, b) => parseEndDate(b) - parseEndDate(a))
-    .slice(0, 4); // limit to latest 3
-
   return (
     <div className="section-container">
       <h3>Experience</h3>
 
       <div className="scrollable-table">
         <div className="panel-table">
-          {latest.map((exp, i) => {
-            const key = [
-              exp.company,
-              exp.title,
-              exp.sidePanelTitle,
-              exp.years,
-              i,
-            ]
-              .filter(Boolean)
-              .join("::");
-
-            const company = exp.company || "—";
-            const position = exp.sidePanelTitle || exp.title || "";
-            const when = yearsText(exp);
-                    const positionFlag = position ? ` --position="${position}"` : "";
-                    const yearsFlag = when ? ` --years="${when}"` : "";
-                    const cmd = `view experience --company="${company}"${positionFlag}${yearsFlag}`;
-
-            return (
-              <div
-                key={key}
-                className="panel-row clickable"
-                onClick={() => onCommand?.(cmd)}
-                title={`${company} • ${position} ${when ? `• ${when}` : ""}`}
-              >
-                <span className="panel-label">{company}</span>
-                <span className="panel-meta">{position}</span>
-                <span className="panel-extra">{when}</span>
-                
-              </div>
-            );
-          })}
+          {items.map((row, i) => (
+            <div
+              key={`${row.company}::${row.position}::${i}`}
+              className="panel-row clickable"
+              onClick={() => onCommand?.(row.cmd)}
+              title={row.cmd}
+            >
+              <span className="panel-label">{row.company}</span>
+              <span className="panel-meta">{row.position}</span>
+              <span className="panel-extra">{row.years}</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>
