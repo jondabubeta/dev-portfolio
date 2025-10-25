@@ -8,11 +8,12 @@ export default function App() {
   const terminalRef = useRef(null);
 
   const handleCommand = (cmd) => {
-    // 1) Call the terminal instance directly (preferred)
+    const didRunDirectly = Boolean(terminalRef.current?.runCommand);
     terminalRef.current?.runCommand?.(cmd);
 
-    // 2) Also emit to the global bus (safe fallback if no ref)
-    window.dispatchEvent(new CustomEvent("terminal:command", { detail: cmd }));
+    if (!didRunDirectly) {
+      window.dispatchEvent(new CustomEvent("terminal:command", { detail: cmd }));
+    }
   };
 
   return (

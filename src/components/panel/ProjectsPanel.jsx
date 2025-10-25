@@ -22,7 +22,7 @@ export default function ProjectsPanel({ onCommand }) {
         <div className="panel-table projects-table">
           {projects.map((p, i) => {
             const key = `${p.title}-${i}`;
-            const cmd = `view project --name="${p.title}"`;
+            const cmd = `view projects --name="${p.title}"`;
             const slug = slugify(p.title);
             // Build site page like jondabu.com/projects/(project name)
             const pageUrl = `/projects/${slug}`;

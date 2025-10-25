@@ -5,19 +5,19 @@ const items = [
     label: "Checkout UI → JBTF",
     meta: "Migration",
     extra: "Active",
-    cmd: 'view project --name="Checkout UI Migration"',
+    cmd: 'view projects --name="Checkout UI Migration"',
   },
   {
     label: "Terminal Portfolio",
     meta: "React · Vite",
     extra: "Ongoing",
-    cmd: 'view project --name="Terminal Portfolio"',
+    cmd: 'view projects --name="Terminal Portfolio"',
   },
   {
     label: "Identity Scenario Tests",
     meta: "Spring Boot · Jenkins",
     extra: "Maintaining",
-    cmd: 'view project --name="Identity Scenario Tests"',
+    cmd: 'view projects --name="Identity Scenario Tests"',
   },
 ];
 
