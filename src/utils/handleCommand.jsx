@@ -14,7 +14,7 @@ const allowedArgs = {
   // Allow --position and --years so callers can filter by job title/role and years
   experience: ['company', 'tags', 'title', 'position', 'years', 'full'], // ⬅️ allow --full, --position, --years
   education: ['school', 'degree'],
-  projects: ['tag', 'name'],
+  projects: ['tag', 'name', 'status'],
   contact: ['email', 'github', 'linkedin'],
   skills: ['name', 'category'] // Updated allowedArgs to include 'name' and 'category' for the 'skills' command
 };

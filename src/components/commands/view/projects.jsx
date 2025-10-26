@@ -1,4 +1,5 @@
 import projectsData from '../../../data/projects.json';
+import { matchStatusInput, STATUSES } from '../../../constants/projectStatuses';
 
 export default function ProjectsViewer({ filter = {}, full = false }) {
   const normalize = (v) =>
@@ -8,19 +9,26 @@ export default function ProjectsViewer({ filter = {}, full = false }) {
       .replace(/^"(.*)"$|^'(.*)'$/, (_, d1, d2) => d1 || d2 || '');
 
   const nameFilter = normalize(filter.name);
-  const tagFilter  = normalize(filter.tag);
+  const tagFilter  = normalize(filter.tag ?? filter.tags);
+  const statusRaw = filter.status ?? filter.state;
+  const statusKey = matchStatusInput(statusRaw);
 
   // Treat string "true"/"false" as booleans
   const includeFull =
     typeof full === 'string' ? full.toLowerCase() === 'true' : !!full;
 
-  const anyFilter = !!nameFilter || !!tagFilter;
+  const anyFilter = !!nameFilter || !!tagFilter || !!statusKey;
 
   const matchesFilter = (p) => {
     // Only enforce fullOnly when NO filters are provided (mirror Experience)
     if (!anyFilter && !includeFull && p.fullOnly) return false;
 
     if (nameFilter && !normalize(p.title).includes(nameFilter)) return false;
+
+    if (statusKey) {
+      const pStatusKey = matchStatusInput(p.status ?? p.state ?? p.role);
+      if (pStatusKey !== statusKey) return false;
+    }
 
     if (tagFilter) {
       const tech = (p.tech || []).map(normalize);

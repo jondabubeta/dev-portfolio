@@ -23,17 +23,23 @@
       "media",
       "inventory"
     ]
+    ,
+    "status": "Active"
   },
   {
     "title": "BlizzMemory",
     "description": "A Blizzard-themed memory matching game built with React. Players flip character cards and try to match pairs based on iconic heroes from Blizzard franchises.",
     "tech": ["React", "JavaScript", "HTML", "CSS"],
     "tags": ["game", "browser", "memory", "react", "blizzard"]
+    ,
+    "status": "Completed"
   },
   {
     "title": "LolMemory",
     "description": "A League of Legends–themed concentration game built in React. Flip and match cards featuring LoL champions to test your memory.",
     "tech": ["React", "JavaScript", "HTML", "CSS"],
     "tags": ["game", "browser", "concentration", "react", "league of legends"]
+    ,
+    "status": "Completed"
   }
 ]
