@@ -24,7 +24,7 @@ const items = [
     company: "Neustar",
     position: "SDET",
     years: "2017–2019",
-    cmd: 'view experience --company="Neustar" --position="SDET" --years="2017"',
+    cmd: 'view experience --company="Neustar" --position="SDET" --years="2018"',
   },
 ];
 
