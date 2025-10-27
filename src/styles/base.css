@@ -3,6 +3,7 @@
   --color-blue:  #5aa7b9;
   --color-pink:  #e83399;
   --color-gold:  #befa4f;
+  --color-red:   #ff6b6b;
   --terminal-border: #333;
   --terminal-bg:    #0b0b0b;
   --sp-w: clamp(360px, 28vw, 680px);
@@ -30,6 +31,15 @@ body {
 .text-blue  { color: var(--color-blue); }
 .text-pink  { color: var(--color-pink); }
 .text-gold  { color: var(--color-gold); }
+.status-active { color: var(--color-green); }
+.status-completed { color: var(--color-blue); }
+.status-maintenance { color: var(--color-red); }
+/* fallback generic status classes */
+.status-planned { color: var(--color-pink); }
+.status-ongoing { color: var(--color-blue); }
+.status-paused { color: #f1c40f; }
+.status-archived { color: #888888; }
+.status-prototype { color: var(--color-pink); }
 
 /* === Universal icon sizing === */
 .icon-sm,

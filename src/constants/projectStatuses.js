@@ -25,3 +25,15 @@ export function matchStatusInput(input) {
   }
   return null;
 }
+
+// Optional: map status keys to CSS class names for consistent coloring
+export const STATUS_CLASS = {
+  active: 'status-active',
+  planned: 'status-planned',
+  ongoing: 'status-ongoing',
+  maintenance: 'status-maintenance',
+  paused: 'status-paused',
+  completed: 'status-completed',
+  archived: 'status-archived',
+  prototype: 'status-prototype',
+};

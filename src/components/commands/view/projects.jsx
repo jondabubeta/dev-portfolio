@@ -1,5 +1,5 @@
 import projectsData from '../../../data/projects.json';
-import { matchStatusInput, STATUSES } from '../../../constants/projectStatuses';
+import { matchStatusInput, STATUSES, STATUS_CLASS } from '../../../constants/projectStatuses';
 
 export default function ProjectsViewer({ filter = {}, full = false }) {
   const normalize = (v) =>
@@ -68,19 +68,28 @@ export default function ProjectsViewer({ filter = {}, full = false }) {
   return (
     <div className="output">
       <div className="experience-list">
-        {filtered.map((p, idx) => (
+        {filtered.map((p, idx) => {
+          const statusKey = matchStatusInput(p.status ?? p.state ?? p.role);
+          const statusLabel = statusKey ? STATUSES[statusKey] : p.status ?? p.state ?? '';
+
+          return (
           <div key={`${p.title}-${idx}`} className="experience-group">
             {/* Project name styled like company header */}
             <div className="exp-company" style={{ color: 'var(--color-green)' }}>{p.title}</div>
+
+            {/* Status line */}
+            {statusLabel && (
+              <div className="exp-status">Status: <span className={STATUS_CLASS[statusKey] ?? 'text-pink'}>{statusLabel}</span></div>
+            )}
 
             {/* Single entry per project (matches Experience entry layout) */}
             <div className="experience-entry">
               {Array.isArray(p.tech) && p.tech.length > 0 && (
                 <div className="exp-title" style={{ color: 'var(--color-blue)' }}>
                   {/* role/status on the left if present */}
-                  {p.role || p.status ? (
+                  {p.role ? (
                     <>
-                      {p.role || p.status}
+                      {p.role}
                       {(p.years || p.year) && (
                         <span className="exp-years">
                           {' '}
@@ -138,7 +147,8 @@ export default function ProjectsViewer({ filter = {}, full = false }) {
               )}
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
