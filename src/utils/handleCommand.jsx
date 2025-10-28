@@ -6,10 +6,12 @@ import ContactViewer from '../components/commands/view/contact';
 import Help from '../components/commands/help';
 import AboutViewer from '../components/commands/view/about'; // Import AboutViewer
 import ResumeViewer from '../components/commands/view/resume'; // Import ResumeViewer
+import CvViewer from '../components/commands/view/cv';
 import { parseArgs } from './parseArgs';
 
 const allowedArgs = {
   resume: ['full'],
+  cv: [],
   // Allow --position so callers can filter by job title/role
   // Allow --position and --years so callers can filter by job title/role and years
   experience: ['company', 'tags', 'title', 'position', 'years', 'full'], // ⬅️ allow --full, --position, --years
@@ -73,6 +75,12 @@ export function handleCommand(input) {
         const { filter, errors } = parseArgs(argString, allowedArgs.resume);
         if (errors.length > 0) return errors.join('\n');
         return <ResumeViewer args={filter} />; // Use ResumeViewer instead of Resume
+      }
+
+      case 'cv': {
+        const { filter, errors } = parseArgs(argString, allowedArgs.cv);
+        if (errors.length > 0) return errors.join('\n');
+        return <CvViewer args={filter} />;
       }
 
       default:

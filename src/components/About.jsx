@@ -45,7 +45,7 @@ export default function About({ onCommand }) {
             <span className="panel-extra">
               <div className="doc-icons">
                 <TerminalIcon
-                  command="coverletter"
+                  command="view cv"
                   onCommand={onCommand}
                   title="Open in Terminal"
                 />
