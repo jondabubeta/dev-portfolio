@@ -31,6 +31,7 @@ body {
 .text-blue  { color: var(--color-blue); }
 .text-pink  { color: var(--color-pink); }
 .text-gold  { color: var(--color-gold); }
+.text-muted { color: #9aa; }
 .status-active { color: var(--color-green); }
 .status-completed { color: var(--color-blue); }
 .status-maintenance { color: var(--color-red); }
@@ -40,6 +41,44 @@ body {
 .status-paused { color: #f1c40f; }
 .status-archived { color: #888888; }
 .status-prototype { color: var(--color-pink); }
+
+/* Cover letter (cv) styling */
+.cv-view { padding: 0.5rem 0; }
+.cv-view .terminal-h2 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  margin-bottom: 0.25rem;
+  display: inline-block;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.cv-meta { color: #9aa; font-size: 0.9rem; }
+.cv-opening { margin-top: 0.5rem; font-style: italic; color: var(--color-blue); font-weight: 600; }
+.cv-intro { margin-top: 0.75rem; }
+.cv-paragraph { margin-top: 0.6rem; line-height: 1.45; }
+.cv-highlights { margin-top: 0.7rem; }
+.cv-subhead { font-weight: bold; margin-bottom: 0.4rem; }
+.cv-highlights ul { margin: 0; padding-left: 1.1rem; }
+.cv-closing { margin-top: 0.8rem; }
+.cv-signature { margin-top: 0.6rem; color: var(--color-green); white-space: pre-line; }
+
+/* Resume title accents: make name and subtitle stand out similar to CV */
+.resume .terminal-h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  margin-bottom: 0.25rem;
+  display: inline-block;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.resume .terminal-h2 {
+  font-size: 0.95rem; /* slightly smaller */
+  font-weight: 500; /* a little lighter */
+  color: var(--color-green);
+  margin-top: 0.35rem;
+}
 
 /* === Universal icon sizing === */
 .icon-sm,

@@ -1,5 +1,19 @@
 {
   "title": "Cover Letter",
   "date": "October 2025",
-  "body": "Dear Hiring Manager,\n\nI am writing to express my interest in the software engineering opportunities at your company. I have experience building test automation, developer tools, and game systems. I enjoy designing robust test frameworks and improving developer productivity.\n\nI would welcome the opportunity to discuss how my background can be a fit for your team. Thank you for considering my application.\n\nSincerely,\nJonathan Dabu"
+  "recipient": "Hiring Manager",
+  "opening": "Dear Hiring Manager,",
+  "intro": "I’m a software engineer focused on test automation, developer tools, and game systems. I build reliable test frameworks and developer workflows that scale across teams.",
+  "paragraphs": [
+    "At Blizzard I led automation efforts across multiple AAA game titles, building frameworks and tools that reduced manual verification time and increased test coverage. I enjoy breaking down large testing problems into small, automatable pieces and working closely with engineers to close the loop on quality.",
+    "At Dexcom, I created CI-driven test suites for embedded and cloud components, improving release confidence during regulatory cycles. I’ve worked across UI, API, and backend tests, and I prioritize maintainability and fast feedback for engineers.",
+    "I’m excited about roles where I can pair strong engineering with product sense: shipping developer-facing tools, building robust automation, and mentoring engineers to deliver higher quality software faster."
+  ],
+  "highlights": [
+    "Designed and implemented a cross-team test framework that reduced flaky test noise by 40%.",
+    "Built an internal dashboard to visualize test-health metrics and prioritize reliability work.",
+    "Led a migration from legacy scripts to a typed test harness with CI integration, shortening iteration time by 30%."
+  ],
+  "closing": "Thank you for taking the time to review my application. I’d welcome the opportunity to speak and share more about my work.",
+  "signature": "Sincerely,\nJonathan Dabu"
 }
