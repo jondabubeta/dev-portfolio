@@ -14,6 +14,8 @@ import { version } from './title/version';
 const Terminal = forwardRef((props, ref) => {
   const [lines, setLines] = useState([]);
   const [input, setInput] = useState('');
+  const [history, setHistory] = useState([]);
+  const [historyIndex, setHistoryIndex] = useState(null); // null means editing current input
   const [showCursor, setShowCursor] = useState(true);
   const terminalEndRef = useRef(null);
   const [focused, setFocused] = useState(true);
@@ -26,6 +28,9 @@ const Terminal = forwardRef((props, ref) => {
   const execute = (command) => {
     const cmd = String(command || '').trim();
     if (!cmd) return;
+    // record in history
+    setHistory((prev) => [...prev, cmd]);
+    setHistoryIndex(null);
     const response = handleCommand(cmd);
     if (response === '__CLEAR__') {
       setLines([]);
@@ -68,15 +73,52 @@ const Terminal = forwardRef((props, ref) => {
   }, []);
 
   const handleKeyDown = (e) => {
+    // history navigation
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (history.length === 0) return;
+      if (e.key === 'ArrowUp') {
+        // move back in history
+        if (historyIndex === null) {
+          setHistoryIndex(history.length - 1);
+          setInput(history[history.length - 1]);
+        } else if (historyIndex > 0) {
+          setHistoryIndex((i) => {
+            const ni = i - 1;
+            setInput(history[ni]);
+            return ni;
+          });
+        }
+      } else {
+        // ArrowDown: move forward
+        if (historyIndex === null) return;
+        if (historyIndex < history.length - 1) {
+          setHistoryIndex((i) => {
+            const ni = i + 1;
+            setInput(history[ni]);
+            return ni;
+          });
+        } else {
+          // past the newest -> clear
+          setHistoryIndex(null);
+          setInput('');
+        }
+      }
+      return;
+    }
+
     if (e.key === 'Enter') {
       execute(input);
       setInput('');
+      setHistoryIndex(null);
     } else if (e.key.length === 1 || e.key === 'Backspace') {
       if (e.key === 'Backspace') {
         setInput((prev) => prev.slice(0, -1));
       } else {
         setInput((prev) => prev + e.key);
       }
+      // If the user types while viewing history, drop back to editing mode
+      if (historyIndex !== null) setHistoryIndex(null);
     }
   };
 
