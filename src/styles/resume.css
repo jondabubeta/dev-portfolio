@@ -133,6 +133,25 @@ html {
   color: #e0e0e0;        /* optional: slightly lighter text */
 }
 
+/* Ensure the resume page uses the same title/subtitle treatment
+   as the terminal-based resume component (.resume) */
+.resume-page .terminal-h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  margin-bottom: 0.25rem;
+  display: inline-block;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.resume-page .terminal-h2 {
+  font-size: 0.82rem; /* match smaller subtitle */
+  font-weight: 400;
+  color: var(--color-green);
+  margin-top: 0.25rem;
+  opacity: 0.95;
+}
+
 /* Optional: adjust section headers separately */
 .resume-section h2,
 .resume-section h3 {

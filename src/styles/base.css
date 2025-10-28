@@ -74,10 +74,11 @@ body {
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 .resume .terminal-h2 {
-  font-size: 0.95rem; /* slightly smaller */
-  font-weight: 500; /* a little lighter */
+  font-size: 0.82rem; /* smaller and less prominent */
+  font-weight: 400; /* lighter weight */
   color: var(--color-green);
-  margin-top: 0.35rem;
+  margin-top: 0.25rem;
+  opacity: 0.95;
 }
 
 /* === Universal icon sizing === */
