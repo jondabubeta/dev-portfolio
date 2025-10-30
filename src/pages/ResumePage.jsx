@@ -124,7 +124,7 @@ export default function ResumePage() {
         <main className="resume-content">
           <section id="overview" className="resume-section">
             <div className="terminal-h1">Jonathan Dabu</div>
-            <div className="terminal-h2 mb">Software Development, Testing, & Automation</div>
+            <div className="terminal-h2 mb">Software Development, AI/ML, Testing & Automation</div>
             <div>Email: jonathandabu86@gmail.com</div>
             <div>LinkedIn: https://www.linkedin.com/in/jbdabu</div>
           </section>
