@@ -55,8 +55,8 @@ export default function About({ onCommand }) {
                   title="Download Cover Letter"
                 />
                 <TabIcon
-                  url="/files/JonathanDabu_CoverLetter.pdf"
-                  title="Open Cover Letter in new tab"
+                  url="/cv.html"
+                  title="Open CV page"
                 />
               </div>
             </span>

@@ -50,10 +50,10 @@ export default function AboutPanel({ onCommand }) {
                 filename="JonathanDabu_CoverLetter.pdf"
                 title="Download Cover Letter"
               />
-              {/* If/when you add a page, point this to /cover-letter.html */}
+              {/* Open the cover letter page */}
               <TabIcon
-                url="/files/JonathanDabu_CoverLetter.pdf"
-                title="Open Cover Letter"
+                url="/cv.html"
+                title="Open CV page"
               />
             </div>
           </div>
