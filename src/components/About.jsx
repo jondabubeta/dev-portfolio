@@ -32,7 +32,7 @@ export default function About({ onCommand }) {
                   title="Download Resume"
                 />
                 <TabIcon
-                  url="/resume.html"
+                  url="/resume/"
                   title="Open Resume page"
                 />
               </div>
@@ -55,7 +55,7 @@ export default function About({ onCommand }) {
                   title="Download Cover Letter"
                 />
                 <TabIcon
-                  url="/cv.html"
+                  url="/cv/"
                   title="Open CV page"
                 />
               </div>

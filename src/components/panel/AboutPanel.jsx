@@ -31,7 +31,7 @@ export default function AboutPanel({ onCommand }) {
                 title="Download Resume"
               />
               <TabIcon
-                url="/resume.html"
+                url="/resume/"
                 title="Open Resume page"
               />
             </div>
@@ -52,7 +52,7 @@ export default function AboutPanel({ onCommand }) {
               />
               {/* Open the cover letter page */}
               <TabIcon
-                url="/cv.html"
+                url="/cv/"
                 title="Open CV page"
               />
             </div>
