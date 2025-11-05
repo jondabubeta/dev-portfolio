@@ -2,7 +2,17 @@
 import { useRef } from "react";
 import SidePanel from "./components/SidePanel";
 import Terminal from "./components/Terminal";
+import ProjectTemplate from "./components/templates/ProjectTemplate";
+import projects from "./data/projects.json";
 import "./styles/index.css";
+
+function slugify(name = "") {
+  return String(name)
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
 
 export default function App() {
   const terminalRef = useRef(null);
@@ -15,6 +25,19 @@ export default function App() {
       window.dispatchEvent(new CustomEvent("terminal:command", { detail: cmd }));
     }
   };
+
+  // Client-side route: /projects/:slug → render standalone project page
+  try {
+    const pathname = window.location.pathname || "/";
+    const m = pathname.match(/^\/projects\/([^/]+)\/?$/);
+    if (m) {
+      const slug = m[1];
+      const project = projects.find((p) => slugify(p.title) === slug);
+      return <ProjectTemplate project={project} />;
+    }
+  } catch (e) {
+    // window may be undefined during SSR; ignore
+  }
 
   return (
     <div className="page-wrapper">
