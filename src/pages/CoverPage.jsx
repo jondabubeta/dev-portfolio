@@ -11,9 +11,6 @@ export default function CoverPage() {
         <aside className="resume-toc">
           <div className="toc-card">
             <div className="toc-title">Cover Letter</div>
-            <div style={{ fontSize: '0.9rem', opacity: 0.9, marginTop: 8 }}>
-              This is a standalone cover letter page.
-            </div>
           </div>
         </aside>
 
