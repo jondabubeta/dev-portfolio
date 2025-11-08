@@ -43,7 +43,7 @@ export default function ContactsPanel({ onCommand }) {
                 <img
                   src={iconSrc}
                   alt={c.type}
-                  className="contact-icon"
+                  className="icon-sm"
                 />
               </a>
 
