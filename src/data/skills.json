@@ -6,6 +6,48 @@
       "experience": "Used for writing structured automated test suites in identity scenarios.",
       "image": "",
       "tags": ["framework", "java"]
+    },
+    {
+      "name": "Selenium",
+      "description": "Open-source browser automation framework for web testing.",
+      "experience": "Built stable UI regression suites using page objects and utility layers.",
+      "image": "",
+      "tags": ["automation", "web", "ui"]
+    },
+    {
+      "name": "Playwright",
+      "description": "Modern end-to-end testing framework supporting multiple browsers.",
+      "experience": "Implemented cross-browser smoke/regression with CI integration.",
+      "image": "",
+      "tags": ["automation", "web", "e2e"]
+    },
+    {
+      "name": "Allure Reporting",
+      "description": "Reporting framework that visualizes test results and trends.",
+      "experience": "Hooked into TestNG listeners for steps, attachments, and flaky tracking.",
+      "image": "",
+      "tags": ["reporting", "framework"]
+    },
+    {
+      "name": "Jenkins",
+      "description": "CI/CD server for building, testing, and deploying.",
+      "experience": "Authored multi-stage pipelines to run containerized TestNG suites and publish reports.",
+      "image": "",
+      "tags": ["ci", "cd", "devops"]
+    },
+    {
+      "name": "Maven / Gradle",
+      "description": "Java build tools for dependency and lifecycle management.",
+      "experience": "Standardized builds, test profiles (env/region), and parallel execution.",
+      "image": "",
+      "tags": ["build", "java"]
+    },
+    {
+      "name": "Docker / Buildah",
+      "description": "Containerization for reproducible test environments.",
+      "experience": "Packaged test runners and browsers for consistent CI runs.",
+      "image": "",
+      "tags": ["containers", "devops", "testing"]
     }
   ],
   "web": [
@@ -17,11 +59,11 @@
       "tags": ["frontend", "library"]
     },
     {
-      "name": "ReactJs",
-      "description": "JavaScript library for Original building component-based UIs.",
-      "experience": "Used to build this portfolio and internal dashboards.",
+      "name": "JavaScript / TypeScript",
+      "description": "Languages used across UI and test tooling.",
+      "experience": "Scripted Playwright helpers and interactive dashboard components.",
       "image": "",
-      "tags": ["frontend", "library"]
+      "tags": ["language", "frontend"]
     }
   ]
 }
