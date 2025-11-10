@@ -27,7 +27,7 @@ export default function SkillsPanel() {
         {showMore && (
           <a
             className="skills-more-link"
-            href="/resume"
+            href="/skills"
             title="See all skills"
             style={{ textDecoration: 'none' }}
           >
