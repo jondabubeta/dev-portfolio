@@ -3,7 +3,11 @@ import { useRef } from "react";
 import SidePanel from "./components/SidePanel";
 import Terminal from "./components/Terminal";
 import ProjectTemplate from "./components/templates/ProjectTemplate";
-import projects from "./data/projects.json";
+
+import ResumePage from "./pages/ResumePage";
+import SkillsPage from "./pages/SkillsPage";
+
+import projects from "./data/projects";
 import "./styles/index.css";
 
 function slugify(name = "") {
@@ -26,14 +30,24 @@ export default function App() {
     }
   };
 
-  // Client-side route: /projects/:slug → render standalone project page
+
+  // Client-side routes
   try {
     const pathname = window.location.pathname || "/";
+    // /projects/:slug
     const m = pathname.match(/^\/projects\/([^/]+)\/?$/);
     if (m) {
       const slug = m[1];
       const project = projects.find((p) => slugify(p.title) === slug);
       return <ProjectTemplate project={project} />;
+    }
+    // /resume
+    if (pathname === "/resume") {
+      return <ResumePage />;
+    }
+    // /skills
+    if (pathname === "/skills") {
+      return <SkillsPage />;
     }
   } catch (e) {
     // window may be undefined during SSR; ignore
