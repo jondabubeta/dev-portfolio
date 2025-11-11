@@ -30,7 +30,7 @@ export function parseArgs(argString = '', allowed = []) {
     }
 
     if (!allowedSet.has(key)) {
-      errors.push(`Invalid argument '${normalizedFlag}'. Allowed: ${[...allowedSet].map(a => `--${a}`).join(', ')}`);
+  errors.push(`Invalid argument '${normalizedFlag}'. Allowed: ${[...allowedSet].map(a => `'${a}'`).join(', ')}`);
       continue;
     }
 

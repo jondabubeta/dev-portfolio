@@ -26,7 +26,7 @@ export default function ContactsPanel({ onCommand }) {
       <div className="contacts-grid">
         {contacts.map((c) => {
           const type = c.type.toLowerCase();
-          const command = `view contact --type="${type}"`;
+          const command = `view contact ${type}`;
           const iconSrc = getIconSrc(c.type);
 
           return (

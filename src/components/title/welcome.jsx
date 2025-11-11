@@ -18,27 +18,27 @@ export const welcomeText = (
     <div className="command-list">
       <div className="command-item">
         • <span className="text-blue">help</span>
-        <span className="command-description">– List all available commands</span>
+        <span className="command-description"> – List all available commands</span>
       </div>
       <div className="command-item">
         • <span className="text-blue">view resume</span>
-        <span className="command-description">– View my resume (use --full=true for full version)</span>
+        <span className="command-description"> – View my resume (use --full=true for full version)</span>
       </div>
       <div className="command-item">
         • <span className="text-blue">view about</span>
-        <span className="command-description">– Learn more about me and what I do</span>
+        <span className="command-description"> – Learn more about me and what I do</span>
       </div>
       <div className="command-item">
         • <span className="text-blue">view projects</span>
-        <span className="command-description">– View featured projects and case studies</span>
+        <span className="command-description"> – View featured projects and case studies</span>
       </div>
       <div className="command-item">
         • <span className="text-blue">view contact</span>
-        <span className="command-description">– Get in touch or view my socials</span>
+        <span className="command-description"> – Get in touch or view my socials</span>
       </div>
       <div className="command-item">
         • <span className="text-blue">clear</span>
-        <span className="command-description">– Clear the terminal</span>
+        <span className="command-description"> – Clear the terminal</span>
       </div>
     </div>
 

@@ -63,6 +63,12 @@ export function handleCommand(input) {
       }
 
       case 'contact': {
+        // Support shorthand: view contact github/email/linkedin
+        const contactTypes = allowedArgs.contact;
+        const shorthand = contactTypes.find(type => argString.trim().toLowerCase() === type);
+        if (shorthand) {
+          return <ContactViewer filter={{ [shorthand]: true }} />;
+        }
         const { filter, errors } = parseArgs(argString, allowedArgs.contact);
         if (errors.length > 0) return errors.join('\n');
         return <ContactViewer filter={filter} />;
