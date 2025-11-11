@@ -27,7 +27,9 @@
       "experience": "Hooked into TestNG listeners for steps, attachments, and flaky tracking.",
       "image": "",
       "tags": ["reporting", "framework"]
-    },
+    }
+  ],
+  "devops": [
     {
       "name": "Jenkins",
       "description": "CI/CD server for building, testing, and deploying.",

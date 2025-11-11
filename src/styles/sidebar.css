@@ -283,8 +283,8 @@ body { margin: 0; }
 .skill-pill:hover { transform: scale(1.05); filter: brightness(1.2); }
 .qa-skill      { background-color: #17803a; }
 .web-skill     { background-color: var(--color-blue); }
-.backend-skill { background-color: var(--color-pink); }
-.devops-skill  { background-color: var(--color-gold); }
+.backend-skill { background-color: var(--color-dyellow); }
+.devops-skill  { background-color: var(--color-pink); }
 
 /* =========================
    EDUCATION TABLE
