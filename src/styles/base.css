@@ -25,6 +25,9 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  /* Prevent scaling differences between localhost and IP */
+  zoom: 1;
+  transform-origin: 0 0;
 }
 
 .mt { margin-top: 2rem; }

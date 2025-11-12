@@ -27,6 +27,34 @@
       "experience": "Hooked into TestNG listeners for steps, attachments, and flaky tracking.",
       "image": "",
       "tags": ["reporting", "framework"]
+    },
+    {
+      "name": "JUnit",
+      "description": "Unit testing framework for Java applications.",
+      "experience": "Created comprehensive unit test suites for core application logic.",
+      "image": "",
+      "tags": ["framework", "java", "unit-testing"]
+    },
+    {
+      "name": "Cypress",
+      "description": "JavaScript-based end-to-end testing framework for web applications.",
+      "experience": "Built fast, reliable e2e test suites with real-time debugging capabilities.",
+      "image": "",
+      "tags": ["automation", "web", "e2e", "javascript"]
+    },
+    {
+      "name": "REST Assured",
+      "description": "Java library for testing REST web services and APIs.",
+      "experience": "Automated API testing with schema validation and response verification.",
+      "image": "",
+      "tags": ["api", "java", "testing"]
+    },
+    {
+      "name": "Postman",
+      "description": "API development and testing platform.",
+      "experience": "Created automated API test collections with environment management.",
+      "image": "",
+      "tags": ["api", "testing", "tools"]
     }
   ],
   "devops": [
@@ -50,6 +78,27 @@
       "experience": "Packaged test runners and browsers for consistent CI runs.",
       "image": "",
       "tags": ["containers", "devops", "testing"]
+    },
+    {
+      "name": "GitHub Actions",
+      "description": "CI/CD workflows integrated with GitHub repositories.",
+      "experience": "Implemented automated test pipelines with matrix builds and artifact publishing.",
+      "image": "",
+      "tags": ["ci", "cd", "automation"]
+    },
+    {
+      "name": "Kubernetes",
+      "description": "Container orchestration platform for deploying scalable applications.",
+      "experience": "Deployed test environments and managed test data across clusters.",
+      "image": "",
+      "tags": ["containers", "orchestration", "devops"]
+    },
+    {
+      "name": "AWS",
+      "description": "Cloud computing platform for scalable infrastructure and services.",
+      "experience": "Managed test environments on EC2, S3 storage, and RDS databases.",
+      "image": "",
+      "tags": ["cloud", "infrastructure", "aws"]
     }
   ],
   "web": [
@@ -66,6 +115,50 @@
       "experience": "Scripted Playwright helpers and interactive dashboard components.",
       "image": "",
       "tags": ["language", "frontend"]
+    },
+    {
+      "name": "Node.js",
+      "description": "JavaScript runtime for server-side development and tooling.",
+      "experience": "Built test utilities, data generators, and API mocking services.",
+      "image": "",
+      "tags": ["backend", "javascript", "runtime"]
+    },
+    {
+      "name": "Express.js",
+      "description": "Fast, unopinionated web framework for Node.js applications.",
+      "experience": "Created mock servers and test data APIs for integration testing.",
+      "image": "",
+      "tags": ["backend", "framework", "api"]
+    }
+  ],
+  "languages": [
+    {
+      "name": "Java",
+      "description": "Object-oriented programming language for enterprise applications.",
+      "experience": "Primary language for test automation frameworks and utilities.",
+      "image": "",
+      "tags": ["language", "oop", "enterprise"]
+    },
+    {
+      "name": "Python",
+      "description": "High-level programming language for automation and data processing.",
+      "experience": "Built test data generators, performance analysis tools, and CI scripts.",
+      "image": "",
+      "tags": ["language", "scripting", "automation"]
+    },
+    {
+      "name": "SQL",
+      "description": "Database query language for data validation and test setup.",
+      "experience": "Created test data, validated application state, and performance analysis.",
+      "image": "",
+      "tags": ["database", "query", "validation"]
+    },
+    {
+      "name": "Bash/Shell",
+      "description": "Command-line scripting for automation and system administration.",
+      "experience": "Automated environment setup, deployment scripts, and CI/CD tasks.",
+      "image": "",
+      "tags": ["scripting", "automation", "cli"]
     }
   ]
 }

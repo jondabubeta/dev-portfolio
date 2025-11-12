@@ -18,7 +18,7 @@ export default function ProjectsPanel({ onCommand }) {
     <div className="section-container projects-section">
       <h3>Projects</h3>
 
-      <div className="scrollable-table">
+      <div className="scrollable-section">
         <div className="panel-table projects-table">
           {projects.map((p, i) => {
             const key = `${p.title}-${i}`;

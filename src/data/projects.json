@@ -35,7 +35,7 @@
     "tags": ["game", "browser", "memory", "react", "blizzard"]
     ,
   "status": "Completed",
-  "current": false
+  "current": true
   },
   {
     "title": "LolMemory",
@@ -44,6 +44,69 @@
     "tags": ["game", "browser", "concentration", "react", "league of legends"]
     ,
   "status": "Completed",
-  "current": false
+  "current": true
+  },
+  {
+    "title": "BlizzMemory0",
+    "description": "A Blizzard-themed memory matching game built with React. Players flip character cards and try to match pairs based on iconic heroes from Blizzard franchises.",
+    "tech": ["React", "JavaScript", "HTML", "CSS"],
+    "tags": ["game", "browser", "memory", "react", "blizzard"]
+    ,
+  "status": "Completed",
+  "current": true
+  },
+    {
+    "title": "BlizzMemory1",
+    "description": "A Blizzard-themed memory matching game built with React. Players flip character cards and try to match pairs based on iconic heroes from Blizzard franchises.",
+    "tech": ["React", "JavaScript", "HTML", "CSS"],
+    "tags": ["game", "browser", "memory", "react", "blizzard"]
+    ,
+  "status": "Completed",
+  "current": true
+  },
+  {
+    "title": "BlizzMemory2",
+    "description": "A Blizzard-themed memory matching game built with React. Players flip character cards and try to match pairs based on iconic heroes from Blizzard franchises.",
+    "tech": ["React", "JavaScript", "HTML", "CSS"],
+    "tags": ["game", "browser", "memory", "react", "blizzard"]
+    ,
+  "status": "Completed",
+  "current": true
+  },
+    {
+    "title": "BlizzMemory2",
+    "description": "A Blizzard-themed memory matching game built with React. Players flip character cards and try to match pairs based on iconic heroes from Blizzard franchises.",
+    "tech": ["React", "JavaScript", "HTML", "CSS"],
+    "tags": ["game", "browser", "memory", "react", "blizzard"]
+    ,
+  "status": "Completed",
+  "current": true
+  },
+    {
+    "title": "BlizzMemory2",
+    "description": "A Blizzard-themed memory matching game built with React. Players flip character cards and try to match pairs based on iconic heroes from Blizzard franchises.",
+    "tech": ["React", "JavaScript", "HTML", "CSS"],
+    "tags": ["game", "browser", "memory", "react", "blizzard"]
+    ,
+  "status": "Completed",
+  "current": true
+  },
+    {
+    "title": "BlizzMemory2",
+    "description": "A Blizzard-themed memory matching game built with React. Players flip character cards and try to match pairs based on iconic heroes from Blizzard franchises.",
+    "tech": ["React", "JavaScript", "HTML", "CSS"],
+    "tags": ["game", "browser", "memory", "react", "blizzard"]
+    ,
+  "status": "Completed",
+  "current": true
+  },
+    {
+    "title": "BlizzMemory2",
+    "description": "A Blizzard-themed memory matching game built with React. Players flip character cards and try to match pairs based on iconic heroes from Blizzard franchises.",
+    "tech": ["React", "JavaScript", "HTML", "CSS"],
+    "tags": ["game", "browser", "memory", "react", "blizzard"]
+    ,
+  "status": "Completed",
+  "current": true
   }
 ]

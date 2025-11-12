@@ -149,17 +149,19 @@ body { margin: 0; }
 /* =========================
    SIDEBAR (WIDER + RESPONSIVE, NO SCROLLBARS)
 ========================= */
-:root { --sp-w: clamp(420px, 33vw, 760px); }
+:root { --sp-w: clamp(450px, 38vw, 800px); }
 
 .side-panel {
   display: flex;
   flex-direction: column;
   background: #121212;
-  padding: 1rem 1.25rem 0 2rem;
+  padding: 0.5rem 0.75rem 0.5rem 1.25rem;  /* reduced padding for more space */
   box-sizing: border-box;
-  overflow: hidden;              /* never show a scrollbar */
+  overflow: hidden;              /* contain the layout */
   transition: transform 0.3s ease;
   z-index: 1000;
+  height: 100vh;                 /* use full viewport height */
+  max-height: 100vh;             /* constrain to viewport */
 }
 
 /* Desktop styles */
@@ -167,7 +169,8 @@ body { margin: 0; }
   .side-panel {
     flex: 0 0 var(--sp-w);
     width: var(--sp-w);
-    height: 100vh;
+    height: 100vh !important;      /* use full viewport height */
+    max-height: 100vh !important;  /* constrain to viewport */
     position: relative;
     transform: none !important;
   }
@@ -185,7 +188,15 @@ body { margin: 0; }
     left: 0;
     width: 280px;
     height: 100vh;
+    max-height: 100vh;
     padding-top: 4rem; /* Account for mobile header */
+    overflow: hidden;   /* prevent mobile panel overflow */
+  }
+  
+  /* On mobile, reduce individual section heights to fit better */
+  .section-container.projects-section .scrollable-section,
+  .current-scrollable {
+    max-height: min(15vh, 150px) !important;   /* even smaller on mobile with bookmark bars */
   }
   
   .sidebar-closed {
@@ -197,11 +208,38 @@ body { margin: 0; }
   }
 }
 
-/* Inner wrapper — also no scrollbars */
+/* Inner wrapper — minimal scrollbar that only shows when needed */
 .side-panel-content {
-  flex: 1;
-  overflow: hidden;              /* hide scroll completely */
-  padding-right: 0;              /* no reserved gutter */
+  flex: 1 1 0;                   /* take available space */
+  min-height: 0;                 /* crucial for flex child to shrink */
+  overflow-y: auto;              /* enable scrolling when needed */
+  overflow-x: hidden;            /* hide horizontal scroll */
+  padding-right: 12px;           /* increased space between content and scrollbar area */
+  padding-bottom: 1rem;          /* reduced bottom padding for cleaner feel */
+  box-sizing: border-box;
+}
+
+/* Minimal scrollbar - only visible when hovering or scrolling */
+.side-panel-content::-webkit-scrollbar {
+  width: 4px;                    /* very thin scrollbar */
+}
+
+.side-panel-content::-webkit-scrollbar-track {
+  background: transparent;       /* invisible track */
+}
+
+.side-panel-content::-webkit-scrollbar-thumb {
+  background: transparent;       /* invisible by default */
+  border-radius: 2px;
+}
+
+/* Show scrollbar only when hovering over the sidebar */
+.side-panel:hover .side-panel-content::-webkit-scrollbar-thumb {
+  background: #444;              /* appear on hover */
+}
+
+.side-panel-content::-webkit-scrollbar-thumb:hover {
+  background: var(--color-blue); /* blue when directly hovering scrollbar */
 }
 
 /* =========================
@@ -212,8 +250,8 @@ body { margin: 0; }
   min-width: 0;                  /* prevents horizontal overflow */
   display: flex;
   align-items: stretch;
-  justify-content: stretch;
-  padding: 1rem 2rem;
+  justify-content: center;       /* center the terminal */
+  padding: 2rem;                 /* equal padding on all sides */
   overflow: hidden;
 }
 
@@ -225,18 +263,57 @@ body { margin: 0; }
   }
 }
 
-/* Nuke any hard min-widths */
-.terminal-wrapper,
-.terminal-window { min-width: 0 !important; width: 100%; }
+/* Terminal wrapper sizing */
+.terminal-wrapper {
+  min-width: 0 !important; 
+  width: 100%; 
+  max-width: 1200px;             /* prevent terminal from getting too wide */
+  margin: 0 auto;                /* center the terminal */
+}
+
+.terminal-window { 
+  min-width: 0 !important; 
+  width: 100%; 
+}
 
 .terminal-body { overflow-y: auto; } /* terminal content can scroll internally */
 
 
 /* Give the top chip room so it isn't clipped by the container */
-.side-panel-content {
-  /* was: overflow: hidden; padding-right: 0; */
-  overflow: hidden;
-  padding: 0.9rem 0 0 0;   /* ⬅️ add top padding */
+/* Note: .side-panel-content styling is handled by the main flex definition above */
+
+/* Individual section scrolling for Current and Projects panels */
+.section-container.projects-section .scrollable-section,
+.current-scrollable {
+  max-height: min(20vh, 180px);   /* conservative height for bookmark bar compatibility */
+  overflow-y: auto !important;    /* force individual scrollbars */
+  overflow-x: hidden;
+  padding-right: 4px;             /* space for scrollbar */
+  box-sizing: border-box;
+}
+
+/* Other scrollable sections (like skills) remain unrestricted */
+.scrollable-section:not(.current-scrollable) {
+  overflow: visible;              /* no scrolling for skills section with "more" link */
+}
+
+/* Individual section scrollbar styling */
+.scrollable-section::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollable-section::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 3px;
+}
+
+.scrollable-section::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 3px;
+}
+
+.scrollable-section::-webkit-scrollbar-thumb:hover {
+  background: var(--color-blue);
 }
 
 /* Section card: allow the chip to float above its border */
@@ -245,9 +322,14 @@ body { margin: 0; }
   border: 1px solid #555;
   border-radius: 8px;
   background: #121212;
-  padding: 1rem 1rem 0.75rem;
-  margin-bottom: 0.75rem;
+  padding: 0.75rem 0.75rem 0.5rem;  /* even tighter padding for more space */
+  margin-bottom: 0.75rem;            /* increased spacing between panels */
   overflow: visible;       /* ⬅️ important */
+}
+
+/* Ensure last section has moderate bottom margin */
+.side-panel-content > .section-container:last-child {
+  margin-bottom: 1.5rem;  /* reduced bottom margin for more natural feel */
 }
 
 .section-container h3 {
@@ -265,7 +347,7 @@ body { margin: 0; }
 }
 
 .side-panel-content > .section-container:first-child {
-  margin-top: 0.25rem;
+  margin-top: 0.75rem;  /* increased spacing to prevent title cutoff */
 }
 
 
@@ -274,8 +356,8 @@ body { margin: 0; }
 ========================= */
 .panel-table {
   display: grid;
-  row-gap: 0.35rem;              /* tighter vertical rhythm */
-  margin-top: 0.5rem;
+  row-gap: 0.25rem;              /* even tighter vertical rhythm */
+  margin-top: 0.4rem;            /* reduced top margin */
   width: 100%;
 }
 
@@ -283,9 +365,9 @@ body { margin: 0; }
   display: grid;
   grid-template-columns: 26ch 1fr 12ch; /* default layout */
   align-items: center;
-  column-gap: 12px;
+  column-gap: 10px;              /* tighter column spacing */
   min-width: 0;
-  min-height: 28px;              /* compact row height */
+  min-height: 26px;              /* more compact row height */
 }
 
 /* Hover + clickable states */
@@ -501,6 +583,12 @@ body { margin: 0; }
   .section-container h3 {
     font-size: 1rem;
     padding: 0 0.4rem;
+  }
+  
+  /* Let main container handle all scrolling on mobile too */
+  .scrollable-section,
+  .current-scrollable {
+    overflow: visible;
   }
   
   /* Mobile panel tables */

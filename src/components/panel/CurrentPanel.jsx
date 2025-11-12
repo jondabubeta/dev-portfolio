@@ -16,7 +16,7 @@ export default function CurrentPanel({ onCommand }) {
   return (
     <div className="section-container projects-section">
       <h3>Current</h3>
-      <div className="scrollable-table">
+      <div className="scrollable-section current-scrollable">
         <div className="panel-table projects-table">
           {currentProjects.map((p) => {
             const pageUrl = `/projects/${slugify(p.title)}`;
