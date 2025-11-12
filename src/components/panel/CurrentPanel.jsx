@@ -1,6 +1,7 @@
 import React from "react";
 import TerminalIcon from "../common/TerminalIcon";
 import TabIcon from "../common/TabIcon";
+import projects from "../../data/projects.json";
 
 function slugify(name = "") {
   return String(name)
@@ -10,50 +11,32 @@ function slugify(name = "") {
     .replace(/^-+|-+$/g, "");
 }
 
-const items = [
-  {
-    label: "Checkout UI → JBTF",
-    meta: "Migration",
-    extra: "Active",
-    cmd: 'view projects --name="Checkout UI Migration"',
-  },
-  {
-    label: "Terminal Portfolio",
-    meta: "React · Vite",
-    extra: "Ongoing",
-    cmd: 'view projects --name="Terminal Portfolio"',
-  },
-  {
-    label: "Identity Scenario Tests",
-    meta: "Spring Boot · Jenkins",
-    extra: "Maintaining",
-    cmd: 'view projects --name="Identity Scenario Tests"',
-  },
-];
-
 export default function CurrentPanel({ onCommand }) {
+  const currentProjects = projects.filter((p) => p.current);
   return (
-    <div className="section-container">
+    <div className="section-container projects-section">
       <h3>Current</h3>
-
       <div className="scrollable-table">
-        <div className="panel-table">
-          {items.map((row) => {
-            const pageUrl = `/projects/${slugify(row.label)}`;
+        <div className="panel-table projects-table">
+          {currentProjects.map((p) => {
+            const pageUrl = `/projects/${slugify(p.title)}`;
+            const cmd = `view projects --name="${p.title}"`;
+            // Use a short description if available, else join tech
+            const short =
+              p.shortDescription ||
+              (p.description ? p.description.slice(0, 120).replace(/\s+\S*$/, "…") : "");
             return (
               <div
-                key={row.label}
+                key={p.title}
                 className="panel-row clickable"
-                onClick={() => onCommand?.(row.cmd)}
-                title={row.cmd}
+                onClick={() => onCommand?.(cmd)}
+                title={p.description || cmd}
               >
-                <span className="panel-label">{row.label}</span>
-                <span className="panel-meta">{row.meta}</span>
-
-                {/* New action column: terminal + tab icons (prevents row click) */}
+                <span className="panel-label">{p.title}</span>
+                <span className="panel-meta">{short || (p.tech ? p.tech.join(" · ") : "")}</span>
                 <span className="panel-extra project-icons" onClick={(e) => e.stopPropagation()}>
-                  <TerminalIcon command={row.cmd} onCommand={onCommand} title={`View ${row.label} in terminal`} />
-                  <TabIcon url={pageUrl} title={`Open ${row.label} page`} />
+                  <TerminalIcon command={cmd} onCommand={onCommand} title={`View ${p.title} in terminal`} />
+                  <TabIcon url={pageUrl} title={`Open ${p.title} page`} />
                 </span>
               </div>
             );

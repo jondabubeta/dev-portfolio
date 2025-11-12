@@ -331,7 +331,7 @@ body { margin: 0; }
    single-line everywhere, no sidebar scrollbars
 ========================= */
 .projects-table .panel-row {
-  grid-template-columns: 16ch 1fr 8ch; /* name compact, description wide, icons tight */
+  grid-template-columns: 12ch 1fr 8ch; /* name more compact, description wide, icons tight */
   column-gap: 12px;
 }
 

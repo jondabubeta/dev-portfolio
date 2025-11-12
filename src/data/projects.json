@@ -25,7 +25,8 @@
       "inventory"
     ]
     ,
-    "status": "Active"
+  "status": "Active",
+  "current": true
   },
   {
     "title": "BlizzMemory",
@@ -33,7 +34,8 @@
     "tech": ["React", "JavaScript", "HTML", "CSS"],
     "tags": ["game", "browser", "memory", "react", "blizzard"]
     ,
-    "status": "Completed"
+  "status": "Completed",
+  "current": false
   },
   {
     "title": "LolMemory",
@@ -41,6 +43,7 @@
     "tech": ["React", "JavaScript", "HTML", "CSS"],
     "tags": ["game", "browser", "concentration", "react", "league of legends"]
     ,
-    "status": "Completed"
+  "status": "Completed",
+  "current": false
   }
 ]
