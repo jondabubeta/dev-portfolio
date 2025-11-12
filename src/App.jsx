@@ -1,5 +1,5 @@
 // src/App.jsx
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import SidePanel from "./components/SidePanel";
 import Terminal from "./components/Terminal";
 import ProjectTemplate from "./components/templates/ProjectTemplate";
@@ -20,6 +20,21 @@ function slugify(name = "") {
 
 export default function App() {
   const terminalRef = useRef(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check for mobile and manage sidebar state
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      setIsSidebarOpen(window.innerWidth >= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleCommand = (cmd) => {
     const didRunDirectly = Boolean(terminalRef.current?.runCommand);
@@ -27,6 +42,11 @@ export default function App() {
 
     if (!didRunDirectly) {
       window.dispatchEvent(new CustomEvent("terminal:command", { detail: cmd }));
+    }
+
+    // Close sidebar on mobile when command is executed
+    if (isMobile) {
+      setIsSidebarOpen(false);
     }
   };
 
@@ -55,8 +75,31 @@ export default function App() {
 
   return (
     <div className="page-wrapper">
+      {/* Mobile Header with Hamburger */}
+      <header className="mobile-header">
+        <button 
+          className={`hamburger-btn ${isSidebarOpen ? 'hamburger-open' : ''}`}
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          aria-label="Toggle menu"
+        >
+          <span className="hamburger-line"></span>
+          <span className="hamburger-line"></span>
+          <span className="hamburger-line"></span>
+        </button>
+        <h1 className="mobile-title">Terminal Portfolio</h1>
+      </header>
+
+      {/* Mobile Overlay */}
+      {isSidebarOpen && isMobile && (
+        <div 
+          className="mobile-overlay"
+          onClick={() => setIsSidebarOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
       {/* 🧩 Left Column */}
-      <aside className="side-panel">
+      <aside className={`side-panel ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
         <SidePanel onCommand={handleCommand} />
       </aside>
 
