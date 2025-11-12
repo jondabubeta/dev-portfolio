@@ -196,7 +196,7 @@ body { margin: 0; }
   /* On mobile, reduce individual section heights to fit better */
   .section-container.projects-section .scrollable-section,
   .current-scrollable {
-    max-height: min(15vh, 150px) !important;   /* even smaller on mobile with bookmark bars */
+    max-height: 100px !important;   /* smaller height on mobile for ~3 projects */
   }
   
   .sidebar-closed {
@@ -285,7 +285,7 @@ body { margin: 0; }
 /* Individual section scrolling for Current and Projects panels */
 .section-container.projects-section .scrollable-section,
 .current-scrollable {
-  max-height: min(20vh, 180px);   /* conservative height for bookmark bar compatibility */
+  max-height: 140px;              /* height for ~4 projects before scrolling */
   overflow-y: auto !important;    /* force individual scrollbars */
   overflow-x: hidden;
   padding-right: 4px;             /* space for scrollbar */
