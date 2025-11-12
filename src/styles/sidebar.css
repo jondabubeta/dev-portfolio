@@ -215,7 +215,7 @@ body { margin: 0; }
   overflow-y: auto;              /* enable scrolling when needed */
   overflow-x: hidden;            /* hide horizontal scroll */
   padding-right: 12px;           /* increased space between content and scrollbar area */
-  padding-bottom: 1rem;          /* reduced bottom padding for cleaner feel */
+  padding-bottom: 0rem;          /* reduced bottom padding for cleaner feel */
   box-sizing: border-box;
 }
 
@@ -329,7 +329,7 @@ body { margin: 0; }
 
 /* Ensure last section has moderate bottom margin */
 .side-panel-content > .section-container:last-child {
-  margin-bottom: 1.5rem;  /* reduced bottom margin for more natural feel */
+  margin-bottom: 0rem;  /* reduced bottom margin for more natural feel */
 }
 
 .section-container h3 {
