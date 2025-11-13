@@ -329,7 +329,7 @@ body { margin: 0; }
 
 /* Ensure last section has moderate bottom margin */
 .side-panel-content > .section-container:last-child {
-  margin-bottom: 1.5rem;  /* increased bottom margin for more natural feel */
+  margin-bottom: 0;  /* remove bottom margin from last section */
 }
 
 .section-container h3 {
@@ -339,7 +339,7 @@ body { margin: 0; }
   transform: translateY(-55%); /* float across the top border */
   margin: 0;
   padding: 0 0.5rem;
-  font-size: 1rem;            /* smaller title */
+  font-size: 1.05rem;            /* smaller title */
   font-weight: 700;
   line-height: 1.1;
   color: var(--color-blue);
@@ -363,7 +363,7 @@ body { margin: 0; }
 
 .panel-row {
   display: grid;
-  grid-template-columns: 26ch 1fr 12ch; /* default layout */
+  grid-template-columns: 28ch 1fr 12ch; /* default layout */
   align-items: center;
   column-gap: 8px;               /* tighter column spacing */
   min-width: 0;
@@ -396,13 +396,13 @@ body { margin: 0; }
   margin: 0;
 }
 
-.panel-label { font-size: 0.92rem; color: #fff; }
-.panel-meta  { font-size: 0.9rem; color: #aaa; }
+.panel-label { font-size: 0.95rem; color: #fff; }
+.panel-meta  { font-size: 0.95rem; color: #aaa; }
 .panel-extra {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #888;
   text-align: right;
 }
@@ -469,7 +469,7 @@ body { margin: 0; }
   position: absolute;
   right: 0.1rem;
   bottom: 0.1rem;
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   color: var(--color-blue);
   cursor: pointer;
   background: #121212;
@@ -478,7 +478,7 @@ body { margin: 0; }
   z-index: 2;
 }
 .skill-pill {
-  font-size: 0.86rem;
+  font-size: 0.95rem;
   color: #fff;
   padding: 4px 10px;
   border-radius: 9999px;
@@ -504,6 +504,7 @@ body { margin: 0; }
 ========================= */
 .section-container.contacts-section {
   padding: 0.5rem 0.5rem 0.5rem;
+  margin-bottom: 0;
 }
 
 .contacts-grid {
@@ -514,6 +515,7 @@ body { margin: 0; }
   gap: 0.5rem;
   padding-left: 0;
   margin-top: 0.4rem;
+  margin-bottom: 0;
 }
 .contact-cell {
   display: flex;
@@ -521,13 +523,13 @@ body { margin: 0; }
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   white-space: nowrap;
   padding: 0px 0;
 }
 .contact-label { color: #c0c0c0; text-transform: capitalize; }
 .contact-cell .icon-sm {
-  width: 20px; height: 20px; margin-left: 2px;
+  width: 20px; height: 25px; margin-left: 2px;
   object-fit: contain; cursor: pointer;
   transition: transform .15s ease, filter .15s ease;
 }
