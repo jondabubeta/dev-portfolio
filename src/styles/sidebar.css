@@ -322,14 +322,14 @@ body { margin: 0; }
   border: 1px solid #555;
   border-radius: 8px;
   background: #121212;
-  padding: 0.5rem 0.6rem 0.4rem;  /* reduced padding */
-  margin-bottom: 0.6rem;          /* reduced spacing between panels */
+  padding: 1.25rem 1.2rem 1rem;  /* increased padding */
+  margin-bottom: 1.5rem;         /* increased spacing between panels */
   overflow: visible;       /* ⬅️ important */
 }
 
 /* Ensure last section has moderate bottom margin */
 .side-panel-content > .section-container:last-child {
-  margin-bottom: 0rem;  /* reduced bottom margin for more natural feel */
+  margin-bottom: 1.5rem;  /* increased bottom margin for more natural feel */
 }
 
 .section-container h3 {
@@ -339,7 +339,7 @@ body { margin: 0; }
   transform: translateY(-55%); /* float across the top border */
   margin: 0;
   padding: 0 0.5rem;
-  font-size: 0.95rem;            /* smaller title */
+  font-size: 1rem;            /* smaller title */
   font-weight: 700;
   line-height: 1.1;
   color: var(--color-blue);
@@ -397,12 +397,12 @@ body { margin: 0; }
 }
 
 .panel-label { font-size: 0.92rem; color: #fff; }
-.panel-meta  { font-size: 0.85rem; color: #aaa; }
+.panel-meta  { font-size: 0.9rem; color: #aaa; }
 .panel-extra {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: #888;
   text-align: right;
 }
@@ -423,7 +423,7 @@ body { margin: 0; }
   column-gap: 0.8rem;
 }
 .doc-label {
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -469,7 +469,7 @@ body { margin: 0; }
   position: absolute;
   right: 0.1rem;
   bottom: 0.1rem;
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   color: var(--color-blue);
   cursor: pointer;
   background: #121212;
@@ -478,7 +478,7 @@ body { margin: 0; }
   z-index: 2;
 }
 .skill-pill {
-  font-size: 0.82rem;
+  font-size: 0.86rem;
   color: #fff;
   padding: 4px 10px;
   border-radius: 9999px;
@@ -502,6 +502,10 @@ body { margin: 0; }
 /* =========================
    CONTACTS (ONE ROW, 3 COLS)
 ========================= */
+.section-container.contacts-section {
+  padding: 0.5rem 0.5rem 0.5rem;
+}
+
 .contacts-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -517,8 +521,9 @@ body { margin: 0; }
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   white-space: nowrap;
+  padding: 0px 0;
 }
 .contact-label { color: #c0c0c0; text-transform: capitalize; }
 .contact-cell .icon-sm {

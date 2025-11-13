@@ -37,12 +37,14 @@ html, body {
 }
 
 /* Nudge TOC slightly left without moving content */
-.resume-toc {
-  align-self: stretch;   /* fill the row’s height */
-  min-height: 100%;      /* give sticky a full track */
+.resume-toc,
+.project-toc {
+  align-self: stretch;   /* fill the row's height so sticky has room to work */
   /* optional nudge left */
   transform: translateX(var(--grid-shift, -24px));
   display: flex;         /* allow the card inside to size naturally */
+  flex-direction: column;
+  min-height: 100vh; /* Ensure enough height for sticky to work */
 }
 /* ===========================
    Sticky TOC Card
@@ -50,10 +52,10 @@ html, body {
 .toc-card {
   position: sticky;
   top: 16px;
-  max-height: 350px;
+  max-height: calc(100vh - 32px); /* Full viewport height minus top/bottom margin */
+  width: fit-content;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   border: 1px solid var(--terminal-border, #333);
   border-radius: 12px;
   background: var(--terminal-bg, #0b0b0b);
@@ -76,6 +78,8 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  flex-shrink: 1; /* Allow shrinking to fit content */
+  min-height: 0; /* Allow flexbox to shrink below content size */
 }
 
 /* TOC Links */
