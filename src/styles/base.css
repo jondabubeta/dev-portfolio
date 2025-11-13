@@ -68,6 +68,20 @@ body {
 .cv-closing { margin-top: 0.8rem; }
 .cv-signature { margin-top: 0.6rem; color: var(--color-green); white-space: pre-line; }
 
+/* Force project markdown links to match resume page color */
+.project-page a,
+.project-page a:link,
+.project-page a:visited,
+.project-page a:hover,
+.project-page a:active,
+.project-markdown a,
+.project-markdown a:link,
+.project-markdown a:visited,
+.project-markdown a:hover,
+.project-markdown a:active {
+  color: #0000EE !important;
+}
+
 /* Resume title accents: make name and subtitle stand out similar to CV */
 .resume .terminal-h1 {
   font-size: 1.8rem;
