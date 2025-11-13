@@ -117,3 +117,35 @@ body {
   width: 10px;   /* if you want 10px, also set the same in terminal.css or ensure this loads last */
   height: 10px;
 }
+
+/* === Code block styling === */
+.project-markdown pre,
+.project-page pre {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.project-markdown code,
+.project-page code {
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9em;
+}
+
+.project-markdown pre code,
+.project-page pre code {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  color: #d4d4d4;
+}
