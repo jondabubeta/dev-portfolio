@@ -1,12 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { STATUS_CLASS } from '../../constants/projectStatuses';
 import { marked } from 'marked';
+import { gfmHeadingId } from 'marked-gfm-heading-id';
+
+// Configure marked with the heading ID extension
+marked.use(gfmHeadingId());
 
 // Vite glob to load project markdown files as raw text
 const mdModules = import.meta.glob('../../content/projects/*.md', { as: 'raw' });
 
 export default function ProjectTemplate({ project }) {
   const [html, setHtml] = useState('');
+  const [toc, setToc] = useState([]);
+  const [active, setActive] = useState('top');
+  const manualLockUntil = useRef(0);
+
+  // Handle ToC link click with smooth scroll
+  const handleJump = (id) => (e) => {
+    e.preventDefault();
+    setActive(id);
+    manualLockUntil.current = performance.now() + 700;
+    
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   useEffect(() => {
     let mounted = true;
@@ -32,8 +51,24 @@ export default function ProjectTemplate({ project }) {
 
       try {
         const raw = await mdModules[key]();
-        const rendered = marked.parse(raw || '');
-        if (mounted) setHtml(rendered);
+        
+        const rendered = marked.parse(raw || '', { 
+          mangle: false
+        });
+        
+        // Extract ## headings from the rendered HTML to get exact IDs
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(rendered, 'text/html');
+        const h2Elements = doc.querySelectorAll('h2');
+        const tocSections = Array.from(h2Elements).map(h2 => ({
+          text: h2.textContent.trim(),
+          anchor: h2.id
+        }));
+        
+        if (mounted) {
+          setToc(tocSections);
+          setHtml(rendered);
+        }
       } catch (err) {
         if (mounted) setHtml('');
       }
@@ -45,59 +80,90 @@ export default function ProjectTemplate({ project }) {
     };
   }, [project]);
 
+  // Scroll spy for active section highlighting
+  useEffect(() => {
+    if (toc.length === 0) return;
+
+    const ANCHOR_Y = 96;
+    const TAKEOVER_PAD = 6;
+    const sectionIds = ['top', ...toc.map(s => s.anchor)];
+    const els = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+    const pickActive = () => {
+      if (performance.now() < manualLockUntil.current) return;
+      
+      const candidates = [];
+      for (const el of els) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= ANCHOR_Y + TAKEOVER_PAD) {
+          candidates.push(el.id);
+        }
+      }
+      if (candidates.length > 0) {
+        setActive(candidates[candidates.length - 1]);
+      } else {
+        setActive('top');
+      }
+    };
+
+    window.scrollTo(0, 0);
+    setActive('top');
+    manualLockUntil.current = performance.now() + 800;
+    requestAnimationFrame(() => requestAnimationFrame(pickActive));
+
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          pickActive();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, [toc]);
+
   if (!project) return <div className="output">Project not found</div>;
 
   return (
-    <div className="project-page resume-page">
+    <div className="project-page resume-page" id="top">
       <div className="project-grid resume-grid">
         <aside className="project-toc resume-toc">
           <div className="toc-card">
-            <div className="toc-title">{project.title}</div>
-            <div style={{ fontSize: '0.9rem', opacity: 0.9, marginTop: 8 }}>
-              {project.shortDescription || project.description}
-            </div>
+            <div className="toc-title">Table of Contents</div>
+            <nav className="toc-list">
+              <a
+                href="#top"
+                onClick={handleJump('top')}
+                className={`toc-link${active === 'top' ? ' active' : ''}`}
+              >
+                {project.title}
+              </a>
+              {toc.map((section) => (
+                <a
+                  key={section.anchor}
+                  href={`#${section.anchor}`}
+                  onClick={handleJump(section.anchor)}
+                  className={`toc-link${active === section.anchor ? ' active' : ''}`}
+                >
+                  {section.text}
+                </a>
+              ))}
+            </nav>
           </div>
         </aside>
 
         <main className="project-content resume-content">
           <section className="project-section resume-section">
-            <div className="terminal-h1">{project.title}</div>
-            <div className="terminal-h2 mb">{project.role || (project.tech || []).join(' · ')}</div>
-
-            <div style={{ marginTop: 8 }}>
-              <strong>Status: </strong>
-              <span className={STATUS_CLASS[(project.status || '').toLowerCase()] || ''}>
-                {project.status || 'Unknown'}
-              </span>
-            </div>
-
-            <div className="mt">
-              <div className="project-summary exp-summary">{project.description}</div>
-            </div>
-
-            {Array.isArray(project.tech) && project.tech.length > 0 && (
-              <div className="mt project-tech">
-                <div className="cv-subhead">Tech stack</div>
-                <div>{project.tech.join(', ')}</div>
-              </div>
-            )}
-
-            {Array.isArray(project.tags) && project.tags.length > 0 && (
-              <div className="mt project-tags">
-                <div className="cv-subhead">Tags</div>
-                <div>{project.tags.join(', ')}</div>
-              </div>
-            )}
-
-            {project.details && (
-              <div className="mt project-details">
-                <div className="cv-subhead">Details</div>
-                <div>{project.details}</div>
-              </div>
-            )}
-
             {html ? (
-              <div className="mt project-markdown" dangerouslySetInnerHTML={{ __html: html }} />
+              <div className="project-markdown" dangerouslySetInnerHTML={{ __html: html }} />
             ) : null}
           </section>
         </main>

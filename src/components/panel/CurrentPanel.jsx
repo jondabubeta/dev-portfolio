@@ -21,10 +21,8 @@ export default function CurrentPanel({ onCommand }) {
           {currentProjects.map((p) => {
             const pageUrl = `/projects/${slugify(p.title)}`;
             const cmd = `view projects --name="${p.title}"`;
-            // Use a short description if available, else join tech
-            const short =
-              p.shortDescription ||
-              (p.description ? p.description.slice(0, 120).replace(/\s+\S*$/, "…") : "");
+            // Use blurb for summary
+            const short = p.blurb || "";
             return (
               <div
                 key={p.title}

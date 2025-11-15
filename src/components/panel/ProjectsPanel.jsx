@@ -27,10 +27,8 @@ export default function ProjectsPanel({ onCommand }) {
             // Build site page like jondabu.com/projects/(project name)
             const pageUrl = `/projects/${slug}`;
 
-            // Make a short description on the fly if you didn't provide one
-            const short =
-              p.shortDescription ||
-              (p.description ? p.description.slice(0, 120).replace(/\s+\S*$/, "") + "…" : "");
+            // Use blurb for summary
+            const short = p.blurb || "";
 
             return (
               <div

@@ -20,7 +20,7 @@ function getIconSrc(type) {
 
 export default function ContactsPanel({ onCommand }) {
   return (
-    <div className="section-container">
+    <div className="section-container contacts-section">
       <h3>Contacts</h3>
 
       <div className="contacts-grid">

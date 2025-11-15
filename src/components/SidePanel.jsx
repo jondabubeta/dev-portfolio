@@ -11,9 +11,8 @@ export default function SidePanel({ onCommand }) {
   return (
   <div className="side-panel-content">
     <AboutPanel onCommand={onCommand} />
-    <CurrentPanel onCommand={onCommand} />
     <ExperiencePanel onCommand={onCommand} />
-    <SkillsPanel onCommand={onCommand} />
+    <CurrentPanel onCommand={onCommand} />
     <ProjectsPanel onCommand={onCommand} />
     <ContactsPanel onCommand={onCommand} />
   </div>
