@@ -149,11 +149,13 @@ html {
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 .resume-page .terminal-h2 {
-  font-size: 0.82rem; /* match smaller subtitle */
-  font-weight: 400;
+  font-size: 1.35rem;
+  font-weight: 700;
   color: var(--color-green);
-  margin-top: 0.25rem;
-  opacity: 0.95;
+  margin-top: 1.2rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.03em;
+  opacity: 1;
 }
 
 /* Optional: adjust section headers separately */

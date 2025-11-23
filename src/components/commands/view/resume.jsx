@@ -10,7 +10,7 @@ const ResumeViewer = ({ args = {} }) => {
   return (
     <div className="resume">
       <div className="terminal-h1">Jonathan Dabu</div>
-      <div className="terminal-h2 mb">Software Development, AI/ML, Testing & Automation</div>
+      <div className="terminal-h2 mb">Software Testing, Automation, Development & AI/ML</div>
       <div>Email: jonathandabu86@gmail.com</div>
       <div>LinkedIn: https://www.linkedin.com/in/jbdabu</div>
 

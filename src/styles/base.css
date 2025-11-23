@@ -82,7 +82,6 @@ body {
   color: #0000EE !important;
 }
 
-/* Resume title accents: make name and subtitle stand out similar to CV */
 .resume .terminal-h1 {
   font-size: 1.8rem;
   font-weight: 800;
@@ -92,12 +91,36 @@ body {
   padding-bottom: 0.3rem;
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
+
+/* Terminal UI header style */
+.terminal .terminal-h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-green);
+  margin-top: 1.1rem;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.01em;
+  opacity: 1;
+}
+
+/* Resume page header style */
 .resume .terminal-h2 {
-  font-size: 0.82rem; /* smaller and less prominent */
-  font-weight: 400; /* lighter weight */
+  font-size: 1.1rem; /* smaller and less prominent */
+  font-weight: 700; /* lighter weight */
   color: var(--color-green);
   margin-top: 0.25rem;
   opacity: 0.95;
+}
+
+/* CV page header style */
+.cv-view .terminal-h2 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  margin-bottom: 0.25rem;
+  display: inline-block;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
 /* === Universal icon sizing === */
