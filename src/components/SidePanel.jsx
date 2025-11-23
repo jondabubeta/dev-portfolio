@@ -13,6 +13,7 @@ export default function SidePanel({ onCommand }) {
     <AboutPanel onCommand={onCommand} />
     <ExperiencePanel onCommand={onCommand} />
     <CurrentPanel onCommand={onCommand} />
+    <SkillsPanel onCommand={onCommand} />
     <ProjectsPanel onCommand={onCommand} />
     <ContactsPanel onCommand={onCommand} />
   </div>

@@ -221,21 +221,22 @@ body { margin: 0; }
 
 /* Minimal scrollbar - only visible when hovering or scrolling */
 .side-panel-content::-webkit-scrollbar {
-  width: 4px;                    /* very thin scrollbar */
+  width: 6px;                    /* slightly wider for visibility */
 }
 
 .side-panel-content::-webkit-scrollbar-track {
-  background: transparent;       /* invisible track */
+  background: #1a1a1a;           /* subtle dark track */
+  border-radius: 3px;
 }
 
 .side-panel-content::-webkit-scrollbar-thumb {
-  background: transparent;       /* invisible by default */
-  border-radius: 2px;
+  background: #444;              /* always visible when content overflows */
+  border-radius: 3px;
 }
 
 /* Show scrollbar only when hovering over the sidebar */
 .side-panel:hover .side-panel-content::-webkit-scrollbar-thumb {
-  background: #444;              /* appear on hover */
+  background: #555;              /* slightly lighter on hover */
 }
 
 .side-panel-content::-webkit-scrollbar-thumb:hover {
@@ -482,11 +483,15 @@ body { margin: 0; }
   color: #fff;
   padding: 4px 10px;
   border-radius: 9999px;
-  cursor: default;
+  cursor: pointer;
   user-select: none;
-  transition: transform 0.15s ease, filter 0.15s ease;
+  transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
 }
-.skill-pill:hover { transform: scale(1.05); filter: brightness(1.2); }
+.skill-pill:hover { 
+  transform: scale(1.08); 
+  filter: brightness(1.3); 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
 .qa-skill      { background-color: #17803a; }
 .web-skill     { background-color: var(--color-blue); }
 .backend-skill { background-color: var(--color-dyellow); }
