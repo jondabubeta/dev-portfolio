@@ -140,12 +140,12 @@ const Terminal = forwardRef((props, ref) => {
 
       <div
         className="terminal-body"
-        onMouseUp={() => {
-          const selection = window.getSelection();
-          if (!selection || selection.toString()) return; // Don't steal focus if text is selected
-          // Don't auto-focus on mobile to prevent scroll issues
-          if (window.innerWidth >= 768) {
-            inputRef.current?.focus();
+        onClick={() => {
+          // Focus input when clicking terminal body, but prevent scroll
+          if (inputRef.current) {
+            const scrollY = window.scrollY;
+            inputRef.current.focus({ preventScroll: true });
+            window.scrollTo(0, scrollY);
           }
         }}
       >
@@ -194,12 +194,9 @@ const Terminal = forwardRef((props, ref) => {
             onKeyDown={handleKeyDown}
             onFocus={(e) => {
               setFocused(true);
-              // Prevent scroll on focus for mobile
-              e.target.scrollIntoView = () => {};
             }}
             onBlur={() => setFocused(false)}
-            autoFocus={window.innerWidth >= 768}
-            inputMode="none"
+            autoFocus={typeof window !== 'undefined' && window.innerWidth >= 768}
           />
         </div>
 

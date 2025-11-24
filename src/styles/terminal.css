@@ -49,12 +49,13 @@
 .prompt, .block-cursor { color:#fff; }
 .block-cursor { animation: blink 1s steps(1) infinite; font-weight: bold; }
 .hidden-input { 
-  position: absolute; 
-  left: -9999px; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
   opacity: 0;
-  pointer-events: none;
-  -webkit-user-select: none;
-  user-select: none;
+  pointer-events: auto;
 }
 @keyframes blink { 50% { opacity: 0; } }
 .terminal-error { color:#ff5555; font-weight:bold; }
