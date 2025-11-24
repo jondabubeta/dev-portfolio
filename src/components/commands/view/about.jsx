@@ -1,10 +1,31 @@
 import React from 'react';
+import aboutData from '../../../data/about.json';
 
 const AboutViewer = () => {
   return (
     <div>
-      <h2>About Me</h2>
-      <p>This section contains information about me.</p>
+      <div className="text-green" style={{ fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
+        {aboutData.name}
+      </div>
+      <div className="text-blue" style={{ fontSize: '1rem', marginBottom: '0.25rem' }}>
+        {aboutData.title}
+      </div>
+      <div style={{ fontSize: '0.9rem', fontStyle: 'italic', marginBottom: '1rem', opacity: 0.9 }}>
+        {aboutData.tagline}
+      </div>
+      
+      <p style={{ marginBottom: '1rem' }}>
+        {aboutData.bio}
+      </p>
+      
+      <div className="text-gold" style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>
+        Highlights:
+      </div>
+      <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
+        {aboutData.highlights.map((highlight, index) => (
+          <li key={index} style={{ marginBottom: '0.25rem' }}>{highlight}</li>
+        ))}
+      </ul>
     </div>
   );
 };

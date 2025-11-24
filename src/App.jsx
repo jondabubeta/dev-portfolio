@@ -20,15 +20,12 @@ function slugify(name = "") {
 
 export default function App() {
   const terminalRef = useRef(null);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Check for mobile and manage sidebar state
+  // Check for mobile viewport
   useEffect(() => {
     const checkMobile = () => {
-      const mobile = window.innerWidth < 768;
-      setIsMobile(mobile);
-      setIsSidebarOpen(window.innerWidth >= 768);
+      setIsMobile(window.innerWidth < 768);
     };
 
     checkMobile();
@@ -42,11 +39,6 @@ export default function App() {
 
     if (!didRunDirectly) {
       window.dispatchEvent(new CustomEvent("terminal:command", { detail: cmd }));
-    }
-
-    // Close sidebar on mobile when command is executed
-    if (isMobile) {
-      setIsSidebarOpen(false);
     }
   };
 
@@ -75,40 +67,65 @@ export default function App() {
 
   return (
     <div className="page-wrapper">
-      {/* Mobile Header with Hamburger */}
-      <header className="mobile-header">
-        <button 
-          className={`hamburger-btn ${isSidebarOpen ? 'hamburger-open' : ''}`}
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          aria-label="Toggle menu"
-        >
-          <span className="hamburger-line"></span>
-          <span className="hamburger-line"></span>
-          <span className="hamburger-line"></span>
-        </button>
-        <h1 className="mobile-title">Terminal Portfolio</h1>
-      </header>
-
-      {/* Mobile Overlay */}
-      {isSidebarOpen && isMobile && (
-        <div 
-          className="mobile-overlay"
-          onClick={() => setIsSidebarOpen(false)}
-          aria-hidden="true"
-        />
+      {/* Desktop Sidebar */}
+      {!isMobile && (
+        <aside className="side-panel">
+          <SidePanel onCommand={handleCommand} />
+        </aside>
       )}
 
-      {/* 🧩 Left Column */}
-      <aside className={`side-panel ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
-        <SidePanel onCommand={handleCommand} />
-      </aside>
-
-      {/* 💻 Right Column (main terminal) */}
+      {/* Terminal (full screen on mobile, right column on desktop) */}
       <main className="terminal-panel">
         <div className="terminal-wrapper">
           <Terminal ref={terminalRef} />
         </div>
       </main>
+
+      {/* Mobile Bottom Navigation */}
+      {isMobile && (
+        <nav className="mobile-bottom-nav">
+          <button 
+            className="nav-btn"
+            onClick={() => handleCommand('view about')}
+            title="About"
+          >
+            <span className="nav-icon">👤</span>
+            <span className="nav-label">About</span>
+          </button>
+          <button 
+            className="nav-btn"
+            onClick={() => handleCommand('view experience')}
+            title="Experience"
+          >
+            <span className="nav-icon">💼</span>
+            <span className="nav-label">Work</span>
+          </button>
+          <button 
+            className="nav-btn"
+            onClick={() => handleCommand('view skills')}
+            title="Skills"
+          >
+            <span className="nav-icon">🛠️</span>
+            <span className="nav-label">Skills</span>
+          </button>
+          <button 
+            className="nav-btn"
+            onClick={() => handleCommand('view projects')}
+            title="Projects"
+          >
+            <span className="nav-icon">📁</span>
+            <span className="nav-label">Projects</span>
+          </button>
+          <button 
+            className="nav-btn"
+            onClick={() => handleCommand('view contact')}
+            title="Contact"
+          >
+            <span className="nav-icon">📧</span>
+            <span className="nav-label">Contact</span>
+          </button>
+        </nav>
+      )}
     </div>
   );
 }

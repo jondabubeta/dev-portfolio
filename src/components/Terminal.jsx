@@ -55,7 +55,12 @@ const Terminal = forwardRef((props, ref) => {
   }, []);
 
   useEffect(() => {
-    terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    // Smooth scroll on desktop, but use instant on mobile to prevent over-scroll
+    const isMobile = window.innerWidth < 768;
+    terminalEndRef.current?.scrollIntoView({ 
+      behavior: isMobile ? 'auto' : 'smooth',
+      block: 'end'
+    });
   }, [lines]);
 
   useEffect(() => {
@@ -138,7 +143,10 @@ const Terminal = forwardRef((props, ref) => {
         onMouseUp={() => {
           const selection = window.getSelection();
           if (!selection || selection.toString()) return; // Don't steal focus if text is selected
-          inputRef.current?.focus();
+          // Don't auto-focus on mobile to prevent scroll issues
+          if (window.innerWidth >= 768) {
+            inputRef.current?.focus();
+          }
         }}
       >
         {lines.map((line, index) => {
@@ -184,9 +192,14 @@ const Terminal = forwardRef((props, ref) => {
             type="text"
             className="hidden-input"
             onKeyDown={handleKeyDown}
-            onFocus={() => setFocused(true)}
+            onFocus={(e) => {
+              setFocused(true);
+              // Prevent scroll on focus for mobile
+              e.target.scrollIntoView = () => {};
+            }}
             onBlur={() => setFocused(false)}
-            autoFocus
+            autoFocus={window.innerWidth >= 768}
+            inputMode="none"
           />
         </div>
 

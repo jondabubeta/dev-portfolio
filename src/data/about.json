@@ -1,0 +1,29 @@
+{
+  "name": "Jonathan Dabu",
+  "title": "Software Engineer",
+  "tagline": "Focused on test automation, game systems, and developer tools",
+  "intro": "I'm Jonathan Dabu — a software engineer focused on test automation, game systems, and developer tools. Thanks for visiting!",
+  "bio": "With over 5+ years of experience as an SDET, I specialize in building robust test automation frameworks using Java, TestNG, and Selenium. I've architected scalable testing solutions for enterprise applications, implementing CI/CD pipelines with Jenkins and Docker to ensure reliable software delivery.",
+  "highlights": [
+    "5+ years of experience as an SDET",
+    "Expert in test automation frameworks (Java, TestNG, Selenium)",
+    "Architected scalable testing solutions for enterprise applications",
+    "CI/CD pipeline implementation with Jenkins and Docker"
+  ],
+  "documents": [
+    {
+      "label": "Resume",
+      "command": "view resume",
+      "downloadUrl": "/files/JonathanDabu_Resume.pdf",
+      "downloadFilename": "JonathanDabu_Resume.pdf",
+      "pageUrl": "/resume/"
+    },
+    {
+      "label": "Cover Letter",
+      "command": "view cv",
+      "downloadUrl": "/files/JonathanDabu_CoverLetter.pdf",
+      "downloadFilename": "JonathanDabu_CoverLetter.pdf",
+      "pageUrl": "/cv/"
+    }
+  ]
+}
