@@ -14,13 +14,16 @@ function slugify(name = "") {
 }
 
 export default function ProjectsPanel({ onCommand }) {
+  // Filter out projects where current is true
+  const nonCurrentProjects = projects.filter((p) => !p.current);
+
   return (
     <div className="section-container projects-section">
       <h3>Projects</h3>
 
       <div className="scrollable-section">
         <div className="panel-table projects-table">
-          {projects.map((p, i) => {
+          {nonCurrentProjects.map((p, i) => {
             const key = `${p.title}-${i}`;
             const cmd = `view projects --name="${p.title}"`;
             const slug = slugify(p.title);

@@ -3,6 +3,10 @@ import skillsData from "../data/skills.json";
 
 const CATEGORY_LABELS = {
   qa: "QA & Automation",
+  devops: "DevOps",
+  languages: "Programming Languages",
+  db: "Databases",
+  tools: "Tools & Platforms",
   web: "Web Development",
 };
 

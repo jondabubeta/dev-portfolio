@@ -24,8 +24,8 @@ export default function ContactViewer({ filter = {} }) {
   }
 
   return (
-    <div className="terminal-line">
-      {visibleContacts.map(({ type, href }, index) => {
+    <div>
+      {visibleContacts.map(({ type, href }) => {
         let value = href;
         let display = value;
         let isLink = false;
@@ -37,14 +37,13 @@ export default function ContactViewer({ filter = {} }) {
         }
         const label = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
         return (
-          <span key={type}>
+          <div key={type} className="terminal-line">
             {label}: {isLink ? (
               <a href={href} target="_blank" rel="noopener noreferrer" className="terminal-link">{value}</a>
             ) : (
               display
             )}
-            {index < visibleContacts.length - 1 && <span>&nbsp;&nbsp;</span>}
-          </span>
+          </div>
         );
       })}
     </div>

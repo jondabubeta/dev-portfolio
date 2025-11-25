@@ -32,7 +32,7 @@
   align-items: stretch;
   justify-content: center;
   padding: 1rem clamp(1rem, 2vw, 3rem);
-  transform: translateX(-20px); /* move left by 20px on desktop */
+  transform: translateX(-35px); /* move left by 30px on desktop */
   overflow: hidden;
 }
 
