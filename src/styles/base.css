@@ -30,6 +30,17 @@ body {
   transform-origin: 0 0;
 }
 
+/* Scale up everything for high-resolution screens (1440p and above) */
+@media (min-width: 2560px) {
+  body {
+    font-size: 1.15rem;
+  }
+  
+  html {
+    font-size: 115%;
+  }
+}
+
 .mt { margin-top: 2rem; }
 .mb { margin-bottom: 1rem; }
 .text-green { color: var(--color-green); }

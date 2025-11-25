@@ -66,6 +66,13 @@ body { margin: 0; }
   position: relative;
 }
 
+/* Prevent scrollbars on high-res zoomed screens */
+@media (min-width: 2560px) {
+  html, body, #root {
+    overflow: hidden;
+  }
+}
+
 /* =========================
    MOBILE BOTTOM NAVIGATION
 ========================= */
@@ -162,6 +169,14 @@ body { margin: 0; }
     max-height: 100vh !important;  /* constrain to viewport */
     position: relative;
     transform: none !important;
+  }
+}
+
+/* Adjust for zoomed high-res screens */
+@media (min-width: 2560px) {
+  .side-panel {
+    height: 100vh !important;
+    max-height: 100vh !important;
   }
 }
 
