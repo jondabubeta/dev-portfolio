@@ -7,7 +7,7 @@ import React, {
   useRef
 } from 'react';
 import { handleCommand } from '../utils/handleCommand';
-import { splashTextBig } from './title/splash';
+import { splashText, splashTextMobile } from './title/splash';
 import { welcomeText } from './title/welcome';
 import { version } from './title/version';
 
@@ -21,8 +21,10 @@ const Terminal = forwardRef((props, ref) => {
   const [focused, setFocused] = useState(true);
   const inputRef = useRef(null);
 
-  // Change this for splash title
-  const splash = splashTextBig;
+  // Use smaller JDabu splash on mobile
+  const splash = (typeof window !== 'undefined' && window.innerWidth < 768)
+    ? splashTextMobile
+    : splashText;
 
   // Centralized executor (keyboard, ref, and event bus use this)
   const execute = (command) => {
