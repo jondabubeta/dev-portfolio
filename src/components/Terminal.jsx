@@ -187,8 +187,7 @@ const Terminal = forwardRef((props, ref) => {
 
         <div className="input-line">
           <span className="prompt">&gt;&nbsp;</span>
-          <span className="input-text">{input}</span>
-          {focused && showCursor && <span className="block-cursor">█</span>}
+          <span className="input-text">{input}{focused && showCursor && <span className="block-cursor">█</span>}</span>
           <input
             ref={inputRef}
             type="text"
