@@ -1,3 +1,9 @@
+/* Make About section <p> match .panel-label */
+.side-panel-content p {
+  font-size: 0.95rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
 /* =============== SKILLS PAGE =============== */
 .skills-page-root {
   padding: 2rem;
