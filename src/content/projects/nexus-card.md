@@ -17,7 +17,7 @@ Nexus Card is a browser-based memory matching game built with React. Players fli
 <img src="/public/images/projects/nexus_card/nc_blizz_board.webp" alt="Nexus Card - Blizzard Theme" style="max-width:480px;width:100%;border-radius:8px;box-shadow:0 2px 12px #0002;margin-bottom:1.5rem;" />
 
 ## Accessibility Features
-Nexus Card includes several accessibility improvements to ensure a more inclusive experience:
+Nexus Card includes accessibility improvements to ensure a more inclusive experience:
 
 - **Keyboard Navigation:**
 	- All interactive elements (cards, theme selectors, reset button) are accessible via keyboard (Tab/Shift+Tab, Enter/Space).
@@ -25,14 +25,10 @@ Nexus Card includes several accessibility improvements to ensure a more inclusiv
 - **ARIA Labels:**
 	- Cards and buttons use appropriate `aria-label` attributes to describe their function and state (e.g., "Flipped", "Matched").
 	- The game board and controls are labeled for assistive technologies.
-- **Color Contrast:**
-	- Color choices and backgrounds are selected for sufficient contrast, improving readability for users with low vision or color blindness.
-- **Screen Reader Support:**
-	- Important game state changes (matches, win state, timer) are announced via ARIA live regions or descriptive text.
 - **Responsive Layout:**
 	- The UI adapts to different screen sizes and input types, supporting both mouse and touch users.
 
-These features make Nexus Card more usable for a wider range of players, including those using assistive technologies.
+These features make Nexus Card more usable for a wider range of players, including those using assistive technologies. More features are incoming in the pipeline.
 
 ## Gameplay
 1. User selects a theme
@@ -81,7 +77,7 @@ These features make Nexus Card more usable for a wider range of players, includi
 ## Extensibility & Future Work
 - Add more card themes (e.g., new franchises)
 - Add sound effects and music
-- Add more accessibility improvements
+- Add more accessibility improvements (e.g. Color Contrast, Screen Reader support)
 - Support challenge modes
 
 ## Game Logic Overview
