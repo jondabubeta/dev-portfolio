@@ -1,5 +1,5 @@
 
-# AniRepo – Technical Design Document
+# AniRepo
 
 ## Background
 

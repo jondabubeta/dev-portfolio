@@ -535,7 +535,7 @@ body { margin: 0; }
 }
 .contact-label { color: #c0c0c0; text-transform: capitalize; }
 .contact-cell .icon-sm {
-  width: 20px; height: 25px; margin-left: 2px;
+  width: 22px; height: 22px; margin-left: 2px;
   object-fit: contain; cursor: pointer;
   transition: transform .15s ease, filter .15s ease;
 }
@@ -570,7 +570,7 @@ body { margin: 0; }
 .project-icons .icon-sm,
 .project-icons img,
 .project-icons svg {
-  width: 18px; height: 18px; object-fit: contain;
+  width: 22px; height: 22px; object-fit: contain;
   cursor: pointer; transition: transform .15s ease, filter .15s ease;
 }
 .project-icons .icon-sm:hover,

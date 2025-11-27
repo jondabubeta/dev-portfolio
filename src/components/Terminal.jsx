@@ -21,7 +21,7 @@ const Terminal = forwardRef((props, ref) => {
   const [focused, setFocused] = useState(true);
   const inputRef = useRef(null);
 
-  // Use smaller JDabu splash on mobile
+  // Use smaller splash on mobile
   const splash = (typeof window !== 'undefined' && window.innerWidth < 768)
     ? splashTextMobile
     : splashText;
