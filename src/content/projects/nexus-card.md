@@ -39,6 +39,14 @@ These features make Nexus Card more usable for a wider range of players, includi
 6. On completion, score is shown
 7. User can reset or change theme to play again
 
+## Game Logic Overview
+- Cards are shuffled and paired on new game/theme change
+- Clicking a card flips it; two flipped cards are checked for a match
+- Matched cards stay face up; mismatches flip back after a delay
+- Timer starts on first flip, stops when all pairs are matched
+- Move counter increments per pair flipped
+- High scores (fewest moves/time) saved in `localStorage`
+
 ## Architecture & Components
 - **Framework:** React (Create React App)
 - **App.js:** Main stateful component. Handles:
@@ -79,22 +87,3 @@ These features make Nexus Card more usable for a wider range of players, includi
 - Add sound effects and music
 - Add more accessibility improvements (e.g. Color Contrast, Screen Reader support)
 - Support challenge modes
-
-## Game Logic Overview
-- Cards are shuffled and paired on new game/theme change
-- Clicking a card flips it; two flipped cards are checked for a match
-- Matched cards stay face up; mismatches flip back after a delay
-- Timer starts on first flip, stops when all pairs are matched
-- Move counter increments per pair flipped
-- High scores (fewest moves/time) saved in `localStorage`
-
-## User Flow
-1. User selects a theme
-2. Game board is generated and cards are shuffled
-3. User flips cards to match pairs
-4. Timer and move counter track progress
-5. On completion, score is shown and high score updated if beaten
-6. User can reset or change theme to play again
-
-## Extensibility
-- Add new themes, sound effects, accessibility, or multiplayer modes easily
