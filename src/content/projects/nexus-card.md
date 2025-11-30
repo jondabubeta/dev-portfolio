@@ -1,5 +1,8 @@
 
+
 # Nexus Card
+
+[![GitHub Repo](https://img.shields.io/badge/github-nexus--card-blue?logo=github)](https://github.com/jondabubeta/nexus-card)
 
 Nexus Card is a browser-based memory matching game built with React. Players flip cards to match pairs, with themes inspired by Blizzard and Riot games. The app is fully client-side, responsive, and features animated card flipping, a timer, move counter, and local high score tracking.
 
