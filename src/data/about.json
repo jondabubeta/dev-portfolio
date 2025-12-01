@@ -2,8 +2,8 @@
   "name": "Jonathan Dabu",
   "title": "Software Engineer",
   "tagline": "Focused on test automation, game systems, and developer tools",
-  "intro": "I'm Jonathan Dabu — a software engineer focused on test automation, game systems, and developer tools. Thanks for visiting!",
-  "bio": "With over 5+ years of experience as an SDET, I specialize in building robust test automation frameworks using Java, TestNG, and Selenium. I've architected scalable testing solutions for enterprise applications, implementing CI/CD pipelines with Jenkins and Docker to ensure reliable software delivery.",
+  "intro": "I’m Jonathan, a software engineer specializing in development, test automation, and AI/ML.",
+  "bio": "I build reliable, scalable systems and testing frameworks that help teams ship faster with confidence, and I enjoy using machine learning and automation to turn messy data and workflows into clear, actionable insights. This portfolio showcases the tools, frameworks, and experiments I’ve created across backend services, test platforms, and AI-powered solutions.",
   "highlights": [
     "5+ years of experience as an SDET",
     "Expert in test automation frameworks (Java, TestNG, Selenium)",

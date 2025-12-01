@@ -14,10 +14,10 @@ Nexus Card is a browser-based memory matching game built with React. Players fli
 - Theme selection and asset preloading
 
 **League of Legends Theme:**<br>
-<img src="/public/images/projects/nexus_card/nc_riot_board.webp" alt="Nexus Card - Riot Theme" style="max-width:480px;width:100%;border-radius:8px;box-shadow:0 2px 12px #0002;margin-bottom:1.5rem;" />
+<img src="/images/projects/nexus_card/nc_riot_board.webp" alt="Nexus Card - Riot Theme" style="max-width:480px;width:100%;border-radius:8px;box-shadow:0 2px 12px #0002;margin-bottom:1.5rem;" />
 
 **Blizzard Theme:**<br>
-<img src="/public/images/projects/nexus_card/nc_blizz_board.webp" alt="Nexus Card - Blizzard Theme" style="max-width:480px;width:100%;border-radius:8px;box-shadow:0 2px 12px #0002;margin-bottom:1.5rem;" />
+<img src="/images/projects/nexus_card/nc_blizz_board.webp" alt="Nexus Card - Blizzard Theme" style="max-width:480px;width:100%;border-radius:8px;box-shadow:0 2px 12px #0002;margin-bottom:1.5rem;" />
 
 ## Accessibility Features
 Nexus Card includes accessibility improvements to ensure a more inclusive experience:
