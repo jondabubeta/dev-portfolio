@@ -24,20 +24,60 @@
       "REST API",
       "media",
       "inventory"
-    ]
-    ,
-  "status": "Active",
-  "current": true
+    ],
+    "status": "Active",
+    "current": true
   },
   {
     "title": "Nexus Card",
     "blurb": "Blizzard and Riot-themed memory game (React)",
     "description": "A Blizzard-themed memory matching game built with React. Players flip character cards and try to match pairs based on iconic heroes from Blizzard franchises.",
     "content": "nexus-card.md",
-    "tech": ["React", "JavaScript", "HTML", "CSS"],
-    "tags": ["game", "browser", "memory", "react", "blizzard"]
-    ,
-  "status": "Completed",
-  "current": false
+    "tech": [
+      "React",
+      "JavaScript",
+      "HTML",
+      "CSS"
+    ],
+    "tags": [
+      "game",
+      "browser",
+      "memory",
+      "react",
+      "blizzard"
+    ],
+    "status": "Completed",
+    "current": false
+  },
+  {
+    "title": "Dev Portfolio",
+    "blurb": "Terminal-inspired React + Vite portfolio",
+    "description": "Interactive developer portfolio that mimics a CLI: type or click commands to explore projects, experience, education, resume, and CV with rich filtering.",
+    "content": "dev-portfolio.md",
+    "tech": [
+      "React",
+      "Vite",
+      "JavaScript",
+      "Marked",
+      "CSS"
+    ],
+    "highlights": [
+      "Terminal-style UI with command routing and history navigation",
+      "Data-driven sections powered by JSON for experience, projects, education, and skills",
+      "Markdown-backed project pages with generated table of contents and smooth anchor scrolling",
+      "Filtering flags for `view projects` and `view experience` (by status, tag, name, company, years)",
+      "Cover letter and resume viewers for quick sharing"
+    ],
+    "tags": [
+      "portfolio",
+      "terminal",
+      "react",
+      "vite",
+      "cli",
+      "frontend"
+    ],
+    "status": "Active",
+    "current": true,
+    "years": "2024–Present"
   }
 ]
