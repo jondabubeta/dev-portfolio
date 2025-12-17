@@ -365,9 +365,9 @@ body { margin: 0; }
 
 .panel-row {
   display: grid;
-  grid-template-columns: 28ch 1fr 12ch; /* default layout */
+  grid-template-columns: 35ch 1fr 12ch; /* expanded label column */
   align-items: center;
-  column-gap: 8px;               /* tighter column spacing */
+  column-gap: 8px;
   min-width: 0;
   min-height: 24px;              /* more compact row height */
 }
@@ -546,17 +546,17 @@ body { margin: 0; }
    single-line everywhere, no sidebar scrollbars
 ========================= */
 .projects-table .panel-row {
-  grid-template-columns: 11ch 1fr 7ch; /* name more compact, description wide, icons tight */
+   grid-template-columns: minmax(15ch, 1.8fr) minmax(0, 5.5fr) auto;
   column-gap: 10px;
 }
 
 /* Force single-line, no extra spacing */
 .projects-table .panel-label,
 .projects-table .panel-meta {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 1.1;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  line-height: 1.2;
   margin: 0;
 }
 
@@ -647,5 +647,15 @@ body { margin: 0; }
   .panel-meta { display: none; }
   .contacts-grid {
     padding-left: 0;
+  }
+}
+
+/* Scale up icons on higher resolutions */
+@media (min-width: 1440px) {
+  .icon-sm,
+  .doc-icons img,
+  .doc-icons svg {
+    width: 22px;
+    height: 22px;
   }
 }

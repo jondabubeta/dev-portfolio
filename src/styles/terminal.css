@@ -1,3 +1,10 @@
+/* ============================================================================
+   TERMINAL WINDOW STYLES
+   =========================================================================
+   Styles for the terminal window container, bar, body, and text output.
+   ============================================================================ */
+
+/* ========== Terminal Window Container ========== */
 .terminal-window {
   display: flex;
   flex-direction: column;
@@ -13,18 +20,48 @@
   overflow: hidden;
 }
 
-
+/* ========== Terminal Title Bar ========== */
 .terminal-bar {
-  display: flex; flex-shrink: 0; align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
   background: linear-gradient(to bottom, #3b3b3b, #2b2b2b);
-  height: 28px; padding: 0 12px; position: relative; color: #ccc;
-  border-top-left-radius: 10px; border-top-right-radius: 10px;
+  height: 28px;
+  padding: 0 12px;
+  position: relative;
+  color: #ccc;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
-.traffic-lights { display: flex; gap: 8px; }
-.traffic-lights span { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
-.red { background-color:#ff5f56; } .yellow{ background-color:#ffbd2e; } .green{ background-color:#27c93f; }
-.terminal-title { position:absolute; left:0; right:0; text-align:center; font-size:13px; pointer-events:none; user-select:none; }
 
+.terminal-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 13px;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ========== Traffic Light Indicators ========== */
+.traffic-lights {
+  display: flex;
+  gap: 8px;
+}
+
+.traffic-lights span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.red { background-color: #ff5f56; }
+.yellow { background-color: #ffbd2e; }
+.green { background-color: #27c93f; }
+
+/* ========== Terminal Output Area ========== */
 .terminal-body {
   flex: 1;                     
   padding: 1.5rem 1rem 1rem 2rem;
@@ -36,19 +73,61 @@
   scrollbar-gutter: stable both-edges;
   scroll-padding-bottom: 2rem;
   overscroll-behavior: contain;
+  user-select: text;
 }
+
+/* ========== Terminal Output Lines ========== */
 .terminal-line, .input-line {
-  display:flex; align-items: baseline;
-  font-family: inherit; font-size: 1rem; line-height: 1.5rem; margin:0; padding:0;
+  display: flex;
+  align-items: baseline;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  margin: 0;
+  padding: 0;
+  user-select: text;
 }
+
+.terminal-line.version {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: -0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ========== Terminal Prompt & Input ========== */
+.prompt {
+  color: #fff;
+}
+
+.block-cursor {
+  color: #fff;
+  animation: blink 1s steps(1) infinite;
+  font-weight: bold;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
 .input-line input {
-  background: transparent; border: none; color: inherit;
-  font: inherit; line-height: inherit; outline: none; flex: 1; padding: 0; margin: 0;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  outline: none;
+  flex: 1;
+  padding: 0;
+  margin: 0;
 }
-.terminal-line.version { font-size:0.8rem; color:#888; margin-top:-0.25rem; margin-bottom:0.5rem; }
-.prompt, .block-cursor { color:#fff; }
-.block-cursor { animation: blink 1s steps(1) infinite; font-weight: bold; }
-.hidden-input { 
+
+.input-text {
+  user-select: text;
+}
+
+/* ========== Hidden Input Field ========== */
+.hidden-input {
   position: fixed;
   top: 0;
   left: 0;
@@ -57,12 +136,23 @@
   opacity: 0;
   pointer-events: auto;
 }
-@keyframes blink { 50% { opacity: 0; } }
-.terminal-error { color:#ff5555; font-weight:bold; }
-.terminal-link  { color:#3b82f6; text-decoration: underline; }
-.terminal-body, .terminal-line, .input-line, .input-text { user-select: text; }
 
-/* Mobile responsive styles */
+/* ========== Terminal Output Styling ========== */
+.terminal-error {
+  color: #ff5555;
+  font-weight: bold;
+}
+
+.terminal-link {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
+/* ============================================================================
+   RESPONSIVE STYLES - MOBILE & TABLET
+   ============================================================================ */
+
+/* ========== Mobile Responsive (< 768px) ========== */
 @media (max-width: 767px) {
   .terminal-window {
     height: calc(100vh - 6rem);
@@ -78,7 +168,6 @@
     font-size: 0.9rem;
     scrollbar-gutter: auto;
     scroll-padding-bottom: 1rem;
-    overscroll-behavior: contain;
   }
   
   .terminal-line, .input-line {
@@ -91,17 +180,17 @@
     padding: 0 8px;
   }
   
+  .terminal-title {
+    font-size: 12px;
+  }
+  
   .traffic-lights span {
     width: 10px;
     height: 10px;
   }
-  
-  .terminal-title {
-    font-size: 12px;
-  }
 }
 
-/* Tablet adjustments */
+/* ========== Tablet Responsive (768px - 1024px) ========== */
 @media (min-width: 768px) and (max-width: 1024px) {
   .terminal-window {
     max-width: 95vw;

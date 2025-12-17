@@ -1,4 +1,10 @@
-/* === Page Layout === */
+/* ============================================================================
+   LAYOUT STYLES
+   =========================================================================
+   Main page structure, grid layout, sidebar, and terminal area positioning.
+   ============================================================================ */
+
+/* ========== Main Page Wrapper ========== */
 .page-wrapper {
   display: grid;
   grid-template-columns: var(--sp-w) minmax(0, 1fr);
@@ -6,7 +12,7 @@
   height: 100vh;
 }
 
-/* === Side Panel === */
+/* ========== Side Panel Container ========== */
 .side-panel {
   background-color: #121212;
   padding: 1rem 1rem 0 1rem;
@@ -14,7 +20,7 @@
   scrollbar-gutter: stable both-edges; 
 }
 
-/* Hide side panel on small screens */
+/* ========== Responsive: Hide Side Panel on Mobile ========== */
 @media (max-width: 768px) {
   .page-wrapper {
     grid-template-columns: 1fr;
@@ -24,7 +30,7 @@
   }
 }
 
-/* === Terminal Area === */
+/* ========== Terminal Display Area ========== */
 .terminal-panel {
   min-width: 0;
   height: 100vh;
@@ -32,11 +38,11 @@
   align-items: stretch;
   justify-content: center;
   padding: 1rem clamp(1rem, 2vw, 3rem);
-  transform: translateX(-35px); /* move left by 30px on desktop */
+  transform: translateX(-35px);
   overflow: hidden;
 }
 
-/* Remove transform on mobile */
+/* ========== Responsive: Remove Transform on Mobile ========== */
 @media (max-width: 768px) {
   .terminal-panel {
     transform: none;
@@ -44,10 +50,10 @@
   }
 }
 
-
+/* ========== Terminal Wrapper ========== */
 .terminal-wrapper {
   width: 100%;
-  max-width: none;      /* ensure wrapper isn’t the cap */
+  max-width: none;
   min-width: 0;
   margin: 0 auto;
 }

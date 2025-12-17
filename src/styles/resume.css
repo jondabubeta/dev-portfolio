@@ -1,58 +1,64 @@
-/* ===========================
-   Resume Page Layout
-=========================== */
-.resume-page {
-  --content-max: 900px;
-  --toc-w: 260px;
-  --gap: clamp(32px, 6vw, 80px);
-  --grid-shift: -24px; /* nudge TOC left */
-}
+/* ============================================================================
+   RESUME PAGE STYLES
+   =========================================================================
+   Styles for resume pages including grid layout, table of contents, and
+   content sections with typography and responsive adjustments.
+   ============================================================================ */
 
+/* ========== Page Setup ========== */
 html, body {
   height: 100%;
-  overflow-y: auto; /* scrolling happens on body */
+  overflow-y: auto;
 }
 
 .page-wrapper,
 .resume-page,
-.resume-grid { overflow: visible; }
+.resume-grid {
+  overflow: visible;
+}
 
+/* ========== Resume Page Container ========== */
 .resume-page {
+  --content-max: 900px;
+  --toc-w: 260px;
+  --gap: clamp(32px, 6vw, 80px);
+  --grid-shift: -24px;
   padding: 16px;
 }
 
-/* ===========================
-   Grid Layout
-=========================== */
+/* ============================================================================
+   GRID LAYOUT
+   ============================================================================ */
+
+/* ========== Resume Grid Layout ========== */
 .resume-grid {
   display: grid;
   grid-template-columns: var(--toc-w, 260px) minmax(0, var(--content-max, 900px));
   column-gap: var(--gap, clamp(32px, 6vw, 80px));
   justify-content: center;
-
-  /* IMPORTANT: let grid items stretch to the row height
-     so the left column matches the content column's height */
   align-items: stretch;
-  overflow: visible; /* keep sticky working */
+  overflow: visible;
 }
 
-/* Nudge TOC slightly left without moving content */
+/* ========== Table of Contents Container ========== */
 .resume-toc,
 .project-toc {
-  align-self: stretch;   /* fill the row's height so sticky has room to work */
-  /* optional nudge left */
+  align-self: stretch;
   transform: translateX(var(--grid-shift, -24px));
-  display: flex;         /* allow the card inside to size naturally */
+  display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ensure enough height for sticky to work */
+  min-height: 100vh;
 }
-/* ===========================
-   Sticky TOC Card
-=========================== */
+
+/* ============================================================================
+   TABLE OF CONTENTS (TOC)
+   ============================================================================ */
+
+/* ========== TOC Card Styling ========== */
 .toc-card {
   position: sticky;
   top: 16px;
-  max-height: calc(100vh - 32px); /* Full viewport height minus top/bottom margin */
+  max-height: calc(100vh - 32px);
   width: fit-content;
   display: flex;
   flex-direction: column;
@@ -63,14 +69,16 @@ html, body {
   padding: 12px;
 }
 
+/* ========== TOC Title ========== */
 .toc-title {
   font-weight: 700;
   margin-bottom: 8px;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+  color: var(--color-blue);
 }
 
-/* ===========================
-   TOC List
-=========================== */
+/* ========== TOC Link List ========== */
 .toc-list {
   margin-top: 4px;
   overflow-y: auto;
@@ -78,111 +86,14 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  flex-shrink: 1; /* Allow shrinking to fit content */
-  min-height: 0; /* Allow flexbox to shrink below content size */
+  flex-shrink: 1;
+  min-height: 0;
 }
 
-/* TOC Links */
+/* ========== TOC Links ========== */
 .toc-link {
   text-decoration: none;
-  font-size: 0.95rem;
-  opacity: 0.85;
-  padding: 6px 8px;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
-}
-
-.toc-link:hover {
-  opacity: 1;
-  border-color: var(--terminal-border, #333);
-}
-
-.toc-link.active {
-  opacity: 1;
-  border-color: var(--terminal-border, #333);
-  background: rgba(255, 255, 255, 0.06);
-}
-
-/* ===========================
-   Resume Content Area
-=========================== */
-.resume-content {
-  min-width: 0;
-  padding-bottom: 160px;
-}
-
-.resume-section {
-  scroll-margin-top: 96px; /* ensure headers aren’t hidden */
-}
-
-.resume-section + .resume-section {
-  margin-top: 28px;
-}
-
-/* ===========================
-   Smooth Scrolling
-=========================== */
-html {
-  scroll-behavior: smooth;
-}
-
-/* ===========================
-   Text Styling
-=========================== */
-/* Font size control for the resume content area */
-.resume-content {
-  font-size: 1.0rem;    /* slightly smaller than default (16px → 15.2px) */
-  line-height: 1.6;      /* improve readability */
-  color: #e0e0e0;        /* optional: slightly lighter text */
-}
-
-/* Ensure the resume page uses the same title/subtitle treatment
-   as the terminal-based resume component (.resume) */
-.resume-page .terminal-h1 {
-  font-size: 1.8rem;
-  font-weight: 800;
-  letter-spacing: 0.6px;
-  margin-bottom: 0.25rem;
-  display: inline-block;
-  padding-bottom: 0.3rem;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-.resume-page .terminal-h2 {
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: var(--color-green);
-  margin-top: 1.2rem;
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.03em;
-  opacity: 1;
-}
-
-/* Optional: adjust section headers separately */
-.resume-section h2,
-.resume-section h3 {
-  font-size: 1.15rem;
-  margin-bottom: 0.75rem;
-  color: var(--color-blue);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* ===== Table of Contents (TOC) ===== */
-
-/* TOC Title */
-.toc-title {
-  font-weight: 700;
-  margin-bottom: 8px;
-  font-size: 1.3rem;         /* increased from default (about 17–18px) */
-  letter-spacing: 0.5px;
-  color: var(--color-blue);  /* optional accent color */
-}
-
-/* TOC Links */
-.toc-link {
-  text-decoration: none;
-  font-size: 1.2rem;           /* increased from 0.95rem */
+  font-size: 1.2rem;
   line-height: 1.5;
   opacity: 0.9;
   padding: 8px 10px;
@@ -202,22 +113,88 @@ html {
   background: rgba(255, 255, 255, 0.08);
 }
 
+/* ============================================================================
+   RESUME CONTENT AREA
+   ============================================================================ */
 
-/* ===========================
-   Responsive Adjustments
-=========================== */
+/* ========== Main Content Container ========== */
+.resume-content {
+  min-width: 0;
+  padding-bottom: 160px;
+  font-size: 1.0rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+}
+
+/* ========== Resume Sections ========== */
+.resume-section {
+  scroll-margin-top: 96px;
+}
+
+.resume-section + .resume-section {
+  margin-top: 28px;
+}
+
+/* ========== Smooth Scrolling ========== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ============================================================================
+   TYPOGRAPHY
+   ============================================================================ */
+
+/* ========== Main Title (H1) ========== */
+.resume-page .terminal-h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  margin-bottom: 0.25rem;
+  display: inline-block;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ========== Section Headers (H2) ========== */
+.resume-page .terminal-h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-green);
+  margin-top: 1.2rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.03em;
+  opacity: 1;
+}
+
+/* ========== Subsection Headers (H3) ========== */
+.resume-section h2,
+.resume-section h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ============================================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================================ */
+
+/* ========== Medium Screens (1200px) ========== */
 @media (max-width: 1200px) {
   .resume-toc {
     transform: translateX(-16px);
   }
 }
 
+/* ========== Large Screens (1600px+) ========== */
 @media (min-width: 1600px) {
   .resume-toc {
     transform: translateX(-32px);
   }
 }
 
+/* ========== Small Screens (< 992px) - Single Column ========== */
 @media (max-width: 991.98px) {
   .resume-grid {
     grid-template-columns: 1fr;
