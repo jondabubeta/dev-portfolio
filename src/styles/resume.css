@@ -11,6 +11,13 @@ html, body {
   overflow-y: auto;
 }
 
+/* Project pages need explicit overflow for scrolling */
+.project-page {
+  height: auto;
+  min-height: 100vh;
+  overflow-y: visible;
+}
+
 .page-wrapper,
 .resume-page,
 .resume-grid {

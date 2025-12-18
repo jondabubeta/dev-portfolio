@@ -72,13 +72,6 @@ body { margin: 0; }
   position: relative;
 }
 
-/* Prevent scrollbars on high-res zoomed screens */
-@media (min-width: 2560px) {
-  html, body, #root {
-    overflow: hidden;
-  }
-}
-
 /* =========================
    MOBILE BOTTOM NAVIGATION
 ========================= */
