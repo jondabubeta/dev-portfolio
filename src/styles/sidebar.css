@@ -112,7 +112,7 @@ body { margin: 0; }
 
   .nav-btn:active {
     transform: scale(0.95);
-    background: rgba(90, 167, 185, 0.2);
+    background: rgba(0, 207, 230, 0.2);
   }
 
   .nav-icon {
@@ -129,7 +129,7 @@ body { margin: 0; }
 
   .nav-btn:hover {
     color: var(--color-blue);
-    background: rgba(90, 167, 185, 0.1);
+    background: rgba(0, 207, 230, 0.1);
   }
 }
 
@@ -371,7 +371,7 @@ body { margin: 0; }
   transition: color 0.15s ease, background-color 0.15s ease;
 }
 .panel-row.clickable:hover {
-  background-color: rgba(90, 167, 185, 0.1);
+  background-color: rgba(0, 207, 230, 0.1);
   border-radius: 6px;
 }
 .panel-row.clickable:hover .panel-label,
