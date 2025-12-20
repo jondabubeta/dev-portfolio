@@ -419,6 +419,7 @@ body { margin: 0; }
 }
 .doc-label {
   font-size: 0.95rem;
+  color: var(--color-green);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -465,7 +466,7 @@ body { margin: 0; }
   right: 0.1rem;
   bottom: 0.1rem;
   font-size: 0.95rem;
-  color: var(--color-blue);
+  color: var(--color-green);
   cursor: pointer;
   background: #121212;
   padding: 2px 8px;
@@ -486,10 +487,10 @@ body { margin: 0; }
   filter: brightness(1.3); 
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
-.qa-skill      { background-color: #17803a; }
+.qa-skill      { background-color: var(--color-green); }
 .web-skill     { background-color: var(--color-blue); }
-.backend-skill { background-color: var(--color-dyellow); }
-.devops-skill  { background-color: var(--color-pink); }
+.backend-skill { background-color: var(--color-red); }
+.devops-skill  { background-color: var(--color-red); }
 
 /* =========================
    EDUCATION TABLE
