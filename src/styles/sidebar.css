@@ -423,6 +423,15 @@ body { margin: 0; }
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+.doc-label:hover {
+  background-color: rgba(0, 207, 230, 0.1);
+  color: var(--color-blue);
 }
 .doc-icons {
   display: flex;

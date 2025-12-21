@@ -21,7 +21,9 @@ export default function AboutPanel({ onCommand }) {
         <div className="doc-table">
           {aboutData.documents.map((doc, index) => (
             <div key={index} className="doc-row">
-              <div className="doc-label">{doc.label}</div>
+              <a href={doc.pageUrl} className="doc-label" target="_blank" rel="noopener noreferrer">
+                {doc.label}
+              </a>
               <div className="doc-icons">
                 <TerminalIcon
                   command={doc.command}
