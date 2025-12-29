@@ -1,11 +1,11 @@
 // src/App.jsx
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, lazy, Suspense } from "react";
 import SidePanel from "./components/SidePanel";
 import Terminal from "./components/Terminal";
-import ProjectTemplate from "./components/templates/ProjectTemplate";
+const ProjectTemplate = lazy(() => import("./components/templates/ProjectTemplate"));
 
-import ResumePage from "./pages/ResumePage";
-import SkillsPage from "./pages/SkillsPage";
+const ResumePage = lazy(() => import("./pages/ResumePage"));
+const SkillsPage = lazy(() => import("./pages/SkillsPage"));
 
 import projects from "./data/projects";
 import "./styles/index.css";
@@ -51,15 +51,27 @@ export default function App() {
     if (m) {
       const slug = m[1];
       const project = projects.find((p) => slugify(p.title) === slug);
-      return <ProjectTemplate project={project} />;
+      return (
+        <Suspense fallback={<div className="loading">Loading…</div>}>
+          <ProjectTemplate project={project} />
+        </Suspense>
+      );
     }
     // /resume
     if (pathname === "/resume") {
-      return <ResumePage />;
+      return (
+        <Suspense fallback={<div className="loading">Loading…</div>}>
+          <ResumePage />
+        </Suspense>
+      );
     }
     // /skills
     if (pathname === "/skills") {
-      return <SkillsPage />;
+      return (
+        <Suspense fallback={<div className="loading">Loading…</div>}>
+          <SkillsPage />
+        </Suspense>
+      );
     }
   } catch (e) {
     // window may be undefined during SSR; ignore
@@ -69,13 +81,13 @@ export default function App() {
     <div className="page-wrapper">
       {/* Desktop Sidebar */}
       {!isMobile && (
-        <aside className="side-panel">
+        <aside className="side-panel" role="complementary" aria-label="Sidebar">
           <SidePanel onCommand={handleCommand} />
         </aside>
       )}
 
       {/* Terminal (full screen on mobile, right column on desktop) */}
-      <main className="terminal-panel">
+      <main className="terminal-panel" aria-label="Terminal">
         <div className="terminal-wrapper">
           <Terminal ref={terminalRef} />
         </div>
@@ -83,7 +95,7 @@ export default function App() {
 
       {/* Mobile Bottom Navigation */}
       {isMobile && (
-        <nav className="mobile-bottom-nav">
+        <nav className="mobile-bottom-nav" role="navigation" aria-label="Mobile navigation">
           <button 
             className="nav-btn"
             onClick={() => handleCommand('view about')}

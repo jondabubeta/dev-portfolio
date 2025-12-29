@@ -9,6 +9,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         resume: resolve(__dirname, 'resume.html'),
+        cv: resolve(__dirname, 'cv.html'),
         // TODO: add cover-letter.html
       },
     },
