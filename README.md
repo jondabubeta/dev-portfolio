@@ -39,25 +39,124 @@ Preview the production build locally:
 npm run preview
 ```
 
-## Common terminal commands
+## Commands & Arguments
 
-Examples you can type into the app's terminal input (or trigger by clicking sidebar rows):
+### Available Commands
 
-- View all experience entries:
-	- `view experience`
-- Filter experience by company, position, or years:
-	- `view experience --company="Neustar" --position="SDET II"`
-	- `view experience --years=2019-2021`
-- View projects and filter by status/tag/name:
-	- `view projects`
-	- `view projects --status=active`
-	- `view projects --tag=react`
-- View the cover letter / CV:
-	- `view cv`
-- View resume page:
-	- `view resume`
+#### `view experience`
+View work experience entries with optional filtering.
 
-Use the Up/Down arrow keys while focused on the terminal input to navigate command history.
+**Arguments:**
+- `--company` – Filter by company name (e.g., `--company="Neustar"`)
+- `--position` – Filter by job position/title (e.g., `--position="SDET II"`)
+- `--title` – Filter by job title
+- `--tags` – Filter by tags
+- `--years` – Filter by year range (e.g., `--years=2019-2021`)
+- `--full` – Show full details (boolean)
+
+**Examples:**
+- `view experience`
+- `view experience --company="Neustar"`
+- `view experience --position="SDET II"`
+- `view experience --years=2019-2021`
+- `view experience --company="Neustar" --years=2020-2023 --full`
+
+#### `view projects`
+View project entries with optional filtering.
+
+**Arguments:**
+- `--tag` – Filter by project tags (e.g., `--tag=react`)
+- `--name` – Filter by project name
+- `--status` – Filter by status (e.g., `--status=active`)
+
+**Examples:**
+- `view projects`
+- `view projects --status=active`
+- `view projects --tag=react`
+- `view projects --tag=react --status=active`
+
+#### `view education`
+View education history with optional filtering.
+
+**Arguments:**
+- `--school` – Filter by school name
+- `--degree` – Filter by degree type
+
+**Examples:**
+- `view education`
+- `view education --school="University"`
+
+#### `view skills`
+View skills with optional filtering.
+
+**Arguments:**
+- `--name` – Filter by skill name
+- `--category` – Filter by skill category
+
+**Examples:**
+- `view skills`
+- `view skills --category=frontend`
+
+#### `view contact`
+View contact information. Supports shorthand or flag-based filtering.
+
+**Arguments:**
+- `--email` – Show email
+- `--github` – Show GitHub
+- `--linkedin` – Show LinkedIn
+
+**Examples:**
+- `view contact`
+- `view contact email`
+- `view contact --github`
+- `view contact --linkedin`
+
+#### `view resume`
+View the resume page.
+
+**Arguments:**
+- `--full` – Show full resume (boolean)
+
+**Examples:**
+- `view resume`
+- `view resume --full`
+
+#### `view cv`
+View the cover letter / CV.
+
+**Examples:**
+- `view cv`
+
+#### `view about`
+View portfolio information.
+
+**Examples:**
+- `view about`
+
+#### `help`
+Show help information.
+
+**Examples:**
+- `help`
+- `help view`
+
+#### `clear` / `cls`
+Clear the terminal history.
+
+**Examples:**
+- `clear`
+- `cls`
+
+### Argument Syntax
+
+- **Named flags:** Use `--flag=value` format (e.g., `--company="Acme Corp"`)
+- **Quoted values:** Use quotes for multi-word values (e.g., `--company="My Company"`)
+- **Boolean flags:** Bare flags default to `true` (e.g., `--full` is equivalent to `--full=true`)
+- **Multiple filters:** Combine multiple arguments in one command (e.g., `view experience --company="Neustar" --years=2020-2023`)
+
+### Navigation
+
+Use the **Up/Down arrow keys** while focused on the terminal input to navigate command history.
 
 ## Project structure (high level)
 
