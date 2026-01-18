@@ -21,10 +21,15 @@ const Terminal = forwardRef((props, ref) => {
   const [focused, setFocused] = useState(true);
   const inputRef = useRef(null);
 
-  // Use smaller splash on mobile
-  const splash = (typeof window !== 'undefined' && window.innerWidth < 768)
-    ? splashTextMobile
+  // Conditional splash based on viewport width
+  const splash = (typeof window !== 'undefined')
+    ? window.innerWidth < 768 ? splashTextMobile
+      : window.innerWidth < 1380 ? ''
+      : splashText
     : splashText;
+
+  // Show version only at 1380px+
+  const showVersion = (typeof window !== 'undefined' && window.innerWidth >= 1380);
 
   // Centralized executor (keyboard, ref, and event bus use this)
   const execute = (command) => {
@@ -52,8 +57,9 @@ const Terminal = forwardRef((props, ref) => {
   }));
 
   useEffect(() => {
-    const splashLines = splash.split('\n');
-    setLines([...splashLines, '', version, '', welcomeText]);
+    const splashLines = splash ? splash.split('\n') : [];
+    const versionLine = showVersion ? [version] : [];
+    setLines([...splashLines, ...versionLine, '', welcomeText]);
   }, []);
 
   useEffect(() => {
