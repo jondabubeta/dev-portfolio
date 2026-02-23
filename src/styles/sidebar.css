@@ -285,7 +285,7 @@ body { margin: 0; }
 /* Individual section scrolling for Current and Projects panels */
 .section-container.projects-section .scrollable-section,
 .current-scrollable {
-  max-height: 120px;              /* height for ~4 projects before scrolling */
+  max-height: 108px;              /* height for 4 entries before scrolling */
   overflow-y: auto !important;    /* force individual scrollbars */
   overflow-x: hidden;
   padding-right: 18px;            /* space for scrollbar */
