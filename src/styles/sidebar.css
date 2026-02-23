@@ -567,6 +567,29 @@ body { margin: 0; }
 .devops-skill  { background-color: var(--color-red); }
 
 /* =========================
+   EXPERIENCE TABLE
+========================= */
+.experience-table .panel-row {
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.8fr) max-content;
+  column-gap: 6px;
+  align-items: start;
+}
+
+.experience-table .panel-label,
+.experience-table .panel-meta {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  line-height: 1.2;
+  padding-left: 0.5rem;
+}
+
+.experience-table .panel-extra {
+  min-width: 12ch;
+  white-space: nowrap;
+}
+
+/* =========================
    EDUCATION TABLE
 ========================= */
 .education-table .panel-row {
@@ -684,7 +707,7 @@ body { margin: 0; }
   .projects-table .panel-row {
     grid-template-columns: 1fr auto;
   }
-  
+
   /* Hide meta on very small screens but keep it on tablets */
   .panel-meta {
     font-size: 0.8rem;

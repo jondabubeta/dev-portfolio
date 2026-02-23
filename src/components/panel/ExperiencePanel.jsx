@@ -17,7 +17,7 @@ export default function ExperiencePanel({ onCommand }) {
       <h3>Experience</h3>
 
       <div className="scrollable-table data-scrollable">
-        <div className="panel-table">
+        <div className="panel-table experience-table">
           {items.map((row, i) => (
             <div
               key={`${row.company}::${row.position}::${i}`}

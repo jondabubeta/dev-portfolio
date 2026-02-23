@@ -58,25 +58,3 @@
   min-width: 0;
   margin: 0 auto;
 }
-
-/* ========== Under Construction Page ========== */
-.construction-page {
-  min-height: var(--app-vh);
-  display: grid;
-  place-items: center;
-  padding: 1.5rem;
-}
-
-.construction-card {
-  width: min(720px, 100%);
-  border: 1px solid var(--terminal-border);
-  background: var(--terminal-bg);
-  border-radius: 10px;
-  padding: clamp(1.25rem, 2.5vw, 2rem);
-}
-
-.construction-card p {
-  margin: 0;
-  color: inherit;
-  line-height: 1.5;
-}
