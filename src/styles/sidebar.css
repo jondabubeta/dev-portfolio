@@ -68,6 +68,7 @@ body { margin: 0; }
   flex-direction: column;
   width: 100%;
   min-height: var(--app-vh); /* correct height */
+  background: var(--color-black);
   overflow: hidden;       /* no double scrollbars */
   position: relative;
 }
@@ -148,7 +149,7 @@ body { margin: 0; }
 .side-panel {
   display: flex;
   flex-direction: column;
-  background: #121212;
+  background: var(--color-black);
   padding: 0.5rem 0.75rem;
   box-sizing: border-box;
   overflow: hidden;              /* contain the layout */
@@ -248,6 +249,7 @@ body { margin: 0; }
   display: flex;
   align-items: stretch;
   justify-content: center;       /* center the terminal */
+  background: var(--color-black);
   padding: clamp(0.75rem, 2vw, 2rem); /* equal padding on all sides */
   box-sizing: border-box;
   overflow: hidden;
@@ -363,7 +365,7 @@ body { margin: 0; }
   position: relative;
   border: 1px solid #555;
   border-radius: 8px;
-  background: #121212;
+  background: var(--color-black);
   padding: 1.25rem 1.2rem 1rem;  /* increased padding */
   margin-bottom: 1.5rem;         /* increased spacing between panels */
   overflow: visible;       /* ⬅️ important */
@@ -561,6 +563,9 @@ body { margin: 0; }
   transform: scale(1.08); 
   filter: brightness(1.3); 
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+.skill-pill.qa-skill.clickable:hover {
+  color: var(--color-black);
 }
 .qa-skill      { background-color: var(--color-dyellow); }
 .web-skill     { background-color: var(--color-blue); }
