@@ -60,9 +60,9 @@
   display: inline-block;
 }
 
-.red { background-color: #ff5f56; }
-.yellow { background-color: #ffbd2e; }
-.green { background-color: #27c93f; }
+.red { background-color: #E87A5D; }
+.yellow { background-color: #F3B941; }
+.green { background-color: #5084FB; }
 
 /* ========== Terminal Output Area ========== */
 .terminal-body {
@@ -94,6 +94,11 @@
   margin: 0;
   padding: 0;
   user-select: text;
+  color: #fff;
+}
+
+.input-line {
+  color: var(--color-dyellow);
 }
 
 .terminal-line.version {
@@ -117,11 +122,11 @@
 
 /* ========== Terminal Prompt & Input ========== */
 .prompt {
-  color: #fff;
+  color: var(--color-dyellow);
 }
 
 .block-cursor {
-  color: #fff;
+  color: var(--color-dyellow);
   animation: blink 1s steps(1) infinite;
   font-weight: bold;
 }
@@ -192,7 +197,7 @@
   
   .terminal-line, .input-line {
     font-size: 0.9rem;
-    line-height: 1.4rem;
+    line-height: 1.6rem;
   }
 
   .terminal-splash-name {
@@ -211,6 +216,12 @@
   .traffic-lights span {
     width: 10px;
     height: 10px;
+  }
+
+  /* Mobile text sizing for welcome section */
+  .terminal-line {
+    line-height: 1.6rem;
+    margin-bottom: 0.3rem;
   }
 }
 

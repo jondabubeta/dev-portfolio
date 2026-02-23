@@ -7,16 +7,18 @@ import GitHubIcon from '../../assets/github.png';
 import LinkedInIcon from '../../assets/linkedin.png';
 
 const WelcomeContent = () => {
-  const [isHowItWorksExpanded, setIsHowItWorksExpanded] = useState(true);
-  const [isSidebarGuideExpanded, setIsSidebarGuideExpanded] = useState(true);
+  const [isHowItWorksExpanded, setIsHowItWorksExpanded] = useState(false);
+  const [isSidebarGuideExpanded, setIsSidebarGuideExpanded] = useState(false);
 
   return (
     <div className="welcome-container">
-      <p style={{ fontSize: '1.8rem', marginBottom: '0.5rem' }}>
+      <p style={{ fontSize: '2.0rem', marginBottom: '0.5rem', color: '#B1B1B1' }}>
         WELCOME TO MY PORTFOLIO!
       </p>
-      <p style={{ fontSize: '1.1rem', marginBottom: '1rem' }}>
-        I'm Jonathan, a Software Engineer specializing in development, test automation, and AI/ML. This is my terminal portoflio.
+      <p style={{ fontSize: '1.1rem', marginBottom: '2.5rem', marginTop: '1.5rem', color: '#B1B1B1' }}>
+        I'm Jonathan, a Software Engineer specializing in development, test automation, and AI/ML.
+        <br />
+        This is my terminal portoflio.
       </p>
 
       <p className="section-title">
@@ -56,7 +58,7 @@ const WelcomeContent = () => {
 
       <p className="section-title">
         <span 
-          className="text-pink" 
+          className="text-blue" 
           onClick={() => setIsSidebarGuideExpanded(!isSidebarGuideExpanded)}
           style={{ cursor: 'pointer', userSelect: 'none' }}
           title="Click to toggle"
@@ -94,7 +96,7 @@ const WelcomeContent = () => {
         </>
       )}
 
-      <p>
+      <p style={{ fontSize: '1.5rem', marginTop: '2rem' }}>
         Type a command and press <span style={{ color: 'var(--color-orange)' }}>[Enter]</span> to execute it.
       </p>
     </div>

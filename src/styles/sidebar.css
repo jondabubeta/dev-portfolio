@@ -1,7 +1,7 @@
 /* Make About section <p> match .panel-label */
 .side-panel-content p {
   font-size: 0.9rem;
-  color: #fff;
+  color: #B1B1B1;
   margin-bottom: 0.5rem;
 }
 /* =============== SKILLS PAGE =============== */
@@ -490,12 +490,11 @@ body { margin: 0; }
   text-overflow: ellipsis;
   cursor: pointer;
   text-decoration: none;
-  padding: 4px 8px;
+  padding: 4px 8px 4px 0;
   border-radius: 6px;
-  transition: color 0.15s ease, background-color 0.15s ease;
+  transition: color 0.15s ease;
 }
 .doc-label:hover {
-  background-color: rgba(0, 207, 230, 0.1);
   color: var(--color-blue);
 }
 .doc-icons {
@@ -551,7 +550,7 @@ body { margin: 0; }
 }
 .skill-pill {
   font-size: 0.9rem;
-  color: #fff;
+  color: #000;
   padding: 4px 10px;
   border-radius: 9999px;
   cursor: pointer;
@@ -564,7 +563,7 @@ body { margin: 0; }
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 .skill-pill.qa-skill.clickable:hover {
-  color: var(--color-black);
+  /* Keep black text on hover */
 }
 .qa-skill      { background-color: var(--color-dyellow); }
 .web-skill     { background-color: var(--color-blue); }

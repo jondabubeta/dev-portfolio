@@ -13,6 +13,14 @@ import { version } from './title/version';
 const splashText = 'JONATHAN DABU';
 const splashTextMobile = 'JONATHAN DABU';
 
+// Typing animation timing constants
+const DEMO_COMMANDS = ['Start typing HERE', 'view resume', 'help', ''];
+const TYPING_ANIMATION_DELAY = 1000;      // Initial delay before animation starts
+const TYPING_CHARACTER_SPEED = 70;        // Delay between each character typed
+const TYPING_PAUSE_DURATION = 800;        // Pause after typing a command
+const BACKSPACE_CHARACTER_SPEED = 50;     // Delay between each character deleted
+const COMMAND_PAUSE_DURATION = 1500;      // Pause between commands
+
 const Terminal = forwardRef((props, ref) => {
   const [lines, setLines] = useState([]);
   const [input, setInput] = useState('');
@@ -116,6 +124,76 @@ const Terminal = forwardRef((props, ref) => {
       block: 'end'
     });
   }, [lines]);
+
+  // Typing animation demo effect
+  useEffect(() => {
+    let timeoutId;
+    let isAnimating = true;
+
+    const runTypingDemo = async () => {
+      // Wait before starting demo
+      await new Promise(resolve => {
+        timeoutId = setTimeout(resolve, TYPING_ANIMATION_DELAY);
+      });
+
+      if (!isAnimating) return;
+
+      // Demo commands sequence
+      for (let cmdIndex = 0; cmdIndex < DEMO_COMMANDS.length; cmdIndex++) {
+        const command = DEMO_COMMANDS[cmdIndex];
+        if (!isAnimating) break;
+
+        // Type the command character by character
+        for (let i = 0; i <= command.length; i++) {
+          if (!isAnimating) break;
+          await new Promise(resolve => {
+            timeoutId = setTimeout(() => {
+              setInput(command.substring(0, i));
+              resolve();
+            }, TYPING_CHARACTER_SPEED);
+          });
+        }
+
+        // Pause after typing
+        await new Promise(resolve => {
+          timeoutId = setTimeout(resolve, TYPING_PAUSE_DURATION);
+        });
+
+        if (!isAnimating) break;
+
+        // Delete the input for next command (but not for the last one)
+        if (cmdIndex < DEMO_COMMANDS.length - 1) {
+          // Animate backspace
+          for (let i = command.length; i >= 0; i--) {
+            if (!isAnimating) break;
+            await new Promise(resolve => {
+              timeoutId = setTimeout(() => {
+                setInput(command.substring(0, i));
+                resolve();
+              }, BACKSPACE_CHARACTER_SPEED);
+            });
+          }
+
+          // Pause between commands
+          await new Promise(resolve => {
+            timeoutId = setTimeout(resolve, COMMAND_PAUSE_DURATION);
+          });
+        }
+      }
+
+      if (!isAnimating) return;
+
+      // Animation complete - terminal input is now enabled
+      // Keep the last typed command in the input for the user
+    };
+
+    runTypingDemo();
+
+    return () => {
+      isAnimating = false;
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, []);
 
   useEffect(() => {
     const blink = setInterval(() => {
