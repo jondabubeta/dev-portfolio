@@ -11,11 +11,12 @@
   /* Color palette - accent colors for terminal UI */
   --color-green: #74F004;
   --color-dgreen: #17803a;
-  --color-blue: #00CFE6;
+  --color-blue: #5084fb;
   --color-pink: #e83399;
   --color-gold: #befa4f;
-  --color-dyellow: #bfa404;
+  --color-dyellow: #f3b941;
   --color-red: #F950A7;
+  --color-orange: #E87A5D;
 
   /* UI colors - terminal window and borders */
   --terminal-border: #333;

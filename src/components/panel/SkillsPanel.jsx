@@ -37,7 +37,7 @@ export default function SkillsPanel({ onCommand }) {
             title="See all skills"
             style={{ textDecoration: 'none' }}
           >
-            more
+            +MORE
           </a>
         )}
       </div>

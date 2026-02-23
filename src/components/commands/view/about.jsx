@@ -4,13 +4,13 @@ import aboutData from '../../../data/about.json';
 const AboutViewer = () => {
   return (
     <div>
-      <div className="text-green" style={{ fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
+      <div className="text-green" style={{ fontSize: '1.1rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
         {aboutData.name}
       </div>
-      <div className="text-blue" style={{ fontSize: '1rem', marginBottom: '0.25rem' }}>
+      <div className="text-blue" style={{ fontSize: '0.95rem', marginBottom: '0.25rem' }}>
         {aboutData.title}
       </div>
-      <div style={{ fontSize: '0.9rem', fontStyle: 'italic', marginBottom: '1rem', opacity: 0.9 }}>
+      <div style={{ fontSize: '0.85rem', fontStyle: 'italic', marginBottom: '1rem', opacity: 0.9 }}>
         {aboutData.tagline}
       </div>
       
