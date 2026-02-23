@@ -7,9 +7,11 @@ import React, {
   useRef
 } from 'react';
 import { handleCommand } from '../utils/handleCommand';
-import { splashText, splashTextMobile } from './title/splash';
 import { welcomeText } from './title/welcome';
 import { version } from './title/version';
+
+const splashText = 'JONATHAN DABU';
+const splashTextMobile = 'JONATHAN DABU';
 
 const Terminal = forwardRef((props, ref) => {
   const [lines, setLines] = useState([]);
@@ -17,14 +19,15 @@ const Terminal = forwardRef((props, ref) => {
   const [history, setHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(null); // null means editing current input
   const [showCursor, setShowCursor] = useState(true);
+  const [splashFontSize, setSplashFontSize] = useState(null);
   const terminalEndRef = useRef(null);
+  const terminalBodyRef = useRef(null);
   const [focused, setFocused] = useState(true);
   const inputRef = useRef(null);
 
   // Conditional splash based on viewport width
   const splash = (typeof window !== 'undefined')
     ? window.innerWidth < 768 ? splashTextMobile
-      : window.innerWidth < 1380 ? ''
       : splashText
     : splashText;
 
@@ -57,10 +60,53 @@ const Terminal = forwardRef((props, ref) => {
   }));
 
   useEffect(() => {
-    const splashLines = splash ? splash.split('\n') : [];
+    const name = 'JONATHAN DABU';
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+
+    const updateSplashSize = () => {
+      if (!terminalBodyRef.current || !context) return;
+
+      const styles = window.getComputedStyle(terminalBodyRef.current);
+      const paddingLeft = parseFloat(styles.paddingLeft || '0') || 0;
+      const paddingRight = parseFloat(styles.paddingRight || '0') || 0;
+      const innerWidth = terminalBodyRef.current.clientWidth - paddingLeft - paddingRight;
+      const availableWidth = Math.max(innerWidth - 16, 0);
+      context.font = '700 100px "JetBrains Mono"';
+      const baseWidth = context.measureText(name).width;
+      if (baseWidth <= 0) return;
+
+      const nextSize = Math.floor((availableWidth / baseWidth) * 100 * 0.96);
+      const clampedSize = Math.max(40, Math.min(nextSize, 200));
+      setSplashFontSize(clampedSize);
+    };
+
+    updateSplashSize();
+    window.addEventListener('resize', updateSplashSize);
+    return () => window.removeEventListener('resize', updateSplashSize);
+  }, []);
+
+  useEffect(() => {
+    const splashLines = splash
+      ? splash
+          .split('\n')
+          .map((line) => line.trim())
+          .filter(Boolean)
+          .map((line) => ({
+            __component__: true,
+            element: (
+              <span
+                className="terminal-splash-name"
+                style={splashFontSize ? { fontSize: `${splashFontSize}px` } : undefined}
+              >
+                {line}
+              </span>
+            ),
+          }))
+      : [];
     const versionLine = showVersion ? [version] : [];
     setLines([...splashLines, ...versionLine, '', welcomeText]);
-  }, []);
+  }, [splash, showVersion, splashFontSize]);
 
   useEffect(() => {
     // Smooth scroll on desktop, but use instant on mobile to prevent over-scroll
@@ -147,6 +193,7 @@ const Terminal = forwardRef((props, ref) => {
       </div>
 
       <div
+        ref={terminalBodyRef}
         className="terminal-body"
         onClick={() => {
           // Focus input when clicking terminal body, but prevent scroll

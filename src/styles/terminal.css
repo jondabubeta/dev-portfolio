@@ -96,6 +96,18 @@
   margin-bottom: 0.5rem;
 }
 
+.terminal-splash-name {
+  display: inline-block;
+  font-family: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-size: clamp(4.8rem, 8.4vw, 8rem);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.1;
+  color: #fff;
+  white-space: nowrap;
+  margin: 0.2rem 0 0.4rem;
+}
+
 /* ========== Terminal Prompt & Input ========== */
 .prompt {
   color: #fff;
@@ -174,6 +186,10 @@
   .terminal-line, .input-line {
     font-size: 0.9rem;
     line-height: 1.4rem;
+  }
+
+  .terminal-splash-name {
+    font-size: clamp(3.8rem, 16vw, 5.6rem);
   }
   
   .terminal-bar {
