@@ -9,7 +9,7 @@ export default function AboutPanel({ onCommand }) {
     <div className="section-container lg">
       <h3>About</h3>
 
-      <div className="scrollable-table">
+      <div>
         <p>
           {aboutData.intro}
         </p>

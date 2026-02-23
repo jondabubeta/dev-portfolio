@@ -6,7 +6,7 @@ export default function EducationPanel() {
     <div className="section-container education-section">
       <h3>Education</h3>
 
-      <div className="scrollable-table">
+      <div className="scrollable-table data-scrollable">
         <div className="panel-table education-table">
           {education.map((ed, i) => {
             const key = `${ed.s_degree}-${ed.s_institution}-${ed.year}-${i}`;

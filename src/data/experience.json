@@ -1,9 +1,25 @@
 [
   {
     "company": "Blizzard Entertainment",
+    "title": "Senior Software Engineer, Quality",
+    "sidePanelTitle": "Senior SWE, Quality",
+    "years": "2025–Present",
+    "products": ["Battle.net", "Diablo IV", "Warcraft Rumble"],
+    "summary": "Leading quality engineering initiatives across game systems and platform services. Focused on scalable automation strategy, reliability, and cross-team quality standards.",
+    "responsibilities": [
+      "Driving quality strategy and test architecture across releases",
+      "Building scalable automation and tooling to improve release confidence",
+      "Partnering with engineering and product teams on risk reduction",
+      "Mentoring engineers and improving quality workflows"
+    ],
+    "tags": ["blizzard", "quality", "automation", "game", "ci", "leadership"]
+  },
+  {
+    "company": "Blizzard Entertainment",
+
     "title": "Senior Software Development Engineer in Test",
     "sidePanelTitle": "Senior SDET",
-    "years": "2022–Present",
+    "years": "2022–2025",
     "products": ["Battle.net", "Diablo IV", "Warcraft Rumble"],
     "summary": "Led test planning and execution across multiple AAA games. Built tools, frameworks, and automated systems to optimize test efficiency. Collaborated cross-functionally to debug and improve quality.",
     "responsibilities": [

@@ -9,7 +9,7 @@
   display: grid;
   grid-template-columns: var(--sp-w) minmax(0, 1fr);
   gap: clamp(24px, 3vw, 48px);
-  height: 100vh;
+  min-height: var(--app-vh);
 }
 
 /* ========== Side Panel Container ========== */
@@ -33,12 +33,13 @@
 /* ========== Terminal Display Area ========== */
 .terminal-panel {
   min-width: 0;
-  height: 100vh;
+  min-height: 0;
+  height: var(--app-vh);
   display: flex;
   align-items: stretch;
   justify-content: center;
   padding: 1rem clamp(1rem, 2vw, 3rem);
-  transform: translateX(-35px);
+  transform: none;
   overflow: hidden;
 }
 
