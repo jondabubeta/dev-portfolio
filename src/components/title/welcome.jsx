@@ -12,8 +12,11 @@ const WelcomeContent = () => {
 
   return (
     <div className="welcome-container">
-      <p>
-        Welcome to <span className="text-green">Jonathan Dabu's</span> Terminal Portfolio!
+      <p style={{ fontSize: '1.8rem', marginBottom: '0.5rem' }}>
+        WELCOME TO MY PORTFOLIO!
+      </p>
+      <p style={{ fontSize: '1.1rem', marginBottom: '1rem' }}>
+        I'm Jonathan, a Software Engineer specializing in development, test automation, and AI/ML. This is my terminal portoflio.
       </p>
 
       <p className="section-title">
@@ -23,7 +26,7 @@ const WelcomeContent = () => {
           style={{ cursor: 'pointer', userSelect: 'none' }}
           title="Click to toggle"
         >
-          {isHowItWorksExpanded ? '▼' : '▶'} HOW IT WORKS
+          HOW IT WORKS {isHowItWorksExpanded ? '▼' : '▶'}
         </span>
       </p>
 
@@ -58,7 +61,7 @@ const WelcomeContent = () => {
           style={{ cursor: 'pointer', userSelect: 'none' }}
           title="Click to toggle"
         >
-          {isSidebarGuideExpanded ? '▼' : '▶'} SIDEBAR GUIDE
+          SIDEBAR GUIDE {isSidebarGuideExpanded ? '▼' : '▶'}
         </span>
       </p>
 

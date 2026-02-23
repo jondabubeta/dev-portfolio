@@ -363,7 +363,7 @@ body { margin: 0; }
 /* Section card: allow the chip to float above its border */
 .section-container {
   position: relative;
-  border: 1px solid #555;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   background: var(--color-black);
   padding: 1.25rem 1.2rem 1rem;  /* increased padding */
@@ -437,7 +437,6 @@ body { margin: 0; }
   transition: color 0.15s ease, background-color 0.15s ease;
 }
 .panel-row.clickable:hover {
-  background-color: rgba(0, 207, 230, 0.1);
   border-radius: 6px;
 }
 .panel-row.clickable:hover .panel-label,

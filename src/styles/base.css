@@ -18,6 +18,7 @@
   --color-red: #F950A7;
   --color-orange: #E87A5D;
   --color-black: #101010;
+  --color-border: #fff;
 
   /* UI colors - terminal window and borders */
   --terminal-border: #333;
