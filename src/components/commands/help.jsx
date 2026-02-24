@@ -10,7 +10,8 @@ export default function Help({ command }) {
     view contact                        View all contact information
     view contact --email=false          Hide email (set false for any field)
     help                                Show available commands
-    clear / cls                         Clear the terminal`,
+    clear / cls                         Clear the terminal
+    reset                               Reset terminal to welcome screen`,
 
     resume: `resume
   Displays your full resume with experience (and other sections as added).`,

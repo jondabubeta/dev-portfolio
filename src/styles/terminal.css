@@ -32,7 +32,7 @@
   height: 28px;
   padding: 0 12px;
   position: relative;
-  color: #ccc;
+  color: #B1B1B1;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -82,13 +82,14 @@
   scroll-padding-bottom: 2rem;
   overscroll-behavior: contain;
   user-select: text;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 /* ========== Terminal Output Lines ========== */
 .terminal-line, .input-line {
   display: flex;
   align-items: baseline;
-  font-family: inherit;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 1rem;
   line-height: 1.5rem;
   margin: 0;
@@ -171,6 +172,12 @@
 .terminal-link {
   color: #3b82f6;
   text-decoration: underline;
+}
+
+.terminal-body pre {
+  font-family: 'JetBrains Mono', monospace;
+  margin: 0;
+  white-space: pre-wrap;
 }
 
 /* ============================================================================

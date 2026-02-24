@@ -18,7 +18,7 @@ const WelcomeContent = () => {
       <p style={{ fontSize: '1.1rem', marginBottom: '2.5rem', marginTop: '1.5rem', color: '#B1B1B1' }}>
         I'm Jonathan, a Software Engineer specializing in development, test automation, and AI/ML.
         <br />
-        This is my terminal portoflio.
+        This is my terminal portfolio.
       </p>
 
       <p className="section-title">

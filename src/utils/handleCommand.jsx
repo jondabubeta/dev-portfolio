@@ -97,6 +97,8 @@ export function handleCommand(input) {
   if (cmd === 'help') return <Help command={subcmd} />;
 
   if (cmd === 'clear' || cmd === 'cls') return '__CLEAR__';
+  
+  if (cmd === 'reset') return '__RESET__';
 
   return `Command not found: ${input}`;
 }

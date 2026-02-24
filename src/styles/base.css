@@ -54,6 +54,15 @@ body {
   flex-direction: column;
   zoom: 1;
   transform-origin: 0 0;
+  cursor: url('/images/yellow-cursor.png'), pointer;
+}
+
+* {
+  cursor: url('/images/yellow-cursor.png'), pointer !important;
+}
+
+input, textarea {
+  cursor: text !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

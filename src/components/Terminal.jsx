@@ -52,6 +52,26 @@ const Terminal = forwardRef((props, ref) => {
     const response = handleCommand(cmd);
     if (response === '__CLEAR__') {
       setLines([]);
+    } else if (response === '__RESET__') {
+      const splashLines = splash
+        ? splash
+          .split('\n')
+          .map((line) => line.trim())
+          .filter(Boolean)
+          .map((line) => ({
+            __component__: true,
+            element: (
+              <span
+                className="terminal-splash-name"
+                style={splashFontSize ? { fontSize: `${splashFontSize}px` } : undefined}
+              >
+                {line}
+              </span>
+            ),
+          }))
+        : [];
+      const versionLine = showVersion ? [version] : [];
+      setLines([...splashLines, ...versionLine, '', welcomeText]);
     } else {
       setLines((prev) => [
         ...prev,
