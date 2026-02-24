@@ -7,22 +7,32 @@
 /* ========== Main Page Wrapper ========== */
 .page-wrapper {
   display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
+  height: var(--app-vh);
+}
+
+.main-content {
+  grid-row: 1;
+  display: grid;
   grid-template-columns: var(--sp-w) minmax(0, 1fr);
   gap: clamp(2px, 0.25vw, 4px);
-  min-height: var(--app-vh);
+  padding: 1rem 1rem 0 1rem;
+  min-height: 0;
+  max-height: 100%;
+  overflow: hidden;
 }
 
 /* ========== Side Panel Container ========== */
 .side-panel {
   background-color: #121212;
-  padding: 1rem 1rem 0 1rem;
-  overflow-y: auto;
-  scrollbar-gutter: stable both-edges; 
+  padding: 1rem 1rem 3rem 1rem;
+  height: 100%;
 }
 
 /* ========== Responsive: Hide Side Panel on Mobile ========== */
 @media (max-width: 768px) {
-  .page-wrapper {
+  .main-content {
     grid-template-columns: 1fr;
   }
   .side-panel {
@@ -34,13 +44,14 @@
 .terminal-panel {
   min-width: 0;
   min-height: 0;
-  height: var(--app-vh);
+  height: 100%;
   display: flex;
-  align-items: stretch;
+  align-items: flex-start;
   justify-content: center;
   padding: 1rem clamp(1rem, 2vw, 3rem);
+  margin-top: 0rem;
+  margin-bottom: -2rem;
   transform: none;
-  overflow: visible;
 }
 
 /* ========== Responsive: Remove Transform on Mobile ========== */
@@ -57,4 +68,31 @@
   max-width: none;
   min-width: 0;
   margin: 0 auto;
+  height: 100%;
+}
+
+/* ========== Footer Section ========== */
+.footer-section {
+  grid-row: 2;
+  background-color: var(--color-black);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  margin: 0 2.75rem 0.5rem 1.5rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-text {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #B1B1B1;
+}
+
+.footer-text p {
+  margin: 0;
 }

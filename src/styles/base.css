@@ -25,8 +25,8 @@
   --terminal-bg: #0b0b0b;
 
   /* Responsive sizing - sidebar and terminal widths */
-  --sp-w: clamp(420px, 32vw, 800px);
-  --terminal-max-w: clamp(900px, 60vw, 2600px);
+  --sp-w: clamp(420px, 28vw, 700px);
+  --terminal-max-w: clamp(900px, 6000vw, 2600px);
   --app-vh: 100vh;
 }
 

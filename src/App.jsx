@@ -2,6 +2,7 @@
 import { useRef, useState, useEffect, lazy, Suspense } from "react";
 import SidePanel from "./components/SidePanel";
 import Terminal from "./components/Terminal";
+import Footer from "./components/Footer";
 const ProjectTemplate = lazy(() => import("./components/templates/ProjectTemplate"));
 
 const ResumePage = lazy(() => import("./pages/ResumePage"));
@@ -79,19 +80,21 @@ export default function App() {
 
   return (
     <div className="page-wrapper">
-      {/* Desktop Sidebar */}
-      {!isMobile && (
-        <aside className="side-panel" role="complementary" aria-label="Sidebar">
-          <SidePanel onCommand={handleCommand} />
-        </aside>
-      )}
+      <div className="main-content">
+        {/* Desktop Sidebar */}
+        {!isMobile && (
+          <aside className="side-panel" role="complementary" aria-label="Sidebar">
+            <SidePanel onCommand={handleCommand} />
+          </aside>
+        )}
 
-      {/* Terminal (full screen on mobile, right column on desktop) */}
-      <main className="terminal-panel" aria-label="Terminal">
-        <div className="terminal-wrapper">
-          <Terminal ref={terminalRef} />
-        </div>
-      </main>
+        {/* Terminal (full screen on mobile, right column on desktop) */}
+        <main className="terminal-panel" aria-label="Terminal">
+          <div className="terminal-wrapper">
+            <Terminal ref={terminalRef} />
+          </div>
+        </main>
+      </div>
 
       {/* Mobile Bottom Navigation */}
       {isMobile && (
@@ -138,6 +141,9 @@ export default function App() {
           </button>
         </nav>
       )}
+
+      {/* Footer - spans both columns on desktop */}
+      {!isMobile && <Footer />}
     </div>
   );
 }

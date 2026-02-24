@@ -62,16 +62,7 @@
 html, body, #root { height: 100%; }
 body { margin: 0; }
 
-/* Page columns */
-.page-wrapper {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-height: var(--app-vh); /* correct height */
-  background: var(--color-black);
-  overflow: hidden;       /* no double scrollbars */
-  position: relative;
-}
+/* Page columns - defined in layout.css */
 
 /* =========================
    MOBILE BOTTOM NAVIGATION
@@ -134,12 +125,7 @@ body { margin: 0; }
   }
 }
 
-/* Main content wrapper for desktop */
-@media (min-width: 768px) {
-  .page-wrapper {
-    flex-direction: row;
-  }
-}
+/* Main content wrapper - defined in layout.css */
 
 /* =========================
    SIDEBAR (WIDER + RESPONSIVE, NO SCROLLBARS)
@@ -152,11 +138,9 @@ body { margin: 0; }
   background: var(--color-black);
   padding: 0.5rem 0.75rem;
   box-sizing: border-box;
-  overflow: hidden;              /* contain the layout */
+  overflow: hidden;
   transition: transform 0.3s ease;
   z-index: 1000;
-  height: var(--app-vh);         /* use full viewport height */
-  max-height: var(--app-vh);     /* constrain to viewport */
   margin-left: 0;
 }
 
@@ -165,8 +149,6 @@ body { margin: 0; }
   .side-panel {
     flex: 0 0 var(--sp-w);
     width: var(--sp-w);
-    height: var(--app-vh) !important;      /* use full viewport height */
-    max-height: var(--app-vh) !important;  /* constrain to viewport */
     position: relative;
     transform: none !important;
   }
@@ -175,8 +157,7 @@ body { margin: 0; }
 /* Adjust for zoomed high-res screens */
 @media (min-width: 2560px) {
   .side-panel {
-    height: var(--app-vh) !important;
-    max-height: var(--app-vh) !important;
+    /* Height controlled by grid layout */
   }
 }
 
@@ -205,18 +186,19 @@ body { margin: 0; }
 
 /* Inner wrapper — minimal scrollbar that only shows when needed */
 .side-panel-content {
-  flex: 1 1 0;                   /* take available space */
-  min-height: 0;                 /* crucial for flex child to shrink */
-  overflow-y: auto;              /* enable scrolling when needed */
-  overflow-x: hidden;            /* hide horizontal scroll */
-  padding-right: 12px;           /* increased space between content and scrollbar area */
-  padding-bottom: 0rem;          /* reduced bottom padding for cleaner feel */
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 12px;
+  padding-bottom: 1rem;
   box-sizing: border-box;
+  scrollbar-gutter: stable;
 }
 
 /* Minimal scrollbar - only visible when hovering or scrolling */
 .side-panel-content::-webkit-scrollbar {
-  width: 6px;                    /* slightly wider for visibility */
+  width: 8px;
 }
 
 .side-panel-content::-webkit-scrollbar-track {
@@ -225,17 +207,17 @@ body { margin: 0; }
 }
 
 .side-panel-content::-webkit-scrollbar-thumb {
-  background: #444;              /* always visible when content overflows */
+  background: #444;
   border-radius: 3px;
 }
 
 /* Show scrollbar only when hovering over the sidebar */
 .side-panel:hover .side-panel-content::-webkit-scrollbar-thumb {
-  background: #555;              /* slightly lighter on hover */
+  background: #555;
 }
 
 .side-panel-content::-webkit-scrollbar-thumb:hover {
-  background: var(--color-blue); /* blue when directly hovering scrollbar */
+  background: var(--color-blue);
 }
 
 /* =========================
@@ -243,14 +225,12 @@ body { margin: 0; }
 ========================= */
 .terminal-panel {
   flex: 1 1 auto;
-  min-width: 0;                  /* prevents horizontal overflow */
+  min-width: 0;
   min-height: 0;
-  height: var(--app-vh);
   display: flex;
   align-items: stretch;
-  justify-content: center;       /* center the terminal */
+  justify-content: center;
   background: var(--color-black);
-  padding: clamp(0.75rem, 2vw, 2rem); /* equal padding on all sides */
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -367,7 +347,7 @@ body { margin: 0; }
   border-radius: 8px;
   background: var(--color-black);
   padding: 1.25rem 1.2rem 1rem;  /* increased padding */
-  margin-bottom: 1.5rem;         /* increased spacing between panels */
+  margin-bottom: 2.0rem;         /* increased spacing between panels */
   overflow: visible;       /* ⬅️ important */
 }
 
@@ -619,7 +599,7 @@ body { margin: 0; }
   margin-top: 0.4rem;
   margin-bottom: 0;
   width: 100%;
-  max-height: 150px;             /* allow scrolling */
+  max-height: 250px;             /* allow scrolling */
   overflow: auto;                /* scroll when content exceeds height */
   scrollbar-gutter: stable;
   box-sizing: border-box;
