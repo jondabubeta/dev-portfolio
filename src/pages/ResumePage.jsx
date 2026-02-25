@@ -123,29 +123,29 @@ export default function ResumePage() {
 
         <main className="resume-content">
           <section id="overview" className="resume-section">
-            <div className="terminal-h1">Jonathan Dabu</div>
-            <div className="terminal-h2 mb">Software Testing, Automation, Development & AI/ML</div>
-            <div>Email: jonathandabu86@gmail.com</div>
-            <div>LinkedIn: https://www.linkedin.com/in/jbdabu</div>
+            <h1>Jonathan Dabu</h1>
+            <div className="subtitle">Software Testing, Automation, Development & AI/ML</div>
+            <div><span className="text-orange">Email:</span> jonathandabu86@gmail.com</div>
+            <div><span className="text-orange">LinkedIn:</span> https://www.linkedin.com/in/jbdabu</div>
           </section>
 
           <section id="experience" className="resume-section">
-            <div className="terminal-h2 mt">Experience</div>
+            <h2>Experience</h2>
             <ExperienceViewer full={true} />
           </section>
 
           <section id="skills" className="resume-section">
-            <div className="terminal-h2 mt">Skills</div>
+            <h2>Skills</h2>
             <SkillsViewer full={true} />
           </section>
 
           <section id="education" className="resume-section">
-            <div className="terminal-h2 mt">Education</div>
+            <h2>Education</h2>
             <EducationViewer full={true} />
           </section>
 
           <section id="projects" className="resume-section">
-            <div className="terminal-h2 mt">Projects</div>
+            <h2>Projects</h2>
             <ProjectsViewer full={true} />
           </section>
 

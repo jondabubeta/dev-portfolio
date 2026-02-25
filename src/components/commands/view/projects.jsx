@@ -75,7 +75,7 @@ export default function ProjectsViewer({ filter = {}, full = false }) {
           return (
           <div key={`${p.title}-${idx}`} className="experience-group">
             {/* Project name styled like company header */}
-            <div className="exp-company" style={{ color: 'var(--color-green)' }}>{p.title}</div>
+            <div className="exp-company" style={{ color: 'var(--color-blue)' }}>{p.title}</div>
 
             {/* Status line */}
             {statusLabel && (
@@ -85,7 +85,7 @@ export default function ProjectsViewer({ filter = {}, full = false }) {
             {/* Single entry per project (matches Experience entry layout) */}
             <div className="experience-entry">
               {Array.isArray(p.tech) && p.tech.length > 0 && (
-                <div className="exp-title" style={{ color: 'var(--color-blue)' }}>
+                <div className="exp-title" style={{ color: 'var(--color-orange)' }}>
                   {/* role/status on the left if present */}
                   {p.role ? (
                     <>
@@ -111,7 +111,7 @@ export default function ProjectsViewer({ filter = {}, full = false }) {
               )}
               {/* Tech as a final bullet to keep the same look */}
               {Array.isArray(p.tech) && p.tech.length > 0 && (
-                <div style={{ color: 'var(--color-blue)' }}>
+                <div style={{ color: 'var(--color-orange)' }}>
                   Tech: {p.tech.join(', ')}
                 </div>
               )}

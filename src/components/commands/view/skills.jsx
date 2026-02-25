@@ -28,8 +28,8 @@ export default function SkillsViewer({ args = {} }) {
     <div>
       {uniqueFiltered.map((skill, index) => (
         <div key={`${skill.name}-${index}`} style={{ marginBottom: '1.5rem' }}>
-          <div className="text-green"><strong>{skill.name}</strong> {skill.tags ? `(${skill.tags.join(', ')})` : ''}</div>
-          <div className="text-blue" style={{ fontSize: '0.9rem' }}>{skill.description}</div>
+          <div className="text-blue"><strong>{skill.name}</strong> {skill.tags ? `(${skill.tags.join(', ')})` : ''}</div>
+          <div className="text-orange" style={{ fontSize: '0.9rem' }}>{skill.description}</div>
           <div style={{ fontSize: '0.85rem' }}>{skill.experience}</div>
           {skill.image && (
             <img

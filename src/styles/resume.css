@@ -83,6 +83,7 @@ html, body {
   font-size: 1.3rem;
   letter-spacing: 0.5px;
   color: #fff;
+  text-align: center;
 }
 
 /* ========== TOC Link List ========== */
@@ -153,35 +154,90 @@ html {
    ============================================================================ */
 
 /* ========== Main Title (H1) ========== */
-.resume-page .terminal-h1 {
-  font-size: 1.8rem;
+.resume-page h1 {
+  font-size: 2.8rem;
   font-weight: 800;
   letter-spacing: 0.6px;
   margin-bottom: 0.25rem;
-  display: inline-block;
-  padding-bottom: 0.3rem;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-top: 0;
+  color: #fff;
+}
+
+/* ========== Subtitle ========== */
+.resume-page .subtitle {
+  font-size: 1.1rem;
+  color: #999;
+  margin-bottom: 1.2rem;
 }
 
 /* ========== Section Headers (H2) ========== */
-.resume-page .terminal-h2 {
+.resume-page h2 {
   font-size: 1.35rem;
   font-weight: 700;
-  color: var(--color-green);
-  margin-top: 1.2rem;
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.03em;
-  opacity: 1;
+  color: #fff;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 /* ========== Subsection Headers (H3) ========== */
-.resume-section h2,
 .resume-section h3 {
   font-size: 1.15rem;
   margin-bottom: 0.75rem;
   color: var(--color-blue);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+/* ============================================================================
+   PROJECT PAGE TYPOGRAPHY
+   ============================================================================ */
+
+/* ========== Project Markdown Headers ========== */
+.project-markdown h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.project-markdown h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-orange);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.project-markdown h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-blue);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.project-markdown p {
+  color: #e0e0e0;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.project-markdown ul,
+.project-markdown ol {
+  color: #e0e0e0;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.project-markdown li {
+  margin-bottom: 0.5rem;
 }
 
 /* ============================================================================

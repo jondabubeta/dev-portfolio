@@ -116,20 +116,20 @@ export default function ExperienceViewer({ filter = {}, full = false }) {
           const roles = grouped[company];
           return (
             <div key={company} className="experience-group">
-              <div className="exp-company text-gold">{company}</div>
+              <div className="exp-company text-blue">{company}</div>
 
               {roles.map((exp, index) => (
                 <div key={`${company}-${index}`} className="experience-entry">
                   <div className="exp-title">
-                    <span className="text-green">{exp.title}</span>
+                    <span className="text-orange">{exp.title}</span>
                     {exp.years && (
-                      <span className="exp-years"> (<span className="text-blue">{exp.years}</span>)</span>
+                      <span className="exp-years"> (<span className="text-gray">{exp.years}</span>)</span>
                     )}
                   </div>
 
                   {exp.summary && (
                     <div className="exp-summary">
-                      &gt; <span className="text-pink">{exp.summary}</span>
+                      &gt; <span className="text-gray-italic">{exp.summary}</span>
                     </div>
                   )}
 
