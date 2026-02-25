@@ -105,7 +105,7 @@ export default function ResumePage() {
       <div className="resume-grid">
         <aside className="resume-toc">
           <div className="toc-card">
-            <div className="toc-title">Table of Contents</div>
+            <div className="toc-title">Contents</div>
             <nav className="toc-list">
               {sections.map((s) => (
                 <a

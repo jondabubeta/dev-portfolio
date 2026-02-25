@@ -181,11 +181,6 @@ input, textarea {
 }
 
 /* ========== Project Markdown Links ========== */
-.project-page a,
-.project-page a:link,
-.project-page a:visited,
-.project-page a:hover,
-.project-page a:active,
 .project-markdown a,
 .project-markdown a:link,
 .project-markdown a:visited,

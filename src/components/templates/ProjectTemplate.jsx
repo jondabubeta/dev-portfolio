@@ -137,7 +137,7 @@ export default function ProjectTemplate({ project }) {
       <div className="project-grid resume-grid">
         <aside className="project-toc resume-toc">
           <div className="toc-card">
-            <div className="toc-title">Table of Contents</div>
+            <div className="toc-title">Contents</div>
             <nav className="toc-list">
               <a
                 href="#top"
