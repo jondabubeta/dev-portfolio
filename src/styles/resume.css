@@ -241,6 +241,72 @@ html {
 }
 
 /* ============================================================================
+   SKILLS PAGE STYLING
+   ============================================================================ */
+
+/* ========== Skills Grid Layout ========== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* ========== Skill Card ========== */
+.skill-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--terminal-border, #333);
+  border-radius: 8px;
+  padding: 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.skill-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--color-orange);
+  transform: translateY(-2px);
+}
+
+/* ========== Skill Card Content ========== */
+.skill-name {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.skill-description {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.skill-experience {
+  font-size: 0.9rem;
+  color: #aaa;
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+/* ========== Skill Tags ========== */
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.skill-tag {
+  display: inline-block;
+  background: rgba(232, 122, 93, 0.15);
+  color: var(--color-orange);
+  border: 1px solid rgba(232, 122, 93, 0.3);
+  border-radius: 4px;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================================
    RESPONSIVE ADJUSTMENTS
    ============================================================================ */
 
@@ -272,5 +338,25 @@ html {
     position: static;
     max-height: none;
     overflow: visible;
+  }
+  
+  /* Skills grid responsive */
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========== Extra Small Screens (< 576px) ========== */
+@media (max-width: 575.98px) {
+  .skill-card {
+    padding: 1rem;
+  }
+  
+  .resume-page h1 {
+    font-size: 2.2rem;
+  }
+  
+  .resume-page h2 {
+    font-size: 1.2rem;
   }
 }
