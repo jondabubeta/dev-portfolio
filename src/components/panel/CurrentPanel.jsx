@@ -1,6 +1,5 @@
 import React from "react";
-import TerminalIcon from "../icons/TerminalIcon";
-import TabIcon from "../icons/TabIcon";
+import { TerminalIcon, TabIcon } from "../icons";
 import projects from "../../data/projects.json";
 
 function slugify(name = "") {

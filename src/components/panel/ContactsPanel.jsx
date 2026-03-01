@@ -1,6 +1,6 @@
 import React from "react";
 import contacts from "../../data/contacts.json";
-import TerminalIcon from "../icons/TerminalIcon";
+import { TerminalIcon } from "../icons";
 
 // Import your PNG icons from assets
 import MailIcon from "../../assets/email.png";

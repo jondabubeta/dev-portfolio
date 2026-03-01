@@ -1,7 +1,6 @@
 import React from "react";
 import projects from "../../data/projects.json";
-import TerminalIcon from "../icons/TerminalIcon";
-import TabIcon from "../icons/TabIcon";
+import { TerminalIcon, TabIcon } from "../icons";
 import GitHubPng from "../../assets/github.png"; // PNG
 
 // simple slug: "Anirepo" -> "anirepo", "BlizzMemory" -> "blizzmemory"

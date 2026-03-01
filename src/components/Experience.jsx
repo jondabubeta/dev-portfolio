@@ -1,7 +1,7 @@
 // src/components/Experience.jsx
 import { useState } from 'react';
 import experienceData from '../data/experience.json';
-import TabIcon from './icons/TabIcon';
+import { TabIcon } from './icons';
 
 export default function Experience({ onCommand }) {
   const uniqueCompanies = [];
