@@ -228,12 +228,13 @@ body { margin: 0; }
 /* Experience section scrolling */
 .scrollable-experience {
   max-height: 180px;              /* show 4 entries: 4 rows × (24px + 3px gap) */
-  overflow-y: auto;               /* enable scrollbar */
+  overflow-y: scroll;             /* keep scrollbar consistently available */
   overflow-x: hidden;
   width: 100%;
   box-sizing: border-box;
-  padding-right: 18px;            /* space for scrollbar */
-  scrollbar-gutter: stable;
+  padding-right: 24px;            /* extra space for easier scrollbar targeting */
+  scrollbar-gutter: stable both-edges;
+  scrollbar-width: auto;
 }
 
 /* Other scrollable sections (like skills) remain unrestricted */
@@ -521,6 +522,26 @@ body { margin: 0; }
 .experience-table .panel-extra {
   min-width: 12ch;
   white-space: nowrap;
+}
+
+.experience-section .data-scrollable {
+  padding-right: 24px;
+  overflow-y: scroll;
+  scrollbar-gutter: stable both-edges;
+  scrollbar-width: auto;
+}
+
+.experience-section .data-scrollable::-webkit-scrollbar {
+  width: 12px;
+}
+
+.scrollable-experience::-webkit-scrollbar {
+  width: 12px;
+}
+
+.experience-section .data-scrollable::-webkit-scrollbar-track,
+.experience-section .data-scrollable::-webkit-scrollbar-thumb {
+  border-radius: 6px;
 }
 
 /* =========================

@@ -13,7 +13,7 @@ const items = experienceData.map((row) => {
 
 export default function ExperiencePanel({ onCommand }) {
   return (
-    <div className="section-container">
+    <div className="section-container experience-section">
       <h3>Experience</h3>
 
       <div className="scrollable-table data-scrollable">
