@@ -1,4 +1,4 @@
-// src/components/common/TabIcon.jsx
+// src/components/icons/TabIcon.jsx
 import React from 'react';
 import TabPng from '../../assets/tab.png';
 
@@ -9,7 +9,7 @@ export default function TabIcon({
   className = '',
 }) {
   const handleClick = (e) => {
-    e.stopPropagation(); // Prevent parent click handlers (like list rows)
+    e.stopPropagation();
     if (url) {
       window.open(url, '_blank', 'noopener,noreferrer');
     }

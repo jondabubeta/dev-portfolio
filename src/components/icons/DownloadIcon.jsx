@@ -1,17 +1,16 @@
-// src/components/common/DownloadIcon.jsx
+// src/components/icons/DownloadIcon.jsx
 import React from 'react';
 import DownloadPng from '../../assets/download.png';
 
 export default function DownloadIcon({
-  url,                 // e.g., '/files/JonathanDabu_Resume.pdf'
-  filename,            // optional: suggested filename for the download
-  command,             // e.g., 'view resume --download'
-  onCommand,           // function to execute command mode
+  url,
+  filename,
+  command,
+  onCommand,
   title = 'Download',
   size = 24,
   className = '',
 }) {
-  // Command mode (fallback) if no URL is provided
   if (!url) {
     const handleClick = (e) => {
       e.stopPropagation();
@@ -35,7 +34,6 @@ export default function DownloadIcon({
     );
   }
 
-  // Direct download mode (preferred)
   return (
     <a
       href={url}

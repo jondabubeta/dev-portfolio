@@ -1,4 +1,4 @@
-// src/components/common/TerminalIcon.jsx
+// src/components/icons/TerminalIcon.jsx
 import React from "react";
 import TerminalPng from "../../assets/terminal.png";
 
@@ -6,17 +6,16 @@ export default function TerminalIcon({
   command,
   onCommand,
   title = "Open in Terminal",
-  size = 22,           // a touch smaller looks great in the panel
+  size = 22,
   className = "",
 }) {
   const handleClick = (e) => {
-    e.stopPropagation(); // don't trigger parent row clicks
+    e.stopPropagation();
     if (!command) return;
 
     if (typeof onCommand === "function") {
-      onCommand(command);  // primary path
+      onCommand(command);
     } else {
-      // fallback path: global bus (Terminal listens for this)
       window.dispatchEvent(
         new CustomEvent("terminal:command", { detail: command })
       );

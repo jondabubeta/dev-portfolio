@@ -1,7 +1,7 @@
 import React from "react";
-import TerminalIcon from "../common/TerminalIcon";
-import DownloadIcon from "../common/DownloadIcon";
-import TabIcon from "../common/TabIcon";
+import TerminalIcon from "../icons/TerminalIcon";
+import DownloadIcon from "../icons/DownloadIcon";
+import TabIcon from "../icons/TabIcon";
 import aboutData from "../../data/about.json";
 
 export default function AboutPanel({ onCommand }) {

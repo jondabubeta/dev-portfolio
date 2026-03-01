@@ -1,5 +1,4 @@
-
-// src/components/common/PanelRow.jsx
+// src/components/shared/PanelRow.jsx
 export function PanelRow({ c1, c2, c3, onClick }) {
   return (
     <div className={`panel-row${onClick ? " clickable" : ""}`} onClick={onClick}>
