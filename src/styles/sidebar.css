@@ -232,8 +232,8 @@ body { margin: 0; }
   overflow-x: hidden;
   width: 100%;
   box-sizing: border-box;
-  padding-right: 24px;            /* extra space for easier scrollbar targeting */
-  scrollbar-gutter: stable both-edges;
+  padding-right: 18px;            /* align with other scrollable sections */
+  scrollbar-gutter: stable;
   scrollbar-width: auto;
 }
 
@@ -506,7 +506,7 @@ body { margin: 0; }
 ========================= */
 .experience-table .panel-row {
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.8fr) max-content;
-  column-gap: 6px;
+  column-gap: 12px;
   align-items: start;
 }
 
@@ -516,7 +516,12 @@ body { margin: 0; }
   overflow: visible;
   text-overflow: unset;
   line-height: 1.2;
-  padding-left: 0.5rem;
+  padding-left: 0;
+}
+
+.experience-table .panel-meta {
+  text-align: center;
+  justify-self: center;
 }
 
 .experience-table .panel-extra {
@@ -525,9 +530,9 @@ body { margin: 0; }
 }
 
 .experience-section .data-scrollable {
-  padding-right: 24px;
+  padding-right: 18px;
   overflow-y: scroll;
-  scrollbar-gutter: stable both-edges;
+  scrollbar-gutter: stable;
   scrollbar-width: auto;
 }
 
