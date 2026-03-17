@@ -1,4 +1,4 @@
-
+﻿
 # AniRepo
 
 ## Background
@@ -895,15 +895,4 @@ Potential enhancements:
   - Lint/format  
   - Build and deploy automatically  
 
----
 
-## Summary
-
-AniRepo is a focused, full-stack application for tracking anime-related collections. It is built around:
-
-- A **Node.js + Express + MongoDB** backend (`back`) with clear separation between models, services, controllers, and routes  
-- A **React + Material UI** frontend (`front`) with predictable routing and per-collection CRUD flows  
-- A **dashboard** that surfaces summary statistics and the most recently added item  
-- A **filter API** that enables searching within or across collections  
-
-The current architecture is intentionally straightforward but highly extendable. It supports your immediate goal (personal cataloging) while leaving room for future enhancements like authentication, advanced search, and multi-user support.
