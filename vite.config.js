@@ -8,9 +8,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        resume: resolve(__dirname, 'resume.html'),
-        cv: resolve(__dirname, 'cv.html'),
-        // TODO: add cover-letter.html
+        resume: resolve(__dirname, 'resume/index.html'),
+        cv: resolve(__dirname, 'cv/index.html'),
       },
     },
   },
