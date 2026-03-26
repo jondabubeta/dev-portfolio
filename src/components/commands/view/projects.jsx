@@ -52,9 +52,15 @@ export default function ProjectsViewer({ filter = {}, full = false }) {
     return { start, end };
   };
 
+  const ACTIVE_STATUSES = new Set(['active', 'ongoing']);
+  const isActive = (p) => ACTIVE_STATUSES.has(matchStatusInput(p.status ?? p.state ?? p.role) ?? '');
+
   const filtered = projectsData
     .filter(matchesFilter)
     .sort((a, b) => {
+      const aActive = isActive(a) ? 0 : 1;
+      const bActive = isActive(b) ? 0 : 1;
+      if (aActive !== bActive) return aActive - bActive;
       const A = parseYears(a.years, a.year);
       const B = parseYears(b.years, b.year);
       return B.end - A.end || B.start - A.start || String(b.title).localeCompare(String(a.title));
@@ -64,16 +70,12 @@ export default function ProjectsViewer({ filter = {}, full = false }) {
     return <div className="output">No matching projects found.</div>;
   }
 
-  // Render with the same DOM/class structure as ExperienceViewer
-  return (
-    <div className="output">
-      <div className="experience-list">
-        {filtered.map((p, idx) => {
+  const renderProject = (p, idx) => {
           const statusKey = matchStatusInput(p.status ?? p.state ?? p.role);
           const statusLabel = statusKey ? STATUSES[statusKey] : p.status ?? p.state ?? '';
 
           return (
-          <div key={`${p.title}-${idx}`} className="experience-group">
+      <div key={`${p.title}-${idx}`} className="experience-group" style={{ marginBottom: '1.1rem' }}>
             {/* Project name styled like company header */}
             <div className="exp-company" style={{ color: 'var(--color-blue)' }}>{p.title}</div>
 
@@ -147,8 +149,14 @@ export default function ProjectsViewer({ filter = {}, full = false }) {
               )}
             </div>
           </div>
-          );
-        })}
+        );
+  };
+
+  // Render with the same DOM/class structure as ExperienceViewer
+  return (
+    <div className="output">
+      <div className="experience-list">
+        {filtered.map((p, idx) => renderProject(p, idx))}
       </div>
     </div>
   );
