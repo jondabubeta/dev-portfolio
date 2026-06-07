@@ -19,9 +19,23 @@ function slugify(name = "") {
     .replace(/^-+|-+$/g, "");
 }
 
+function getProjectSlugFromPath(pathname = "") {
+  const match = String(pathname).match(/^\/projects\/([^/]+)\/?$/);
+  return match ? match[1] : null;
+}
+
 export default function App() {
   const terminalRef = useRef(null);
+  const closeProjectTimer = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isProjectClosing, setIsProjectClosing] = useState(false);
+  const [activeProjectSlug, setActiveProjectSlug] = useState(() => {
+    try {
+      return getProjectSlugFromPath(window.location.pathname || "/");
+    } catch (e) {
+      return null;
+    }
+  });
 
   // Check for mobile viewport
   useEffect(() => {
@@ -34,6 +48,15 @@ export default function App() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  useEffect(() => {
+    const syncProjectRoute = () => {
+      setActiveProjectSlug(getProjectSlugFromPath(window.location.pathname || "/"));
+    };
+
+    window.addEventListener('popstate', syncProjectRoute);
+    return () => window.removeEventListener('popstate', syncProjectRoute);
+  }, []);
+
   const handleCommand = (cmd) => {
     const didRunDirectly = Boolean(terminalRef.current?.runCommand);
     terminalRef.current?.runCommand?.(cmd);
@@ -43,21 +66,53 @@ export default function App() {
     }
   };
 
+  const openProjectInPlace = (url) => {
+    const slug = getProjectSlugFromPath(url);
+    if (!slug) return;
+
+    if (closeProjectTimer.current) {
+      window.clearTimeout(closeProjectTimer.current);
+      closeProjectTimer.current = null;
+    }
+
+    setIsProjectClosing(false);
+    setActiveProjectSlug(slug);
+    if (window.location.pathname !== url) {
+      window.history.pushState({}, '', url);
+    }
+  };
+
+  const closeProject = () => {
+    if (!activeProjectSlug || isProjectClosing) return;
+
+    setIsProjectClosing(true);
+    closeProjectTimer.current = window.setTimeout(() => {
+      setActiveProjectSlug(null);
+      setIsProjectClosing(false);
+      closeProjectTimer.current = null;
+    }, 260);
+
+    if (window.location.pathname !== '/') {
+      window.history.pushState({}, '', '/');
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (closeProjectTimer.current) {
+        window.clearTimeout(closeProjectTimer.current);
+      }
+    };
+  }, []);
+
+  const activeProject = activeProjectSlug
+    ? projects.find((p) => slugify(p.title) === activeProjectSlug)
+    : null;
+
 
   // Client-side routes
   try {
     const pathname = window.location.pathname || "/";
-    // /projects/:slug
-    const m = pathname.match(/^\/projects\/([^/]+)\/?$/);
-    if (m) {
-      const slug = m[1];
-      const project = projects.find((p) => slugify(p.title) === slug);
-      return (
-        <Suspense fallback={<div className="loading">Loading…</div>}>
-          <ProjectTemplate project={project} />
-        </Suspense>
-      );
-    }
     // /resume
     if (pathname === "/resume") {
       return (
@@ -84,14 +139,28 @@ export default function App() {
         {/* Desktop Sidebar */}
         {!isMobile && (
           <aside className="side-panel" role="complementary" aria-label="Sidebar">
-            <SidePanel onCommand={handleCommand} />
+            <SidePanel onCommand={handleCommand} onNavigateProject={openProjectInPlace} />
           </aside>
         )}
 
-        {/* Terminal (full screen on mobile, right column on desktop) */}
+        {/* Terminal / in-place project view */}
         <main className="terminal-panel" aria-label="Terminal">
           <div className="terminal-wrapper">
-            <Terminal ref={terminalRef} />
+            {activeProjectSlug ? (
+              <div className={`project-embedded-shell${isProjectClosing ? ' is-closing' : ''}`}>
+                <div className="project-embedded-bar">
+                  <button className="project-embedded-back" onClick={closeProject} type="button">
+                    <span className="project-embedded-back-arrow" aria-hidden="true">←</span>
+                    <span>Return to Terminal</span>
+                  </button>
+                </div>
+                <Suspense fallback={<div className="loading">Loading…</div>}>
+                  <ProjectTemplate project={activeProject} embedded={true} />
+                </Suspense>
+              </div>
+            ) : (
+              <Terminal ref={terminalRef} />
+            )}
           </div>
         </main>
       </div>

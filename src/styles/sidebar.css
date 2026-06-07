@@ -214,9 +214,9 @@ body { margin: 0; }
 /* Give the top chip room so it isn't clipped by the container */
 /* Note: .side-panel-content styling is handled by the main flex definition above */
 
-/* Individual section scrolling for Current and Projects panels */
+/* Individual section scrolling for Latest and Projects panels */
 .section-container.projects-section .scrollable-section,
-.current-scrollable {
+.latest-scrollable {
   max-height: 108px;              /* height for 4 entries before scrolling */
   overflow-y: auto !important;    /* force individual scrollbars */
   overflow-x: hidden;
@@ -238,7 +238,7 @@ body { margin: 0; }
 }
 
 /* Other scrollable sections (like skills) remain unrestricted */
-.scrollable-section:not(.current-scrollable) {
+.scrollable-section:not(.latest-scrollable) {
   overflow: visible;              /* no scrolling for skills section with "more" link */
 }
 

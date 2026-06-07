@@ -9,7 +9,7 @@ marked.use(gfmHeadingId());
 // Vite glob to load project markdown files as raw text
 const mdModules = import.meta.glob('../../content/projects/*.md', { as: 'raw' });
 
-export default function ProjectTemplate({ project }) {
+export default function ProjectTemplate({ project, embedded = false }) {
   const [html, setHtml] = useState('');
   const [toc, setToc] = useState([]);
   const [active, setActive] = useState('top');
@@ -20,10 +20,10 @@ export default function ProjectTemplate({ project }) {
     e.preventDefault();
     setActive(id);
     manualLockUntil.current = performance.now() + 700;
-    
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    const target = document.getElementById(id);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
@@ -88,6 +88,9 @@ export default function ProjectTemplate({ project }) {
     const TAKEOVER_PAD = 6;
     const sectionIds = ['top', ...toc.map(s => s.anchor)];
     const els = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+    const scrollTarget = embedded
+      ? document.querySelector('.terminal-body') || window
+      : window;
 
     const pickActive = () => {
       if (performance.now() < manualLockUntil.current) return;
@@ -106,7 +109,11 @@ export default function ProjectTemplate({ project }) {
       }
     };
 
-    window.scrollTo(0, 0);
+    if (embedded && scrollTarget instanceof HTMLElement) {
+      scrollTarget.scrollTop = 0;
+    } else {
+      window.scrollTo(0, 0);
+    }
     setActive('top');
     manualLockUntil.current = performance.now() + 800;
     requestAnimationFrame(() => requestAnimationFrame(pickActive));
@@ -122,17 +129,21 @@ export default function ProjectTemplate({ project }) {
       }
     };
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+    scrollTarget.addEventListener('scroll', onScroll, { passive: true });
+    if (scrollTarget === window) {
+      scrollTarget.addEventListener('resize', onScroll);
+    }
     return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
+      scrollTarget.removeEventListener('scroll', onScroll);
+      if (scrollTarget === window) {
+        scrollTarget.removeEventListener('resize', onScroll);
+      }
     };
-  }, [toc]);
+  }, [toc, embedded]);
 
   if (!project) return <div className="output">Project not found</div>;
 
-  return (
+  const content = (
     <div className="project-page resume-page" id="top">
       <div className="project-grid resume-grid">
         <aside className="project-toc resume-toc">
@@ -170,4 +181,8 @@ export default function ProjectTemplate({ project }) {
       </div>
     </div>
   );
+
+  if (!embedded) return content;
+
+  return <div className="project-embedded-shell">{content}</div>;
 }

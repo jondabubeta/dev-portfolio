@@ -1,6 +1,7 @@
 import ExperienceViewer from '../components/commands/view/experience';
 import SkillsViewer from '../components/commands/view/skills';
 import ProjectsViewer from '../components/commands/view/projects';
+import LatestViewer from '../components/commands/view/latest';
 import EducationViewer from '../components/commands/view/education';
 import ContactViewer from '../components/commands/view/contact';
 import Help from '../components/commands/help';
@@ -17,6 +18,7 @@ const allowedArgs = {
   experience: ['company', 'tags', 'title', 'position', 'years', 'full'], // ⬅️ allow --full, --position, --years
   education: ['school', 'degree'],
   projects: ['tag', 'name', 'status'],
+  latest: [],
   contact: ['email', 'github', 'linkedin'],
   skills: ['name', 'category'] // Updated allowedArgs to include 'name' and 'category' for the 'skills' command
 };
@@ -54,6 +56,12 @@ export function handleCommand(input) {
         const { filter, errors } = parseArgs(argString, allowedArgs.projects);
         if (errors.length > 0) return errors.join('\n');
         return <ProjectsViewer filter={filter} />;
+      }
+
+      case 'latest': {
+        const { errors } = parseArgs(argString, allowedArgs.latest);
+        if (errors.length > 0) return errors.join('\n');
+        return <LatestViewer />;
       }
 
       case 'education': {

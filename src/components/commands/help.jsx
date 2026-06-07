@@ -7,6 +7,7 @@ export default function Help({ command }) {
     view experience                     View all experience
     view experience --company=...       Filter by company
     view experience --tags=...          Filter by tag(s)
+    view latest                         Show the latest updates feed
     view contact                        View all contact information
     view contact --email=false          Hide email (set false for any field)
     help                                Show available commands

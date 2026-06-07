@@ -1,5 +1,4 @@
-﻿
-# AniRepo
+﻿# AniRepo
 
 ## Background
 

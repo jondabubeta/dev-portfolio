@@ -50,6 +50,9 @@ const WelcomeContent = () => {
               • Commands like <span className="text-blue">view resume</span> or <span className="text-blue">view projects</span> display content
             </div>
             <div className="command-item">
+              • Use <span className="text-blue">view latest</span> to see the updates feed
+            </div>
+            <div className="command-item">
               • Some commands support flags (e.g., <span className="text-blue">--full=true</span>)
             </div>
           </div>

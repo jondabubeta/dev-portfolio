@@ -4,12 +4,17 @@ import TabPng from '../../assets/tab.png';
 
 export default function TabIcon({
   url,
+  onNavigate,
   title = 'Open in new tab',
   size = 24,
   className = '',
 }) {
   const handleClick = (e) => {
     e.stopPropagation();
+    if (onNavigate && url) {
+      onNavigate(url);
+      return;
+    }
     if (url) {
       window.open(url, '_blank', 'noopener,noreferrer');
     }
