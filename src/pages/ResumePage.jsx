@@ -10,27 +10,27 @@ import ProjectsViewer from '../components/commands/view/projects';
 export default function ResumePage() {
   const sections = useMemo(
     () => [
-      { id: 'overview',   label: 'Overview' },
+      { id: 'overview', label: 'Overview' },
       { id: 'experience', label: 'Experience' },
-      { id: 'skills',     label: 'Skills' },
-      { id: 'education',  label: 'Education' },
-      { id: 'projects',   label: 'Projects' },
+      { id: 'skills', label: 'Skills' },
+      { id: 'education', label: 'Education' },
+      { id: 'projects', label: 'Projects' },
     ],
     []
   );
 
   const [active, setActive] = useState('overview');
-  const manualLockUntil = useRef(0); // timestamp in ms
+  const manualLockUntil = useRef(0);
+  const showToc = sections.length > 1;
 
   const handleJump = (id) => (e) => {
     e.preventDefault();
-    setActive(id);                                // immediately highlight clicked link
-    manualLockUntil.current = performance.now() + 700; // lock scroll-spy briefly
+    setActive(id);
+    manualLockUntil.current = performance.now() + 700;
 
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-    // Clamp to very top when selecting "Overview" (avoid overshoot)
     if (id === 'overview') {
       requestAnimationFrame(() => {
         setTimeout(() => window.scrollTo(0, 0), 120);
@@ -39,17 +39,14 @@ export default function ResumePage() {
   };
 
   useEffect(() => {
-    const ANCHOR_Y = 96;     // must match scroll-margin-top
-    const TAKEOVER_PAD = 6;  // small cushion below the anchor
+    const ANCHOR_Y = 96;
+    const TAKEOVER_PAD = 6;
 
-    const els = sections
-      .map(s => document.getElementById(s.id))
-      .filter(Boolean);
+    const els = sections.map((s) => document.getElementById(s.id)).filter(Boolean);
 
     const pickActive = () => {
-      if (performance.now() < manualLockUntil.current) return; // skip during lock
+      if (performance.now() < manualLockUntil.current) return;
 
-      // If near the bottom, force "projects"
       const nearBottom =
         window.innerHeight + window.scrollY >= document.body.scrollHeight - 8;
       if (nearBottom) {
@@ -57,7 +54,6 @@ export default function ResumePage() {
         return;
       }
 
-      // Prefer the last section whose top is <= anchor line
       const candidates = [];
       for (const el of els) {
         const rect = el.getBoundingClientRect();
@@ -69,18 +65,15 @@ export default function ResumePage() {
       if (candidates.length > 0) {
         setActive(candidates[candidates.length - 1]);
       } else {
-        setActive('overview'); // top of page
+        setActive('overview');
       }
     };
 
-    // Force initial state and scroll to top
     window.scrollTo(0, 0);
     setActive('overview');
     manualLockUntil.current = performance.now() + 800;
-    // Wait 2 frames so layout settles before first check
     requestAnimationFrame(() => requestAnimationFrame(pickActive));
 
-    // Throttled scroll listener
     let ticking = false;
     const onScroll = () => {
       if (!ticking) {
@@ -102,29 +95,36 @@ export default function ResumePage() {
 
   return (
     <div className="resume-page">
-      <div className="resume-grid">
-        <aside className="resume-toc">
-          <div className="toc-card">
-            <div className="toc-title">Contents</div>
-            <nav className="toc-list">
-              {sections.map((s) => (
-                <a
-                  key={s.id}
-                  href={`#${s.id}`}
-                  onClick={handleJump(s.id)}
-                  className={`toc-link ${active === s.id ? 'active' : ''}`}
-                >
-                  {s.label}
-                </a>
-              ))}
-            </nav>
-          </div>
-        </aside>
+      <div className={`resume-grid${showToc ? '' : ' no-toc'}`}>
+        {showToc ? (
+          <aside className="resume-toc">
+            <div className="toc-card">
+              <div className="toc-title">Contents</div>
+              <nav className="toc-list">
+                {sections.map((s) => (
+                  <a
+                    key={s.id}
+                    href={`#${s.id}`}
+                    onClick={handleJump(s.id)}
+                    className={`toc-link ${active === s.id ? 'active' : ''}`}
+                  >
+                    {s.label}
+                  </a>
+                ))}
+              </nav>
+            </div>
+          </aside>
+        ) : null}
 
         <main className="resume-content">
+          <div className="resume-page-header">
+            <div>
+              <div className="terminal-h1">Jonathan Dabu</div>
+              <div className="subtitle">Software Testing, Automation, Development & AI/ML</div>
+            </div>
+          </div>
+
           <section id="overview" className="resume-section">
-            <h1>JONATHAN DABU</h1>
-            <div className="subtitle">Software Testing, Automation, Development & AI/ML</div>
             <div><span className="text-orange">Email:</span> jonathandabu86@gmail.com</div>
             <div><span className="text-orange">LinkedIn:</span> https://www.linkedin.com/in/jbdabu</div>
           </section>
@@ -149,7 +149,6 @@ export default function ResumePage() {
             <ProjectsViewer full={true} />
           </section>
 
-          {/* Spacer so last section can scroll to top cleanly */}
           <div style={{ height: 140 }} />
         </main>
       </div>

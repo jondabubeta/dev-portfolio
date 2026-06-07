@@ -15,14 +15,14 @@
       "command": "view resume",
       "downloadUrl": "/files/JonathanDabu_Resume.pdf",
       "downloadFilename": "JonathanDabu_Resume.pdf",
-      "pageUrl": "/resume/"
+      "pageUrl": "/resume"
     },
     {
       "label": "Cover Letter",
       "command": "view cv",
       "downloadUrl": "/files/JonathanDabu_CoverLetter.pdf",
       "downloadFilename": "JonathanDabu_CoverLetter.pdf",
-      "pageUrl": "/cv/"
+      "pageUrl": "/cv"
     }
   ]
 }

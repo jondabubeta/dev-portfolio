@@ -11,13 +11,21 @@ export default function TabIcon({
 }) {
   const handleClick = (e) => {
     e.stopPropagation();
-    if (onNavigate && url) {
+    e.preventDefault();
+    if (!url) return;
+
+    if (onNavigate) {
       onNavigate(url);
       return;
     }
-    if (url) {
-      window.open(url, '_blank', 'noopener,noreferrer');
+
+    // Internal app paths should stay in the same tab even without a custom handler.
+    if (typeof url === 'string' && url.startsWith('/')) {
+      window.location.assign(url);
+      return;
     }
+
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   return (

@@ -603,8 +603,13 @@ body { margin: 0; }
    single-line everywhere, no sidebar scrollbars
 ========================= */
 .projects-table .panel-row {
-   grid-template-columns: minmax(15ch, 1.8fr) minmax(0, 5.5fr) auto;
-  column-gap: 10px;
+  grid-template-columns: minmax(12ch, 1.2fr) minmax(0, 7fr) auto;
+  column-gap: 14px;
+}
+
+.projects-table .panel-extra {
+  min-width: 12ch;
+  padding-left: 0.35rem;
 }
 
 /* Force single-line, no extra spacing */
@@ -617,12 +622,18 @@ body { margin: 0; }
   margin: 0;
 }
 
+.projects-table .panel-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* Icons tight */
 .project-icons {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.5rem;
   overflow: visible;
 }
 .project-icons .icon-sm,

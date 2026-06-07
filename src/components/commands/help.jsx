@@ -4,6 +4,7 @@ export default function Help({ command }) {
   const helpText = {
     default: `Available commands:
     view resume                         Show full resume
+    view cv                             Show cover letter
     view experience                     View all experience
     view experience --company=...       Filter by company
     view experience --tags=...          Filter by tag(s)
@@ -16,6 +17,9 @@ export default function Help({ command }) {
 
     resume: `resume
   Displays your full resume with experience (and other sections as added).`,
+
+    cv: `view cv
+  Displays your cover letter.`,
 
     experience: `view experience [--company=... --tags=...]
   Displays full or filtered work history.

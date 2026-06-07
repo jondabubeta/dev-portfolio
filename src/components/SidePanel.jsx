@@ -7,10 +7,10 @@ import SkillsPanel from "./panel/SkillsPanel";
 import EducationPanel from "./panel/EducationPanel";
 import ContactsPanel from "./panel/ContactsPanel";
 
-export default function SidePanel({ onCommand, onNavigateProject }) {
+export default function SidePanel({ onCommand, onNavigateProject, onNavigateDocument }) {
   return (
   <div className="side-panel-content">
-    <AboutPanel onCommand={onCommand} />
+    <AboutPanel onCommand={onCommand} onNavigateDocument={onNavigateDocument} />
     <ExperiencePanel onCommand={onCommand} />
     <LatestPanel onCommand={onCommand} />
     <SkillsPanel onCommand={onCommand} />

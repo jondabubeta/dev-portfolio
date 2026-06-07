@@ -5,19 +5,34 @@ import '../styles/resume.css';
 import CvViewer from '../components/commands/view/cv';
 
 export default function CoverPage() {
+  const tocItems = [{ id: 'cover-letter', label: 'Cover Letter' }];
+  const showToc = tocItems.length > 1;
+
   return (
     <div className="resume-page">
-      <div className="resume-grid">
-        <aside className="resume-toc">
-          <div className="toc-card">
-            <div className="toc-title">Cover Letter</div>
-          </div>
-        </aside>
+      <div className={`resume-grid${showToc ? '' : ' no-toc'}`}>
+        {showToc ? (
+          <aside className="resume-toc">
+            <div className="toc-card">
+              <div className="toc-title">Contents</div>
+              <nav className="toc-list">
+                {tocItems.map((item) => (
+                  <span key={item.id} className="toc-link active">{item.label}</span>
+                ))}
+              </nav>
+            </div>
+          </aside>
+        ) : null}
 
         <main className="resume-content">
+          <div className="resume-page-header">
+            <div>
+              <div className="terminal-h1">Cover Letter</div>
+              <div className="terminal-h2 mb">Jonathan Dabu</div>
+            </div>
+          </div>
+
           <section className="resume-section">
-            <div className="terminal-h1">Cover Letter</div>
-            <div className="terminal-h2 mb">Jonathan Dabu</div>
             <CvViewer />
           </section>
         </main>

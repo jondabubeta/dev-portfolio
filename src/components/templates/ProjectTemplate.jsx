@@ -51,8 +51,9 @@ export default function ProjectTemplate({ project, embedded = false }) {
 
       try {
         const raw = await mdModules[key]();
-        
-        const rendered = marked.parse(raw || '', { 
+        const normalizedRaw = String(raw || '').replace(/^\uFEFF/, '');
+
+        const rendered = marked.parse(normalizedRaw, { 
           mangle: false
         });
         
@@ -143,33 +144,31 @@ export default function ProjectTemplate({ project, embedded = false }) {
 
   if (!project) return <div className="output">Project not found</div>;
 
+  const tocItems = [{ text: project.title, anchor: 'top' }, ...toc];
+  const showToc = tocItems.length > 1;
+
   const content = (
     <div className="project-page resume-page" id="top">
-      <div className="project-grid resume-grid">
-        <aside className="project-toc resume-toc">
-          <div className="toc-card">
-            <div className="toc-title">Contents</div>
-            <nav className="toc-list">
-              <a
-                href="#top"
-                onClick={handleJump('top')}
-                className={`toc-link${active === 'top' ? ' active' : ''}`}
-              >
-                {project.title}
-              </a>
-              {toc.map((section) => (
-                <a
-                  key={section.anchor}
-                  href={`#${section.anchor}`}
-                  onClick={handleJump(section.anchor)}
-                  className={`toc-link${active === section.anchor ? ' active' : ''}`}
-                >
-                  {section.text}
-                </a>
-              ))}
-            </nav>
-          </div>
-        </aside>
+      <div className={`project-grid resume-grid${showToc ? '' : ' no-toc'}`}>
+        {showToc ? (
+          <aside className="project-toc resume-toc">
+            <div className="toc-card">
+              <div className="toc-title">Contents</div>
+              <nav className="toc-list">
+                {tocItems.map((section) => (
+                  <a
+                    key={section.anchor}
+                    href={`#${section.anchor}`}
+                    onClick={handleJump(section.anchor)}
+                    className={`toc-link${active === section.anchor ? ' active' : ''}`}
+                  >
+                    {section.text}
+                  </a>
+                ))}
+              </nav>
+            </div>
+          </aside>
+        ) : null}
 
         <main className="project-content resume-content">
           <section className="project-section resume-section">

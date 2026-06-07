@@ -1,27 +1,281 @@
 /* ============================================================================
-   RESUME PAGE STYLES
-   =========================================================================
-   Styles for resume pages including grid layout, table of contents, and
-   content sections with typography and responsive adjustments.
+   RESUME / COVER / PROJECT PAGE STYLES
    ============================================================================ */
 
-/* ========== Page Setup ========== */
-html, body {
+html,
+body {
   height: 100%;
   overflow-y: auto;
 }
 
-/* Project pages need explicit overflow for scrolling */
+.page-wrapper,
+.resume-page,
+.resume-grid,
 .project-page {
-  height: auto;
-  min-height: 100vh;
-  overflow-y: visible;
+  overflow: visible;
 }
 
+.project-page {
+  min-height: 100vh;
+}
+
+.resume-page {
+  --content-max: 900px;
+  --toc-w: 260px;
+  --gap: clamp(32px, 6vw, 80px);
+  --grid-shift: -24px;
+  padding: 16px;
+  animation: page-fade-in 0.65s ease both;
+}
+
+.resume-page.is-closing,
 .project-embedded-shell.is-closing {
-  opacity: 0;
-  transform: translateY(10px);
+  animation: page-fade-out 0.42s ease both;
   pointer-events: none;
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes page-fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+.resume-grid {
+  display: grid;
+  grid-template-columns: var(--toc-w) minmax(0, 1fr);
+  column-gap: var(--gap);
+  justify-content: center;
+  align-items: start;
+}
+
+.resume-grid.no-toc {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.project-embedded-shell .resume-grid.no-toc {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.resume-toc,
+.project-toc {
+  align-self: stretch;
+  transform: translateX(var(--grid-shift));
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.toc-card {
+  position: sticky;
+  top: 16px;
+  max-height: calc(100vh - 32px);
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--terminal-border, #333);
+  border-radius: 12px;
+  background: var(--terminal-bg, #0b0b0b);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  padding: 12px;
+}
+
+.toc-title {
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+  color: #fff;
+  text-align: center;
+}
+
+.toc-list {
+  margin-top: 4px;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 1;
+  min-height: 0;
+}
+
+.toc-link {
+  text-decoration: none;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  opacity: 0.9;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+  color: var(--color-orange);
+}
+
+.toc-link:hover {
+  opacity: 1;
+  border-color: var(--terminal-border, #333);
+}
+
+.toc-link.active {
+  opacity: 1;
+  border-color: var(--terminal-border, #333);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.resume-content {
+  min-width: 0;
+  padding-bottom: 160px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+}
+
+.resume-page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.resume-page-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.resume-page-icons .icon-sm.cursor-pointer {
+  transition: transform 0.45s ease, filter 0.45s ease, opacity 0.45s ease;
+  will-change: transform, filter, opacity;
+}
+
+.resume-page-icons .icon-sm.cursor-pointer:hover {
+  transform: translateY(-1px) scale(1.05);
+  filter: brightness(1.15);
+}
+
+.resume-section {
+  scroll-margin-top: 96px;
+}
+
+.resume-section + .resume-section {
+  margin-top: 28px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.resume-page h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  margin: 0 0 0.25rem;
+  color: #fff;
+}
+
+.resume-page .subtitle {
+  font-size: 1.1rem;
+  color: #999;
+  margin-bottom: 1.2rem;
+}
+
+.resume-page h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 2rem 0 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.resume-section h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.project-markdown h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 1rem;
+  letter-spacing: 0.5px;
+}
+
+.project-markdown h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-orange);
+  margin: 2rem 0 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.project-markdown h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-blue);
+  margin: 1.5rem 0 0.75rem;
+}
+
+.project-markdown p {
+  color: #e0e0e0;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.project-markdown ul,
+.project-markdown ol {
+  color: #e0e0e0;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.project-markdown li {
+  margin-bottom: 0.5rem;
+}
+
+.project-markdown pre,
+.project-markdown code {
+  font-size: 0.92rem;
+}
+
+.project-markdown img {
+  max-width: 100%;
+  height: auto;
+}
+
+.project-embedded-shell {
+  --gap: 0px;
+  --grid-shift: 0px;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-gutter: stable both-edges;
+  padding: 0;
+  justify-content: start;
+  align-items: start;
 }
 
 .project-embedded-bar {
@@ -31,15 +285,15 @@ html, body {
   justify-content: flex-start;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.5rem 0 0.85rem 0;
+  padding: 0.5rem 0 0.85rem;
   margin-bottom: 0.75rem;
   background: var(--color-black);
   border-bottom: 1px solid var(--terminal-border);
 }
 
 .project-embedded-title {
-  margin: 0 0 0.85rem 0;
-  padding: 0.2rem 0 0.65rem 0;
+  margin: 0 0 0.85rem;
+  padding: 0.2rem 0 0.65rem;
   color: #fff;
   font-size: 1.55rem;
   font-weight: 800;
@@ -85,39 +339,17 @@ html, body {
   min-height: 0;
 }
 
-.project-embedded-shell .resume-page,
-.project-embedded-shell .resume-grid,
-.project-embedded-shell .resume-toc,
-.project-embedded-shell .project-toc,
-.project-embedded-shell .resume-content {
-  min-height: 0;
-}
-
-.project-embedded-shell .resume-page {
-  --content-max: 100%;
-  --toc-w: 0px;
-  --gap: 0px;
-  --grid-shift: 0px;
-  padding: 0;
-}
-
 .project-embedded-shell .resume-grid {
-  grid-template-columns: minmax(0, 1fr);
-  column-gap: 0;
-  row-gap: 8px;
+  grid-template-columns: var(--toc-w) minmax(0, 1fr);
+  column-gap: 24px;
   justify-content: start;
   align-items: start;
 }
 
+.project-embedded-shell .resume-toc,
 .project-embedded-shell .project-toc {
-  display: flex;
-  position: relative;
   transform: none;
-  width: 100%;
-  max-width: 280px;
-  margin: 0;
   min-height: auto;
-  align-self: start;
 }
 
 .project-embedded-shell .toc-card {
@@ -132,12 +364,6 @@ html, body {
   padding: 10px 10px 12px;
 }
 
-.project-embedded-shell .toc-list {
-  max-height: none;
-  overflow-y: visible;
-  gap: 8px;
-}
-
 .project-embedded-shell .toc-title {
   text-align: left;
   font-size: 0.9rem;
@@ -145,6 +371,12 @@ html, body {
   letter-spacing: 0.14em;
   color: #fff;
   margin-bottom: 0.55rem;
+}
+
+.project-embedded-shell .toc-list {
+  max-height: none;
+  overflow-y: visible;
+  gap: 8px;
 }
 
 .project-embedded-shell .toc-link {
@@ -168,29 +400,20 @@ html, body {
   border-radius: 50%;
   flex: 0 0 auto;
   background: var(--color-blue);
-  box-shadow: none;
 }
 
 .project-embedded-shell .toc-link:hover {
   background: rgba(0, 207, 230, 0.08);
   border-color: rgba(0, 207, 230, 0.18);
-  color: #fff;
 }
 
 .project-embedded-shell .toc-link.active {
   background: rgba(0, 207, 230, 0.12);
   border-color: rgba(0, 207, 230, 0.22);
-  color: #fff;
-}
-
-.project-embedded-shell .toc-link.active::before {
-  background: var(--color-blue);
 }
 
 .project-embedded-shell .resume-content {
-  padding: 0 0 32px 0;
-  font-size: 0.95rem;
-  line-height: 1.6;
+  padding: 0 0 32px;
   justify-self: start;
   text-align: left;
   color: #fff;
@@ -198,23 +421,19 @@ html, body {
 
 .project-embedded-shell .project-markdown h1 {
   font-size: 2rem;
-  color: #fff;
   margin-top: 0;
-  margin-bottom: 1rem;
 }
 
 .project-embedded-shell .project-markdown h2 {
   font-size: 1.2rem;
   margin-top: 1.35rem;
   margin-bottom: 0.7rem;
-  color: var(--color-orange);
 }
 
 .project-embedded-shell .project-markdown h3 {
   font-size: 1.05rem;
   margin-top: 1rem;
   margin-bottom: 0.55rem;
-  color: var(--color-blue);
 }
 
 .project-embedded-shell .project-markdown p,
@@ -224,243 +443,6 @@ html, body {
   color: #fff;
 }
 
-.project-embedded-shell .project-markdown pre,
-.project-embedded-shell .project-markdown code {
-  font-size: 0.85rem;
-}
-
-.project-embedded-shell .project-markdown img {
-  max-width: 100%;
-  height: auto;
-}
-
-.page-wrapper,
-.resume-page,
-.resume-grid {
-  overflow: visible;
-}
-
-/* ========== Resume Page Container ========== */
-.resume-page {
-  --content-max: 900px;
-  --toc-w: 260px;
-  --gap: clamp(32px, 6vw, 80px);
-  --grid-shift: -24px;
-  padding: 16px;
-}
-
-/* ============================================================================
-   GRID LAYOUT
-   ============================================================================ */
-
-/* ========== Resume Grid Layout ========== */
-.resume-grid {
-  display: grid;
-  grid-template-columns: var(--toc-w, 260px) minmax(0, var(--content-max, 900px));
-  column-gap: var(--gap, clamp(32px, 6vw, 80px));
-  justify-content: center;
-  align-items: stretch;
-  overflow: visible;
-}
-
-/* ========== Table of Contents Container ========== */
-.resume-toc,
-.project-toc {
-  align-self: stretch;
-  transform: translateX(var(--grid-shift, -24px));
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* ============================================================================
-   TABLE OF CONTENTS (TOC)
-   ============================================================================ */
-
-/* ========== TOC Card Styling ========== */
-.toc-card {
-  position: sticky;
-  top: 16px;
-  max-height: calc(100vh - 32px);
-  width: fit-content;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--terminal-border, #333);
-  border-radius: 12px;
-  background: var(--terminal-bg, #0b0b0b);
-  box-shadow: 0 2px 6px rgba(0,0,0,.25);
-  padding: 12px;
-}
-
-/* ========== TOC Title ========== */
-.toc-title {
-  font-weight: 700;
-  margin-bottom: 8px;
-  font-size: 1.3rem;
-  letter-spacing: 0.5px;
-  color: #fff;
-  text-align: center;
-}
-
-/* ========== TOC Link List ========== */
-.toc-list {
-  margin-top: 4px;
-  overflow-y: auto;
-  scrollbar-gutter: stable;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  flex-shrink: 1;
-  min-height: 0;
-}
-
-/* ========== TOC Links ========== */
-.toc-link {
-  text-decoration: none;
-  font-size: 1.2rem;
-  line-height: 1.5;
-  opacity: 0.9;
-  padding: 8px 10px;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
-  color: var(--color-orange);
-}
-
-.toc-link:hover {
-  opacity: 1;
-  border-color: var(--terminal-border, #333);
-}
-
-.toc-link.active {
-  opacity: 1;
-  border-color: var(--terminal-border, #333);
-  background: rgba(255, 255, 255, 0.08);
-}
-
-/* ============================================================================
-   RESUME CONTENT AREA
-   ============================================================================ */
-
-/* ========== Main Content Container ========== */
-.resume-content {
-  min-width: 0;
-  padding-bottom: 160px;
-  font-size: 1.0rem;
-  line-height: 1.6;
-  color: #e0e0e0;
-}
-
-/* ========== Resume Sections ========== */
-.resume-section {
-  scroll-margin-top: 96px;
-}
-
-.resume-section + .resume-section {
-  margin-top: 28px;
-}
-
-/* ========== Smooth Scrolling ========== */
-html {
-  scroll-behavior: smooth;
-}
-
-/* ============================================================================
-   TYPOGRAPHY
-   ============================================================================ */
-
-/* ========== Main Title (H1) ========== */
-.resume-page h1 {
-  font-size: 2.8rem;
-  font-weight: 800;
-  letter-spacing: 0.6px;
-  margin-bottom: 0.25rem;
-  margin-top: 0;
-  color: #fff;
-}
-
-/* ========== Subtitle ========== */
-.resume-page .subtitle {
-  font-size: 1.1rem;
-  color: #999;
-  margin-bottom: 1.2rem;
-}
-
-/* ========== Section Headers (H2) ========== */
-.resume-page h2 {
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #fff;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-/* ========== Subsection Headers (H3) ========== */
-.resume-section h3 {
-  font-size: 1.15rem;
-  margin-bottom: 0.75rem;
-  color: var(--color-blue);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* ============================================================================
-   PROJECT PAGE TYPOGRAPHY
-   ============================================================================ */
-
-/* ========== Project Markdown Headers ========== */
-.project-markdown h1 {
-  font-size: 2.4rem;
-  font-weight: 800;
-  color: #fff;
-  margin-top: 0;
-  margin-bottom: 1rem;
-  letter-spacing: 0.5px;
-}
-
-.project-markdown h2 {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--color-orange);
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.project-markdown h3 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--color-blue);
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
-}
-
-.project-markdown p {
-  color: #e0e0e0;
-  line-height: 1.7;
-  margin-bottom: 1rem;
-}
-
-.project-markdown ul,
-.project-markdown ol {
-  color: #e0e0e0;
-  line-height: 1.7;
-  margin-bottom: 1rem;
-  padding-left: 1.5rem;
-}
-
-.project-markdown li {
-  margin-bottom: 0.5rem;
-}
-
-/* ============================================================================
-   SKILLS PAGE STYLING
-   ============================================================================ */
-
-/* ========== Skills Grid Layout ========== */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -468,7 +450,6 @@ html {
   margin-top: 1rem;
 }
 
-/* ========== Skill Card ========== */
 .skill-card {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--terminal-border, #333);
@@ -483,7 +464,6 @@ html {
   transform: translateY(-2px);
 }
 
-/* ========== Skill Card Content ========== */
 .skill-name {
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
@@ -502,7 +482,6 @@ html {
   margin-bottom: 0.75rem;
 }
 
-/* ========== Skill Tags ========== */
 .skill-tags {
   display: flex;
   flex-wrap: wrap;
@@ -522,57 +501,53 @@ html {
   letter-spacing: 0.02em;
 }
 
-/* ============================================================================
-   RESPONSIVE ADJUSTMENTS
-   ============================================================================ */
-
-/* ========== Medium Screens (1200px) ========== */
 @media (max-width: 1200px) {
   .resume-toc {
     transform: translateX(-16px);
   }
 }
 
-/* ========== Large Screens (1600px+) ========== */
 @media (min-width: 1600px) {
   .resume-toc {
     transform: translateX(-32px);
   }
 }
 
-/* ========== Small Screens (< 992px) - Single Column ========== */
 @media (max-width: 991.98px) {
-  .resume-grid {
+  .resume-grid,
+  .project-embedded-shell .resume-grid {
     grid-template-columns: 1fr;
     column-gap: 0;
   }
-  .resume-toc {
+
+  .resume-toc,
+  .project-embedded-shell .resume-toc,
+  .project-toc {
     transform: none;
     min-height: auto;
   }
+
   .toc-card {
     position: static;
     max-height: none;
     overflow: visible;
   }
-  
-  /* Skills grid responsive */
+
   .skills-grid {
     grid-template-columns: 1fr;
   }
 }
 
-/* ========== Extra Small Screens (< 576px) ========== */
 @media (max-width: 575.98px) {
-  .skill-card {
-    padding: 1rem;
-  }
-  
   .resume-page h1 {
     font-size: 2.2rem;
   }
-  
+
   .resume-page h2 {
     font-size: 1.2rem;
+  }
+
+  .skill-card {
+    padding: 1rem;
   }
 }

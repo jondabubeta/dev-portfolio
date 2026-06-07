@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 const ProjectTemplate = lazy(() => import("./components/templates/ProjectTemplate"));
 
 const ResumePage = lazy(() => import("./pages/ResumePage"));
+const CoverPage = lazy(() => import("./pages/CoverPage"));
 const SkillsPage = lazy(() => import("./pages/SkillsPage"));
 
 import projects from "./data/projects";
@@ -24,14 +25,36 @@ function getProjectSlugFromPath(pathname = "") {
   return match ? match[1] : null;
 }
 
+function normalizePath(pathname = "") {
+  return String(pathname || "/").replace(/\/+$/, "") || "/";
+}
+
+function getEmbeddedViewFromPath(pathname = "") {
+  const normalized = normalizePath(pathname);
+  const projectSlug = getProjectSlugFromPath(normalized);
+  if (projectSlug) {
+    return { kind: "project", slug: projectSlug, path: `/projects/${projectSlug}` };
+  }
+
+  if (normalized === "/resume") {
+    return { kind: "doc", doc: "resume", path: "/resume" };
+  }
+
+  if (normalized === "/cv" || normalized === "/cover") {
+    return { kind: "doc", doc: "cover", path: "/cv" };
+  }
+
+  return null;
+}
+
 export default function App() {
   const terminalRef = useRef(null);
   const closeProjectTimer = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isProjectClosing, setIsProjectClosing] = useState(false);
-  const [activeProjectSlug, setActiveProjectSlug] = useState(() => {
+  const [activeEmbeddedView, setActiveEmbeddedView] = useState(() => {
     try {
-      return getProjectSlugFromPath(window.location.pathname || "/");
+      return getEmbeddedViewFromPath(window.location.pathname || "/");
     } catch (e) {
       return null;
     }
@@ -50,7 +73,7 @@ export default function App() {
 
   useEffect(() => {
     const syncProjectRoute = () => {
-      setActiveProjectSlug(getProjectSlugFromPath(window.location.pathname || "/"));
+      setActiveEmbeddedView(getEmbeddedViewFromPath(window.location.pathname || "/"));
     };
 
     window.addEventListener('popstate', syncProjectRoute);
@@ -66,9 +89,9 @@ export default function App() {
     }
   };
 
-  const openProjectInPlace = (url) => {
-    const slug = getProjectSlugFromPath(url);
-    if (!slug) return;
+  const openInPlace = (url) => {
+    const targetView = getEmbeddedViewFromPath(url);
+    if (!targetView) return;
 
     if (closeProjectTimer.current) {
       window.clearTimeout(closeProjectTimer.current);
@@ -76,18 +99,20 @@ export default function App() {
     }
 
     setIsProjectClosing(false);
-    setActiveProjectSlug(slug);
-    if (window.location.pathname !== url) {
-      window.history.pushState({}, '', url);
+    setActiveEmbeddedView(targetView);
+
+    const pathname = normalizePath(window.location.pathname || "/");
+    if (pathname !== targetView.path) {
+      window.history.pushState({}, '', targetView.path);
     }
   };
 
-  const closeProject = () => {
-    if (!activeProjectSlug || isProjectClosing) return;
+  const closeEmbeddedView = () => {
+    if (!activeEmbeddedView || isProjectClosing) return;
 
     setIsProjectClosing(true);
     closeProjectTimer.current = window.setTimeout(() => {
-      setActiveProjectSlug(null);
+      setActiveEmbeddedView(null);
       setIsProjectClosing(false);
       closeProjectTimer.current = null;
     }, 260);
@@ -105,22 +130,15 @@ export default function App() {
     };
   }, []);
 
-  const activeProject = activeProjectSlug
-    ? projects.find((p) => slugify(p.title) === activeProjectSlug)
+  const activeProject = activeEmbeddedView?.kind === "project"
+    ? projects.find((p) => slugify(p.title) === activeEmbeddedView.slug)
     : null;
 
 
   // Client-side routes
   try {
-    const pathname = window.location.pathname || "/";
-    // /resume
-    if (pathname === "/resume") {
-      return (
-        <Suspense fallback={<div className="loading">Loading…</div>}>
-          <ResumePage />
-        </Suspense>
-      );
-    }
+    const rawPathname = window.location.pathname || "/";
+    const pathname = rawPathname.replace(/\/+$/, '') || '/';
     // /skills
     if (pathname === "/skills") {
       return (
@@ -139,23 +157,29 @@ export default function App() {
         {/* Desktop Sidebar */}
         {!isMobile && (
           <aside className="side-panel" role="complementary" aria-label="Sidebar">
-            <SidePanel onCommand={handleCommand} onNavigateProject={openProjectInPlace} />
+            <SidePanel onCommand={handleCommand} onNavigateProject={openInPlace} onNavigateDocument={openInPlace} />
           </aside>
         )}
 
         {/* Terminal / in-place project view */}
         <main className="terminal-panel" aria-label="Terminal">
           <div className="terminal-wrapper">
-            {activeProjectSlug ? (
+            {activeEmbeddedView ? (
               <div className={`project-embedded-shell${isProjectClosing ? ' is-closing' : ''}`}>
                 <div className="project-embedded-bar">
-                  <button className="project-embedded-back" onClick={closeProject} type="button">
+                  <button className="project-embedded-back" onClick={closeEmbeddedView} type="button">
                     <span className="project-embedded-back-arrow" aria-hidden="true">←</span>
                     <span>Return to Terminal</span>
                   </button>
                 </div>
                 <Suspense fallback={<div className="loading">Loading…</div>}>
-                  <ProjectTemplate project={activeProject} embedded={true} />
+                  {activeEmbeddedView.kind === "project" ? (
+                    <ProjectTemplate project={activeProject} embedded={true} />
+                  ) : activeEmbeddedView.doc === "resume" ? (
+                    <ResumePage onNavigatePage={openInPlace} />
+                  ) : (
+                    <CoverPage onNavigatePage={openInPlace} />
+                  )}
                 </Suspense>
               </div>
             ) : (
