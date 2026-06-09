@@ -603,7 +603,7 @@ body { margin: 0; }
    single-line everywhere, no sidebar scrollbars
 ========================= */
 .projects-table .panel-row {
-  grid-template-columns: minmax(12ch, 1.2fr) minmax(0, 7fr) auto;
+  grid-template-columns: minmax(13ch, 1.2fr) minmax(0, 7fr) auto;
   column-gap: 14px;
 }
 
