@@ -25,13 +25,6 @@ export default function CoverPage() {
         ) : null}
 
         <main className="resume-content">
-          <div className="resume-page-header">
-            <div>
-              <div className="terminal-h1">Cover Letter</div>
-              <div className="terminal-h2 mb">Jonathan Dabu</div>
-            </div>
-          </div>
-
           <section className="resume-section">
             <CvViewer />
           </section>

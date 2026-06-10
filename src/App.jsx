@@ -44,6 +44,10 @@ function getEmbeddedViewFromPath(pathname = "") {
     return { kind: "doc", doc: "cover", path: "/cv" };
   }
 
+  if (normalized === "/skills") {
+    return { kind: "doc", doc: "skills", path: "/skills" };
+  }
+
   return null;
 }
 
@@ -133,23 +137,7 @@ export default function App() {
   const activeProject = activeEmbeddedView?.kind === "project"
     ? projects.find((p) => slugify(p.title) === activeEmbeddedView.slug)
     : null;
-
-
-  // Client-side routes
-  try {
-    const rawPathname = window.location.pathname || "/";
-    const pathname = rawPathname.replace(/\/+$/, '') || '/';
-    // /skills
-    if (pathname === "/skills") {
-      return (
-        <Suspense fallback={<div className="loading">Loading…</div>}>
-          <SkillsPage />
-        </Suspense>
-      );
-    }
-  } catch (e) {
-    // window may be undefined during SSR; ignore
-  }
+  const activeEmbeddedKey = activeEmbeddedView?.path || "terminal";
 
   return (
     <div className="page-wrapper">
@@ -174,11 +162,13 @@ export default function App() {
                 </div>
                 <Suspense fallback={<div className="loading">Loading…</div>}>
                   {activeEmbeddedView.kind === "project" ? (
-                    <ProjectTemplate project={activeProject} embedded={true} />
+                    <ProjectTemplate key={activeEmbeddedKey} project={activeProject} embedded={true} />
                   ) : activeEmbeddedView.doc === "resume" ? (
-                    <ResumePage onNavigatePage={openInPlace} />
+                    <ResumePage key={activeEmbeddedKey} onNavigatePage={openInPlace} />
+                  ) : activeEmbeddedView.doc === "skills" ? (
+                    <SkillsPage key={activeEmbeddedKey} />
                   ) : (
-                    <CoverPage onNavigatePage={openInPlace} />
+                    <CoverPage key={activeEmbeddedKey} onNavigatePage={openInPlace} />
                   )}
                 </Suspense>
               </div>

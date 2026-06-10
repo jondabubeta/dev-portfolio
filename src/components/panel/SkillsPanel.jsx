@@ -1,7 +1,7 @@
 import React from "react";
 import skillsData from "../../data/skills.json";
 
-export default function SkillsPanel({ onCommand }) {
+export default function SkillsPanel({ onCommand, onNavigatePage }) {
   const MAX_VISIBLE = 12;  // show 12 skills in sidebar
   const allSkills = Object.entries(skillsData).flatMap(([cat, arr]) =>
     arr.map((s) => ({ ...s, category: cat }))
@@ -12,6 +12,12 @@ export default function SkillsPanel({ onCommand }) {
   const handleSkillClick = (skillName) => {
     const cmd = `view skills --name="${skillName}"`;
     onCommand?.(cmd);
+  };
+
+  const handleOpenAllSkills = (e) => {
+    if (!onNavigatePage) return;
+    e.preventDefault();
+    onNavigatePage('/skills');
   };
 
   return (
@@ -35,6 +41,7 @@ export default function SkillsPanel({ onCommand }) {
             className="skills-more-link"
             href="/skills"
             title="See all skills"
+            onClick={handleOpenAllSkills}
             style={{ textDecoration: 'none' }}
           >
             +MORE

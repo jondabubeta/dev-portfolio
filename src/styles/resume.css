@@ -450,6 +450,10 @@ html {
   margin-top: 1rem;
 }
 
+.skills-category-section {
+  margin-bottom: 3rem;
+}
+
 .skill-card {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--terminal-border, #333);
