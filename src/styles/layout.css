@@ -76,7 +76,7 @@
 .footer-section {
   grid-row: 2;
   background-color: var(--color-black);
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-footer);
   border-radius: 8px;
   padding: 0.75rem 2rem;
   margin: 0 0 0.5rem 0;
@@ -91,6 +91,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
+  color: var(--color-footer);
   width: 100%;
   max-width: 100%;
   overflow: hidden;
