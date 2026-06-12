@@ -4,6 +4,8 @@ import TabPng from '../../assets/tab.png';
 
 export default function TabIcon({
   url,
+  command,
+  onCommand,
   onNavigate,
   title = 'Open in new tab',
   size = 24,
@@ -12,6 +14,16 @@ export default function TabIcon({
   const handleClick = (e) => {
     e.stopPropagation();
     e.preventDefault();
+
+    if (command) {
+      if (typeof onCommand === 'function') {
+        onCommand(command);
+      } else {
+        window.dispatchEvent(new CustomEvent('terminal:command', { detail: command }));
+      }
+      return;
+    }
+
     if (!url) return;
 
     if (onNavigate) {

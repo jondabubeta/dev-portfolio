@@ -9,18 +9,33 @@ export default function AboutPanel({ onCommand, onNavigateDocument }) {
     onNavigateDocument(pageUrl);
   };
 
+  const handleOpenAbout = (e) => {
+    if (!onNavigateDocument) return;
+    e.preventDefault();
+    onNavigateDocument('/about');
+  };
+
   return (
     <div className="section-container lg">
       <h3>About</h3>
 
       <div>
-        <p>
-          {aboutData.intro}
-        </p>
-        
-        <p>
+        <p className="about-tagline">{aboutData.tagline}</p>
+        <p className="about-bio">
           {aboutData.bio}
         </p>
+
+        <div className="about-more-row">
+          <a
+            className="about-more-link"
+            href="/about"
+            title="See full about page"
+            onClick={handleOpenAbout}
+            style={{ textDecoration: 'none' }}
+          >
+            +MORE
+          </a>
+        </div>
 
         <div className="doc-table">
           {aboutData.documents.map((doc, index) => (

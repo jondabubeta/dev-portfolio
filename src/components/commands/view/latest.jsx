@@ -9,7 +9,10 @@ export default function LatestViewer() {
             Latest
           </div>
           <div className="experience-entry">
-            <div className="exp-summary">&gt; Nothing to show yet.</div>
+            <div className="exp-summary">
+              &gt; Fairness testing through AI and ML, focused on bias detection, measurement gaps,
+              and evaluation workflows. Uploaded 06/11/26.
+            </div>
           </div>
         </div>
       </div>

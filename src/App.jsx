@@ -8,6 +8,7 @@ const ProjectTemplate = lazy(() => import("./components/templates/ProjectTemplat
 const ResumePage = lazy(() => import("./pages/ResumePage"));
 const CoverPage = lazy(() => import("./pages/CoverPage"));
 const SkillsPage = lazy(() => import("./pages/SkillsPage"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
 
 import projects from "./data/projects";
 import "./styles/index.css";
@@ -46,6 +47,10 @@ function getEmbeddedViewFromPath(pathname = "") {
 
   if (normalized === "/skills") {
     return { kind: "doc", doc: "skills", path: "/skills" };
+  }
+
+  if (normalized === "/about") {
+    return { kind: "doc", doc: "about", path: "/about" };
   }
 
   return null;
@@ -165,6 +170,8 @@ export default function App() {
                     <ProjectTemplate key={activeEmbeddedKey} project={activeProject} embedded={true} />
                   ) : activeEmbeddedView.doc === "resume" ? (
                     <ResumePage key={activeEmbeddedKey} onNavigatePage={openInPlace} />
+                  ) : activeEmbeddedView.doc === "about" ? (
+                    <AboutPage key={activeEmbeddedKey} />
                   ) : activeEmbeddedView.doc === "skills" ? (
                     <SkillsPage key={activeEmbeddedKey} />
                   ) : (

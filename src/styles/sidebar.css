@@ -362,6 +362,15 @@ body { margin: 0; }
   min-height: 24px;               
 }
 
+.latest-table .panel-row {
+  grid-template-columns: minmax(0, 2.4fr) 9.5ch auto;
+  column-gap: 12px;
+}
+
+.latest-row {
+  padding: 0.1rem 0;
+}
+
 /* Hover + clickable states */
 .panel-row.clickable {
   cursor: pointer;
@@ -398,13 +407,77 @@ body { margin: 0; }
   text-align: right;
 }
 
+.latest-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-width: 0;
+  gap: 0.45rem;
+}
+
+.latest-toggle-icon {
+  flex: 0 0 auto;
+  font-size: 0.7rem;
+  color: #888;
+  transform: translateY(-1px);
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.latest-toggle-icon.is-open {
+  transform: rotate(90deg) translateX(1px);
+  color: var(--color-blue);
+}
+
+.latest-title,
+.latest-description,
+.latest-date {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.1;
+}
+
+.latest-title {
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.latest-description {
+  font-size: 0.86rem;
+  color: #aaa;
+}
+
+.latest-date {
+  font-size: 0.86rem;
+  color: #888;
+}
+
+.latest-dropdown {
+  display: grid;
+  grid-template-columns: minmax(0, 2.4fr) 9.5ch auto;
+  column-gap: 12px;
+  padding: 0.15rem 0 0.2rem;
+}
+
+.latest-dropdown .latest-description {
+  grid-column: 1 / 2;
+  white-space: normal;
+}
+
+.latest-row.is-open .latest-title,
+.latest-row.is-open .latest-date,
+.latest-row.is-open .panel-extra {
+  color: var(--color-blue);
+}
+
 /* =========================
    ABOUT / DOC ROW ICONS
 ========================= */
 .doc-table {
   display: grid;
   row-gap: 0.3rem;
-  margin-top: 0.4rem;
+  margin-top: 0;
   width: 100%;
 }
 .doc-row {
@@ -449,6 +522,31 @@ body { margin: 0; }
 .doc-icons svg:hover {
   transform: scale(1.1);
   filter: brightness(1.3);
+}
+
+.about-more-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.about-bio {
+  margin-bottom: 0;
+}
+
+.about-more-link {
+  display: inline-flex;
+  font-size: 0.9rem;
+  color: var(--color-dyellow);
+  cursor: pointer;
+  background: #121212;
+  padding: 0px 8px 16px;
+  border-radius: 12px;
+}
+
+.about-more-link:hover {
+  color: var(--color-blue);
 }
 
 /* =========================
