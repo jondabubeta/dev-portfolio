@@ -95,28 +95,28 @@ export default function ResumePage() {
 
   return (
     <div className="resume-page">
-      <div className={`resume-grid${showToc ? '' : ' no-toc'}`}>
-        {showToc ? (
-          <aside className="resume-toc">
-            <div className="toc-card">
-              <div className="toc-title">Contents</div>
-              <nav className="toc-list">
-                {sections.map((s) => (
-                  <a
-                    key={s.id}
-                    href={`#${s.id}`}
-                    onClick={handleJump(s.id)}
-                    className={`toc-link ${active === s.id ? 'active' : ''}`}
-                  >
-                    {s.label}
-                  </a>
-                ))}
-              </nav>
-            </div>
-          </aside>
-        ) : null}
-
+      <div className="resume-grid no-toc">
         <main className="resume-content">
+          {showToc ? (
+            <aside className="inline-toc">
+              <div className="toc-card">
+                <div className="toc-title">Contents</div>
+                <nav className="toc-list">
+                  {sections.map((s) => (
+                    <a
+                      key={s.id}
+                      href={`#${s.id}`}
+                      onClick={handleJump(s.id)}
+                      className={`toc-link ${active === s.id ? 'active' : ''}`}
+                    >
+                      {s.label}
+                    </a>
+                  ))}
+                </nav>
+              </div>
+            </aside>
+          ) : null}
+
           <div className="resume-page-header">
             <div>
               <div className="terminal-h1">Jonathan Dabu</div>

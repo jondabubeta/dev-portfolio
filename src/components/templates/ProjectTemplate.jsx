@@ -149,28 +149,28 @@ export default function ProjectTemplate({ project, embedded = false }) {
 
   const content = (
     <div className="project-page resume-page" id="top">
-      <div className={`project-grid resume-grid${showToc ? '' : ' no-toc'}`}>
-        {showToc ? (
-          <aside className="project-toc resume-toc">
-            <div className="toc-card">
-              <div className="toc-title">Contents</div>
-              <nav className="toc-list">
-                {tocItems.map((section) => (
-                  <a
-                    key={section.anchor}
-                    href={`#${section.anchor}`}
-                    onClick={handleJump(section.anchor)}
-                    className={`toc-link${active === section.anchor ? ' active' : ''}`}
-                  >
-                    {section.text}
-                  </a>
-                ))}
-              </nav>
-            </div>
-          </aside>
-        ) : null}
-
+      <div className="project-grid resume-grid no-toc">
         <main className="project-content resume-content">
+          {showToc ? (
+            <aside className="inline-toc">
+              <div className="toc-card">
+                <div className="toc-title">Contents</div>
+                <nav className="toc-list">
+                  {tocItems.map((section) => (
+                    <a
+                      key={section.anchor}
+                      href={`#${section.anchor}`}
+                      onClick={handleJump(section.anchor)}
+                      className={`toc-link${active === section.anchor ? ' active' : ''}`}
+                    >
+                      {section.text}
+                    </a>
+                  ))}
+                </nav>
+              </div>
+            </aside>
+          ) : null}
+
           <section className="project-section resume-section">
             {html ? (
               <div className="project-markdown" dangerouslySetInnerHTML={{ __html: html }} />

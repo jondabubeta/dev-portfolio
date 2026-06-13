@@ -138,6 +138,40 @@ body {
   background: rgba(255, 255, 255, 0.08);
 }
 
+.inline-toc {
+  margin-bottom: 1.5rem;
+}
+
+.inline-toc .toc-card {
+  position: static;
+  top: auto;
+  width: 100%;
+  max-height: none;
+  padding: 0.85rem 1rem;
+}
+
+.inline-toc .toc-title {
+  margin-bottom: 0.55rem;
+  text-align: left;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.inline-toc .toc-list {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0;
+  overflow: visible;
+}
+
+.inline-toc .toc-link {
+  padding: 0.45rem 0.7rem;
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
 .resume-content {
   min-width: 0;
   padding-bottom: 160px;
