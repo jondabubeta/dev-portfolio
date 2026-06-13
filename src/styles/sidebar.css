@@ -557,7 +557,6 @@ body { margin: 0; }
   overflow: visible;
   padding-right: 0;
   box-sizing: border-box;
-  position: relative;
 }
 .skill-cloud {
   display: flex;
@@ -566,9 +565,9 @@ body { margin: 0; }
   margin-top: 0.4rem;
 }
 .skills-more-link {
-  position: absolute;
-  right: 0.1rem;
-  bottom: 0.1rem;
+  display: flex;
+  width: max-content;
+  margin: 0.5rem 0 0 auto;
   font-size: 0.9rem;
   color: var(--color-dyellow);
   cursor: pointer;
@@ -797,8 +796,6 @@ body { margin: 0; }
   }
   
   .skills-more-link {
-    right: 0.2rem;
-    bottom: 0.2rem;
     font-size: 0.85rem;
     padding: 1px 8px;
   }

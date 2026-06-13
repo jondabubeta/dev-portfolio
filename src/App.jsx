@@ -59,6 +59,7 @@ function getEmbeddedViewFromPath(pathname = "") {
 export default function App() {
   const terminalRef = useRef(null);
   const closeProjectTimer = useRef(null);
+  const pendingTerminalCommand = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isProjectClosing, setIsProjectClosing] = useState(false);
   const [activeEmbeddedView, setActiveEmbeddedView] = useState(() => {
@@ -90,6 +91,12 @@ export default function App() {
   }, []);
 
   const handleCommand = (cmd) => {
+    if (activeEmbeddedView) {
+      pendingTerminalCommand.current = cmd;
+      closeEmbeddedView();
+      return;
+    }
+
     const didRunDirectly = Boolean(terminalRef.current?.runCommand);
     terminalRef.current?.runCommand?.(cmd);
 
@@ -130,6 +137,23 @@ export default function App() {
       window.history.pushState({}, '', '/');
     }
   };
+
+  useEffect(() => {
+    if (activeEmbeddedView || !pendingTerminalCommand.current) return;
+
+    const command = pendingTerminalCommand.current;
+    pendingTerminalCommand.current = null;
+
+    const runCommandTimer = window.setTimeout(() => {
+      if (terminalRef.current?.runCommand) {
+        terminalRef.current.runCommand(command);
+      } else {
+        window.dispatchEvent(new CustomEvent("terminal:command", { detail: command }));
+      }
+    }, 0);
+
+    return () => window.clearTimeout(runCommandTimer);
+  }, [activeEmbeddedView]);
 
   useEffect(() => {
     return () => {
