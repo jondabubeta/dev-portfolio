@@ -372,6 +372,7 @@ body { margin: 0; }
 }
 
 .latest-row .panel-extra {
+  width: 76px;
   gap: 0.5rem;
   overflow: visible;
 }
@@ -421,9 +422,19 @@ body { margin: 0; }
 }
 
 .latest-toggle-icon {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex: 0 0 auto;
+  width: 1rem;
+  height: 1rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
   font-size: 0.7rem;
   color: #888;
+  cursor: pointer;
   transform: translateY(-1px);
   transition: transform 0.15s ease, color 0.15s ease;
 }
@@ -444,8 +455,16 @@ body { margin: 0; }
 }
 
 .latest-title {
+  display: block;
   font-size: 0.95rem;
   color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.latest-title:hover,
+.latest-title:focus-visible {
+  color: var(--color-blue);
 }
 
 .latest-description {
@@ -484,6 +503,7 @@ body { margin: 0; }
   row-gap: 0.3rem;
   margin-top: 0;
   width: 100%;
+  padding-right: 24px;
 }
 .doc-row {
   display: grid;
@@ -511,7 +531,7 @@ body { margin: 0; }
   justify-content: flex-end;
   align-items: center;
   gap: 0.5rem;
-  width: 100%;
+  width: 76px;
 }
 .icon-sm,
 .doc-icons img,
@@ -710,8 +730,7 @@ body { margin: 0; }
 }
 
 .projects-table .panel-extra {
-  min-width: 12ch;
-  padding-left: 0.35rem;
+  width: 76px;
 }
 
 /* Force single-line, no extra spacing */
@@ -741,13 +760,19 @@ body { margin: 0; }
 .project-icons .icon-sm,
 .project-icons img,
 .project-icons svg {
-  width: 22px; height: 22px; object-fit: contain;
+  width: 20px; height: 20px; object-fit: contain;
   cursor: pointer; transition: transform .15s ease, filter .15s ease;
 }
 .project-icons .icon-sm:hover,
 .project-icons img:hover,
 .project-icons svg:hover {
   transform: scale(1.1); filter: brightness(1.3);
+}
+
+.side-panel .icon-sm {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
 }
 
 /* =========================
@@ -821,9 +846,13 @@ body { margin: 0; }
 
 /* Scale up icons on higher resolutions */
 @media (min-width: 1440px) {
-  .icon-sm,
-  .doc-icons img,
-  .doc-icons svg {
+  .latest-row .panel-extra,
+  .doc-icons,
+  .projects-table .panel-extra {
+    width: 82px;
+  }
+
+  .side-panel .icon-sm {
     width: 22px;
     height: 22px;
   }

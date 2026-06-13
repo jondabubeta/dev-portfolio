@@ -22,24 +22,31 @@ export default function LatestPanel({ onCommand, onNavigateLatest }) {
             return (
               <React.Fragment key={entry.slug}>
                 <div
-                  className={`panel-row latest-row clickable${isOpen ? " is-open" : ""}`}
-                  onClick={() => toggleEntry(entry.slug)}
+                  className={`panel-row latest-row${isOpen ? " is-open" : ""}`}
                   title={entry.title}
-                  aria-expanded={isOpen}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      toggleEntry(entry.slug);
-                    }
-                  }}
                 >
                   <span className="latest-main">
-                    <span className={`latest-toggle-icon${isOpen ? " is-open" : ""}`} aria-hidden="true">
+                    <button
+                      className={`latest-toggle-icon${isOpen ? " is-open" : ""}`}
+                      type="button"
+                      aria-expanded={isOpen}
+                      aria-controls={`latest-description-${entry.slug}`}
+                      aria-label={`${isOpen ? "Collapse" : "Expand"} ${entry.title} description`}
+                      onClick={() => toggleEntry(entry.slug)}
+                    >
                       ▶
-                    </span>
-                    <span className="latest-title">{entry.title}</span>
+                    </button>
+                    <a
+                      className="latest-title"
+                      href={pageUrl}
+                      onClick={(e) => {
+                        if (!onNavigateLatest) return;
+                        e.preventDefault();
+                        onNavigateLatest(pageUrl);
+                      }}
+                    >
+                      {entry.title}
+                    </a>
                   </span>
                   <span className="latest-date">{entry.date}</span>
                   <span className="panel-extra" onClick={(e) => e.stopPropagation()}>
@@ -56,7 +63,7 @@ export default function LatestPanel({ onCommand, onNavigateLatest }) {
                   </span>
                 </div>
                 {isOpen && (
-                  <div className="latest-dropdown">
+                  <div id={`latest-description-${entry.slug}`} className="latest-dropdown">
                     <span className="latest-description">{entry.summary}</span>
                   </div>
                 )}
