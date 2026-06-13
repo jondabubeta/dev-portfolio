@@ -33,7 +33,7 @@ export default function ProjectsPanel({ onCommand, onNavigateProject }) {
               <div
                 key={key}
                 className="panel-row clickable"
-                onClick={() => onCommand?.(cmd)}
+                onClick={() => onNavigateProject?.(pageUrl)}
                 title={p.description}
               >
                 {/* 1) Project name (compact) */}

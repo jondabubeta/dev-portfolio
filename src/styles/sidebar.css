@@ -371,6 +371,11 @@ body { margin: 0; }
   padding: 0.1rem 0;
 }
 
+.latest-row .panel-extra {
+  gap: 0.5rem;
+  overflow: visible;
+}
+
 /* Hover + clickable states */
 .panel-row.clickable {
   cursor: pointer;

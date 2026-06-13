@@ -12,7 +12,7 @@ export default function SidePanel({ onCommand, onNavigateProject, onNavigateDocu
   <div className="side-panel-content">
     <AboutPanel onCommand={onCommand} onNavigateDocument={onNavigateDocument} />
     <ExperiencePanel onCommand={onCommand} />
-    <LatestPanel onCommand={onCommand} />
+    <LatestPanel onCommand={onCommand} onNavigateLatest={onNavigateDocument} />
     <SkillsPanel onCommand={onCommand} onNavigatePage={onNavigateDocument} />
     <ProjectsPanel onCommand={onCommand} onNavigateProject={onNavigateProject} />
     <ContactsPanel onCommand={onCommand} />
