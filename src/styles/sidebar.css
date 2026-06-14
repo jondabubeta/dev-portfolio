@@ -375,6 +375,7 @@ body { margin: 0; }
   width: 76px;
   gap: 0.5rem;
   overflow: visible;
+  transform: translateX(15px);
 }
 
 /* Hover + clickable states */
@@ -546,6 +547,7 @@ body { margin: 0; }
   align-items: center;
   gap: 0.5rem;
   width: 76px;
+  transform: translateX(15px);
 }
 .icon-sm,
 .doc-icons img,
@@ -745,6 +747,7 @@ body { margin: 0; }
 
 .projects-table .panel-extra {
   width: 76px;
+  transform: translateX(15px);
 }
 
 /* Force single-line, no extra spacing */
