@@ -20,6 +20,7 @@ const TYPING_CHARACTER_SPEED = 70;        // Delay between each character typed
 const TYPING_PAUSE_DURATION = 800;        // Pause after typing a command
 const BACKSPACE_CHARACTER_SPEED = 50;     // Delay between each character deleted
 const COMMAND_PAUSE_DURATION = 1500;      // Pause between commands
+const TYPING_DEMO_SESSION_KEY = 'portfolio:typing-demo-shown';
 
 const Terminal = forwardRef((props, ref) => {
   const [lines, setLines] = useState([]);
@@ -147,6 +148,13 @@ const Terminal = forwardRef((props, ref) => {
 
   // Typing animation demo effect
   useEffect(() => {
+    const isHomePage = window.location.pathname === '/';
+    const hasShownTypingDemo = window.sessionStorage.getItem(TYPING_DEMO_SESSION_KEY) === 'true';
+
+    if (!isHomePage || hasShownTypingDemo) return;
+
+    window.sessionStorage.setItem(TYPING_DEMO_SESSION_KEY, 'true');
+
     let timeoutId;
     let isAnimating = true;
 
