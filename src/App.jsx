@@ -191,6 +191,55 @@ export default function App() {
     return () => shell.removeEventListener('scroll', handleScroll);
   }, [activeEmbeddedView]);
 
+  useEffect(() => {
+    const scrollableSelector = [
+      '.side-panel-content',
+      '.scrollable-section',
+      '.data-scrollable',
+      '.scrollable-experience',
+      '.skills-scrollable',
+      '.contacts-grid',
+      '.project-embedded-shell',
+    ].join(', ');
+
+    const getScrollbarTarget = (target) => target?.closest?.(scrollableSelector);
+
+    const clearScrollbarHover = (element) => {
+      element?.classList?.remove('is-scrollbar-hovered');
+    };
+
+    const handlePointerMove = (event) => {
+      const scrollable = getScrollbarTarget(event.target);
+      document
+        .querySelectorAll(`${scrollableSelector}.is-scrollbar-hovered`)
+        .forEach((element) => {
+          if (element !== scrollable) clearScrollbarHover(element);
+        });
+
+      if (!scrollable || scrollable.scrollHeight <= scrollable.clientHeight) return;
+
+      const rect = scrollable.getBoundingClientRect();
+      const scrollbarWidth = Math.max(10, scrollable.offsetWidth - scrollable.clientWidth);
+      const isOverVerticalScrollbar = event.clientX >= rect.right - scrollbarWidth;
+
+      scrollable.classList.toggle('is-scrollbar-hovered', isOverVerticalScrollbar);
+    };
+
+    const handlePointerOut = (event) => {
+      const scrollable = getScrollbarTarget(event.target);
+      if (!scrollable || scrollable.contains(event.relatedTarget)) return;
+      clearScrollbarHover(scrollable);
+    };
+
+    document.addEventListener('pointermove', handlePointerMove, { passive: true });
+    document.addEventListener('pointerout', handlePointerOut);
+
+    return () => {
+      document.removeEventListener('pointermove', handlePointerMove);
+      document.removeEventListener('pointerout', handlePointerOut);
+    };
+  }, []);
+
   const scrollEmbeddedViewToTop = () => {
     embeddedShellRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
   };

@@ -161,11 +161,7 @@ body { margin: 0; }
   border-radius: 3px;
 }
 
-/* Show scrollbar only when hovering over the sidebar */
-.side-panel:hover .side-panel-content::-webkit-scrollbar-thumb {
-  background: #555;
-}
-
+.side-panel-content.is-scrollbar-hovered::-webkit-scrollbar-thumb,
 .side-panel-content::-webkit-scrollbar-thumb:hover {
   background: var(--color-blue);
 }
@@ -280,10 +276,15 @@ body { margin: 0; }
   border-radius: 3px;
 }
 
+.scrollable-section.is-scrollbar-hovered::-webkit-scrollbar-thumb,
 .scrollable-section::-webkit-scrollbar-thumb:hover {
   background: var(--color-blue);
 }
 
+.data-scrollable.is-scrollbar-hovered::-webkit-scrollbar-thumb,
+.scrollable-experience.is-scrollbar-hovered::-webkit-scrollbar-thumb,
+.skills-scrollable.is-scrollbar-hovered::-webkit-scrollbar-thumb,
+.contacts-grid.is-scrollbar-hovered::-webkit-scrollbar-thumb,
 .data-scrollable::-webkit-scrollbar-thumb:hover,
 .scrollable-experience::-webkit-scrollbar-thumb:hover,
 .skills-scrollable::-webkit-scrollbar-thumb:hover,

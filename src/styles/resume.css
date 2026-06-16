@@ -314,10 +314,6 @@ html {
   align-items: start;
 }
 
-.project-embedded-shell:hover {
-  scrollbar-color: var(--color-blue) #1a1a1a;
-}
-
 .project-embedded-shell::-webkit-scrollbar {
   width: 12px;
 }
@@ -332,6 +328,7 @@ html {
   border-radius: 6px;
 }
 
+.project-embedded-shell.is-scrollbar-hovered::-webkit-scrollbar-thumb,
 .project-embedded-shell::-webkit-scrollbar-thumb:hover {
   background: var(--color-blue);
 }
