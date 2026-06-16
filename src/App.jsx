@@ -204,12 +204,28 @@ export default function App() {
 
     const getScrollbarTarget = (target) => target?.closest?.(scrollableSelector);
 
+    const getScrollbarTargetFromPoint = (event) => {
+      const scrollables = Array.from(document.querySelectorAll(scrollableSelector));
+
+      return scrollables.find((element) => {
+        if (element.scrollHeight <= element.clientHeight) return false;
+
+        const rect = element.getBoundingClientRect();
+        const isInsideVerticalBounds = event.clientY >= rect.top && event.clientY <= rect.bottom;
+        const scrollbarHitbox = Math.max(28, element.offsetWidth - element.clientWidth);
+        const isOverRightGutter = event.clientX >= rect.right - scrollbarHitbox && event.clientX <= rect.right + 2;
+
+        return isInsideVerticalBounds && isOverRightGutter;
+      });
+    };
+
     const clearScrollbarHover = (element) => {
       element?.classList?.remove('is-scrollbar-hovered');
     };
 
     const handlePointerMove = (event) => {
-      const scrollable = getScrollbarTarget(event.target);
+      const scrollbarTarget = getScrollbarTargetFromPoint(event);
+      const scrollable = scrollbarTarget || getScrollbarTarget(event.target);
       document
         .querySelectorAll(`${scrollableSelector}.is-scrollbar-hovered`)
         .forEach((element) => {
@@ -219,8 +235,9 @@ export default function App() {
       if (!scrollable || scrollable.scrollHeight <= scrollable.clientHeight) return;
 
       const rect = scrollable.getBoundingClientRect();
-      const scrollbarWidth = Math.max(10, scrollable.offsetWidth - scrollable.clientWidth);
-      const isOverVerticalScrollbar = event.clientX >= rect.right - scrollbarWidth;
+      const scrollbarWidth = Math.max(28, scrollable.offsetWidth - scrollable.clientWidth);
+      const isOverVerticalScrollbar = Boolean(scrollbarTarget)
+        || (event.clientX >= rect.right - scrollbarWidth && event.clientX <= rect.right + 2);
 
       scrollable.classList.toggle('is-scrollbar-hovered', isOverVerticalScrollbar);
     };
