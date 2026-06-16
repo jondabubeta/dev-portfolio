@@ -307,9 +307,33 @@ html {
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-gutter: stable both-edges;
+  scrollbar-color: #444 #1a1a1a;
+  scrollbar-width: auto;
   padding: 0;
   justify-content: start;
   align-items: start;
+}
+
+.project-embedded-shell:hover {
+  scrollbar-color: var(--color-blue) #1a1a1a;
+}
+
+.project-embedded-shell::-webkit-scrollbar {
+  width: 12px;
+}
+
+.project-embedded-shell::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 6px;
+}
+
+.project-embedded-shell::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 6px;
+}
+
+.project-embedded-shell::-webkit-scrollbar-thumb:hover {
+  background: var(--color-blue);
 }
 
 .project-embedded-bar {
