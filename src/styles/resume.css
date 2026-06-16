@@ -367,7 +367,7 @@ html {
 .project-back-to-top {
   appearance: none;
   position: absolute;
-  right: 1rem;
+  right: 2rem;
   bottom: 1rem;
   z-index: 5;
   display: inline-flex;
