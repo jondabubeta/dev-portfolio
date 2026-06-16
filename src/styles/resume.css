@@ -364,6 +364,54 @@ html {
   transform: translateY(0);
 }
 
+.project-back-to-top {
+  appearance: none;
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border: 1px solid var(--terminal-border);
+  border-radius: 999px;
+  background: rgba(26, 26, 26, 0.94);
+  color: #c0c0c0;
+  padding: 0.68rem 0.95rem;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(6px);
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.project-back-to-top:hover,
+.project-back-to-top:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--color-blue);
+  background: rgba(0, 207, 230, 0.1);
+  color: #fff;
+  outline: none;
+}
+
+.project-back-to-top:active {
+  transform: translateY(0);
+}
+
+.project-back-to-top-arrow {
+  color: var(--color-blue);
+  font-size: 1rem;
+  line-height: 1;
+}
+
 .project-embedded-back-arrow {
   font-size: 1.1rem;
   line-height: 1;

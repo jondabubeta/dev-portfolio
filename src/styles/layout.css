@@ -70,6 +70,7 @@
   min-width: 0;
   margin: 0 auto;
   height: 100%;
+  position: relative;
 }
 
 /* ========== Footer Section ========== */

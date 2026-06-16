@@ -69,10 +69,12 @@ function getEmbeddedViewFromPath(pathname = "") {
 
 export default function App() {
   const terminalRef = useRef(null);
+  const embeddedShellRef = useRef(null);
   const closeProjectTimer = useRef(null);
   const pendingTerminalCommand = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isProjectClosing, setIsProjectClosing] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const [activeEmbeddedView, setActiveEmbeddedView] = useState(() => {
     try {
       return getEmbeddedViewFromPath(window.location.pathname || "/");
@@ -174,6 +176,25 @@ export default function App() {
     };
   }, []);
 
+  useEffect(() => {
+    setShowBackToTop(false);
+
+    const shell = embeddedShellRef.current;
+    if (!activeEmbeddedView || !shell) return;
+
+    const handleScroll = () => {
+      setShowBackToTop(shell.scrollTop > 280);
+    };
+
+    handleScroll();
+    shell.addEventListener('scroll', handleScroll, { passive: true });
+    return () => shell.removeEventListener('scroll', handleScroll);
+  }, [activeEmbeddedView]);
+
+  const scrollEmbeddedViewToTop = () => {
+    embeddedShellRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const activeProject = activeEmbeddedView?.kind === "project"
     ? projects.find((p) => slugify(p.title) === activeEmbeddedView.slug)
     : null;
@@ -193,7 +214,8 @@ export default function App() {
         <main className="terminal-panel" aria-label="Terminal">
           <div className="terminal-wrapper">
             {activeEmbeddedView ? (
-              <div className={`project-embedded-shell${isProjectClosing ? ' is-closing' : ''}`}>
+              <>
+              <div ref={embeddedShellRef} className={`project-embedded-shell${isProjectClosing ? ' is-closing' : ''}`}>
                 <div className="project-embedded-bar">
                   <button className="project-embedded-back" onClick={closeEmbeddedView} type="button">
                     <span className="project-embedded-back-arrow" aria-hidden="true">←</span>
@@ -216,6 +238,18 @@ export default function App() {
                   )}
                 </Suspense>
               </div>
+              {showBackToTop && (
+                <button
+                  className="project-back-to-top"
+                  type="button"
+                  onClick={scrollEmbeddedViewToTop}
+                  aria-label="Back to top"
+                >
+                  <span className="project-back-to-top-arrow" aria-hidden="true">↑</span>
+                  <span>Back to Top</span>
+                </button>
+              )}
+              </>
             ) : (
               <Terminal ref={terminalRef} />
             )}
