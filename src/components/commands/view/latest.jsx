@@ -1,5 +1,5 @@
 import React from "react";
-import latestEntries from "../../../data/latest.json";
+import latestEntries from "../../../utils/latestEntries";
 
 export default function LatestViewer() {
   return (

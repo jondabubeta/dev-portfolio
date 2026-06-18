@@ -1,6 +1,6 @@
 # Fairness Testing Through AI and ML
 
-**Published:** June 11, 2026
+**Published:** June 18, 2026
 
 Fairness testing asks whether an AI or machine-learning system behaves consistently across the people, groups, and situations it is intended to serve. The work combines quality engineering, data analysis, and careful evaluation design.
 

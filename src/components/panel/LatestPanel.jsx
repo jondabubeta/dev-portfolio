@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { TerminalIcon, TabIcon } from "../icons";
-import latestEntries from "../../data/latest.json";
+import latestEntries from "../../utils/latestEntries";
 
 export default function LatestPanel({ onCommand, onNavigateLatest }) {
   const [openSlug, setOpenSlug] = useState(null);
