@@ -5,5 +5,12 @@
     "date": "06/11/26",
     "summary": "Bias detection, measurement gaps, and evaluation workflows.",
     "content": "fairness-testing-through-ai-and-ml.md"
+  },
+  {
+    "slug": "csulb-masters-computer-science-ai-ml",
+    "title": "CSULB Master's in Computer Science",
+    "date": "06/17/26",
+    "summary": "Starting a graduate path focused on AI and machine learning.",
+    "content": "csulb-masters-computer-science-ai-ml.md"
   }
 ]
