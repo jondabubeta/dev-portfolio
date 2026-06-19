@@ -33,6 +33,7 @@ const Terminal = forwardRef((props, ref) => {
   const terminalBodyRef = useRef(null);
   const [focused, setFocused] = useState(true);
   const inputRef = useRef(null);
+  const typingDemoCancelRef = useRef(null);
 
   // Conditional splash based on viewport width
   const splash = (typeof window !== 'undefined')
@@ -157,6 +158,10 @@ const Terminal = forwardRef((props, ref) => {
 
     let timeoutId;
     let isAnimating = true;
+    typingDemoCancelRef.current = () => {
+      isAnimating = false;
+      if (timeoutId) clearTimeout(timeoutId);
+    };
 
     const runTypingDemo = async () => {
       // Wait before starting demo
@@ -220,6 +225,7 @@ const Terminal = forwardRef((props, ref) => {
     return () => {
       isAnimating = false;
       if (timeoutId) clearTimeout(timeoutId);
+      typingDemoCancelRef.current = null;
     };
   }, []);
 
@@ -238,6 +244,15 @@ const Terminal = forwardRef((props, ref) => {
   }, []);
 
   const handleKeyDown = (e) => {
+    if (e.ctrlKey && e.key.toLowerCase() === 'c') {
+      e.preventDefault();
+      typingDemoCancelRef.current?.();
+      setLines((prev) => [...prev, `> ${input}^C`]);
+      setInput('');
+      setHistoryIndex(null);
+      return;
+    }
+
     // history navigation
     if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
       e.preventDefault();
