@@ -29,6 +29,11 @@ export default function Help({ command }) {
     view experience --company=neustar
     view experience --tags=sdet,qa`,
 
+    latest: `view latest
+  Displays recent updates, newest first.
+
+  Select an update title to open the full entry.`,
+
     contact: `view contact [--email=true|false --github=true|false --linkedin=true|false]
   Displays your contact information.
 
