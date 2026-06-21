@@ -1,4 +1,4 @@
-# Finally did it!
+# Master’s Degree: Unlocked
 
 **Published:** June 17, 2026
 
