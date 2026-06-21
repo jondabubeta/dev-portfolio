@@ -1,4 +1,4 @@
-# CSULB Master's in Computer Science
+# Finally did it!
 
 **Published:** June 17, 2026
 
