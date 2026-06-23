@@ -1,5 +1,12 @@
 [
   {
+    "slug": "why-i-chose-graduate-school",
+    "title": "Why I Chose Graduate School",
+    "date": "06/22/26",
+    "summary": "Following software engineering toward AI, ML, and a more intentional curriculum.",
+    "content": "why-i-chose-graduate-school.md"
+  },
+  {
     "slug": "fairness-testing-through-ai-and-ml",
     "title": "Fairness Testing Through AI and ML",
     "date": "06/18/26",
