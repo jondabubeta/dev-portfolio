@@ -3,6 +3,7 @@ import {
   DIRECTIONS,
   changeDirection,
   createGame,
+  interruptGame,
   startGame,
   stepGame
 } from '../../games/snakeEngine';
@@ -24,11 +25,22 @@ const KEY_DIRECTIONS = {
 };
 
 function newGame() {
-  return startGame(createGame());
+  return createGame();
 }
 
 export default function SnakeGame() {
   const [game, setGame] = useState(newGame);
+
+  const turn = useCallback((direction) => {
+    setGame((current) => {
+      if (current.status !== 'ready' && current.status !== 'running') {
+        return current;
+      }
+
+      const next = changeDirection(current, direction);
+      return current.status === 'ready' ? startGame(next) : next;
+    });
+  }, []);
 
   const restart = useCallback(() => {
     setGame(newGame());
@@ -47,18 +59,30 @@ export default function SnakeGame() {
 
   useEffect(() => {
     const onKeyDown = (event) => {
+      if (event.ctrlKey && event.key.toLowerCase() === 'c') {
+        setGame((current) => interruptGame(current));
+        return;
+      }
+
       const direction = KEY_DIRECTIONS[event.key];
 
-      if (direction && game.status === 'running') {
+      if (
+        direction &&
+        (game.status === 'ready' || game.status === 'running')
+      ) {
         event.preventDefault();
         event.stopPropagation();
-        setGame((current) => changeDirection(current, direction));
+        turn(direction);
         return;
       }
 
       if (
         (event.key === 'Enter' || event.key === ' ') &&
-        (game.status === 'game-over' || game.status === 'won')
+        (
+          game.status === 'game-over' ||
+          game.status === 'won' ||
+          game.status === 'interrupted'
+        )
       ) {
         event.preventDefault();
         event.stopPropagation();
@@ -68,7 +92,7 @@ export default function SnakeGame() {
 
     window.addEventListener('keydown', onKeyDown, true);
     return () => window.removeEventListener('keydown', onKeyDown, true);
-  }, [game.status, restart]);
+  }, [game.status, restart, turn]);
 
   const occupiedCells = useMemo(() => {
     const cells = new Map();
@@ -85,9 +109,11 @@ export default function SnakeGame() {
   }, [game.food, game.snake]);
 
   const statusLabel = {
+    ready: 'READY',
     running: 'RUNNING',
     'game-over': 'GAME OVER',
-    won: 'BOARD CLEARED'
+    won: 'BOARD CLEARED',
+    interrupted: 'INTERRUPTED'
   }[game.status];
 
   return (
@@ -95,7 +121,10 @@ export default function SnakeGame() {
       <header className="snake-game__header">
         <strong>SNAKE.EXE</strong>
         <span>Score: {game.score}</span>
-        <span className={`snake-game__status snake-game__status--${game.status}`}>
+        <span
+          className={`snake-game__status snake-game__status--${game.status}`}
+          aria-live="polite"
+        >
           {statusLabel}
         </span>
       </header>
@@ -120,7 +149,66 @@ export default function SnakeGame() {
         })}
       </div>
 
-      {(game.status === 'game-over' || game.status === 'won') && (
+      <div className="snake-game__controls" aria-label="Snake controls">
+        <button
+          className="snake-game__control snake-game__control--up"
+          type="button"
+          aria-label="Move up"
+          title="Move up"
+          onPointerDown={(event) => event.preventDefault()}
+          onClick={(event) => {
+            event.stopPropagation();
+            turn(DIRECTIONS.up);
+          }}
+        >
+          ↑
+        </button>
+        <button
+          className="snake-game__control snake-game__control--left"
+          type="button"
+          aria-label="Move left"
+          title="Move left"
+          onPointerDown={(event) => event.preventDefault()}
+          onClick={(event) => {
+            event.stopPropagation();
+            turn(DIRECTIONS.left);
+          }}
+        >
+          ←
+        </button>
+        <button
+          className="snake-game__control snake-game__control--down"
+          type="button"
+          aria-label="Move down"
+          title="Move down"
+          onPointerDown={(event) => event.preventDefault()}
+          onClick={(event) => {
+            event.stopPropagation();
+            turn(DIRECTIONS.down);
+          }}
+        >
+          ↓
+        </button>
+        <button
+          className="snake-game__control snake-game__control--right"
+          type="button"
+          aria-label="Move right"
+          title="Move right"
+          onPointerDown={(event) => event.preventDefault()}
+          onClick={(event) => {
+            event.stopPropagation();
+            turn(DIRECTIONS.right);
+          }}
+        >
+          →
+        </button>
+      </div>
+
+      {(
+        game.status === 'game-over' ||
+        game.status === 'won' ||
+        game.status === 'interrupted'
+      ) && (
         <button className="snake-game__restart" type="button" onClick={restart}>
           Play again
         </button>

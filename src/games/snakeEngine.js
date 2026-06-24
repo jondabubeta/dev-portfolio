@@ -64,6 +64,11 @@ export function startGame(game) {
   return { ...game, status: 'running' };
 }
 
+export function interruptGame(game) {
+  if (game.status !== 'ready' && game.status !== 'running') return game;
+  return { ...game, status: 'interrupted' };
+}
+
 export function changeDirection(game, direction) {
   if (!direction || game.status === 'game-over' || game.status === 'won') {
     return game;

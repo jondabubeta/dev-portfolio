@@ -4,6 +4,7 @@ import {
   DIRECTIONS,
   changeDirection,
   createGame,
+  interruptGame,
   placeFood,
   startGame,
   stepGame
@@ -60,6 +61,15 @@ test('ends the game when the snake hits a wall', () => {
   };
 
   assert.equal(stepGame(game).status, 'game-over');
+});
+
+test('interrupts an active game without changing the board', () => {
+  const game = startGame(createGame());
+  const interrupted = interruptGame(game);
+
+  assert.equal(interrupted.status, 'interrupted');
+  assert.equal(interrupted.snake, game.snake);
+  assert.equal(interruptGame(interrupted), interrupted);
 });
 
 test('reports a win when no cell remains for food', () => {

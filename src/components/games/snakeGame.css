@@ -32,6 +32,14 @@
   color: #ff5555;
 }
 
+.snake-game__status--ready {
+  color: var(--color-blue);
+}
+
+.snake-game__status--interrupted {
+  color: #a0a0a0;
+}
+
 .snake-game__status--won {
   color: #50fa7b;
 }
@@ -87,6 +95,10 @@
   outline: none;
 }
 
+.snake-game__controls {
+  display: none;
+}
+
 @media (max-width: 480px) {
   .snake-game__header {
     gap: 0.5rem;
@@ -96,5 +108,48 @@
 
   .snake-game__status {
     min-width: 4.8rem;
+  }
+
+  .snake-game__controls {
+    display: grid;
+    grid-template-columns: repeat(3, 2.5rem);
+    grid-template-rows: repeat(2, 2.5rem);
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.65rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-blue) 30%, transparent);
+  }
+
+  .snake-game__control {
+    border: 1px solid color-mix(in srgb, var(--color-blue) 70%, transparent);
+    border-radius: 4px;
+    color: var(--color-blue);
+    background: transparent;
+    font: 700 1.1rem/1 'JetBrains Mono', monospace;
+    touch-action: manipulation;
+  }
+
+  .snake-game__control:active {
+    color: #0d1117;
+    background: var(--color-blue);
+  }
+
+  .snake-game__control--up {
+    grid-column: 2;
+  }
+
+  .snake-game__control--left {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .snake-game__control--down {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .snake-game__control--right {
+    grid-column: 3;
+    grid-row: 2;
   }
 }

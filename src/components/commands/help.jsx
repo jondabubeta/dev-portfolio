@@ -38,7 +38,7 @@ export default function Help({ command }) {
     snake: `play snake
   Starts Snake in the terminal.
 
-  Move with the arrow keys or W/A/S/D.`,
+  Move with the arrow keys or W/A/S/D. Press Ctrl+C to stop.`,
 
     contact: `view contact [--email=true|false --github=true|false --linkedin=true|false]
   Displays your contact information.
