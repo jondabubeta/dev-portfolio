@@ -11,6 +11,7 @@ export default function Help({ command }) {
     view latest                         Show the latest updates feed
     view contact                        View all contact information
     view contact --email=false          Hide email (set false for any field)
+    play snake                          Start Snake
     help                                Show available commands
     clear / cls                         Clear the terminal
     reset                               Reset terminal to welcome screen`,
@@ -33,6 +34,11 @@ export default function Help({ command }) {
   Displays recent updates, newest first.
 
   Select an update title to open the full entry.`,
+
+    snake: `play snake
+  Starts Snake in the terminal.
+
+  Move with the arrow keys or W/A/S/D.`,
 
     contact: `view contact [--email=true|false --github=true|false --linkedin=true|false]
   Displays your contact information.

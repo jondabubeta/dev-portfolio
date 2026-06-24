@@ -1,0 +1,100 @@
+.snake-game {
+  width: min(100%, 34rem);
+  margin: 0.5rem 0 1rem;
+  border: 1px solid var(--color-blue);
+  border-radius: 6px;
+  background: var(--terminal-bg, #0d1117);
+  overflow: hidden;
+}
+
+.snake-game__header {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 1rem;
+  min-height: 2.5rem;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-blue) 45%, transparent);
+  font-size: 0.78rem;
+}
+
+.snake-game__header strong {
+  color: var(--color-blue);
+}
+
+.snake-game__status {
+  min-width: 5.5rem;
+  color: var(--color-orange);
+  text-align: right;
+}
+
+.snake-game__status--game-over {
+  color: #ff5555;
+}
+
+.snake-game__status--won {
+  color: #50fa7b;
+}
+
+.snake-game__board {
+  display: grid;
+  width: 100%;
+  aspect-ratio: 18 / 14;
+  background:
+    linear-gradient(color-mix(in srgb, var(--color-blue) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-blue) 8%, transparent) 1px, transparent 1px);
+  background-size: calc(100% / 18) calc(100% / 14);
+}
+
+.snake-game__cell {
+  min-width: 0;
+  min-height: 0;
+  margin: 12%;
+  border-radius: 2px;
+}
+
+.snake-game__cell--snake {
+  background: #50fa7b;
+}
+
+.snake-game__cell--head {
+  background: var(--color-blue);
+  box-shadow: 0 0 0 1px #0d1117 inset;
+}
+
+.snake-game__cell--food {
+  border-radius: 50%;
+  background: #ff5555;
+  box-shadow: 0 0 8px color-mix(in srgb, #ff5555 65%, transparent);
+}
+
+.snake-game__restart {
+  display: block;
+  margin: 0.65rem auto;
+  border: 1px solid var(--color-blue);
+  border-radius: 4px;
+  padding: 0.4rem 0.7rem;
+  color: var(--color-blue);
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+.snake-game__restart:hover,
+.snake-game__restart:focus-visible {
+  color: #0d1117;
+  background: var(--color-blue);
+  outline: none;
+}
+
+@media (max-width: 480px) {
+  .snake-game__header {
+    gap: 0.5rem;
+    padding-inline: 0.55rem;
+    font-size: 0.7rem;
+  }
+
+  .snake-game__status {
+    min-width: 4.8rem;
+  }
+}

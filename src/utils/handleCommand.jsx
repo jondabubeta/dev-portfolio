@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import ExperienceViewer from '../components/commands/view/experience';
 import SkillsViewer from '../components/commands/view/skills';
 import ProjectsViewer from '../components/commands/view/projects';
@@ -9,6 +10,8 @@ import AboutViewer from '../components/commands/view/about'; // Import AboutView
 import ResumeViewer from '../components/commands/view/resume'; // Import ResumeViewer
 import CvViewer from '../components/commands/view/cv';
 import { parseArgs } from './parseArgs';
+
+const SnakeGame = lazy(() => import('../components/games/SnakeGame'));
 
 const allowedArgs = {
   resume: ['full'],
@@ -103,6 +106,18 @@ export function handleCommand(input) {
   }
 
   if (cmd === 'help') return <Help command={subcmd} />;
+
+  if (cmd === 'play') {
+    if (!subcmd) return 'Available games: snake';
+    if (subcmd !== 'snake') return `Unknown game: ${subcmd}`;
+    if (args.length > 0) return 'Usage: play snake';
+
+    return (
+      <Suspense fallback={<div className="output">Loading snake...</div>}>
+        <SnakeGame />
+      </Suspense>
+    );
+  }
 
   if (cmd === 'clear' || cmd === 'cls') return '__CLEAR__';
   
