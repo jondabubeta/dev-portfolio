@@ -7,7 +7,13 @@ import prettier from 'eslint-config-prettier';
 
 export default [
   {
-    ignores: ['node_modules', 'dist', 'build']
+    ignores: [
+      'node_modules',
+      'dist',
+      'build',
+      '.vite-*',
+      '*.log',
+    ]
   },
   js.configs.recommended,
   {
@@ -26,10 +32,21 @@ export default [
         }
       },
       globals: {
+        __dirname: 'readonly',
+        console: 'readonly',
+        CustomEvent: 'readonly',
         document: 'readonly',
-        window: 'readonly',
+        DOMParser: 'readonly',
+        HTMLElement: 'readonly',
+        localStorage: 'readonly',
+        performance: 'readonly',
+        requestAnimationFrame: 'readonly',
+        sessionStorage: 'readonly',
         setInterval: 'readonly',
-        clearInterval: 'readonly'
+        clearInterval: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        window: 'readonly',
       }
     },
     plugins: {
@@ -44,6 +61,7 @@ export default [
     },
     rules: {
       'react/react-in-jsx-scope': 'off',
+      'react/jsx-uses-vars': 'error',
       'react/prop-types': 'off',
       'no-unused-vars': ['warn', { ignoreRestSiblings: true }]
     }
