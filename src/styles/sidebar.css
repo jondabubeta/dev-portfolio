@@ -640,6 +640,27 @@ body { margin: 0; }
 .backend-skill { background-color: var(--color-red); }
 .devops-skill  { background-color: var(--color-orange); }
 
+@media (min-width: 768px) and (max-height: 860px) {
+  .skill-cloud {
+    gap: 0.4rem;
+  }
+
+  .skill-pill {
+    font-size: 0.85rem;
+    padding: 3px 9px;
+  }
+
+  .skills-more-link {
+    margin-top: 0.4rem;
+  }
+}
+
+@media (min-width: 1440px) and (min-height: 900px) {
+  .skill-cloud {
+    gap: 0.55rem;
+  }
+}
+
 /* =========================
    EXPERIENCE TABLE
 ========================= */
