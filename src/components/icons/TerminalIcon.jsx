@@ -1,5 +1,4 @@
 // src/components/icons/TerminalIcon.jsx
-import React from "react";
 import TerminalPng from "../../assets/terminal.png";
 
 export default function TerminalIcon({

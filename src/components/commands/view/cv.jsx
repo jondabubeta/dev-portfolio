@@ -1,4 +1,3 @@
-import React from 'react';
 import cover from '../../../data/coverletter.json';
 
 export default function CvViewer() {

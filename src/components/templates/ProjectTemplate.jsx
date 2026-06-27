@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { STATUS_CLASS } from '../../constants/projectStatuses';
+import { useEffect, useState, useRef } from 'react';
 import { marked } from 'marked';
 import { gfmHeadingId } from 'marked-gfm-heading-id';
 
@@ -70,7 +69,7 @@ export default function ProjectTemplate({ project, embedded = false }) {
           setToc(tocSections);
           setHtml(rendered);
         }
-      } catch (err) {
+      } catch {
         if (mounted) setHtml('');
       }
     }

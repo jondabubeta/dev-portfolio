@@ -1,4 +1,3 @@
-import React from "react";
 import latestEntries from "../../../utils/latestEntries";
 
 export default function LatestViewer() {

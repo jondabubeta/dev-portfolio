@@ -1,4 +1,3 @@
-import React from "react";
 import contacts from "../../data/contacts.json";
 import { TerminalIcon } from "../icons";
 

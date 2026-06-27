@@ -1,5 +1,5 @@
 // src/components/Terminal.jsx
-import React, {
+import {
   useImperativeHandle,
   forwardRef,
   useState,
@@ -367,7 +367,7 @@ const Terminal = forwardRef((props, ref) => {
             type="text"
             className="hidden-input"
             onKeyDown={handleKeyDown}
-            onFocus={(e) => {
+            onFocus={() => {
               setFocused(true);
             }}
             onBlur={() => setFocused(false)}

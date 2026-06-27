@@ -1,4 +1,3 @@
-import React from "react";
 import experienceData from "../../data/experience.json";
 
 const items = experienceData.map((row) => {

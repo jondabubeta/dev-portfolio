@@ -1,4 +1,3 @@
-import React from 'react';
 import statusData from '../data/status.json';
 
 export default function Footer() {

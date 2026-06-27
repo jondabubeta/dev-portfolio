@@ -1,4 +1,3 @@
-import React from 'react';
 import contacts from '../../../data/contacts.json';
 
 export default function ContactViewer({ filter = {} }) {

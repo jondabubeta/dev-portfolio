@@ -78,7 +78,7 @@ export default function App() {
   const [activeEmbeddedView, setActiveEmbeddedView] = useState(() => {
     try {
       return getEmbeddedViewFromPath(window.location.pathname || "/");
-    } catch (e) {
+    } catch {
       return null;
     }
   });

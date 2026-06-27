@@ -1,4 +1,3 @@
-import React from "react";
 import projects from "../../data/projects.json";
 import { TerminalIcon, TabIcon } from "../icons";
 import GitHubPng from "../../assets/github.png"; // PNG

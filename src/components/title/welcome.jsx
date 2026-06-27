@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import TerminalPng from '../../assets/terminal.png';
 import TabPng from '../../assets/tab.png';
 import DownloadPng from '../../assets/download.png';

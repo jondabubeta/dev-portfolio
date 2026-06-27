@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { marked } from 'marked';
 import { gfmHeadingId } from 'marked-gfm-heading-id';
 import latestEntries from '../data/latest.json';
@@ -32,7 +32,7 @@ export default function LatestPage({ slug }) {
         const normalizedRaw = String(raw || '').replace(/^\uFEFF/, '');
         const rendered = marked.parse(normalizedRaw, { mangle: false });
         if (mounted) setHtml(rendered);
-      } catch (error) {
+      } catch {
         if (mounted) setHtml('');
       }
     }

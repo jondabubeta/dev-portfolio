@@ -1,4 +1,3 @@
-import React from "react";
 import { TerminalIcon, DownloadIcon, TabIcon } from "../icons";
 import aboutData from "../../data/about.json";
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import ExperienceViewer from './experience';
 import SkillsViewer from './skills';
 import EducationViewer from './education';

@@ -1,5 +1,4 @@
 // src/components/icons/TabIcon.jsx
-import React from 'react';
 import TabPng from '../../assets/tab.png';
 
 export default function TabIcon({

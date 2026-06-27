@@ -1,5 +1,4 @@
 // src/components/icons/DownloadIcon.jsx
-import React from 'react';
 import DownloadPng from '../../assets/download.png';
 
 export default function DownloadIcon({
