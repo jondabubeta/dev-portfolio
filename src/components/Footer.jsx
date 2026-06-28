@@ -18,7 +18,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-text">
-          <p>© 2026 Jonathan Dabu</p>
+          <p>(c) 2026 Jonathan Dabu</p>
         </div>
       </div>
     </footer>

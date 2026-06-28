@@ -161,7 +161,7 @@ export default function SnakeGame() {
             turn(DIRECTIONS.up);
           }}
         >
-          ↑
+          {"^"}
         </button>
         <button
           className="snake-game__control snake-game__control--left"
@@ -174,7 +174,7 @@ export default function SnakeGame() {
             turn(DIRECTIONS.left);
           }}
         >
-          ←
+          {"<-"}
         </button>
         <button
           className="snake-game__control snake-game__control--down"
@@ -187,7 +187,7 @@ export default function SnakeGame() {
             turn(DIRECTIONS.down);
           }}
         >
-          ↓
+          {"v"}
         </button>
         <button
           className="snake-game__control snake-game__control--right"
@@ -200,7 +200,7 @@ export default function SnakeGame() {
             turn(DIRECTIONS.right);
           }}
         >
-          →
+          {"->"}
         </button>
       </div>
 

@@ -1,30 +1,30 @@
 [
   {
-    "emoji": "🎮",
-    "status": "Currently Playing → Arknights: Endfield, Persona 3: Reloaded, Final Fantasy IX, TD Legion 2"
+    "emoji": "GAME",
+    "status": "Currently Playing -> Arknights: Endfield, Persona 3: Reloaded, Final Fantasy IX, TD Legion 2"
   },
   {
-    "emoji": "🎵",
+    "emoji": "MUSIC",
     "status": "Listening to LiSA - LEO-NiNE Album"
   },
   {
-    "emoji": "📺",
+    "emoji": "TV",
     "status": "Rewatching: Silicon Valley Season 2 Watching: The Night Agent Season 2"
   },
   {
-    "emoji": "🎬",
+    "emoji": "MOVIE",
     "status": "Last Movie Watched: Iron Lung"
   },
   {
-    "emoji": "🎫",
+    "emoji": "EVENT",
     "status": "Last Attended: Anime Expo 2026"
   },
   {
-    "emoji": "🏆",
+    "emoji": "COLLECT",
     "status": "Recently Added to Collection: Disney Epic Mickey: Rebrushing (Switch), Persona 5 Tactica (Switch), Tchia (Switch)"
   },
   {
-    "emoji": "💻",
-    "status": "Latest Research → Fairness testing through AI and ML, focusing on bias detection, measurement gaps, and evaluation workflows"
+    "emoji": "DEV",
+    "status": "Latest Research -> Fairness testing through AI and ML, focusing on bias detection, measurement gaps, and evaluation workflows"
   }
 ]

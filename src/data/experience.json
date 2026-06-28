@@ -3,7 +3,7 @@
     "company": "Blizzard Entertainment",
     "title": "Senior Software Engineer, Quality",
     "sidePanelTitle": "Senior SWE, Quality",
-    "years": "2025–Current",
+    "years": "2025-Current",
     "products": ["Battle.net", "Diablo IV", "Warcraft Rumble"],
     "summary": "Leading quality engineering initiatives across game systems and platform services. Focused on scalable automation strategy, reliability, and cross-team quality standards.",
     "responsibilities": [
@@ -19,7 +19,7 @@
 
     "title": "Senior Software Development Engineer in Test",
     "sidePanelTitle": "Senior SDET",
-    "years": "2022–2025",
+    "years": "2022-2025",
     "products": ["Battle.net", "Diablo IV", "Warcraft Rumble"],
     "summary": "Led test planning and execution across multiple AAA games. Built tools, frameworks, and automated systems to optimize test efficiency. Collaborated cross-functionally to debug and improve quality.",
     "responsibilities": [
@@ -34,7 +34,7 @@
     "company": "Dexcom",
     "title": "Software Development Engineer in Test II",
     "sidePanelTitle": "SDET II",
-    "years": "2021–2022",
+    "years": "2021-2022",
     "summary": "Led advanced testing efforts for Dexcom CGM software. Focused on full test lifecycle, from planning and scripting to execution and mentoring.",
     "responsibilities": [
       "Developed automated/manual scripts for CGM software validation",
@@ -48,7 +48,7 @@
     "company": "Dexcom",
     "title": "Software Development Engineer in Test I",
     "sidePanelTitle": "SDET I",
-    "years": "2019–2021",
+    "years": "2019-2021",
     "products": [
       "Dexcom G5",
       "Dexcom G6",
@@ -68,7 +68,7 @@
     "company": "Neustar",
     "title": "Software Engineer in Test",
     "sidePanelTitle": "SDET",
-    "years": "2017–2019",
+    "years": "2017-2019",
     "summary": "Built and maintained automation for full-stack testing including UI, REST APIs, and Spark-based systems. High CI integration.",
     "responsibilities": [
       "Wrote frameworks for Java/C# REST APIs, AngularJS UI, and Spark",
@@ -82,7 +82,7 @@
     "company": "Neustar",
     "title": "Associate Software Engineer in Test",
     "sidePanelTitle": "Associate SDET",
-    "years": "2015–2017",
+    "years": "2015-2017",
     "summary": "Contributed to automation efforts and participated in agile QA cycles. Wrote E2E tests and collaborated in design/test case reviews.",
     "responsibilities": [
       "Created test cases for REST APIs, AngularJS UI, and Spark jobs",
@@ -96,7 +96,7 @@
     "company": "County of San Diego",
     "title": "IT Engineer",
     "sidePanelTitle": "IT Engineer",
-    "years": "2013–2014",
+    "years": "2013-2014",
     "summary": "Maintained data systems, wrote validation scripts, and updated backend infrastructure. Supported uptime and system availability.",
     "responsibilities": [
       "Created scripts for data validation and integrity",
@@ -110,7 +110,7 @@
     "company": "County of San Diego",
     "title": "Associate IT Engineer",
     "sidePanelTitle": "Associate IT Engineer",
-    "years": "2012–2013",
+    "years": "2012-2013",
     "summary": "Contributed to software tooling, server support, and development workflows.",
     "responsibilities": [
       "Maintained integration scripts and tools",
@@ -123,7 +123,7 @@
     "company": "County of San Diego",
     "title": "IT Engineer Intern",
     "sidePanelTitle": "IT Engineer Intern",
-    "years": "2010–2011",
+    "years": "2010-2011",
     "summary": "Provided workstation and device support. Performed troubleshooting and system maintenance.",
     "responsibilities": [
       "Managed workstation support",
@@ -136,7 +136,7 @@
     "company": "San Diego Electrical Training Center",
     "title": "Software Developer Intern",
     "sidePanelTitle": "Software Developer Intern",
-    "years": "2010–2011",
+    "years": "2010-2011",
     "summary": "Assisted in developing software for monitoring and automation testing across electrical systems.",
     "responsibilities": [
       "Contributed to malfunction detection systems",

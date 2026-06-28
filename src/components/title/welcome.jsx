@@ -28,7 +28,7 @@ const WelcomeContent = () => {
           style={{ cursor: 'pointer', userSelect: 'none' }}
           title="Click to toggle"
         >
-          HOW IT WORKS {isHowItWorksExpanded ? '▼' : '▶'}
+          HOW IT WORKS {isHowItWorksExpanded ? 'v' : '>'}
         </span>
       </p>
 
@@ -41,19 +41,19 @@ const WelcomeContent = () => {
 
           <div className="command-list">
             <div className="command-item">
-              • Type <span className="text-blue">help</span> to see all available commands
+              - Type <span className="text-blue">help</span> to see all available commands
             </div>
             <div className="command-item">
-              • Use <span className="text-blue">clear</span> to clear the terminal screen
+              - Use <span className="text-blue">clear</span> to clear the terminal screen
             </div>
             <div className="command-item">
-              • Commands like <span className="text-blue">view resume</span> or <span className="text-blue">view projects</span> display content
+              - Commands like <span className="text-blue">view resume</span> or <span className="text-blue">view projects</span> display content
             </div>
             <div className="command-item">
-              • Use <span className="text-blue">view latest</span> to see the updates feed
+              - Use <span className="text-blue">view latest</span> to see the updates feed
             </div>
             <div className="command-item">
-              • Some commands support flags (e.g., <span className="text-blue">--full=true</span>)
+              - Some commands support flags (e.g., <span className="text-blue">--full=true</span>)
             </div>
           </div>
         </>
@@ -66,7 +66,7 @@ const WelcomeContent = () => {
           style={{ cursor: 'pointer', userSelect: 'none' }}
           title="Click to toggle"
         >
-          SIDEBAR GUIDE {isSidebarGuideExpanded ? '▼' : '▶'}
+          SIDEBAR GUIDE {isSidebarGuideExpanded ? 'v' : '>'}
         </span>
       </p>
 
@@ -78,22 +78,22 @@ const WelcomeContent = () => {
 
           <div className="command-list">
             <div className="command-item">
-              • <img src={TerminalPng} alt="Terminal" style={{ width: '16px', height: '16px', verticalAlign: 'middle', marginRight: '4px' }} />
-              <span className="command-description"> – Executes the related command in the terminal</span>
+              - <img src={TerminalPng} alt="Terminal" style={{ width: '16px', height: '16px', verticalAlign: 'middle', marginRight: '4px' }} />
+              <span className="command-description"> - Executes the related command in the terminal</span>
             </div>
             <div className="command-item">
-              • <img src={TabPng} alt="Tab" style={{ width: '16px', height: '16px', verticalAlign: 'middle', marginRight: '4px' }} />
-              <span className="command-description"> – Opens a detailed page in a new tab</span>
+              - <img src={TabPng} alt="Tab" style={{ width: '16px', height: '16px', verticalAlign: 'middle', marginRight: '4px' }} />
+              <span className="command-description"> - Opens a detailed page in a new tab</span>
             </div>
             <div className="command-item">
-              • <img src={DownloadPng} alt="Download" style={{ width: '16px', height: '16px', verticalAlign: 'middle', marginRight: '4px' }} />
-              <span className="command-description"> – Downloads files (like resume PDFs)</span>
+              - <img src={DownloadPng} alt="Download" style={{ width: '16px', height: '16px', verticalAlign: 'middle', marginRight: '4px' }} />
+              <span className="command-description"> - Downloads files (like resume PDFs)</span>
             </div>
             <div className="command-item">
-              • <img src={MailIcon} alt="Email" style={{ width: '16px', height: '16px', verticalAlign: 'middle', marginRight: '8px', objectFit: 'contain' }} />
+              - <img src={MailIcon} alt="Email" style={{ width: '16px', height: '16px', verticalAlign: 'middle', marginRight: '8px', objectFit: 'contain' }} />
               <img src={GitHubIcon} alt="GitHub" style={{ width: '16px', height: '16px', verticalAlign: 'middle', marginRight: '8px', objectFit: 'contain' }} />
               <img src={LinkedInIcon} alt="LinkedIn" style={{ width: '16px', height: '16px', verticalAlign: 'middle', marginRight: '8px', objectFit: 'contain' }} />
-              <span className="command-description"> – External links to email, GitHub, and LinkedIn</span>
+              <span className="command-description"> - External links to email, GitHub, and LinkedIn</span>
             </div>
           </div>
         </>

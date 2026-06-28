@@ -1,4 +1,4 @@
-﻿# AniRepo
+# AniRepo
 
 ## Background
 
@@ -6,13 +6,13 @@ AniRepo is a personal cataloging application for anime-related media and collect
 
 AniRepo focuses on seven main collection types:
 
-- **Books** – light novels, manga, artbooks, guidebooks  
-- **Video Games** – console and PC games, especially anime or adjacent franchises  
-- **Movies** – anime films, OVAs, and related media  
-- **Autographs** – signed items from guests, artists, or voice actors  
-- **Art** – prints, commissions, posters, sketches, and other artwork  
-- **Figures** – scale, prize, and chibi figures (e.g., Nendoroids)  
-- **Merchandises** – miscellaneous goods: keychains, pins, badges, apparel, etc.
+- **Books** - light novels, manga, artbooks, guidebooks  
+- **Video Games** - console and PC games, especially anime or adjacent franchises  
+- **Movies** - anime films, OVAs, and related media  
+- **Autographs** - signed items from guests, artists, or voice actors  
+- **Art** - prints, commissions, posters, sketches, and other artwork  
+- **Figures** - scale, prize, and chibi figures (e.g., Nendoroids)  
+- **Merchandises** - miscellaneous goods: keychains, pins, badges, apparel, etc.
 
 The application provides:
 
@@ -33,13 +33,13 @@ AniRepo is currently designed as a **single-user, private app**, but the archite
 
 AniRepo is split into two main applications:
 
-- **Backend – `back/`**
+- **Backend - `back/`**
   - Node.js + Express REST API  
   - MongoDB via Mongoose  
-  - Layered architecture: models → services → controllers → routes  
+  - Layered architecture: models -> services -> controllers -> routes  
   - Provides CRUD endpoints, dashboard aggregation, and generic filters  
 
-- **Frontend – `front/`**
+- **Frontend - `front/`**
   - React SPA (Create React App)  
   - React Router for navigation  
   - Material UI for layout and components  
@@ -63,7 +63,7 @@ Conceptual architecture:
       back/                  # Backend API (Node.js / Express)
       front/                    # Frontend SPA (React / MUI)
 
-### Backend – `back/`
+### Backend - `back/`
 
     back/
       app.js                   # Express app entry point
@@ -116,7 +116,7 @@ Conceptual architecture:
 
 > Filenames are illustrative; adjust capitalization to match the actual repository (e.g., `videoGameController.js` vs `videogameController.js`).
 
-### Frontend – `front/`
+### Frontend - `front/`
 
     front/
       package.json
@@ -202,7 +202,7 @@ Key `package.json` (backend) concepts:
 - Example scripts:
   - `"start": "nodemon app.js"`
 
-### Application Entry – `app.js`
+### Application Entry - `app.js`
 
 Responsibilities:
 
@@ -230,7 +230,7 @@ Typical route registration (simplified):
     app.use('/dashboard', dashboardRoutes);
     app.use('/filters', filterRoutes);
 
-### Database Configuration – `config/db.js`
+### Database Configuration - `config/db.js`
 
 - Uses `dotenv` to load:
 
@@ -258,19 +258,19 @@ All database credentials and host information live in environment variables so:
 
 The backend uses a layered structure for each domain type:
 
-1. **Model – `models/*.js`**  
+1. **Model - `models/*.js`**  
    - Defines Mongoose schema and model for each collection.
 
-2. **Service – `services/*Service.js`**  
+2. **Service - `services/*Service.js`**  
    - Contains data access and business logic.  
    - Implements operations like `find`, `create`, `update`, `delete`, plus aggregates.
 
-3. **Controller – `controllers/*Controller.js`**  
+3. **Controller - `controllers/*Controller.js`**  
    - Handles Express `req`/`res`.  
    - Translates HTTP requests to service calls.  
    - Sets response codes and formats response JSON.
 
-4. **Route – `routes/*.js`**  
+4. **Route - `routes/*.js`**  
    - Maps HTTP verbs and paths to controller methods.  
    - Defines resource URLs (e.g., `GET /books`, `POST /books`, `GET /books/:id`).
 
@@ -284,7 +284,7 @@ This separation keeps:
 
 All entities share concepts such as:
 
-- `item_type` – identifies what kind of item it is  
+- `item_type` - identifies what kind of item it is  
 - A name/title  
 - Creator/author/artist information  
 - An `added` timestamp  
@@ -293,66 +293,66 @@ All entities share concepts such as:
 
 Each model specializes fields for its domain.
 
-#### Book – `models/Book.js`
+#### Book - `models/Book.js`
 
 Common fields:
 
-- `item_type: String` – typically `"book"`  
-- `title: String` – book or volume title  
-- `creators: String` – combined creator string  
-- `first_name: String`, `last_name: String` – primary creator split name  
-- `ean_isbn13: String`, `upc_isbn10: String` – identifiers  
-- `description: String` – description or blurb  
+- `item_type: String` - typically `"book"`  
+- `title: String` - book or volume title  
+- `creators: String` - combined creator string  
+- `first_name: String`, `last_name: String` - primary creator split name  
+- `ean_isbn13: String`, `upc_isbn10: String` - identifiers  
+- `description: String` - description or blurb  
 - `publisher: String`  
 - `publish_date: Date`  
-- `length: Number` – page count or similar  
-- `added: Date` – defaults to `Date.now`; used for dashboard and filters  
-- `copies: Number` – how many copies you own  
-- `imageUrl: String` – optional cover or reference image  
+- `length: Number` - page count or similar  
+- `added: Date` - defaults to `Date.now`; used for dashboard and filters  
+- `copies: Number` - how many copies you own  
+- `imageUrl: String` - optional cover or reference image  
 
-#### VideoGame – `models/VideoGame.js`
+#### VideoGame - `models/VideoGame.js`
 
 Typical fields:
 
-- `item_type: String` – `"videogame"`  
+- `item_type: String` - `"videogame"`  
 - `title: String`  
-- `platform: String` – e.g., `PS5`, `Switch`, `PC`  
+- `platform: String` - e.g., `PS5`, `Switch`, `PC`  
 - `publisher: String`  
 - `release_date: Date`  
 - `description: String` (optional)  
 - `added: Date`, `imageUrl: String`, `copies: Number`  
 
-#### Movie – `models/Movie.js`
+#### Movie - `models/Movie.js`
 
 Typical fields:
 
-- `item_type: String` – `"movie"`  
+- `item_type: String` - `"movie"`  
 - `title: String`  
 - `director: String`  
-- `runtime: Number` – runtime in minutes  
+- `runtime: Number` - runtime in minutes  
 - `release_date: Date`  
 - `description: String`  
 - `added: Date`, `imageUrl: String`  
 
-#### Autograph – `models/Autograph.js`
+#### Autograph - `models/Autograph.js`
 
 Typical fields:
 
-- `item_type: String` – `"autograph"`  
+- `item_type: String` - `"autograph"`  
 - `first_name: String`, `last_name: String`  
-- `series_or_role: String` – what the person is known for  
-- `event: String` – event where autograph was obtained  
-- `notes: String` – inscription, condition, etc.  
+- `series_or_role: String` - what the person is known for  
+- `event: String` - event where autograph was obtained  
+- `notes: String` - inscription, condition, etc.  
 - `added: Date`  
 - `imageUrl: String`  
 
-#### Art, Figure, Merchandise – `Art.js`, `Figure.js`, `Merchandise.js`
+#### Art, Figure, Merchandise - `Art.js`, `Figure.js`, `Merchandise.js`
 
 Common patterns:
 
-- `item_type: String` – `"art"`, `"figure"`, `"merchandise"`  
+- `item_type: String` - `"art"`, `"figure"`, `"merchandise"`  
 - `title` or `name: String`  
-- `franchise: String` – e.g., `Demon Slayer`, `frontto`  
+- `franchise: String` - e.g., `Demon Slayer`, `frontto`  
 - `manufacturer` or `artist`  
 - `release_date: Date` (optional)  
 - `notes: String`  
@@ -360,7 +360,7 @@ Common patterns:
 - `imageUrl: String`  
 
 **Design note:**  
-Storing `item_type` in each document (even though it’s implied by the collection) allows:
+Storing `item_type` in each document (even though it's implied by the collection) allows:
 
 - Easier cross-collection aggregations  
 - Mixed search results that clearly indicate type  
@@ -465,11 +465,11 @@ Each collection type has a corresponding route file with the same CRUD pattern.
 High-level algorithm:
 
 1. For each model, fetch the latest document sorted by `added` descending, limit 1  
-2. Combine those “most recent” items from each collection into an array  
+2. Combine those "most recent" items from each collection into an array  
 3. Sort the combined array by `added` descending  
 4. Return the single most recent item globally  
 
-Used by the frontend to show “Most Recent Item” on the dashboard.
+Used by the frontend to show "Most Recent Item" on the dashboard.
 
 ### Filtering Logic
 
@@ -483,7 +483,7 @@ Route signature:
 
 Core concepts:
 
-- A registry mapping collection type → Mongoose model, e.g.:
+- A registry mapping collection type -> Mongoose model, e.g.:
 
     const collections = {
       book: Book,
@@ -535,7 +535,7 @@ This endpoint supports both per-collection searches and cross-collection search.
 - **HTTP Client:** Axios  
 - **Styling:** `index.css`, `App.css`, plus MUI `sx` props  
 
-### Application Entry – `src/App.js`
+### Application Entry - `src/App.js`
 
 Responsibilities:
 
@@ -543,7 +543,7 @@ Responsibilities:
 - Render `Navbar` on all pages  
 - Provide a layout container (MUI `Container`) with top margin to account for the AppBar  
 - Define routes for:
-  - `/` – Dashboard  
+  - `/` - Dashboard  
   - `/books`, `/add-book`, `/books/:id`, `/edit-book/:id`  
   - Equivalent patterns for videogames, movies, autographs, arts, figures, merchandises  
 
@@ -569,7 +569,7 @@ Typical route structure (simplified):
 
 ### Layout Components
 
-#### Navbar – `components/Layout/Navbar.js`
+#### Navbar - `components/Layout/Navbar.js`
 
 - Uses MUI components (`AppBar`, `Toolbar`, `IconButton`, `Typography`, `Drawer`, `List`, `ListItem`)  
 - Shows:
@@ -590,12 +590,12 @@ Typical route structure (simplified):
   - Drawer open/close state for mobile view  
   - Desktop vs. mobile navigation layout  
 
-#### Dashboard – `components/Layout/Dashboard.js`
+#### Dashboard - `components/Layout/Dashboard.js`
 
 State:
 
-- `counts` – from `/dashboard/counts`  
-- `recent` – array with the most recent item from `/dashboard/recent`  
+- `counts` - from `/dashboard/counts`  
+- `recent` - array with the most recent item from `/dashboard/recent`  
 
 Effects:
 
@@ -606,14 +606,14 @@ Effects:
 Rendering:
 
 - A grid of `StatBox` or `Card` components showing counts for each collection type  
-- A “Most Recent” section displaying:
+- A "Most Recent" section displaying:
 
   - Title or name  
   - Description or notes (if available)  
   - `item_type`  
   - `added` formatted with `toLocaleString()`  
 
-#### StatBox – `components/Layout/StatBox.js`
+#### StatBox - `components/Layout/StatBox.js`
 
 - Reusable component with props like `label` and `value`  
 - Renders a small MUI `Card` with:
@@ -652,13 +652,13 @@ useEffect(() => {
 - Display:
 
   - Table or grid with key fields (title, franchise, added date, etc.)  
-  - “Add” button to navigate to `/add-<type>`  
+  - "Add" button to navigate to `/add-<type>`  
 
 - Actions per row:
 
-  - View details → `/resource/:id`  
-  - Edit → `/edit-<type>/:id`  
-  - Delete → `DELETE /resource/:id`, then refresh list  
+  - View details -> `/resource/:id`  
+  - Edit -> `/edit-<type>/:id`  
+  - Delete -> `DELETE /resource/:id`, then refresh list  
 
 #### Detail Components
 
@@ -750,13 +750,13 @@ Example: Books
 
 - `GET /filters/:collectionType`  
   - Filters/searches **within a specific** collection type  
-  - `collectionType` ∈ { `book`, `videogame`, `movie`, `autograph`, `art`, `figure`, `merchandise` }  
+  - `collectionType` in { `book`, `videogame`, `movie`, `autograph`, `art`, `figure`, `merchandise` }  
 
 ---
 
 ## Configuration & Environment
 
-### Backend – `back/`
+### Backend - `back/`
 
 Typical `.env` file (not committed to source control):
 
@@ -771,10 +771,10 @@ PORT=3001
 
 These values are used in:
 
-- `config/db.js` – to construct the MongoDB connection string  
-- `app.js` – to set the server listen port  
+- `config/db.js` - to construct the MongoDB connection string  
+- `app.js` - to set the server listen port  
 
-### Frontend – `front/`
+### Frontend - `front/`
 
 - Axios calls currently use URLs like `http://localhost:3001/...`  
 - For production, you can introduce:
@@ -794,23 +794,23 @@ These values are used in:
    - `GET /dashboard/recent`  
 3. User sees:
    - Count tiles for each collection type  
-   - A “Most Recent Item” card showing latest addition  
+   - A "Most Recent Item" card showing latest addition  
 
 ### Browse a Collection (Books example)
 
-1. User clicks “Books” in the Navbar  
+1. User clicks "Books" in the Navbar  
 2. App navigates to `/books`  
 3. `ListBook` calls `GET /books` and renders list  
 4. From here user can:
    - Click an item to view `/books/:id` (detail)  
-   - Click “Add Book” to go to `/add-book`  
-   - Click “Edit” to go to `/edit-book/:id`  
-   - Click “Delete” to remove an item via `DELETE /books/:id`  
+   - Click "Add Book" to go to `/add-book`  
+   - Click "Edit" to go to `/edit-book/:id`  
+   - Click "Delete" to remove an item via `DELETE /books/:id`  
 
 ### Add a New Autograph
 
 1. User goes to `/autographs`  
-2. Clicks “Add Autograph” → navigates to `/add-autograph`  
+2. Clicks "Add Autograph" -> navigates to `/add-autograph`  
 3. `AddAutograph` presents form (name, event, notes, etc.)  
 4. On submit:
    - Calls `POST /autographs`  
@@ -818,8 +818,8 @@ These values are used in:
 
 ### Edit an Existing Video Game
 
-1. User is on `/videogames` and selects a game → `/videogames/:id`  
-2. On detail page, clicks “Edit”  
+1. User is on `/videogames` and selects a game -> `/videogames/:id`  
+2. On detail page, clicks "Edit"  
 3. `EditVideoGame` fetches data for that ID  
 4. User edits fields and submits  
 5. Component calls `PUT /videogames/:id`  
@@ -830,13 +830,13 @@ These values are used in:
 1. User types a franchise name in a search bar (future feature)  
 2. Frontend calls `GET /filters?franchise=Evangelion&limit=20`  
 3. Backend returns mixed results (books, figures, art, etc.) sorted by `added`  
-4. UI renders results with labels indicating each item’s type  
+4. UI renders results with labels indicating each item's type  
 
 ---
 
 ## Extensibility & Future Work
 
-### Adding a New Collection Type (e.g., “Cards”)
+### Adding a New Collection Type (e.g., "Cards")
 
 **Backend steps:**
 
@@ -858,7 +858,7 @@ app.use('/cards', cardRoutes);
    - `ListCard`, `DetailCard`, `AddCard`, `EditCard`  
 2. Add routes to `App.js`:
    - `/cards`, `/cards/:id`, `/add-card`, `/edit-card/:id`  
-3. Add a “Cards” entry to `Navbar.js`  
+3. Add a "Cards" entry to `Navbar.js`  
 4. Optionally update `Dashboard.js` to include cards in stats and recent display  
 
 ### Authentication

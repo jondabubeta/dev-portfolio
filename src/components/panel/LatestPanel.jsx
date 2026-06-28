@@ -34,7 +34,7 @@ export default function LatestPanel({ onCommand, onNavigateLatest }) {
                       aria-label={`${isOpen ? "Collapse" : "Expand"} ${entry.title} description`}
                       onClick={() => toggleEntry(entry.slug)}
                     >
-                      ▶
+                      {">"}
                     </button>
                     <a
                       className="latest-title"

@@ -1,4 +1,4 @@
-# Master’s Degree: Unlocked
+# Master's Degree: Unlocked
 
 **Published:** June 17, 2026
 

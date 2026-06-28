@@ -134,7 +134,7 @@ body { margin: 0; }
   }
 }
 
-/* Inner wrapper — minimal scrollbar that only shows when needed */
+/* Inner wrapper - minimal scrollbar that only shows when needed */
 .side-panel-content {
   flex: 1 1 0;
   min-height: 0;
@@ -223,7 +223,7 @@ body { margin: 0; }
 
 /* Experience section scrolling */
 .scrollable-experience {
-  max-height: 180px;              /* show 4 entries: 4 rows × (24px + 3px gap) */
+  max-height: 180px;              /* show 4 entries: 4 rows x (24px + 3px gap) */
   overflow-y: scroll;             /* keep scrollbar consistently available */
   overflow-x: hidden;
   width: 100%;
@@ -300,7 +300,7 @@ body { margin: 0; }
   background: var(--color-black);
   padding: 1.25rem 1.2rem 1rem;  /* increased padding */
   margin-bottom: 2.0rem;         /* increased spacing between panels */
-  overflow: visible;       /* ⬅️ important */
+  overflow: visible;       /* <- important */
 }
 
 /* Ensure last section has moderate bottom margin */
@@ -759,7 +759,7 @@ body { margin: 0; }
 .contact-cell .icon-sm:hover { transform: scale(1.15); filter: brightness(1.3); }
 
 /* =========================
-   PROJECTS TABLE — more description width,
+   PROJECTS TABLE - more description width,
    single-line everywhere, no sidebar scrollbars
 ========================= */
 .projects-table .panel-row {

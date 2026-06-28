@@ -42,10 +42,10 @@ export default function ProjectsViewer({ filter = {}, full = false }) {
     return true;
   };
 
-  // Year parsing (supports "2023–Present" or "2023-2024" or single year)
+  // Year parsing (supports "2023-Present" or "2023-2024" or single year)
   const parseYears = (years = '', fallbackYear = '') => {
     if (!years && fallbackYear) years = String(fallbackYear);
-    const [startRaw = '', endRaw = ''] = String(years).split(/–|-/);
+    const [startRaw = '', endRaw = ''] = String(years).split(/-|-/);
     const start = parseInt(startRaw, 10) || -Infinity;
     const end =
       /present/i.test(endRaw) ? Infinity : parseInt(endRaw, 10) || start || -Infinity;
@@ -124,7 +124,7 @@ export default function ProjectsViewer({ filter = {}, full = false }) {
 
 
 
-              {/* Highlights → responsibilities list */}
+              {/* Highlights -> responsibilities list */}
               {Array.isArray(p.highlights) && p.highlights.length > 0 && (
                 <ul className="exp-responsibilities">
                   {p.highlights.map((h, i) => (

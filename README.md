@@ -1,6 +1,6 @@
 # React + Vite
 
-This repository is a small developer portfolio built with React + Vite that presents content inside a terminal-like UI. It intentionally mimics a CLI experience — you can type commands (or click sidebar items) to view experience, projects, education, a CV/cover letter, and more.
+This repository is a small developer portfolio built with React + Vite that presents content inside a terminal-like UI. It intentionally mimics a CLI experience - you can type commands (or click sidebar items) to view experience, projects, education, a CV/cover letter, and more.
 
 Key goals:
 
@@ -47,12 +47,12 @@ npm run preview
 View work experience entries with optional filtering.
 
 **Arguments:**
-- `--company` – Filter by company name (e.g., `--company="Neustar"`)
-- `--position` – Filter by job position/title (e.g., `--position="SDET II"`)
-- `--title` – Filter by job title
-- `--tags` – Filter by tags
-- `--years` – Filter by year range (e.g., `--years=2019-2021`)
-- `--full` – Show full details (boolean)
+- `--company` - Filter by company name (e.g., `--company="Neustar"`)
+- `--position` - Filter by job position/title (e.g., `--position="SDET II"`)
+- `--title` - Filter by job title
+- `--tags` - Filter by tags
+- `--years` - Filter by year range (e.g., `--years=2019-2021`)
+- `--full` - Show full details (boolean)
 
 **Examples:**
 - `view experience`
@@ -65,9 +65,9 @@ View work experience entries with optional filtering.
 View project entries with optional filtering.
 
 **Arguments:**
-- `--tag` – Filter by project tags (e.g., `--tag=react`)
-- `--name` – Filter by project name
-- `--status` – Filter by status (e.g., `--status=active`)
+- `--tag` - Filter by project tags (e.g., `--tag=react`)
+- `--name` - Filter by project name
+- `--status` - Filter by status (e.g., `--status=active`)
 
 **Examples:**
 - `view projects`
@@ -79,8 +79,8 @@ View project entries with optional filtering.
 View education history with optional filtering.
 
 **Arguments:**
-- `--school` – Filter by school name
-- `--degree` – Filter by degree type
+- `--school` - Filter by school name
+- `--degree` - Filter by degree type
 
 **Examples:**
 - `view education`
@@ -90,8 +90,8 @@ View education history with optional filtering.
 View skills with optional filtering.
 
 **Arguments:**
-- `--name` – Filter by skill name
-- `--category` – Filter by skill category
+- `--name` - Filter by skill name
+- `--category` - Filter by skill category
 
 **Examples:**
 - `view skills`
@@ -101,9 +101,9 @@ View skills with optional filtering.
 View contact information. Supports shorthand or flag-based filtering.
 
 **Arguments:**
-- `--email` – Show email
-- `--github` – Show GitHub
-- `--linkedin` – Show LinkedIn
+- `--email` - Show email
+- `--github` - Show GitHub
+- `--linkedin` - Show LinkedIn
 
 **Examples:**
 - `view contact`
@@ -115,7 +115,7 @@ View contact information. Supports shorthand or flag-based filtering.
 View the resume page.
 
 **Arguments:**
-- `--full` – Show full resume (boolean)
+- `--full` - Show full resume (boolean)
 
 **Examples:**
 - `view resume`
@@ -160,11 +160,11 @@ Use the **Up/Down arrow keys** while focused on the terminal input to navigate c
 
 ## Project structure (high level)
 
-- `src/components/` – React components, including the Terminal, side panels, and command viewers
-- `src/components/commands/view/` – viewer components that render output for `view` commands
-- `src/data/` – JSON content files (experience, projects, education, coverletter, skills)
-- `src/styles/` – CSS used by the site
-- `src/utils/` – command parsing and routing logic (`parseArgs`, `handleCommand`)
+- `src/components/` - React components, including the Terminal, side panels, and command viewers
+- `src/components/commands/view/` - viewer components that render output for `view` commands
+- `src/data/` - JSON content files (experience, projects, education, coverletter, skills)
+- `src/styles/` - CSS used by the site
+- `src/utils/` - command parsing and routing logic (`parseArgs`, `handleCommand`)
 
 ## Development notes
 

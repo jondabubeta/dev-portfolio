@@ -18,7 +18,7 @@ const allowedArgs = {
   cv: [],
   // Allow --position so callers can filter by job title/role
   // Allow --position and --years so callers can filter by job title/role and years
-  experience: ['company', 'tags', 'title', 'position', 'years', 'full'], // ⬅️ allow --full, --position, --years
+  experience: ['company', 'tags', 'title', 'position', 'years', 'full'], // <- allow --full, --position, --years
   education: ['school', 'degree'],
   projects: ['tag', 'name', 'status'],
   latest: [],
@@ -30,7 +30,7 @@ export function handleCommand(input) {
   const [cmd, subcmd, ...args] = input.trim().split(/\s+/);
   const argString = args.join(' ');
 
-  // ✅ View
+  // View
   if (cmd === 'view') {
     switch (subcmd) {
       case 'experience': {
@@ -43,7 +43,7 @@ export function handleCommand(input) {
             ? filter.full.toLowerCase() === 'true'
             : !!filter.full;
 
-        // Don’t pass `full` inside filter
+        // Don't pass `full` inside filter
         const { full, ...rest } = filter;
 
         return <ExperienceViewer filter={rest} full={fullFlag} />;

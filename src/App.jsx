@@ -284,11 +284,11 @@ export default function App() {
               <div ref={embeddedShellRef} className={`project-embedded-shell${isProjectClosing ? ' is-closing' : ''}`}>
                 <div className="project-embedded-bar">
                   <button className="project-embedded-back" onClick={closeEmbeddedView} type="button">
-                    <span className="project-embedded-back-arrow" aria-hidden="true">←</span>
+                    <span className="project-embedded-back-arrow" aria-hidden="true">{"<-"}</span>
                     <span>Return to Terminal</span>
                   </button>
                 </div>
-                <Suspense fallback={<div className="loading">Loading…</div>}>
+                <Suspense fallback={<div className="loading">Loading...</div>}>
                   {activeEmbeddedView.kind === "project" ? (
                     <ProjectTemplate key={activeEmbeddedKey} project={activeProject} embedded={true} />
                   ) : activeEmbeddedView.kind === "latest" ? (
@@ -311,7 +311,7 @@ export default function App() {
                   onClick={scrollEmbeddedViewToTop}
                   aria-label="Back to top"
                 >
-                  <span className="project-back-to-top-arrow" aria-hidden="true">↑</span>
+                  <span className="project-back-to-top-arrow" aria-hidden="true">^</span>
                   <span>Back to Top</span>
                 </button>
               )}
@@ -331,7 +331,7 @@ export default function App() {
             onClick={() => handleCommand('view about')}
             title="About"
           >
-            <span className="nav-icon">👤</span>
+            <span className="nav-icon">ME</span>
             <span className="nav-label">About</span>
           </button>
           <button 
@@ -339,7 +339,7 @@ export default function App() {
             onClick={() => handleCommand('view experience')}
             title="Experience"
           >
-            <span className="nav-icon">💼</span>
+            <span className="nav-icon">CV</span>
             <span className="nav-label">Work</span>
           </button>
           <button 
@@ -347,7 +347,7 @@ export default function App() {
             onClick={() => handleCommand('view skills')}
             title="Skills"
           >
-            <span className="nav-icon">🛠️</span>
+            <span className="nav-icon">SK</span>
             <span className="nav-label">Skills</span>
           </button>
           <button 
@@ -355,7 +355,7 @@ export default function App() {
             onClick={() => handleCommand('view projects')}
             title="Projects"
           >
-            <span className="nav-icon">📁</span>
+            <span className="nav-icon">PR</span>
             <span className="nav-label">Projects</span>
           </button>
           <button 
@@ -363,7 +363,7 @@ export default function App() {
             onClick={() => handleCommand('view contact')}
             title="Contact"
           >
-            <span className="nav-icon">📧</span>
+            <span className="nav-icon">@</span>
             <span className="nav-label">Contact</span>
           </button>
         </nav>

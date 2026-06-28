@@ -7,7 +7,7 @@ export default function CvViewer() {
   return (
     <div className="output cv-view">
       <div className="terminal-h2">{cover.title}</div>
-      <div className="mb cv-meta">{cover.date} • {cover.recipient}</div>
+      <div className="mb cv-meta">{cover.date} - {cover.recipient}</div>
 
       {cover.opening && <div className="cv-opening">{cover.opening}</div>}
 

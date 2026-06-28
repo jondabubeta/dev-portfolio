@@ -27,7 +27,7 @@ export default function ExperienceViewer({ filter = {}, full = false }) {
 
   // Year parsing helper (used by filtering and sorting)
   const parseYears = (years = '') => {
-    const [startRaw = '', endRaw = ''] = String(years).split(/–|-/);
+    const [startRaw = '', endRaw = ''] = String(years).split(/-|-/);
     const start = parseInt(startRaw, 10) || -Infinity;
     const end = /present/i.test(endRaw) ? Infinity : parseInt(endRaw, 10) || start || -Infinity;
     return { start, end };
@@ -51,8 +51,8 @@ export default function ExperienceViewer({ filter = {}, full = false }) {
 
     if (yearsFilter) {
       const f = String(yearsFilter).trim();
-      // range like 2019-2021 or 2019–2021
-      const rangeMatch = f.match(/(\d{4})\s*(?:–|-|—|to)\s*(\d{4}|present)/i);
+      // range like 2019-2021 or 2019-2021
+      const rangeMatch = f.match(/(\d{4})\s*(?:-|-|-|to)\s*(\d{4}|present)/i);
       const expRange = parseYears(exp.years);
       if (rangeMatch) {
         const fStart = parseInt(rangeMatch[1], 10);
