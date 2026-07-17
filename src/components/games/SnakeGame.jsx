@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   DIRECTIONS,
   changeDirection,
@@ -30,6 +30,25 @@ function newGame() {
 
 export default function SnakeGame() {
   const [game, setGame] = useState(newGame);
+  const gameRef = useRef(null);
+
+  useEffect(() => {
+    let secondFrame;
+    const firstFrame = window.requestAnimationFrame(() => {
+      secondFrame = window.requestAnimationFrame(() => {
+        const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+        gameRef.current?.scrollIntoView({
+          behavior: reduceMotion ? 'auto' : 'smooth',
+          block: 'start'
+        });
+      });
+    });
+
+    return () => {
+      window.cancelAnimationFrame(firstFrame);
+      if (secondFrame) window.cancelAnimationFrame(secondFrame);
+    };
+  }, []);
 
   const turn = useCallback((direction) => {
     setGame((current) => {
@@ -117,7 +136,7 @@ export default function SnakeGame() {
   }[game.status];
 
   return (
-    <section className="snake-game" aria-label="Snake game">
+    <section ref={gameRef} className="snake-game" aria-label="Snake game">
       <header className="snake-game__header">
         <strong>SNAKE.EXE</strong>
         <span>Score: {game.score}</span>
