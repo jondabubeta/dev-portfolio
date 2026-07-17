@@ -6,7 +6,6 @@ export default function Help({ command }) {
     view experience                     View all experience
     view experience --company=...       Filter by company
     view experience --tags=...          Filter by tag(s)
-    view latest                         Show the latest updates feed
     view contact                        View all contact information
     view contact --email=false          Hide email (set false for any field)
     play snake                          Start Snake
@@ -27,11 +26,6 @@ export default function Help({ command }) {
     view experience
     view experience --company=neustar
     view experience --tags=sdet,qa`,
-
-    latest: `view latest
-  Displays recent updates, newest first.
-
-  Select an update title to open the full entry.`,
 
     snake: `play snake
   Starts Snake in the terminal.

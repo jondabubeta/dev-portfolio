@@ -9,7 +9,6 @@ const ResumePage = lazy(() => import("./pages/ResumePage"));
 const CoverPage = lazy(() => import("./pages/CoverPage"));
 const SkillsPage = lazy(() => import("./pages/SkillsPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
-const LatestPage = lazy(() => import("./pages/LatestPage"));
 
 import projects from "./data/projects";
 import "./styles/index.css";
@@ -27,11 +26,6 @@ function getProjectSlugFromPath(pathname = "") {
   return match ? match[1] : null;
 }
 
-function getLatestSlugFromPath(pathname = "") {
-  const match = String(pathname).match(/^\/latest\/([^/]+)\/?$/);
-  return match ? match[1] : null;
-}
-
 function normalizePath(pathname = "") {
   return String(pathname || "/").replace(/\/+$/, "") || "/";
 }
@@ -41,11 +35,6 @@ function getEmbeddedViewFromPath(pathname = "") {
   const projectSlug = getProjectSlugFromPath(normalized);
   if (projectSlug) {
     return { kind: "project", slug: projectSlug, path: `/projects/${projectSlug}` };
-  }
-
-  const latestSlug = getLatestSlugFromPath(normalized);
-  if (latestSlug) {
-    return { kind: "latest", slug: latestSlug, path: `/latest/${latestSlug}` };
   }
 
   if (normalized === "/resume") {
@@ -291,8 +280,6 @@ export default function App() {
                 <Suspense fallback={<div className="loading">Loading...</div>}>
                   {activeEmbeddedView.kind === "project" ? (
                     <ProjectTemplate key={activeEmbeddedKey} project={activeProject} embedded={true} />
-                  ) : activeEmbeddedView.kind === "latest" ? (
-                    <LatestPage key={activeEmbeddedKey} slug={activeEmbeddedView.slug} />
                   ) : activeEmbeddedView.doc === "resume" ? (
                     <ResumePage key={activeEmbeddedKey} onNavigatePage={openInPlace} />
                   ) : activeEmbeddedView.doc === "about" ? (

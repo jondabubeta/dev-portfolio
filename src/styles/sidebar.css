@@ -210,9 +210,8 @@ body { margin: 0; }
 /* Give the top chip room so it isn't clipped by the container */
 /* Note: .side-panel-content styling is handled by the main flex definition above */
 
-/* Individual section scrolling for Latest and Projects panels */
-.section-container.projects-section .scrollable-section,
-.latest-scrollable {
+/* Individual section scrolling for the Projects panel */
+.section-container.projects-section .scrollable-section {
   max-height: 108px;              /* height for 4 entries before scrolling */
   overflow-y: auto !important;    /* force individual scrollbars */
   overflow-x: hidden;
@@ -234,7 +233,7 @@ body { margin: 0; }
 }
 
 /* Other scrollable sections (like skills) remain unrestricted */
-.scrollable-section:not(.latest-scrollable) {
+.scrollable-section {
   overflow: visible;              /* no scrolling for skills section with "more" link */
 }
 
@@ -363,22 +362,6 @@ body { margin: 0; }
   min-height: 24px;               
 }
 
-.latest-table .panel-row {
-  grid-template-columns: minmax(0, 2.4fr) 9.5ch auto;
-  column-gap: 12px;
-}
-
-.latest-row {
-  padding: 0.1rem 0;
-}
-
-.latest-row .panel-extra {
-  width: 76px;
-  gap: 0.5rem;
-  overflow: visible;
-  transform: translateX(15px);
-}
-
 /* Hover + clickable states */
 .panel-row.clickable {
   cursor: pointer;
@@ -413,102 +396,6 @@ body { margin: 0; }
   font-size: 0.9rem;
   color: #888;
   text-align: right;
-}
-
-.latest-main {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  min-width: 0;
-  gap: 0.45rem;
-}
-
-.latest-toggle-icon {
-  appearance: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
-  width: 28px;
-  height: 28px;
-  padding: 0;
-  border: 1px solid transparent;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.03);
-  font-size: 0.9rem;
-  color: #888;
-  cursor: pointer;
-  transition:
-    transform 0.15s ease,
-    color 0.15s ease,
-    background-color 0.15s ease,
-    border-color 0.15s ease;
-}
-
-.latest-toggle-icon:hover,
-.latest-toggle-icon:focus-visible {
-  color: var(--color-blue);
-  background: rgba(80, 132, 251, 0.16);
-  border-color: rgba(80, 132, 251, 0.5);
-  outline: none;
-}
-
-.latest-toggle-icon.is-open {
-  transform: rotate(90deg);
-  color: var(--color-blue);
-  background: rgba(80, 132, 251, 0.12);
-  border-color: rgba(80, 132, 251, 0.35);
-}
-
-.latest-title,
-.latest-description,
-.latest-date {
-  min-width: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 1.1;
-}
-
-.latest-title {
-  display: block;
-  font-size: 0.95rem;
-  color: #fff;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.latest-title:hover,
-.latest-title:focus-visible {
-  color: var(--color-blue);
-}
-
-.latest-description {
-  font-size: 0.86rem;
-  color: #aaa;
-}
-
-.latest-date {
-  font-size: 0.86rem;
-  color: #888;
-}
-
-.latest-dropdown {
-  display: grid;
-  grid-template-columns: minmax(0, 2.4fr) 9.5ch auto;
-  column-gap: 12px;
-  padding: 0.15rem 0 0.2rem;
-}
-
-.latest-dropdown .latest-description {
-  grid-column: 1 / 2;
-  white-space: normal;
-}
-
-.latest-row.is-open .latest-title,
-.latest-row.is-open .latest-date,
-.latest-row.is-open .panel-extra {
-  color: var(--color-blue);
 }
 
 /* =========================
@@ -885,7 +772,6 @@ body { margin: 0; }
 
 /* Scale up icons on higher resolutions */
 @media (min-width: 1440px) {
-  .latest-row .panel-extra,
   .doc-icons,
   .projects-table .panel-extra {
     width: 82px;
