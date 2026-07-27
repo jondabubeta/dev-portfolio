@@ -8,6 +8,62 @@ marked.use(gfmHeadingId());
 // Vite glob to load project markdown files as raw text
 const mdModules = import.meta.glob('../../content/projects/*.md', { as: 'raw' });
 
+function buildTocTree(items) {
+  const roots = [];
+  const stack = [];
+
+  items.forEach((item) => {
+    const node = { ...item, children: [] };
+
+    while (stack.length && stack[stack.length - 1].level >= node.level) {
+      stack.pop();
+    }
+
+    if (stack.length) {
+      stack[stack.length - 1].children.push(node);
+    } else {
+      roots.push(node);
+    }
+
+    stack.push(node);
+  });
+
+  return roots;
+}
+
+function TocBranch({ items, active, handleJump, depth = 0 }) {
+  return items.map((item) => {
+    const containsActive = item.children.some(
+      (child) => child.anchor === active || child.children.some((nested) => nested.anchor === active)
+    );
+
+    return (
+      <div
+        className={`project-toc-item project-toc-level-${Math.min(depth + 2, 4)}${containsActive ? ' has-active-child' : ''}`}
+        key={item.anchor}
+      >
+        <a
+          href={`#${item.anchor}`}
+          onClick={handleJump(item.anchor)}
+          className={`toc-link${active === item.anchor ? ' active' : ''}`}
+        >
+          <span>{item.text}</span>
+        </a>
+        {item.children.length > 0 && (
+          <div className="project-toc-children">
+            <TocBranch
+              items={item.children}
+              active={active}
+              handleJump={handleJump}
+              depth={depth + 1}
+            />
+          </div>
+        )}
+      </div>
+    );
+  });
+}
+
 export default function ProjectTemplate({ project, embedded = false }) {
   const [html, setHtml] = useState('');
   const [toc, setToc] = useState([]);
@@ -56,14 +112,17 @@ export default function ProjectTemplate({ project, embedded = false }) {
           mangle: false
         });
         
-        // Extract ## headings from the rendered HTML to get exact IDs
+        // Extract the document hierarchy using the exact generated heading IDs.
         const parser = new DOMParser();
         const doc = parser.parseFromString(rendered, 'text/html');
-        const h2Elements = doc.querySelectorAll('h2');
-        const tocSections = Array.from(h2Elements).map(h2 => ({
-          text: h2.textContent.trim(),
-          anchor: h2.id
-        }));
+        const headingElements = doc.querySelectorAll('h2, h3, h4');
+        const tocSections = buildTocTree(
+          Array.from(headingElements).map((heading) => ({
+            text: heading.textContent.trim(),
+            anchor: heading.id,
+            level: Number(heading.tagName.slice(1)),
+          }))
+        );
         
         if (mounted) {
           setToc(tocSections);
@@ -86,7 +145,9 @@ export default function ProjectTemplate({ project, embedded = false }) {
 
     const ANCHOR_Y = 96;
     const TAKEOVER_PAD = 6;
-    const sectionIds = ['top', ...toc.map(s => s.anchor)];
+    const flattenAnchors = (items) =>
+      items.flatMap((item) => [item.anchor, ...flattenAnchors(item.children)]);
+    const sectionIds = ['top', ...flattenAnchors(toc)];
     const els = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
     const scrollTarget = embedded
       ? document.querySelector('.terminal-body') || window
@@ -143,8 +204,7 @@ export default function ProjectTemplate({ project, embedded = false }) {
 
   if (!project) return <div className="output">Project not found</div>;
 
-  const tocItems = [{ text: project.title, anchor: 'top' }, ...toc];
-  const showToc = tocItems.length > 1;
+  const showToc = toc.length > 0;
 
   const content = (
     <div className="project-page resume-page" id="top">
@@ -152,21 +212,27 @@ export default function ProjectTemplate({ project, embedded = false }) {
         <main className="project-content resume-content">
           {showToc ? (
             <aside className="inline-toc">
-              <div className="toc-card">
-                <div className="toc-title">Contents</div>
-                <nav className="toc-list">
-                  {tocItems.map((section) => (
-                    <a
-                      key={section.anchor}
-                      href={`#${section.anchor}`}
-                      onClick={handleJump(section.anchor)}
-                      className={`toc-link${active === section.anchor ? ' active' : ''}`}
-                    >
-                      {section.text}
-                    </a>
-                  ))}
+              <details className="toc-card project-toc-disclosure">
+                <summary className="project-toc-summary">
+                  <span className="toc-title">Contents</span>
+                  <span className="project-toc-meta">
+                    {toc.length} {toc.length === 1 ? 'section' : 'sections'}
+                  </span>
+                  <span className="project-toc-chevron" aria-hidden="true" />
+                </summary>
+                <nav className="toc-list" aria-label={`${project.title} contents`}>
+                  <a
+                    href="#top"
+                    onClick={handleJump('top')}
+                    className={`toc-link project-toc-overview${active === 'top' ? ' active' : ''}`}
+                  >
+                    <span>Project overview</span>
+                  </a>
+                  <div className="project-toc-sections">
+                    <TocBranch items={toc} active={active} handleJump={handleJump} />
+                  </div>
                 </nav>
-              </div>
+              </details>
             </aside>
           ) : null}
 
