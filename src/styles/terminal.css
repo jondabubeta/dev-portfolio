@@ -179,6 +179,142 @@
   white-space: pre-wrap;
 }
 
+/* ========== Compact, expandable terminal skills ========== */
+.terminal-skills {
+  --skill-line: rgba(255, 255, 255, 0.12);
+  width: min(100%, 760px);
+  margin: 0.25rem 0 0.75rem;
+  white-space: normal;
+}
+
+.terminal-skills-hint {
+  margin-bottom: 1rem;
+  color: #8d8d8d;
+  font-size: 0.82rem;
+}
+
+.terminal-skills-hint::before {
+  content: '↳ ';
+  color: var(--color-orange);
+}
+
+.terminal-skill-group + .terminal-skill-group {
+  margin-top: 1.15rem;
+}
+
+.terminal-skill-category {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.55rem;
+  color: var(--color-orange);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.terminal-skill-category::after {
+  content: '';
+  height: 1px;
+  flex: 1;
+  background: var(--skill-line);
+}
+
+.terminal-skill-count {
+  order: 2;
+  color: #666;
+  font-variant-numeric: tabular-nums;
+}
+
+.terminal-skill-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.terminal-skill-item {
+  min-width: 0;
+  border: 1px solid var(--skill-line);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.018);
+  transition: border-color 0.16s ease, background 0.16s ease;
+}
+
+.terminal-skill-item:hover,
+.terminal-skill-item.is-open {
+  border-color: rgba(80, 132, 251, 0.55);
+  background: rgba(80, 132, 251, 0.07);
+}
+
+.terminal-skill-item.is-open {
+  grid-column: 1 / -1;
+}
+
+.terminal-skill-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.58rem 0.7rem;
+  border: 0;
+  background: transparent;
+  color: #efefef;
+  font: inherit;
+  font-size: 0.88rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.terminal-skill-trigger:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 2px;
+}
+
+.terminal-skill-marker {
+  width: 1ch;
+  flex: 0 0 auto;
+  color: var(--color-blue);
+  font-weight: 700;
+}
+
+.terminal-skill-detail {
+  margin: 0 0.7rem 0.7rem 1.95rem;
+  padding-top: 0.62rem;
+  border-top: 1px dashed var(--skill-line);
+  color: #d7d7d7;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  animation: skill-detail-in 0.18s ease-out;
+}
+
+.terminal-skill-proof {
+  margin-top: 0.4rem;
+  color: #aaa;
+}
+
+.terminal-skill-proof::before {
+  content: 'USED  ';
+  color: var(--color-orange);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.terminal-skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.55rem;
+  color: #7197ee;
+  font-size: 0.72rem;
+}
+
+@keyframes skill-detail-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* ============================================================================
    RESPONSIVE STYLES - MOBILE & TABLET
    ============================================================================ */
@@ -213,6 +349,14 @@
   .terminal-bar {
     height: 32px;
     padding: 0 8px;
+  }
+
+  .terminal-skill-list {
+    grid-template-columns: 1fr;
+  }
+
+  .terminal-skill-item.is-open {
+    grid-column: auto;
   }
   
   .terminal-title {
