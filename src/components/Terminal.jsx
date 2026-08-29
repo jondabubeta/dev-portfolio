@@ -243,6 +243,12 @@ const Terminal = forwardRef((props, ref) => {
     return () => window.removeEventListener('terminal:command', onBus);
   }, []);
 
+  useEffect(() => {
+    const focusInput = () => inputRef.current?.focus({ preventScroll: true });
+    window.addEventListener('terminal:focus', focusInput);
+    return () => window.removeEventListener('terminal:focus', focusInput);
+  }, []);
+
   const handleKeyDown = (e) => {
     if (e.ctrlKey && e.key.toLowerCase() === 'c') {
       e.preventDefault();

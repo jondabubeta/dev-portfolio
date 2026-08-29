@@ -34,6 +34,7 @@ export default function SnakeGame() {
 
   useEffect(() => {
     let secondFrame;
+    gameRef.current?.focus({ preventScroll: true });
     const firstFrame = window.requestAnimationFrame(() => {
       secondFrame = window.requestAnimationFrame(() => {
         const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -76,41 +77,39 @@ export default function SnakeGame() {
     return () => window.clearInterval(timer);
   }, [game.score, game.status]);
 
-  useEffect(() => {
-    const onKeyDown = (event) => {
-      if (event.ctrlKey && event.key.toLowerCase() === 'c') {
-        setGame((current) => interruptGame(current));
-        return;
-      }
+  const handleKeyDown = useCallback((event) => {
+    if (event.ctrlKey && event.key.toLowerCase() === 'c') {
+      event.preventDefault();
+      event.stopPropagation();
+      setGame((current) => interruptGame(current));
+      window.dispatchEvent(new CustomEvent('terminal:focus'));
+      return;
+    }
 
-      const direction = KEY_DIRECTIONS[event.key];
+    const direction = KEY_DIRECTIONS[event.key];
 
-      if (
-        direction &&
-        (game.status === 'ready' || game.status === 'running')
-      ) {
-        event.preventDefault();
-        event.stopPropagation();
-        turn(direction);
-        return;
-      }
+    if (
+      direction &&
+      (game.status === 'ready' || game.status === 'running')
+    ) {
+      event.preventDefault();
+      event.stopPropagation();
+      turn(direction);
+      return;
+    }
 
-      if (
-        (event.key === 'Enter' || event.key === ' ') &&
-        (
-          game.status === 'game-over' ||
-          game.status === 'won' ||
-          game.status === 'interrupted'
-        )
-      ) {
-        event.preventDefault();
-        event.stopPropagation();
-        restart();
-      }
-    };
-
-    window.addEventListener('keydown', onKeyDown, true);
-    return () => window.removeEventListener('keydown', onKeyDown, true);
+    if (
+      (event.key === 'Enter' || event.key === ' ') &&
+      (
+        game.status === 'game-over' ||
+        game.status === 'won' ||
+        game.status === 'interrupted'
+      )
+    ) {
+      event.preventDefault();
+      event.stopPropagation();
+      restart();
+    }
   }, [game.status, restart, turn]);
 
   const occupiedCells = useMemo(() => {
@@ -136,7 +135,17 @@ export default function SnakeGame() {
   }[game.status];
 
   return (
-    <section ref={gameRef} className="snake-game" aria-label="Snake game">
+    <section
+      ref={gameRef}
+      className="snake-game"
+      aria-label="Snake game"
+      tabIndex={0}
+      onKeyDown={handleKeyDown}
+      onClick={(event) => {
+        event.stopPropagation();
+        gameRef.current?.focus({ preventScroll: true });
+      }}
+    >
       <header className="snake-game__header">
         <strong>SNAKE.EXE</strong>
         <span>Score: {game.score}</span>
