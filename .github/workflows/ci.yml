@@ -81,3 +81,45 @@ jobs:
       - name: Run Vitest suite
         working-directory: dev-portfolio-tests
         run: npm test -- --run
+
+  playwright:
+    name: Playwright
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out portfolio
+        uses: actions/checkout@v7
+        with:
+          path: dev-portfolio
+
+      - name: Check out test suite
+        uses: actions/checkout@v7
+        with:
+          repository: jondabubeta/dev-portfolio-tests
+          path: dev-portfolio-tests
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: |
+            dev-portfolio/package-lock.json
+            dev-portfolio-tests/package-lock.json
+
+      - name: Install portfolio dependencies
+        working-directory: dev-portfolio
+        run: npm ci
+
+      - name: Install test dependencies
+        working-directory: dev-portfolio-tests
+        run: npm ci
+
+      - name: Install Playwright browsers
+        working-directory: dev-portfolio-tests
+        run: npx playwright install --with-deps chromium firefox webkit
+
+      - name: Run Playwright suite
+        working-directory: dev-portfolio-tests
+        run: npm run e2e
