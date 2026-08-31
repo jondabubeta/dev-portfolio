@@ -19,10 +19,11 @@ Key goals:
 
 ## Quick start
 
-Start the dev server with HMR:
+Use Node.js 24 (also declared in `.nvmrc`), then start the dev server with HMR:
 
 ```powershell
 cd c:\Code\dev-portfolio
+nvm use
 npm install
 npm run dev
 ```
