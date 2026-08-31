@@ -4,6 +4,9 @@
   "description": "Terminal-style portfolio",
   "main": "src/index.js",
   "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
   "scripts": {
     "start": "npm run dev",
     "dev": "vite --host",
