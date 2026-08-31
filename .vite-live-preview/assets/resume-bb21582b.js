@@ -1,1 +1,0 @@
-import{a as e,j as o}from"./index-778d746f.js";import t from"./ResumePage-bedec7c4.js";/* empty css               */import"./education-705a387d.js";e(document.getElementById("root")).render(o.jsx(t,{}));
