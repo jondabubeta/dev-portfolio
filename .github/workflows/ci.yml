@@ -146,7 +146,7 @@ jobs:
           retention-days: 14
 
   allure-report:
-    name: Combined Allure report
+    name: Allure Report
     if: ${{ !cancelled() }}
     needs:
       - vitest
