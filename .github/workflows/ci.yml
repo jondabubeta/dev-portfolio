@@ -53,10 +53,7 @@ jobs:
           path: dev-portfolio
 
       - name: Check out test suite
-        uses: actions/checkout@v7
-        with:
-          repository: jondabubeta/dev-portfolio-tests
-          path: dev-portfolio-tests
+        run: git clone --branch main --depth 1 https://github.com/jondabubeta/dev-portfolio-tests.git dev-portfolio-tests
 
       - name: Set up Node.js
         uses: actions/setup-node@v6
@@ -100,10 +97,7 @@ jobs:
           path: dev-portfolio
 
       - name: Check out test suite
-        uses: actions/checkout@v7
-        with:
-          repository: jondabubeta/dev-portfolio-tests
-          path: dev-portfolio-tests
+        run: git clone --branch main --depth 1 https://github.com/jondabubeta/dev-portfolio-tests.git dev-portfolio-tests
 
       - name: Set up Node.js
         uses: actions/setup-node@v6
@@ -150,10 +144,7 @@ jobs:
 
     steps:
       - name: Check out test suite
-        uses: actions/checkout@v7
-        with:
-          repository: jondabubeta/dev-portfolio-tests
-          path: dev-portfolio-tests
+        run: git clone --branch main --depth 1 https://github.com/jondabubeta/dev-portfolio-tests.git dev-portfolio-tests
 
       - name: Set up Node.js
         uses: actions/setup-node@v6
