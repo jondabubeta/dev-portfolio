@@ -11,7 +11,21 @@ node_modules
 dist
 dist-ssr
 .vite-*-preview/
+
+# Environment and local package configuration
+.env
+.env.*
+!.env.example
 *.local
+.npmrc
+
+# Credentials and private keys
+*.key
+*.pem
+*.p12
+*.pfx
+credentials*.json
+secrets*.json
 
 # Editor directories and files
 .vscode/*
