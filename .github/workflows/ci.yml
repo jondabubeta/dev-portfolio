@@ -175,6 +175,15 @@ jobs:
         working-directory: dev-portfolio-tests
         run: npm ci
 
+      - name: Restore Allure history
+        if: github.ref == 'refs/heads/main'
+        uses: actions/cache/restore@v5
+        with:
+          path: dev-portfolio-tests/allure-history
+          key: allure-history-${{ runner.os }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            allure-history-${{ runner.os }}-
+
       - name: Download Vitest Allure results
         uses: actions/download-artifact@v7
         with:
@@ -190,6 +199,13 @@ jobs:
       - name: Generate combined Allure report
         working-directory: dev-portfolio-tests
         run: npm run report:generate
+
+      - name: Save Allure history
+        if: github.ref == 'refs/heads/main'
+        uses: actions/cache/save@v5
+        with:
+          path: dev-portfolio-tests/allure-history
+          key: allure-history-${{ runner.os }}-${{ github.run_id }}-${{ github.run_attempt }}
 
       - name: Upload combined Allure report
         uses: actions/upload-artifact@v7
