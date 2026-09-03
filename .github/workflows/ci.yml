@@ -79,6 +79,15 @@ jobs:
         working-directory: dev-portfolio-tests
         run: npm test -- --run
 
+      - name: Upload Vitest Allure results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results-vitest
+          path: dev-portfolio-tests/allure-results/vitest
+          if-no-files-found: warn
+          retention-days: 14
+
   playwright:
     name: Playwright
     runs-on: ubuntu-latest
@@ -120,3 +129,63 @@ jobs:
       - name: Run Playwright suite
         working-directory: dev-portfolio-tests
         run: npm run e2e
+
+      - name: Upload Playwright Allure results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results-playwright
+          path: dev-portfolio-tests/allure-results/playwright
+          if-no-files-found: warn
+          retention-days: 14
+
+  allure-report:
+    name: Combined Allure report
+    if: ${{ !cancelled() }}
+    needs:
+      - vitest
+      - playwright
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out test suite
+        uses: actions/checkout@v7
+        with:
+          repository: jondabubeta/dev-portfolio-tests
+          path: dev-portfolio-tests
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: dev-portfolio-tests/package-lock.json
+
+      - name: Install report dependencies
+        working-directory: dev-portfolio-tests
+        run: npm ci
+
+      - name: Download Vitest Allure results
+        uses: actions/download-artifact@v5
+        with:
+          name: allure-results-vitest
+          path: dev-portfolio-tests/allure-results/vitest
+
+      - name: Download Playwright Allure results
+        uses: actions/download-artifact@v5
+        with:
+          name: allure-results-playwright
+          path: dev-portfolio-tests/allure-results/playwright
+
+      - name: Generate combined Allure report
+        working-directory: dev-portfolio-tests
+        run: npm run report:generate
+
+      - name: Upload combined Allure report
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: dev-portfolio-tests/allure-report
+          if-no-files-found: error
+          retention-days: 14
